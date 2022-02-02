@@ -4,8 +4,128 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d06238702bf5350a5e00808eacc99181",
+    "content-hash": "c38c442957a4dcf79d82b6e3de9205cb",
     "packages": [
+        {
+            "name": "admad/cakephp-i18n",
+            "version": "2.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ADmad/cakephp-i18n.git",
+                "reference": "fc6732ac464610968fd8df6f2570c7d8d6105375"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ADmad/cakephp-i18n/zipball/fc6732ac464610968fd8df6f2570c7d8d6105375",
+                "reference": "fc6732ac464610968fd8df6f2570c7d8d6105375",
+                "shasum": ""
+            },
+            "require": {
+                "cakephp/cakephp": "^4.0.2"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~8.5.0"
+            },
+            "type": "cakephp-plugin",
+            "autoload": {
+                "psr-4": {
+                    "ADmad\\I18n\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "ADmad",
+                    "homepage": "https://github.com/ADmad",
+                    "role": "Author"
+                }
+            ],
+            "description": "A CakePHP plugin for I18n related tools.",
+            "homepage": "https://github.com/ADmad/cakephp-i18n",
+            "keywords": [
+                "cakephp",
+                "i18n",
+                "messages",
+                "routing",
+                "validation"
+            ],
+            "support": {
+                "issues": "https://github.com/ADmad/cakephp-i18n/issues",
+                "source": "https://github.com/ADmad/cakephp-i18n"
+            },
+            "time": "2021-12-25T14:04:46+00:00"
+        },
+        {
+            "name": "cakephp/authentication",
+            "version": "2.9.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/cakephp/authentication.git",
+                "reference": "71cfa8ab1b3e34699400528714a3575c5778e27d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/cakephp/authentication/zipball/71cfa8ab1b3e34699400528714a3575c5778e27d",
+                "reference": "71cfa8ab1b3e34699400528714a3575c5778e27d",
+                "shasum": ""
+            },
+            "require": {
+                "cakephp/http": "^4.0",
+                "laminas/laminas-diactoros": "^2.2.2",
+                "psr/http-client": "^1.0",
+                "psr/http-message": "^1.0",
+                "psr/http-server-handler": "^1.0",
+                "psr/http-server-middleware": "^1.0"
+            },
+            "require-dev": {
+                "cakephp/cakephp": "^4.0",
+                "cakephp/cakephp-codesniffer": "^4.0",
+                "firebase/php-jwt": "^5.5",
+                "phpunit/phpunit": "^8.5 || ^9.3"
+            },
+            "suggest": {
+                "cakephp/cakephp": "Install full core to use \"CookieAuthenticator\".",
+                "cakephp/orm": "To use \"OrmResolver\" (Not needed separately if using full CakePHP framework).",
+                "cakephp/utility": "Provides CakePHP security methods. Required for the JWT adapter and Legacy password hasher.",
+                "ext-ldap": "Make sure this php extension is installed and enabled on your system if you want to use the built-in LDAP adapter for \"LdapIdentifier\".",
+                "firebase/php-jwt": "If you want to use the JWT adapter add this dependency"
+            },
+            "type": "cakephp-plugin",
+            "autoload": {
+                "psr-4": {
+                    "Authentication\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "CakePHP Community",
+                    "homepage": "https://github.com/cakephp/authentication/graphs/contributors"
+                }
+            ],
+            "description": "Authentication plugin for CakePHP",
+            "homepage": "https://cakephp.org",
+            "keywords": [
+                "Authentication",
+                "auth",
+                "cakephp",
+                "middleware"
+            ],
+            "support": {
+                "docs": "https://book.cakephp.org/authentication/2/en/",
+                "forum": "https://stackoverflow.com/tags/cakephp",
+                "irc": "irc://irc.freenode.org/cakephp",
+                "issues": "https://github.com/cakephp/authentication/issues",
+                "source": "https://github.com/cakephp/authentication"
+            },
+            "time": "2022-01-06T20:01:45+00:00"
+        },
         {
             "name": "cakephp/cakephp",
             "version": "4.3.4",
@@ -729,6 +849,68 @@
                 }
             ],
             "time": "2021-02-19T21:22:57+00:00"
+        },
+        {
+            "name": "muffin/slug",
+            "version": "2.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/UseMuffin/Slug.git",
+                "reference": "2d3366a46a718ba7bc9caaa97568cb8ed68cb4a1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/UseMuffin/Slug/zipball/2d3366a46a718ba7bc9caaa97568cb8ed68cb4a1",
+                "reference": "2d3366a46a718ba7bc9caaa97568cb8ed68cb4a1",
+                "shasum": ""
+            },
+            "require": {
+                "cakephp/orm": "^4.0"
+            },
+            "require-dev": {
+                "cakephp/cakephp": "^4.0",
+                "cocur/slugify": "^1.2",
+                "phpunit/phpunit": "~8.5.0"
+            },
+            "type": "cakephp-plugin",
+            "autoload": {
+                "psr-4": {
+                    "Muffin\\Slug\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jad Bitar",
+                    "homepage": "http://jadb.io",
+                    "role": "Author"
+                },
+                {
+                    "name": "ADmad",
+                    "homepage": "https://github.com/ADmad",
+                    "role": "Author"
+                },
+                {
+                    "name": "Others",
+                    "homepage": "https://github.com/usemuffin/slug/graphs/contributors"
+                }
+            ],
+            "description": "Slugging support for CakePHP ORM",
+            "homepage": "https://github.com/usemuffin/slug",
+            "keywords": [
+                "cakephp",
+                "muffin",
+                "orm",
+                "slug"
+            ],
+            "support": {
+                "issues": "https://github.com/usemuffin/slug/issues",
+                "source": "https://github.com/usemuffin/slug"
+            },
+            "time": "2021-10-27T15:25:53+00:00"
         },
         {
             "name": "psr/container",

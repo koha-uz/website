@@ -23,6 +23,7 @@ use Cake\Error\Middleware\ErrorHandlerMiddleware;
 use Cake\Http\BaseApplication;
 use Cake\Http\Middleware\BodyParserMiddleware;
 use Cake\Http\Middleware\CsrfProtectionMiddleware;
+use Cake\Http\Middleware\EncryptedCookieMiddleware;
 use Cake\Http\MiddlewareQueue;
 use Cake\ORM\Locator\TableLocator;
 use Cake\Routing\Middleware\AssetMiddleware;
@@ -45,6 +46,14 @@ class Application extends BaseApplication
     {
         // Call parent to load bootstrap from files.
         parent::bootstrap();
+        /*
+        $this->addPlugin('Ajax', ['bootstrap' => true]);
+
+        $this->addPlugin('Burzum/FileStorage');
+
+        $this->addPlugin('Frontend');
+
+        $this->addPlugin('TinyAuth');*/
 
         if (PHP_SAPI === 'cli') {
             $this->bootstrapCli();
@@ -64,6 +73,12 @@ class Application extends BaseApplication
         }
 
         // Load more plugins here
+        $this->addPlugin('ADmad/I18n');
+        $this->addPlugin('Authentication');
+        $this->addPlugin('Muffin/Slug');
+        $this->addPlugin('Panel');
+        $this->addPlugin('Published');
+        $this->addPlugin('Meta');
     }
 
     /**
@@ -91,6 +106,27 @@ class Application extends BaseApplication
             // using it's second constructor argument:
             // `new RoutingMiddleware($this, '_cake_routes_')`
             ->add(new RoutingMiddleware($this))
+
+            ->add(new \ADmad\I18n\Middleware\I18nMiddleware([
+                // If `true` will attempt to get matching languges in "languages" list based
+                // on browser locale and redirect to that when going to site root.
+                'detectLanguage' => true,
+                // Default language for app. If language detection is disabled or no
+                // matching language is found redirect to this language
+                'defaultLanguage' => 'ru',
+                // Languages available in app. The keys should match the language prefix used
+                // in URLs. Based on the language the locale will be also set.
+                'languages' => [
+                    'en' => ['locale' => 'en'],
+                    'ru' => ['locale' => 'ru'],
+                    'uz' => ['locale' => 'uz']
+                ],
+            ]))
+
+            /*->add(new EncryptedCookieMiddleware(
+                ['secrets', 'protected'],
+                Configure::read('Security.cookieKey')
+            ))*/
 
             // Parse various types of encoded request bodies so that they are
             // available as array through $request->getData()

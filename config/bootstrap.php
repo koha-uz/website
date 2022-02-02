@@ -45,6 +45,9 @@ use Cake\Mailer\Mailer;
 use Cake\Mailer\TransportFactory;
 use Cake\Routing\Router;
 use Cake\Utility\Security;
+//use Cake\I18n\I18n;
+
+//require __DIR__ . DS . 'file_storage.php';
 
 /*
  * See https://github.com/josegonzalez/php-dotenv for API details.
@@ -215,3 +218,22 @@ TypeFactory::map('time', StringType::class);
 //Inflector::rules('plural', ['/^(inflect)or$/i' => '\1ables']);
 //Inflector::rules('irregular', ['red' => 'redlings']);
 //Inflector::rules('uninflected', ['dontinflectme']);
+
+
+Configure::write('I18n.languages', ['en', 'ru', 'uz']);
+/*
+I18n::config('cake', function ($domain, $locale) {
+    return new \ADmad\I18n\I18n\DbMessagesLoader($domain, $locale);
+});
+
+I18n::config('default', function ($domain, $locale) {
+    return new \ADmad\I18n\I18n\DbMessagesLoader($domain, $locale);
+});
+
+I18n::config('panel', function ($domain, $locale) {
+    return new \ADmad\I18n\I18n\DbMessagesLoader($domain, $locale);
+});
+
+I18n::config('frontend', function ($domain, $locale) {
+    return new \ADmad\I18n\I18n\DbMessagesLoader($domain, $locale);
+});*/

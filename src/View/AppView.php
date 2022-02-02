@@ -37,5 +37,28 @@ class AppView extends View
      */
     public function initialize(): void
     {
+        if ($this->request->getParam('prefix') == 'Founder') {
+            $this->loadHelper('Panel.Files');
+            $this->loadHelper('Panel.Panel');
+            $this->loadHelper('Panel.PhoneNumbers');
+            $this->loadHelper('Form', [
+                'className' => 'Panel.Form',
+                'errorClass' => 'form-control is-invalid'
+            ]);
+            $this->loadHelper('Meta.MetaImageForm');
+
+            $this->loadHelper('Published.Published');
+        }
+
+        $this->loadHelper('Authentication.Identity');
+        $this->loadHelper('Burzum/FileStorage.Image', [
+            'pathPrefix' => ASSETS
+        ]);
+        $this->loadHelper('Meta.MetaRender', [
+            'fb.app_id' => '559216204881816',
+            'og.site_name' => __('Bucheon University in Tashkent')
+        ]);
+
+        $this->loadHelper('I18n');
     }
 }
