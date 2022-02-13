@@ -42,6 +42,7 @@ class AppController extends Controller
     {
         parent::initialize();
 
+        $this->loadComponent('Authentication.Authentication');
         $this->loadComponent('RequestHandler');
         $this->loadComponent('Flash');
 
@@ -54,7 +55,7 @@ class AppController extends Controller
 
     public function beforeRender(EventInterface $event)
     {
-        //$this->viewBuilder()->setTheme('Frontend');
+        $this->viewBuilder()->setTheme('Frontend');
         if ($this->request->getParam('prefix') == 'Founder') {
             $this->viewBuilder()->setTheme('Panel');
         }

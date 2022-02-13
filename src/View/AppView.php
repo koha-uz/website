@@ -56,7 +56,7 @@ class AppView extends View
         ]);
         $this->loadHelper('Meta.MetaRender', [
             'fb.app_id' => '559216204881816',
-            'og.site_name' => __('Bucheon University in Tashkent')
+            //'og.site_name' => __('Bucheon University in Tashkent')
         ]);
 
         $this->loadHelper('I18n');

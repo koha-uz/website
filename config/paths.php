@@ -75,12 +75,12 @@ define('LOGS', ROOT . DS . 'logs' . DS);
  */
 define('CACHE', TMP . 'cache' . DS);
 
-/*
+/**
  * Path to the resources directory.
  */
 define('RESOURCES', ROOT . DS . 'resources' . DS);
 
-/*
+/**
  * The absolute path to the "cake" directory, WITHOUT a trailing DS.
  *
  * CakePHP should always be installed with composer, so look there.
@@ -92,3 +92,11 @@ define('CAKE_CORE_INCLUDE_PATH', ROOT . DS . 'vendor' . DS . 'cakephp' . DS . 'c
  */
 define('CORE_PATH', CAKE_CORE_INCLUDE_PATH . DS);
 define('CAKE', CORE_PATH . 'src' . DS);
+
+define('FILE_STORAGE', ROOT . DS . 'file_storage' . DS);
+define('ASSETS', DS . 'assets' . DS);
+
+/**
+ * Path to the tmp Open Graph images directory. It can be shared between hosts in a multi-server setup.
+ */
+define('TMP_OG_IMAGES', TMP . 'og_images' . DS);

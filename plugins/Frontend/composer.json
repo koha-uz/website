@@ -1,0 +1,24 @@
+{
+    "name": "your-name-here/frontend",
+    "description": "Frontend plugin for CakePHP",
+    "type": "cakephp-plugin",
+    "license": "MIT",
+    "require": {
+        "php": ">=7.2",
+        "cakephp/cakephp": "^4.3"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^8.5 || ^9.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "Frontend\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Frontend\\Test\\": "tests/",
+            "Cake\\Test\\": "vendor/cakephp/cakephp/tests/"
+        }
+    }
+}

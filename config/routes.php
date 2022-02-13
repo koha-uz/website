@@ -34,15 +34,45 @@ return static function (RouteBuilder $routes)
         $builder->connect('/', ['controller' => 'SystemicPages', 'action' => 'dashboard']);
         $builder->connect('/i18n-messages/{domain}/{locale}', ['controller' => 'I18nMessages', 'action' => 'edit'])->setPass(['domain', 'locale']);
     
+        /**
+         * ...Begin users
+         */
+        $builder->connect('/login', ['controller' => 'Users', 'action' => 'login'], ['_name' => 'login']);
+        $builder->connect('/logout', ['controller' => 'Users', 'action' => 'logout'], ['_name' => 'logout']);
+        /**
+         * ...End users
+         */
+
         $builder->fallbacks();
     });
 
     $routes->scope('/', function (RouteBuilder $builder) {
         $builder->setRouteClass(I18nRoute::class);
-        /*
-         * Here, we are connecting '/' (base path) to a controller called 'Pages',
-         * its action called 'display', and we pass a param to select the view file
-         * to use (in this case, templates/Pages/home.php)...
+
+        /**
+         * ...Begin dynamic pages
+         */
+        $builder->connect('/p/{slug}', ['controller' => 'Pages', 'action' => 'view'], ['_name' => 'page_view'])
+            ->setPass(['slug']);
+        /**
+         * ...End dynamic pages
+         */
+
+        /**
+         * ...Begin docs
+         */
+        $builder->connect('/docs/{slug}', ['controller' => 'Docs', 'action' => 'view'], ['_name' => 'doc_view'])
+            ->setPass(['slug']);
+        /**
+         * ...End docs
+         */
+
+        /**
+         * ...Begin faq pages
+         */
+        $builder->connect('/faq', ['controller' => 'Faqs', 'action' => 'index'], ['_name' => 'faq']);
+        /**
+         * ...End faq pages
          */
         $builder->connect('/', ['controller' => 'SystemicPages', 'action' => 'display'], ['_name' => 'home']);
         $builder->connect('/', ['controller' => 'SystemicPages', 'action' => 'display'], ['routeClass' => DashedRoute::class]);

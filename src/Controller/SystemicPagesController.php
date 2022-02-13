@@ -21,6 +21,8 @@ class SystemicPagesController extends AppController
     {
         parent::initialize();
         $this->loadComponent('SystemicPages');
+
+        $this->Authentication->allowUnauthenticated(['display', 'robots', 'sitemap']);
     }
 
     public function beforeFilter(EventInterface $event)
@@ -34,10 +36,6 @@ class SystemicPagesController extends AppController
         $this->SystemicPages->setupPage();
     }
 
-    public function sitemap()
-    {
-    }
-
     public function robots()
     {
         $this->request->addDetector('extTxt', function ($request) {
@@ -47,5 +45,9 @@ class SystemicPagesController extends AppController
         if (!$this->request->is('extTxt')) {
             throw new RecordNotFoundException(__('Page not found'));
         }
+    }
+
+    public function sitemap()
+    {
     }
 }

@@ -26,11 +26,6 @@ use Cake\Auth\DefaultPasswordHasher;
  */
 class UsersTable extends Table
 {
-    const ROLE_APPLICANTS = 2;
-    const ROLE_STUDENTS = 3;
-    const ROLE_TEACHERS = 4;
-    const ROLE_ADMISSION = 5;
-
     /**
      * Initialize method
      *
@@ -45,57 +40,11 @@ class UsersTable extends Table
         $this->setDisplayField('id');
         $this->setPrimaryKey('id');
 
-        $this->hasMany('AdmissionApplications', [
-            'foreignKey' => 'user_id',
-        ]);
-        $this->hasOne('ApplicantProfiles', [
-            'foreignKey' => 'user_id',
-        ]);
-        $this->hasMany('BillingMessages', [
-            'foreignKey' => 'user_id',
-        ]);
-        $this->hasOne('LanguageCertificates', [
-            'foreignKey' => 'user_id'
-        ]);
-        $this->hasOne('LearnerProfiles', [
-            'foreignKey' => 'user_id',
-        ]);
-        $this->hasMany('PassingExams', [
-            'foreignKey' => 'user_id',
-        ]);
-        $this->hasOne('Passports', [
-            'foreignKey' => 'user_id'
-        ]);
-        $this->hasOne('Photo', [
-            'className' => 'Burzum/FileStorage.FileStorage',
-            'foreignKey' => 'foreign_key',
-            'conditions' => ['Photo.model' => 'Users'],
-            'cascadeCallbacks' => true,
-            'dependent' => true
-        ]);
-        $this->belongsToMany('Roles', [
-            'foreignKey' => 'user_id',
-            'targetForeignKey' => 'role_id',
-            'joinTable' => 'roles_users',
-        ]);
-        $this->hasOne('StudentProfiles', [
-            'foreignKey' => 'user_id',
-        ]);
-        $this->hasOne('TeacherProfiles', [
-            'foreignKey' => 'user_id',
-        ]);
-        $this->hasOne('UserProfiles', [
-            'foreignKey' => 'user_id',
-        ]);
-
-        $this->addBehavior('Addresses');
-        $this->addBehavior('EmailAddresses');
-        $this->addBehavior('PhoneNumbers');
         $this->addBehavior('Timestamp', [
             'events' => [
                 'Model.beforeSave' => [
                     'date_created' => 'new',
-                    'date_modified' => 'always',
+                    'date_modified' => 'always'
                 ]
             ]
         ]);
@@ -204,173 +153,15 @@ class UsersTable extends Table
         if (isset($entity->new_password)) {
             $entity->password = $entity->new_password;
         }
-
-        if (!empty($entity->photo->file)) {
-            $entity->photo->set('model', 'Users');
-        }
     }
 
     public function afterSave(EventInterface $event, EntityInterface $entity, ArrayObject $options): void
     {
-        if ($entity->isNew()) {
-            if ($entity->roles[0]->id == ROLE_STUDENT) {
-                $studentStatus = $entity->student_profile->student_statuses[0];
-                $studentStatus->set('decree_id', $entity->student_profile->student_groups[0]->decree->id);
-                $this->StudentProfiles->StudentStatuses->save($studentStatus);
-            }
-        }
-    }
 
-    public function createApplicant($phoneNumber)
-    {
-        $password = $this->generateRandomString(6);
-        $user = $this->newEntity([
-            'username' => $phoneNumber->phone,
-            'password' => $password,
-            'roles' => ['_ids' => [ROLE_APPLICANT]]
-        ]);
-        $user->set('phone_number', $phoneNumber);
-
-        if ($this->save($user)) {
-            $this->BillingMessages->accessData($user, $password);
-            return $user;
-        }
-        return $user;
-    }
-
-    private function generateRandomString($length = 10) {
-        $characters = '123456789abcdefghkmnpqrstuvwxyzABCDEFGHKLMNPQRSTUVWXYZ';
-        $charactersLength = strlen($characters);
-        $randomString = '';
-        for ($i = 0; $i < $length; $i++) {
-            $randomString .= $characters[rand(0, $charactersLength - 1)];
-        }
-        return $randomString;
     }
 
     public function confirmPassword($value, array $context)
     {
         return ($value === $context['data']['new_password']);
-    }
-
-    public function findActive(Query $query, Array $options)
-    {
-        return $query->where([$this->aliasField('is_active') => true]);
-    }
-
-    public function findAuth(Query $query, Array $options)
-    {
-        return $query->find('active')
-            ->contain(['Photo', 'Roles', 'UserProfiles']);
-    }
-
-    public function findApplicantsForExam(Query $query, Array $options)
-    {
-        return $query
-            ->innerJoinWith('Roles', function($q) {
-                return $q->where(['Roles.id' => 2]);
-            })
-            ->innerJoinWith('LearnerProfiles', function($q) use ($options) {
-                return $q->where([
-                    'LearnerProfiles.faculty_id' => $options['faculty_id'],
-                    'LearnerProfiles.reception_id IN' => $options['receptions']['_ids']
-                ]);
-            })
-            ->notMatching('PassingExams.Exams', function ($q) {
-                return $q->where([
-                    'DATE_ADD(Exams.date_started, INTERVAL Exams.duration MINUTE) > NOW()'
-                ]);
-            })
-            ->contain([
-                'ApplicantProfiles',
-                'LearnerProfiles' => [
-                    'LanguageTestLevels.LanguageTests',
-                    'Receptions'
-                ],
-                'UserProfiles'
-            ]);
-    }
-
-    public function findApplicantsForGroup(Query $query, Array $options)
-    {
-        return $query->find('applicants')
-            ->innerJoinWith('AdmissionApplications', function($q) {
-                return $q->find('approved');
-            })
-            ->contain([
-                'AdmissionApplications' => function ($q) {
-                    return $q->find('approved')
-                        ->contain([
-                            'Receptions.StudyPlans',
-                            'StudyFaculties'
-                        ]);
-                },
-                'UserProfiles'
-            ]);
-    }
-
-    public function findAdministrators(Query $query, Array $options)
-    {
-        return $query->innerJoinWith('Roles', function($q) {
-            return $q->where(['Roles.id' => ROLE_ADMINISTRATOR]);
-        });
-    }
-
-    public function findApplicants(Query $query, Array $options)
-    {
-        return $query->innerJoinWith('Roles', function($q) {
-            return $q->where(['Roles.id' => ROLE_APPLICANT]);
-        });
-    }
-
-    public function findStudents(Query $query, Array $options)
-    {
-        return $query->innerJoinWith('Roles', function($q) {
-            return $q->where(['Roles.id' => ROLE_STUDENT]);
-        });
-    }
-
-    public function findTeachers(Query $query, Array $options)
-    {
-        return $query->innerJoinWith('Roles', function($q) {
-            return $q->where(['Roles.id' => ROLE_TEACHER]);
-        });
-    }
-
-    public function findListStudents(Query $query, Array $options)
-    {
-        if (isset($options['status']) && !empty($options['status'])) {
-            $query->innerJoinWith('StudentProfiles.StudentStatuses', function ($q) use ($options) {
-                return $q->where([
-                    'StudentStatuses.is_current' => true,
-                    'StudentStatuses.status' => (string)$options['status']
-                ]);
-            });
-        }
-
-        return $query->find('students')
-            ->contain([
-                'StudentProfiles' => [
-                    'StudentGroups' => function ($q) {
-                        return $q
-                            ->where(['StudentGroups.is_current' => true])
-                            ->contain([
-                                'StudyGroups.StudyFaculties' => [
-                                    'Faculties',
-                                    'StudyCourses' => function ($q) {
-                                        return $q->where(['StudyCourses.is_current' => true]);
-                                    },
-                                    'StudyPlans'
-                                ]
-                            ]);
-                    },
-                    'StudentStatuses' => function ($q) {
-                        return $q->where([
-                            'StudentStatuses.is_current' => true
-                        ]);
-                    }
-                ],
-                'UserProfiles'
-            ]);
     }
 }

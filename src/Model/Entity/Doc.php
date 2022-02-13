@@ -7,7 +7,7 @@ use Cake\ORM\Behavior\Translate\TranslateTrait;
 use Cake\ORM\Entity;
 
 /**
- * Page Entity
+ * Doc Entity
  *
  * @property int $id
  * @property string $title
@@ -16,9 +16,10 @@ use Cake\ORM\Entity;
  * @property \Cake\I18n\FrozenTime $date_created
  * @property \Cake\I18n\FrozenTime|null $date_modified
  *
+ * @property \App\Model\Entity\DocVersion[] $doc_versions
  * @property \Meta\Model\Entity\MetaTag $meta_tag
  */
-class Page extends Entity
+class Doc extends Entity
 {
     use TranslateTrait;
 
@@ -38,8 +39,7 @@ class Page extends Entity
         'body' => true,
         'date_created' => true,
         'date_modified' => true,
-        'date_published' => true,
-        'published' => true,
+        'doc_versions' => true,
         'meta_tag' => true
     ];
 }

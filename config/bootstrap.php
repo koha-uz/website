@@ -45,9 +45,9 @@ use Cake\Mailer\Mailer;
 use Cake\Mailer\TransportFactory;
 use Cake\Routing\Router;
 use Cake\Utility\Security;
-//use Cake\I18n\I18n;
+use Cake\I18n\I18n;
 
-//require __DIR__ . DS . 'file_storage.php';
+require __DIR__ . DS . 'file_storage.php';
 
 /*
  * See https://github.com/josegonzalez/php-dotenv for API details.
@@ -221,6 +221,7 @@ TypeFactory::map('time', StringType::class);
 
 
 Configure::write('I18n.languages', ['en', 'ru', 'uz']);
+
 /*
 I18n::config('cake', function ($domain, $locale) {
     return new \ADmad\I18n\I18n\DbMessagesLoader($domain, $locale);

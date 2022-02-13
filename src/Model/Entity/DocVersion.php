@@ -7,18 +7,21 @@ use Cake\ORM\Behavior\Translate\TranslateTrait;
 use Cake\ORM\Entity;
 
 /**
- * Page Entity
+ * DocVersion Entity
  *
  * @property int $id
- * @property string $title
- * @property string $slug
- * @property string $body
+ * @property int $doc_id
+ * @property int $version
+ * @property string|null $body
+ * @property bool $is_current
+ * @property string $url
+ * @property \Cake\I18n\FrozenTime $date_approved
  * @property \Cake\I18n\FrozenTime $date_created
  * @property \Cake\I18n\FrozenTime|null $date_modified
  *
- * @property \Meta\Model\Entity\MetaTag $meta_tag
+ * @property \App\Model\Entity\Doc $doc
  */
-class Page extends Entity
+class DocVersion extends Entity
 {
     use TranslateTrait;
 
@@ -33,13 +36,14 @@ class Page extends Entity
      */
     protected $_accessible = [
         '_translations' => true,
-        'title' => true,
-        'slug' => true,
+        'doc_id' => true,
+        'version' => true,
         'body' => true,
+        'is_current' => true,
+        'url' => true,
+        'date_approved' => true,
         'date_created' => true,
         'date_modified' => true,
-        'date_published' => true,
-        'published' => true,
-        'meta_tag' => true
+        'doc' => true,
     ];
 }

@@ -34,70 +34,6 @@ Configure::write('FileStorage', [
                 ]
             ]
         ],
-        'News' => [
-            'w250' => [
-                'thumbnail' => [
-                    'width' => 250,
-                    'height' => 1000
-                ]
-            ],
-        ],
-        'LanguageCertificateScan' => [
-            'crop160' => [
-                'squareCenterCrop' => [
-                    'size' => 160
-                ]
-            ],
-            'large' => [
-                'thumbnail' => [
-                    'mode' => 'inbound',
-                    'width' => 1200,
-                    'height' => 1200
-                ]
-            ]
-        ],
-        'LearnerDiplom' => [
-            'crop160' => [
-                'squareCenterCrop' => [
-                    'size' => 160
-                ]
-            ],
-            'large' => [
-                'thumbnail' => [
-                    'mode' => 'inbound',
-                    'width' => 1200,
-                    'height' => 1200
-                ]
-            ]
-        ],
-        'PassportScan' => [
-            'crop160' => [
-                'squareCenterCrop' => [
-                    'size' => 160
-                ]
-            ],
-            'large' => [
-                'thumbnail' => [
-                    'mode' => 'inbound',
-                    'width' => 1200,
-                    'height' => 1200
-                ]
-            ]
-        ],
-        'ReceiptAdmissionPayments' => [
-            'crop160' => [
-                'squareCenterCrop' => [
-                    'size' => 160
-                ]
-            ],
-            'large' => [
-                'thumbnail' => [
-                    'mode' => 'inbound',
-                    'width' => 1200,
-                    'height' => 1200
-                ]
-            ]
-        ],
         'Users' => [
             'portrait' => [
                 'resize' => [
@@ -112,21 +48,7 @@ Configure::write('FileStorage', [
                     'height' => 1200
                 ]
             ]
-        ],
-        'Decrees' => [
-            'crop160' => [
-                'squareCenterCrop' => [
-                    'size' => 160
-                ]
-            ],
-            'large' => [
-                'thumbnail' => [
-                    'mode' => 'inbound',
-                    'width' => 1200,
-                    'height' => 1200
-                ]
-            ]
-        ],
+        ]
     ]
 ]);
 StorageUtils::generateHashes();
