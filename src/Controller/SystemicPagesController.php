@@ -32,7 +32,6 @@ class SystemicPagesController extends AppController
 
     public function display()
     {
-        //$result = $this->Authentication->getResult();
         $this->SystemicPages->setupPage();
     }
 

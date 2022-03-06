@@ -45,6 +45,7 @@ class DocsTable extends Table
 
         $this->hasMany('DocVersions', [
             'foreignKey' => 'doc_id',
+            'dependent' => true
         ]);
 
         $this->addBehavior('Meta.Meta');

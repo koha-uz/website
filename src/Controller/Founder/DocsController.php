@@ -27,6 +27,36 @@ class DocsController extends AppController
     }
 
     /**
+     * View method
+     *
+     * @param string|null $id Doc id.
+     * @return \Cake\Http\Response|null|void Renders view
+     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
+     */
+    public function view($id = null)
+    {
+        $this->Docs->DocVersions->setLocale('en');
+
+        $doc = $this->Docs->findById($id)
+            ->contain([
+                'DocVersions' => function ($q) {
+                    return $q->find('translations');
+                },
+                'MetaTags' => [
+                    'Image',
+                    'ImageBg'
+                ]
+            ])
+            ->firstOrFail();
+
+        /*debug($doc);
+        exit;*/
+
+        $docVersion = $this->Docs->DocVersions->newEmptyEntity();
+        $this->set(compact('doc', 'docVersion'));
+    }
+
+    /**
      * Add method
      *
      * @return \Cake\Http\Response|null|void Redirects on successful add, renders view otherwise.
@@ -42,7 +72,7 @@ class DocsController extends AppController
             if ($this->Docs->save($doc)) {
                 $this->Flash->success(__('The doc has been saved.'));
 
-                return $this->redirect(['action' => 'edit', $doc->id]);
+                return $this->redirect(['action' => 'view', $doc->id]);
             }
             $this->Flash->error(__('The doc could not be saved. Please, try again.'));
         }
@@ -79,7 +109,7 @@ class DocsController extends AppController
             if ($this->Docs->save($doc)) {
                 $this->Flash->success(__('The doc has been saved.'));
 
-                return $this->redirect(['action' => 'edit', $doc->id]);
+                return $this->redirect(['action' => 'index', $doc->id]);
             }
             $this->Flash->error(__('The doc could not be saved. Please, try again.'));
         }

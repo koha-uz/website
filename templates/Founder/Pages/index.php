@@ -28,10 +28,10 @@ $(document).ready(function() {
             }
         },
         columnDefs: [{
-            targets: [0, 4],
+            targets: [0, 5],
             orderable: false
         }],
-        order: [[1, 'asc']]
+        order: [[2, 'asc']]
     });
 });
 </script>
@@ -59,6 +59,7 @@ $(document).ready(function() {
                         <thead>
                             <tr>
                                 <th class="all"></th>
+                                <th class="min-tablet"><?= __d('panel', 'Parent') ?></th>
                                 <th class="all" style="width: 60%"><?= __d('panel', 'Title') ?></th>
                                 <th class="min-desktop"><?= __d('panel', 'Date Published') ?></th>
                                 <th class="min-phone text-center"><?= __d('panel', 'Mode') ?></th>
@@ -80,6 +81,16 @@ $(document).ready(function() {
                                     ?>
                                 </td>
                                 <td>
+                                    <?php
+                                    if (null !== $page->parent_page) {
+                                        echo h($page->parent_page->title);
+                                        echo $this->Html->tag('code', h($page->parent_page->slug), ['class' => 'd-block']);
+                                    } else {
+                                        echo $this->Html->tag('span', __d('panel', 'Root'), ['class' => 'color-danger-600 fs-xl font-italic']);
+                                    }
+                                    ?>
+                                </td>
+                                <td>
                                     <?= h($page->title) ?>
                                     <code class="d-block">
                                         <?php
@@ -90,7 +101,7 @@ $(document).ready(function() {
                                         ?>
                                     </code>
                                 </td>
-                                <td><?= $this->Time->i18nFormat($page->date_published, 'dd MMMM Y h:mm:ss') ?></td>
+                                <td><?= $this->Time->i18nFormat($page->date_published, 'dd MMMM Y H:mm:ss') ?></td>
                                 <td class="text-center"><?= $this->Published->publishLink($page) ?></td>
                                 <td class="text-center">
                                     <?php

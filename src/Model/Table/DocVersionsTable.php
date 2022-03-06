@@ -3,6 +3,9 @@ declare(strict_types=1);
 
 namespace App\Model\Table;
 
+use ArrayObject;
+use Cake\Datasource\EntityInterface;
+use Cake\Event\EventInterface;
 use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
@@ -105,5 +108,45 @@ class DocVersionsTable extends Table
         $rules->add($rules->existsIn('doc_id', 'Docs'), ['errorField' => 'doc_id']);
 
         return $rules;
+    }
+
+    public function beforeMarshal(EventInterface $event, ArrayObject $data, ArrayObject $options)
+    {
+        if (isset($data['doc_id'])) {
+            unset($data['doc_id']);
+        }
+    }
+
+    public function beforeSave(EventInterface $event, EntityInterface $entity, ArrayObject $options): void
+    {
+        if ($entity->is_current) {
+            $docs = $this->findByDocId($entity->doc_id);
+            if (!$entity->isNew()) {
+                $docs->where([
+                    $this->aliasField('id !=') => $entity->id
+                ]);
+            }
+
+            foreach($docs as $doc) {
+                $doc->set('is_current', false);
+                $this->save($doc);
+            }
+        }
+    }
+
+    public function beforeDelete(EventInterface $event, EntityInterface $entity)
+    {
+        if ($entity->is_current) {
+            $doc = $this->findByDocId($entity->doc_id)
+                ->order([
+                    $this->aliasField('version') => 'DESC'
+                ])
+                ->first();
+
+            if (!empty($doc)) {
+                $doc->set('is_current', true);
+                $this->save($doc);
+            }
+        }
     }
 }

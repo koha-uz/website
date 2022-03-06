@@ -2,8 +2,8 @@
 namespace App\Model\Table;
 
 use ArrayObject;
-use Cake\Event\Event;
-use Cake\ORM\Entity;
+use Cake\Datasource\EntityInterface;
+use Cake\Event\EventInterface;
 use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
@@ -37,9 +37,20 @@ class PagesTable extends Table
         $this->setDisplayField('title');
         $this->setPrimaryKey('id');
 
+        $this->belongsTo('ParentPages', [
+            'className' => 'Pages',
+            'foreignKey' => 'parent_id'
+        ]);
+
+        $this->hasMany('ChildPages', [
+            'className' => 'Pages',
+            'foreignKey' => 'parent_id'
+        ]);
+
         $this->addBehavior('Meta.Meta');
         $this->addBehavior('Muffin/Slug.Slug');
         $this->addBehavior('Published.Published');
+
         $this->addBehavior('Timestamp', [
             'events' => [
                 'Model.beforeSave' => [
@@ -49,6 +60,7 @@ class PagesTable extends Table
             ]
         ]);
         $this->addBehavior('Translate', ['fields' => ['title', 'body']]);
+        $this->addBehavior('Tree');
     }
 
     /**
@@ -65,7 +77,7 @@ class PagesTable extends Table
 
         $validator
             ->scalar('slug')
-            ->maxLength('slug', 191)
+            ->maxLength('slug', 180)
             ->notEmptyString('slug')
             ->add('slug', 'unique', ['rule' => 'validateUnique', 'provider' => 'table']);
 
@@ -88,5 +100,10 @@ class PagesTable extends Table
         $rules->add($rules->isUnique(['slug']));
 
         return $rules;
+    }
+
+    public function beforeSave(EventInterface $event, EntityInterface $entity, ArrayObject $options): void
+    {
+
     }
 }

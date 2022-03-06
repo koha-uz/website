@@ -59,6 +59,34 @@ return static function (RouteBuilder $routes)
          */
 
         /**
+         * ...Begin services
+         */
+        $builder->connect('/services/{slug}', ['controller' => 'Services', 'action' => 'view'], ['_name' => 'service_view'])
+            ->setPass(['slug']);
+        /**
+         * ...End services
+         */
+
+        /**
+         * ...Begin ad categories
+         */
+        $builder->connect('/ads/c/{slug}', ['controller' => 'AdCategories', 'action' => 'view'], ['_name' => 'ad_category_view'])
+            ->setPass(['slug']);
+        /**
+         * ...End ad categories
+         */
+
+
+        /**
+         * ...Begin ads
+         */
+        $builder->connect('/ads/{slug}', ['controller' => 'Ads', 'action' => 'view'], ['_name' => 'ad_view'])
+            ->setPass(['slug']);
+        /**
+         * ...End ads
+         */
+
+        /**
          * ...Begin docs
          */
         $builder->connect('/docs/{slug}', ['controller' => 'Docs', 'action' => 'view'], ['_name' => 'doc_view'])

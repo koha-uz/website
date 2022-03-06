@@ -126,11 +126,6 @@ class Application extends BaseApplication implements AuthenticationServiceProvid
                 ],
             ]))
 
-            /*->add(new EncryptedCookieMiddleware(
-                ['secrets', 'protected'],
-                Configure::read('Security.cookieKey')
-            ))*/
-
             // Parse various types of encoded request bodies so that they are
             // available as array through $request->getData()
             // https://book.cakephp.org/4/en/controllers/middleware.html#body-parser-middleware
@@ -144,9 +139,9 @@ class Application extends BaseApplication implements AuthenticationServiceProvid
 
             // Cross Site Request Forgery (CSRF) Protection Middleware
             // https://book.cakephp.org/4/en/controllers/middleware.html#cross-site-request-forgery-csrf-middleware
-            ->add(new CsrfProtectionMiddleware([
+            /*->add(new CsrfProtectionMiddleware([
                 'httponly' => true,
-            ]));
+            ]))*/;
 
         return $middlewareQueue;
     }

@@ -27,7 +27,8 @@ class PagesController extends AppController
      */
     public function index()
     {
-        $pages = $this->Pages->find();
+        $pages = $this->Pages->find()
+            ->contain('ParentPages');
         $this->set('pages', $pages);
     }
 
@@ -43,6 +44,7 @@ class PagesController extends AppController
             $page = $this->Pages->patchEntity($page, $this->request->getData(),
                 ['associated' => ['MetaTags.ImageBg', 'MetaTags.Image']]
             );
+
             if ($this->Pages->save($page)) {
                 $this->Flash->success(__d('panel', 'The page has been saved.'));
 
@@ -51,7 +53,11 @@ class PagesController extends AppController
 
             $this->Flash->error(__d('panel', 'The page could not be saved. Please, try again.'));
         }
-        $this->set(compact('page'));
+
+        $parents = $this->Pages->find()
+            ->find('treeList');
+
+        $this->set(compact('page', 'parents'));
     }
 
     /**
@@ -87,7 +93,11 @@ class PagesController extends AppController
             }
             $this->Flash->error(__d('panel', 'The page could not be saved. Please, try again.'));
         }
-        $this->set(compact('page'));
+
+        $parents = $this->Pages->find()
+            ->find('treeList');
+
+        $this->set(compact('page', 'parents'));
     }
 
     /**

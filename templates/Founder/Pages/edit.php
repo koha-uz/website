@@ -14,12 +14,16 @@ $menu['pages']['dynamic'][1] = true;
 echo $this->element('navigation', ['menu' => $menu]);
 $this->end();
 
-echo $this->Html->css('formplugins/summernote/summernote', ['block' => true]);
+echo $this->Html->css([
+    'formplugins/select2/select2.bundle',
+    'formplugins/summernote/summernote'
+], ['block' => true]);
 
 echo $this->Html->script(
     [
-        '/vendor/bundle.umd.min',
-        'formplugins/summernote/summernote'
+        'formplugins/select2/select2.bundle',
+        'formplugins/summernote/summernote',
+        '/vendor/bundle.umd.min'
     ],
     ['block' => true]
 );
@@ -143,6 +147,23 @@ $(document).ready(function() {
                         echo $this->Form->submit(__d('panel', 'Save'));
                         ?>
                     </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="panel-3" class="panel shadow-0" data-panel-close data-panel-sortable data-panel-fullscreen data-panel-refresh data-panel-locked>
+            <div class="panel-hdr">
+                <h2><?= __d('panel', 'Parent page') ?></h2>
+            </div>
+            <div class="panel-container show">
+                <div class="panel-content">
+                    <?php
+                    echo $this->Form->control('parent_id', [
+                        'empty' => __d('panel', 'Select the parent'),
+                        'label' => ['class' => 'sr-only'],
+                        'class' => 'form-control select2 w-100'
+                    ]);
+                    ?>
                 </div>
             </div>
         </div>
