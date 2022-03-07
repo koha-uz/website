@@ -1,56 +1,127 @@
 <?php
-/**
- * @var \App\View\AppView $this
- * @var \App\Model\Entity\Ad[]|\Cake\Collection\CollectionInterface $ads
- */
+$this->assign('meta', $this->MetaRender
+    ->init($page->meta_tag)
+    ->render()
+);
 ?>
-<div class="ads index content">
-    <?= $this->Html->link(__('New Ad'), ['action' => 'add'], ['class' => 'button float-right']) ?>
-    <h3><?= __('Ads') ?></h3>
-    <div class="table-responsive">
-        <table>
-            <thead>
-                <tr>
-                    <th><?= $this->Paginator->sort('id') ?></th>
-                    <th><?= $this->Paginator->sort('add_category_id') ?></th>
-                    <th><?= $this->Paginator->sort('title') ?></th>
-                    <th><?= $this->Paginator->sort('slug') ?></th>
-                    <th><?= $this->Paginator->sort('date_created') ?></th>
-                    <th><?= $this->Paginator->sort('date_modified') ?></th>
-                    <th><?= $this->Paginator->sort('date_published') ?></th>
-                    <th><?= $this->Paginator->sort('published') ?></th>
-                    <th class="actions"><?= __('Actions') ?></th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php foreach ($ads as $ad): ?>
-                <tr>
-                    <td><?= $this->Number->format($ad->id) ?></td>
-                    <td><?= $ad->has('ad_category') ? $this->Html->link($ad->ad_category->title, ['controller' => 'AdCategories', 'action' => 'view', $ad->ad_category->id]) : '' ?></td>
-                    <td><?= h($ad->title) ?></td>
-                    <td><?= h($ad->slug) ?></td>
-                    <td><?= h($ad->date_created) ?></td>
-                    <td><?= h($ad->date_modified) ?></td>
-                    <td><?= h($ad->date_published) ?></td>
-                    <td><?= h($ad->published) ?></td>
-                    <td class="actions">
-                        <?= $this->Html->link(__('View'), ['action' => 'view', $ad->id]) ?>
-                        <?= $this->Html->link(__('Edit'), ['action' => 'edit', $ad->id]) ?>
-                        <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $ad->id], ['confirm' => __('Are you sure you want to delete # {0}?', $ad->id)]) ?>
-                    </td>
-                </tr>
-                <?php endforeach; ?>
-            </tbody>
-        </table>
+
+<section class="wrapper bg-soft-primary">
+    <div class="container pt-10 pb-12 pt-md-14 pb-md-16">
+        <div class="row">
+            <div class="col-md-7 col-lg-6 col-xl-5 mx-auto">
+                <h1 class="display-1 mb-3"><?= $page->title ?></h1>
+                <p class="lead px-lg-5 px-xxl-8">Welcome to our journal. Here you can find the latest company news and business articles.</p>
+            </div>
+            <!-- /column -->
+        </div>
+        <!-- /.row -->
     </div>
-    <div class="paginator">
-        <ul class="pagination">
-            <?= $this->Paginator->first('<< ' . __('first')) ?>
-            <?= $this->Paginator->prev('< ' . __('previous')) ?>
-            <?= $this->Paginator->numbers() ?>
-            <?= $this->Paginator->next(__('next') . ' >') ?>
-            <?= $this->Paginator->last(__('last') . ' >>') ?>
-        </ul>
-        <p><?= $this->Paginator->counter(__('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')) ?></p>
+    <!-- /.container -->
+</section>
+<!-- /section -->
+
+<section class="wrapper bg-light">
+    <div class="container py-14 py-md-16">
+        <div class="row gx-lg-8 gx-xl-12">
+            <div class="col-lg-8">
+                <?php
+                $count = $ads->count();
+                if ($count > 0) {
+                    foreach($ads as $key => $ad) {
+                        if ($key === 0) {
+                            echo '<div class="blog classic-view">';
+                        }
+
+                        if (
+                            $count <= 4 ||
+                            (in_array($count, [5, 7]) && $key < 2) ||
+                            ($count  === 6 && $key < 3)
+                        ) {
+                            echo $this->element('Ads/post_big', ['ad' => $ad]);
+                        }
+
+                        if (
+                            ($count <= 4 && $count === ($key + 1)) ||
+                            (in_array($count, [5, 7]) && 3 === ($key + 1)) ||
+                            ($count === 6 && 4 === ($key + 1))
+                        ) {
+                            echo '</div>';
+                        }
+
+                        if (
+                            (in_array($count, [5, 7]) && 4 === ($key + 1)) ||
+                            ($count === 6 && 5 === ($key + 1))
+                        ) {
+                            echo '<div class="blog grid grid-view">';
+                            echo '<div class="row isotope gx-md-8 gy-8 mb-8">';
+                        }
+
+                        if (
+                            
+                        ) {
+                            echo $this->element('Ads/post_mini.php', ['ad' => $ad]);
+                        }
+
+                        if (
+                            (in_array($count, [5, 6, 7]) && $count === ($key + 1)) {
+                                echo '</div>';
+                                echo '</div>';
+                            }
+                        )
+                    }
+                } else {
+
+                }
+                ?>
+
+                <nav class="d-flex" aria-label="pagination">
+                    <ul class="pagination">
+                        <?= $this->Paginator->prev(__d('frontend', 'Previous')) ?>
+                        <?= $this->Paginator->numbers() ?>
+                        <?= $this->Paginator->next(__d('frontend', 'Next')) ?>
+                    </ul>
+                    <!-- /.pagination -->
+                </nav>
+                <!-- /nav -->
+                <?php else: ?>
+
+                <?php endif; ?>
+            </div>
+            <!-- /column -->
+          
+            <aside class="col-lg-4 sidebar mt-8 mt-lg-6">
+                <div class="widget">
+                    <h4 class="widget-title mb-3">About Us</h4>
+                    <p>Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum. Nulla vitae elit libero, a pharetra augue. Donec id elit non mi porta gravida at eget metus.</p>
+                    <nav class="nav social">
+                        <a href="#"><i class="uil uil-twitter"></i></a>
+                        <a href="#"><i class="uil uil-facebook-f"></i></a>
+                        <a href="#"><i class="uil uil-dribbble"></i></a>
+                        <a href="#"><i class="uil uil-instagram"></i></a>
+                        <a href="#"><i class="uil uil-youtube"></i></a>
+                    </nav>
+                    <!-- /.social -->
+                    <div class="clearfix"></div>
+                </div>
+                <!-- /.widget -->
+            
+                <div class="widget">
+                    <h4 class="widget-title mb-3">Categories</h4>
+                    <ul class="unordered-list bullet-primary text-reset">
+                        <li><a href="#">Teamwork (21)</a></li>
+                        <li><a href="#">Ideas (19)</a></li>
+                        <li><a href="#">Workspace (16)</a></li>
+                        <li><a href="#">Coding (7)</a></li>
+                        <li><a href="#">Meeting (12)</a></li>
+                        <li><a href="#">Business Tips (14)</a></li>
+                    </ul>
+                </div>
+                <!-- /.widget -->
+            </aside>
+            <!-- /column .sidebar -->
+        </div>
+        <!-- /.row -->
     </div>
-</div>
+    <!-- /.container -->
+</section>
+<!-- /section -->

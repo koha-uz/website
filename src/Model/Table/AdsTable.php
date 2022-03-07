@@ -123,4 +123,12 @@ class AdsTable extends Table
     {
 
     }
+
+    public function findPublic(Query $query, Array $options)
+    {
+        return $query->find('published')
+            ->innerJoinWith('AdCategories', function ($q) {
+                return $q->find('published');
+            });
+    }
 }
