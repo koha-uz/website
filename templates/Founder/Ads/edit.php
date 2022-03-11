@@ -90,6 +90,12 @@ $(document).ready(function() {
                                 'placeholder' => __d('panel', 'Slug')
                             ]);
 
+                            echo $this->Form->control('notes', [
+                                'label' => ['class' => 'sr-only'],
+                                'placeholder' => __d('panel', 'Notes'),
+                                'rows' => 2
+                            ]);
+
                             echo $this->Form->control('body', [
                                 'label' => ['class' => 'sr-only'],
                                 'class' => 'summernote',
@@ -105,6 +111,12 @@ $(document).ready(function() {
                                 'placeholder' => __d('panel', 'Title')
                             ]);
 
+                            echo $this->Form->control('_translations.uz.notes', [
+                                'label' => ['class' => 'sr-only'],
+                                'placeholder' => __d('panel', 'Notes'),
+                                'rows' => 2
+                            ]);
+
                             echo $this->Form->control('_translations.ru.body', [
                                 'label' => ['class' => 'sr-only'],
                                 'class' => 'summernote',
@@ -118,6 +130,12 @@ $(document).ready(function() {
                                 'label' => ['class' => 'sr-only'],
                                 'class' => 'form-control input-lg form-control-lg rounded-0 border-top-0 border-left-0 border-right-0 px-0',
                                 'placeholder' => __d('panel', 'Title')
+                            ]);
+
+                            echo $this->Form->control('_translations.uz.notes', [
+                                'label' => ['class' => 'sr-only'],
+                                'placeholder' => __d('panel', 'Notes'),
+                                'rows' => 2
                             ]);
 
                             echo $this->Form->control('_translations.uz.body', [
@@ -171,6 +189,33 @@ $(document).ready(function() {
                         'label' => ['class' => 'sr-only'],
                         'class' => 'form-control select2 w-100'
                     ]);
+                    ?>
+                </div>
+            </div>
+        </div>
+
+        <div id="panel-4" class="panel shadow-0" data-panel-close data-panel-sortable data-panel-fullscreen data-panel-refresh data-panel-locked>
+            <div class="panel-hdr">
+                <h2><?= __d('panel', 'Cover') ?></h2>
+            </div>
+            <div class="panel-container show">
+                <div class="panel-content">
+                    <?php
+                    echo $this->Form->control('youtubeId', [
+                        'label' => __d('panel', 'Youtube Embed ID')
+                    ]);
+                    echo $this->Form->control('cover.file', [
+                        'label' => __d('panel', 'Cover'),
+                        'type' => 'file'
+                    ]);
+
+                    if (!empty($ad->cover)) {
+                        echo $this->Image->display($ad->cover, 'big', ['class' => 'img-fluid mt-2']);
+                        echo $this->Form->control('cover.old_file_id', [
+                            'type' => 'hidden',
+                            'value' => h($ad->cover->id)
+                        ]);
+                    }
                     ?>
                 </div>
             </div>

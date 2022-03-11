@@ -12,7 +12,10 @@ namespace App\Controller;
 class AdsController extends AppController
 {
     public $paginate = [
-        'limit' => 7
+        'limit' => 7,
+        'order' => [
+            'Ads.date_published' => 'desc'
+        ]
     ];
 
     public function initialize(): void
@@ -30,7 +33,7 @@ class AdsController extends AppController
     public function index()
     {
         $ads = $this->Ads->find('public')
-            ->contain(['AdCategories', 'MetaTags.Image']);
+            ->contain(['AdCategories', 'Cover', 'MetaTags.Image']);
 
         $this->set('ads', $this->paginate($ads));
 
@@ -48,7 +51,7 @@ class AdsController extends AppController
     {
         $ad = $this->Ads->find('slugged', compact('slug'))
             ->find('public')
-            ->contain(['AdCategories', 'MetaTags.Image'])
+            ->contain(['AdCategories', 'Cover', 'MetaTags.Image'])
             ->firstOrFail();
 
         $this->set(compact('ad'));

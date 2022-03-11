@@ -51,6 +51,14 @@ class AdsTable extends Table
             'joinType' => 'INNER',
         ]);
 
+        $this->hasOne('Cover', [
+            'className' => 'Burzum/FileStorage.FileStorage',
+            'foreignKey' => 'foreign_key',
+            'conditions' => ['Cover.model' => 'Ads'],
+            'cascadeCallbacks' => true,
+            'dependent' => true
+        ]);
+
         $this->addBehavior('Meta.Meta');
         $this->addBehavior('Muffin/Slug.Slug');
         $this->addBehavior('Published.Published');
@@ -63,7 +71,7 @@ class AdsTable extends Table
                 ]
             ]
         ]);
-        $this->addBehavior('Translate', ['fields' => ['title', 'body']]);
+        $this->addBehavior('Translate', ['fields' => ['title', 'body', 'notes']]);
     }
 
     /**
@@ -121,7 +129,9 @@ class AdsTable extends Table
 
     public function beforeSave(EventInterface $event, EntityInterface $entity, ArrayObject $options): void
     {
-
+        if (!empty($entity->cover->file)) {
+            $entity->cover->set('model', 'Ads');
+        }
     }
 
     public function findPublic(Query $query, Array $options)

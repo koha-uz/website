@@ -31,7 +31,7 @@ $(document).ready(function() {
             targets: [0, 4, 5],
             orderable: false
         }],
-        order: [[3, 'asc']]
+        order: [[3, 'desc']]
     });
 });
 </script>

@@ -14,6 +14,8 @@ use Cake\ORM\Entity;
  * @property string $title
  * @property string $slug
  * @property string $body
+ * @property string|null $notes
+ * @property string|null $youtubeId
  * @property \Cake\I18n\FrozenTime $date_created
  * @property \Cake\I18n\FrozenTime|null $date_modified
  * @property \Cake\I18n\FrozenTime|null $date_published
@@ -38,11 +40,14 @@ class Ad extends Entity
         'title' => true,
         'slug' => true,
         'body' => true,
+        'notes' => true,
+        'youtubeId' => true,
         'date_created' => true,
         'date_modified' => true,
         'date_published' => true,
         'published' => true,
         'ad_category' => true,
-        'meta_tag' => true
+        'meta_tag' => true,
+        'cover' => true
     ];
 }

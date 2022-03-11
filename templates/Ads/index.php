@@ -34,8 +34,8 @@ $this->assign('meta', $this->MetaRender
 
                         if (
                             $count <= 4 ||
-                            (in_array($count, [5, 7]) && $key < 2) ||
-                            ($count  === 6 && $key < 3)
+                            (in_array($count, [5, 7]) && $key <= 2) ||
+                            ($count  === 6 && $key <= 3)
                         ) {
                             echo $this->element('Ads/post_big', ['ad' => $ad]);
                         }
@@ -57,35 +57,23 @@ $this->assign('meta', $this->MetaRender
                         }
 
                         if (
-                            
+                            ((in_array($count, [5, 7]) && $key >= 3)) ||
+                            ($count === 6 && $key >= 4)
                         ) {
-                            echo $this->element('Ads/post_mini.php', ['ad' => $ad]);
+                            echo $this->element('Ads/post_mini', ['ad' => $ad]);
                         }
 
-                        if (
-                            (in_array($count, [5, 6, 7]) && $count === ($key + 1)) {
-                                echo '</div>';
-                                echo '</div>';
-                            }
-                        )
+                        if (in_array($count, [5, 6, 7]) && $count === ($key + 1)) {
+                            echo '</div>';
+                            echo '</div>';
+                        }
                     }
                 } else {
 
                 }
                 ?>
 
-                <nav class="d-flex" aria-label="pagination">
-                    <ul class="pagination">
-                        <?= $this->Paginator->prev(__d('frontend', 'Previous')) ?>
-                        <?= $this->Paginator->numbers() ?>
-                        <?= $this->Paginator->next(__d('frontend', 'Next')) ?>
-                    </ul>
-                    <!-- /.pagination -->
-                </nav>
-                <!-- /nav -->
-                <?php else: ?>
-
-                <?php endif; ?>
+                <?= $this->element('paginator', ['entities' => $ads]) ?>
             </div>
             <!-- /column -->
           

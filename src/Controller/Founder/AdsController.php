@@ -30,7 +30,10 @@ class AdsController extends AppController
     public function index()
     {
         $ads = $this->Ads->find()
-            ->contain('AdCategories');
+            ->contain([
+                'AdCategories',
+                'Cover'
+            ]);
 
         $this->set(compact('ads'));
     }
@@ -45,7 +48,7 @@ class AdsController extends AppController
         $ad = $this->Ads->newEmptyEntity();
         if ($this->request->is('post')) {
             $ad = $this->Ads->patchEntity($ad, $this->request->getData(),
-                ['associated' => ['MetaTags.ImageBg', 'MetaTags.Image']]
+                ['associated' => ['Cover', 'MetaTags.ImageBg', 'MetaTags.Image']]
             );
 
             if ($this->Ads->save($ad)) {
@@ -76,6 +79,7 @@ class AdsController extends AppController
         $ad = $this->Ads->findById($id)
             ->find('translations')
             ->contain([
+                'Cover',
                 'MetaTags' => function ($query) {
                     return $query->find('translations')
                         ->contain(['ImageBg', 'Image']);
@@ -84,8 +88,12 @@ class AdsController extends AppController
             ->firstOrFail();
 
         if ($this->request->is(['patch', 'post', 'put'])) {
+            if (!empty($this->request->getData('cover.file.tmp_name'))) {
+                $ad->set('cover', $this->Ads->Cover->newEmptyEntity());
+            }
+
             $ad = $this->Ads->patchEntity($ad, $this->request->getData(),
-                ['associated' => ['MetaTags.ImageBg', 'MetaTags.Image']]
+                ['associated' => ['Cover', 'MetaTags.ImageBg', 'MetaTags.Image']]
             );
             if ($this->Ads->save($ad)) {
                 $this->Flash->success(__('The ad has been saved.'));

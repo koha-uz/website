@@ -9,21 +9,38 @@
         <div class="card-body">
             <div class="post-header">
                 <div class="post-category text-line">
-                    <a href="#" class="hover" rel="category">Coding</a>
+                    <?php
+                    echo $this->Html->link(
+                        h($ad->ad_category->title),
+                        ['_name' => 'ad_category_view', 'slug' => h($ad->ad_category->slug)],
+                        ['class' => 'hover', 'rel' => 'category']
+                    );
+                    ?>
                 </div>
                 <!-- /.post-category -->
-                <h2 class="post-title h3 mt-1 mb-3"><a class="link-dark" href="./blog-post.html">Ligula tristique quis risus</a></h2>
+                <h2 class="post-title h3 mt-1 mb-3">
+                    <?php
+                    echo $this->Html->link(
+                        h($ad->title),
+                        ['_name' => 'ad_view', 'slug' => h($ad->slug)],
+                        ['class' => 'link-dark']
+                    );
+                    ?>
+                </h2>
             </div>
             <!-- /.post-header -->
             <div class="post-content">
-                <p>Mauris convallis non ligula non interdum. Gravida vulputate convallis tempus vestibulum cras imperdiet nun eu dolor. Aenean lacinia bibendum nulla sed.</p>
+                <?= h($ad->body) ?>
             </div>
             <!-- /.post-content -->
         </div>
         <!--/.card-body -->
         <div class="card-footer">
             <ul class="post-meta d-flex mb-0">
-                <li class="post-date"><i class="uil uil-calendar-alt"></i><span>14 Apr 2021</span></li>
+                <li class="post-date">
+                    <i class="uil uil-calendar-alt"></i>
+                    <span><?= $ad->date_published->i18nFormat('d MMMM Y HH:mm') ?></span>
+                </li>
             </ul>
             <!-- /.post-meta -->
         </div>
