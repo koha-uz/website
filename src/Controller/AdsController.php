@@ -23,6 +23,8 @@ class AdsController extends AppController
         parent::initialize();
         $this->loadComponent('Paginator');
         $this->loadComponent('SystemicPages');
+
+        $this->Authentication->allowUnauthenticated(['index', 'view']);
     }
 
     /**

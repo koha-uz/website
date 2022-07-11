@@ -5,12 +5,12 @@
             <?php
             echo $this->Html->link(
                 $this->Image->display($ad->cover, 'big'),
-                ['_name' => 'ad_category_view', 'slug' => h($ad->ad_category->slug)],
-                ['escape' => false]
+                ['_name' => 'ad_view', 'slug' => h($ad->slug)],
+                ['escape' => false, 'title' => h($ad->title)]
             );
             ?>
             <figcaption>
-                <h5 class="from-top mb-0">Read More</h5>
+                <h5 class="from-top mb-0"><?= __d('panel', 'Read More') ?></h5>
             </figcaption>
         </figure>
         <?php elseif (!empty($ad->youtubeId)): ?>
@@ -25,7 +25,7 @@
                     echo $this->Html->link(
                         h($ad->ad_category->title),
                         ['_name' => 'ad_category_view', 'slug' => h($ad->ad_category->slug)],
-                        ['class' => 'hover', 'rel' => 'category']
+                        ['class' => 'hover', 'rel' => 'category', 'title' => h($ad->ad_category->title)]
                     );
                     ?>
                 </div>
@@ -35,7 +35,7 @@
                     echo $this->Html->link(
                         h($ad->title),
                         ['_name' => 'ad_view', 'slug' => h($ad->slug)],
-                        ['class' => 'link-dark']
+                        ['class' => 'link-dark', 'title' => h($ad->title)]
                     );
                     ?>
                 </h2>
