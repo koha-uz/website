@@ -70,9 +70,16 @@ class MetaImageFormHelper extends Helper
         $control = $this->Form->control('meta_tag.image_bg.file', [
             'label' => false,
             'type' => 'file',
-            'required' => false,
+            'required' => true,
             'disabled' => $hidden
-        ]);
+        ]) .
+        $this->Html->tag('div', __d('meta', 'Image must be 1200 x 630 px'),
+            [
+                'class' => 'alert alert-warning mt-3 mb-0 fw-500',
+                'role' => 'alert'
+            ]
+        );
+
         if (null !== $this->Form->getSourceValue('meta_tag.image_bg')) {
             $control .= $this->Form->control('meta_tag.image_bg.old_file_id', [
                 'type' => 'hidden',

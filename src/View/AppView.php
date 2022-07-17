@@ -62,5 +62,6 @@ class AppView extends View
         ]);
 
         $this->loadHelper('I18n');
+        $this->loadHelper('Tags.Tag');
     }
 }

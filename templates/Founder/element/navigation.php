@@ -1,3 +1,7 @@
+<?php
+use Cake\Core\Configure;
+?>
+
     <ul id="js-nav-menu" class="nav-menu">
         <!-- Dashboard menu -->
         <li class="<?php if (isset($menu['dashboard'])) echo 'active open'; ?>">
@@ -95,6 +99,99 @@
         </li>
         <!-- End pages -->
 
+        <!-- Begin Posts -->
+        <li class="<?php if (isset($menu['posts'])) echo 'active open'; ?>">
+            <?php
+            echo $this->Html->link(
+                $this->Html->tag('i', '', ['class' => 'fal fa-lg fa-fw fa-newspaper']) .
+                $this->Html->tag(
+                    'span',
+                    __d('panel', 'Posts'),
+                    ['class' => 'nav-link-text']
+                ),
+                '#',
+                ['escape' => false, 'title' => __d('panel', 'posts'), 'data-filter-tags' => __d('panel', 'posts')]
+            );
+            ?>
+            <ul>
+                <li <?php if (isset($menu['posts'][0])) echo 'class="active"'; ?>>
+                    <?php
+                    echo $this->Html->link(
+                        $this->Html->tag('i', '', ['class' => 'fal fa-lg fa-fw fa-plus-circle']) .
+                        $this->Html->tag(
+                            'span',
+                            __d('panel', 'Create'),
+                            ['class' => 'nav-link-text']
+                        ),
+                        ['controller' => 'Posts', 'action' => 'add'],
+                        ['escape' => false, 'title' => __d('panel', 'Create post'), 'data-filter-tags' => __d('panel', 'create post')]
+                    );
+                    ?>
+                </li>
+                <li <?php if (isset($menu['posts'][1])) echo 'class="active"'; ?>>
+                    <?php
+                    echo $this->Html->link(
+                        $this->Html->tag('i', '', ['class' => 'fal fa-lg fa-fw fa-table']) .
+                        $this->Html->tag(
+                            'span',
+                            __d('panel', 'List'),
+                            ['class' => 'nav-link-text']
+                        ),
+                        ['controller' => 'Posts', 'action' => 'index'],
+                        ['escape' => false, 'title' => __d('panel', 'List posts'), 'data-filter-tags' => __d('panel', 'list posts')]
+                    );
+                    ?>
+                </li>
+
+                <!-- Posr Categories menu -->
+                <li class="<?php if (isset($menu['posts']['categories'])) echo 'active open'; ?>">
+                    <?php
+                    echo $this->Html->link(
+                        $this->Html->tag('i', '', ['class' => 'fal fa-lg fa-fw fa-archive']) .
+                        $this->Html->tag(
+                            'span',
+                            __d('panel', 'Categories'),
+                            ['class' => 'nav-link-text']
+                        ),
+                        '#',
+                        ['escape' => false, 'title' => __d('panel', 'Post categories'), 'data-filter-tags' => __d('panel', 'post categories')]
+                    );
+                    ?>
+                    <ul>
+                        <li <?php if (isset($menu['posts']['categories'][0])) echo 'class="active"'; ?>>
+                            <?php
+                            echo $this->Html->link(
+                                $this->Html->tag('i', '', ['class' => 'fal fa-lg fa-fw fa-plus-circle']) .
+                                $this->Html->tag(
+                                    'span',
+                                    __d('panel', 'Create'),
+                                    ['class' => 'nav-link-text']
+                                ),
+                                ['controller' => 'PostCategories', 'action' => 'add'],
+                                ['escape' => false, 'title' => __d('panel', 'Create post category'), 'data-filter-tags' => __d('panel', 'create post category')]
+                            );
+                            ?>
+                        </li>
+                        <li <?php if (isset($menu['posts']['categories'][1])) echo 'class="active"'; ?>>
+                            <?php
+                            echo $this->Html->link(
+                                $this->Html->tag('i', '', ['class' => 'fal fa-lg fa-fw fa-table']) .
+                                $this->Html->tag(
+                                    'span',
+                                    __d('panel', 'List'),
+                                    ['class' => 'nav-link-text']
+                                ),
+                                ['controller' => 'PostCategories', 'action' => 'index'],
+                                ['escape' => false, 'title' => __d('panel', 'List post categories'), 'data-filter-tags' => __d('panel', 'list post categories')]
+                            );
+                            ?>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+        <!-- End Posts -->
+
         <!-- Begin services -->
         <li class="<?php if (isset($menu['services'])) echo 'active open'; ?>">
             <?php
@@ -141,240 +238,6 @@
             </ul>
         </li>
         <!-- End services -->
-
-        <!-- Begin Ads -->
-        <li class="<?php if (isset($menu['ads'])) echo 'active open'; ?>">
-            <?php
-            echo $this->Html->link(
-                $this->Html->tag('i', '', ['class' => 'fal fa-lg fa-fw fa-newspaper']) .
-                $this->Html->tag(
-                    'span',
-                    __d('panel', 'Ads'),
-                    ['class' => 'nav-link-text']
-                ),
-                '#',
-                ['escape' => false, 'title' => __d('panel', 'ads'), 'data-filter-tags' => __d('panel', 'ads')]
-            );
-            ?>
-            <ul>
-                <li <?php if (isset($menu['ads'][0])) echo 'class="active"'; ?>>
-                    <?php
-                    echo $this->Html->link(
-                        $this->Html->tag('i', '', ['class' => 'fal fa-lg fa-fw fa-plus-circle']) .
-                        $this->Html->tag(
-                            'span',
-                            __d('panel', 'Create'),
-                            ['class' => 'nav-link-text']
-                        ),
-                        ['controller' => 'Ads', 'action' => 'add'],
-                        ['escape' => false, 'title' => __d('panel', 'Create ad'), 'data-filter-tags' => __d('panel', 'create ad')]
-                    );
-                    ?>
-                </li>
-                <li <?php if (isset($menu['ads'][1])) echo 'class="active"'; ?>>
-                    <?php
-                    echo $this->Html->link(
-                        $this->Html->tag('i', '', ['class' => 'fal fa-lg fa-fw fa-table']) .
-                        $this->Html->tag(
-                            'span',
-                            __d('panel', 'List'),
-                            ['class' => 'nav-link-text']
-                        ),
-                        ['controller' => 'Ads', 'action' => 'index'],
-                        ['escape' => false, 'title' => __d('panel', 'List ads'), 'data-filter-tags' => __d('panel', 'list ads')]
-                    );
-                    ?>
-                </li>
-
-                <!-- Ad Categories menu -->
-                <li class="<?php if (isset($menu['ads']['categories'])) echo 'active open'; ?>">
-                    <?php
-                    echo $this->Html->link(
-                        $this->Html->tag('i', '', ['class' => 'fal fa-lg fa-fw fa-archive']) .
-                        $this->Html->tag(
-                            'span',
-                            __d('panel', 'Categories'),
-                            ['class' => 'nav-link-text']
-                        ),
-                        '#',
-                        ['escape' => false, 'title' => __d('panel', 'Ad categories'), 'data-filter-tags' => __d('panel', 'ad categories')]
-                    );
-                    ?>
-                    <ul>
-                        <li <?php if (isset($menu['ads']['categories'][0])) echo 'class="active"'; ?>>
-                            <?php
-                            echo $this->Html->link(
-                                $this->Html->tag('i', '', ['class' => 'fal fa-lg fa-fw fa-plus-circle']) .
-                                $this->Html->tag(
-                                    'span',
-                                    __d('panel', 'Create'),
-                                    ['class' => 'nav-link-text']
-                                ),
-                                ['controller' => 'AdCategories', 'action' => 'add'],
-                                ['escape' => false, 'title' => __d('panel', 'Create ad category'), 'data-filter-tags' => __d('panel', 'create ad category')]
-                            );
-                            ?>
-                        </li>
-                        <li <?php if (isset($menu['ads']['categories'][1])) echo 'class="active"'; ?>>
-                            <?php
-                            echo $this->Html->link(
-                                $this->Html->tag('i', '', ['class' => 'fal fa-lg fa-fw fa-table']) .
-                                $this->Html->tag(
-                                    'span',
-                                    __d('panel', 'List'),
-                                    ['class' => 'nav-link-text']
-                                ),
-                                ['controller' => 'AdCategories', 'action' => 'index'],
-                                ['escape' => false, 'title' => __d('panel', 'List ad categories'), 'data-filter-tags' => __d('panel', 'list ad categories')]
-                            );
-                            ?>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
-        </li>
-        <!-- End Ads -->
-
-
-        <!-- Begin FAQs -->
-        <li class="<?php if (isset($menu['faqs'])) echo 'active open'; ?>">
-            <?php
-            echo $this->Html->link(
-                $this->Html->tag('i', '', ['class' => 'fal fa-lg fa-fw fa-align-left']) .
-                $this->Html->tag(
-                    'span',
-                    __d('panel', 'FAQs'),
-                    ['class' => 'nav-link-text']
-                ),
-                '#',
-                ['escape' => false, 'title' => __d('panel', 'faqs'), 'data-filter-tags' => __d('panel', 'faqs')]
-            );
-            ?>
-            <ul>
-                <li <?php if (isset($menu['faqs'][0])) echo 'class="active"'; ?>>
-                    <?php
-                    echo $this->Html->link(
-                        $this->Html->tag('i', '', ['class' => 'fal fa-lg fa-fw fa-plus-circle']) .
-                        $this->Html->tag(
-                            'span',
-                            __d('panel', 'Create'),
-                            ['class' => 'nav-link-text']
-                        ),
-                        ['controller' => 'Faqs', 'action' => 'add'],
-                        ['escape' => false, 'title' => __d('panel', 'Create faq'), 'data-filter-tags' => __d('panel', 'create faq')]
-                    );
-                    ?>
-                </li>
-                <li <?php if (isset($menu['faqs'][1])) echo 'class="active"'; ?>>
-                    <?php
-                    echo $this->Html->link(
-                        $this->Html->tag('i', '', ['class' => 'fal fa-lg fa-fw fa-table']) .
-                        $this->Html->tag(
-                            'span',
-                            __d('panel', 'List'),
-                            ['class' => 'nav-link-text']
-                        ),
-                        ['controller' => 'Faqs', 'action' => 'index'],
-                        ['escape' => false, 'title' => __d('panel', 'List faqs'), 'data-filter-tags' => __d('panel', 'list faqs')]
-                    );
-                    ?>
-                </li>
-
-                <!-- Post Categories menu -->
-                <li class="<?php if (isset($menu['faqs']['categories'])) echo 'active open'; ?>">
-                    <?php
-                    echo $this->Html->link(
-                        $this->Html->tag('i', '', ['class' => 'fal fa-lg fa-fw fa-archive']) .
-                        $this->Html->tag(
-                            'span',
-                            __d('panel', 'Categories'),
-                            ['class' => 'nav-link-text']
-                        ),
-                        '#',
-                        ['escape' => false, 'title' => __d('panel', 'Faq categories'), 'data-filter-tags' => __d('panel', 'faq categories')]
-                    );
-                    ?>
-                    <ul>
-                        <li <?php if (isset($menu['faqs']['categories'][0])) echo 'class="active"'; ?>>
-                            <?php
-                            echo $this->Html->link(
-                                $this->Html->tag('i', '', ['class' => 'fal fa-lg fa-fw fa-plus-circle']) .
-                                $this->Html->tag(
-                                    'span',
-                                    __d('panel', 'Create'),
-                                    ['class' => 'nav-link-text']
-                                ),
-                                ['controller' => 'FaqCategories', 'action' => 'add'],
-                                ['escape' => false, 'title' => __d('panel', 'Create faq category'), 'data-filter-tags' => __d('panel', 'create faq category')]
-                            );
-                            ?>
-                        </li>
-                        <li <?php if (isset($menu['faqs']['categories'][1])) echo 'class="active"'; ?>>
-                            <?php
-                            echo $this->Html->link(
-                                $this->Html->tag('i', '', ['class' => 'fal fa-lg fa-fw fa-table']) .
-                                $this->Html->tag(
-                                    'span',
-                                    __d('panel', 'List'),
-                                    ['class' => 'nav-link-text']
-                                ),
-                                ['controller' => 'FaqCategories', 'action' => 'index'],
-                                ['escape' => false, 'title' => __d('panel', 'List faq categories'), 'data-filter-tags' => __d('panel', 'list faq categories')]
-                            );
-                            ?>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
-        </li>
-        <!-- End FAQs -->
-
-        <!-- Begin docs -->
-        <li class="<?php if (isset($menu['docs'])) echo 'active open'; ?>">
-            <?php
-            echo $this->Html->link(
-                $this->Html->tag('i', '', ['class' => 'fal fa-lg fa-fw fa-file-pdf']) .
-                $this->Html->tag(
-                    'span',
-                    __d('panel', 'Documents'),
-                    ['class' => 'nav-link-text']
-                ),
-                '#',
-                ['escape' => false, 'title' => __d('panel', 'documents'), 'data-filter-tags' => __d('panel', 'documents')]
-            );
-            ?>
-            <ul>
-                <li <?php if (isset($menu['docs'][0])) echo 'class="active"'; ?>>
-                    <?php
-                    echo $this->Html->link(
-                        $this->Html->tag('i', '', ['class' => 'fal fa-lg fa-fw fa-plus-circle']) .
-                        $this->Html->tag(
-                            'span',
-                            __d('panel', 'Create'),
-                            ['class' => 'nav-link-text']
-                        ),
-                        ['controller' => 'Docs', 'action' => 'add'],
-                        ['escape' => false, 'title' => __d('panel', 'Create document'), 'data-filter-tags' => __d('panel', 'create document')]
-                    );
-                    ?>
-                </li>
-                <li <?php if (isset($menu['docs'][1])) echo 'class="active"'; ?>>
-                    <?php
-                    echo $this->Html->link(
-                        $this->Html->tag('i', '', ['class' => 'fal fa-lg fa-fw fa-table']) .
-                        $this->Html->tag(
-                            'span',
-                            __d('panel', 'List'),
-                            ['class' => 'nav-link-text']
-                        ),
-                        ['controller' => 'Docs', 'action' => 'index'],
-                        ['escape' => false, 'title' => __d('panel', 'List documents'), 'data-filter-tags' => __d('panel', 'list documents')]
-                    );
-                    ?>
-                </li>
-            </ul>
-        </li>
-        <!-- End docs -->
 
         <!-- Begin files -->
         <li class="<?php if (isset($menu['files'])) echo 'active open'; ?>">
@@ -468,31 +331,54 @@
         <!-- ########################### End publications and files ########################### -->
 
 
-        <!-- ########################### Begin tools ########################### -->
-
-        <li class="nav-title"><?= __d('panel', 'Tools') ?></li>
-
-        <!-- Begin Questions -->
-        <li class="<?php if (isset($menu['questions'])) echo 'active open'; ?>">
-            <?php
-            echo $this->Html->link(
-                $this->Html->tag('i', '', ['class' => 'fal fa-lg fa-fw fa-question']).
-                ' '.
-                $this->Html->tag('span', __d('panel', 'Questions'),
-                    ['class' => 'nav-link-text']
-                ),
-                ['controller' => 'Questions', 'action' => 'index'],
-                ['escape' => false, 'title' => __d('panel', 'Questions'), 'data-filter-tags' => __d('panel', 'questions')]
-            );
-            ?>
-        </li>
-        <!-- End Questions -->
-
-        <!-- ########################### End tools ########################### -->
-
         <!-- ########################### Begin settings ########################### -->
 
         <li class="nav-title"><?= __d('panel', 'Settings') ?></li>
+
+        <!-- Begin settings -->
+        <li class="<?php if (isset($menu['settings'])) echo 'active open'; ?>">
+            <?php
+            echo $this->Html->link(
+                $this->Html->tag('i', '', ['class' => 'fa-lg fa-fw fal fa-cog']) .
+                $this->Html->tag(
+                    'span',
+                    __d('panel', 'Settings'),
+                    ['class' => 'nav-link-text']
+                ),
+                '#',
+                ['escape' => false, 'title' => __d('panel', 'Settings'), 'data-filter-tags' => __d('panel', 'settings')]
+            );
+            ?>
+            <ul>
+                <li <?php if (isset($menu['settings'][0])) echo 'class="active"'; ?>>
+                    <?php
+                    echo $this->Html->link(
+                        $this->Html->tag('i', '', ['class' => 'fal fa-lg fa-fw fa-plus-circle']) .
+                        $this->Html->tag(
+                            'span',
+                            __('Create'),
+                            ['class' => 'nav-link-text']
+                        ),
+                        ['controller' => 'Settings', 'action' => 'add'],
+                        ['escape' => false, 'title' => __d('panel', 'Create setting'), 'data-filter-tags' => __d('panel', 'create setting')]
+                    );
+                    ?>
+                </li>
+
+                <?php foreach(Configure::read('Settings') as $key => $setting): ?>
+                <li <?php if (isset($menu['settings'][$key])) echo 'class="active"'; ?>>
+                    <?php
+                    echo $this->Html->link(
+                        $this->Html->tag('span', $key, ['class' => 'nav-link-text']),
+                        ['_name' => 'settings', 'key' => $key],
+                        ['escape' => false, 'title' => $key, 'data-filter-tags' => $key]
+                    );
+                    ?>
+                </li>
+                <?php endforeach; ?>
+            </ul>
+
+        <!-- End settings -->
 
         <!-- Begin i18n messages -->
         <?= $this->cell('Founder/I18nMessages::domainListMenu', ['menu' => $menu]) ?>

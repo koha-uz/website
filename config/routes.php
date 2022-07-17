@@ -21,6 +21,7 @@
  * @license       https://opensource.org/licenses/mit-license.php MIT License
  */
 
+
 use Cake\Routing\Route\DashedRoute;
 use Cake\Routing\RouteBuilder;
 use ADmad\I18n\Routing\Route\I18nRoute;
@@ -33,6 +34,9 @@ return static function (RouteBuilder $routes)
         $builder->setRouteClass(I18nRoute::class);
         $builder->connect('/', ['controller' => 'SystemicPages', 'action' => 'dashboard']);
         $builder->connect('/i18n-messages/{domain}/{locale}', ['controller' => 'I18nMessages', 'action' => 'edit'])->setPass(['domain', 'locale']);
+
+        $builder->connect('/settings/key/{key}', ['controller' => 'Settings', 'action' => 'index'], ['_name' => 'settings'])->setPass(['key']);
+        $builder->connect('/settings/edit', ['controller' => 'Settings', 'action' => 'edit'])->setExtensions(['json']);
     
         /**
          * ...Begin users
@@ -68,22 +72,22 @@ return static function (RouteBuilder $routes)
          */
 
         /**
-         * ...Begin ad categories
+         * ...Begin post categories
          */
-        $builder->connect('/ads/c/{slug}', ['controller' => 'AdCategories', 'action' => 'view'], ['_name' => 'ad_category_view'])
+        $builder->connect('/posts/c/{slug}', ['controller' => 'PostCategories', 'action' => 'view'], ['_name' => 'post_category_view'])
             ->setPass(['slug']);
         /**
-         * ...End ad categories
+         * ...End post categories
          */
 
 
         /**
-         * ...Begin ads
+         * ...Begin posts
          */
-        $builder->connect('/ads/{slug}', ['controller' => 'Ads', 'action' => 'view'], ['_name' => 'ad_view'])
+        $builder->connect('/posts/{slug}', ['controller' => 'Posts', 'action' => 'view'], ['_name' => 'post_view'])
             ->setPass(['slug']);
         /**
-         * ...End ads
+         * ...End posts
          */
 
         /**

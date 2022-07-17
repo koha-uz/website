@@ -17,7 +17,9 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use Cake\Controller\Controller;
+use Cake\Core\Configure;
 use Cake\Event\EventInterface;
+use Cake\ORM\Locator\LocatorAwareTrait;
 
 /**
  * Application Controller
@@ -29,6 +31,8 @@ use Cake\Event\EventInterface;
  */
 class AppController extends Controller
 {
+    use LocatorAwareTrait;
+
     /**
      * Initialization hook method.
      *
@@ -58,6 +62,16 @@ class AppController extends Controller
         $this->viewBuilder()->setTheme('Frontend');
         if ($this->request->getParam('prefix') == 'Founder') {
             $this->viewBuilder()->setTheme('Panel');
+        }
+
+        $this->__setSettings();
+    }
+
+    private function __setSettings()
+    {
+        $settings = $this->getTableLocator()->get('Settings')->find();
+        foreach($settings as $setting) {
+            Configure::write('Settings.' . $setting->field_key, $setting->value);
         }
     }
 }

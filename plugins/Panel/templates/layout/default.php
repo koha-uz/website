@@ -86,12 +86,9 @@
             <div class="page-inner">
                 <!-- BEGIN Left Aside -->
                 <aside class="page-sidebar">
-                    <div class="page-logo">
-                        <a href="#" class="page-logo-link press-scale-down d-flex align-items-center position-relative" data-toggle="modal" data-target="#modal-shortcut">
-                            <img src="/panel/img/logo.png" alt="<?= __d('panel', 'Control panel') ?>" aria-roledescription="logo">
-                            <span class="page-logo-text mr-1"><?= __d('panel', 'Control panel') ?></span>
-                            <span class="position-absolute text-white opacity-50 small pos-top pos-right mr-2 mt-n2"></span>
-                            <i class="fal fa-angle-down d-inline-block ml-1 fs-lg color-primary-300"></i>
+                    <div class="page-logo text-center">
+                        <a href="#" data-toggle="modal" data-target="#modal-shortcut">
+                            <img src="/frontend/img/logo-white.png" aria-roledescription="logo">
                         </a>
                     </div>
 
@@ -123,7 +120,7 @@
                                         if (null !== $userProfile) {
                                             echo $userProfile->full_name;
                                         } else {
-                                            echo ucfirst($this->request->getSession()->read('Auth.username'));
+                                            echo $this->request->getSession()->read('Auth.username');
                                         }
                                         ?>
                                     </span>

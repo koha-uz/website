@@ -27,25 +27,24 @@ EventManager::instance()->on(new ImageProcessingListener());
 
 Configure::write('FileStorage', [
     'imageSizes' => [
-        'Ads' => [
+        'Posts' => [
             'big' => [
                 'thumbnail' => [
-                    'mode' => 'inbound',
+                    'mode' => 'outbound',
                     'width' => 837,
-                    'height' => 837
+                    'height' => 523
                 ]
             ],
             'mini' => [
                 'thumbnail' => [
-                    'mode' => 'inbound',
+                    'mode' => 'outbound',
                     'width' => 398,
-                    'height' => 398
+                    'height' => 249
                 ]
             ],
-            'w250' => [
-                'thumbnail' => [
-                    'width' => 250,
-                    'height' => 1000
+            'crop100' => [
+                'squareCenterCrop' => [
+                    'size' => 100
                 ]
             ]
         ],

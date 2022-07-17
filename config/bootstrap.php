@@ -220,21 +220,41 @@ TypeFactory::map('time', StringType::class);
 //Inflector::rules('uninflected', ['dontinflectme']);
 
 
-Configure::write('I18n.languages', ['en', 'ru', 'uz']);
+Configure::write('I18n.languages', ['ru', 'uz']);
 
-/*
+
 I18n::config('cake', function ($domain, $locale) {
-    return new \ADmad\I18n\I18n\DbMessagesLoader($domain, $locale);
+    $loader = new \ADmad\I18n\I18n\DbMessagesLoader(
+        $domain,
+        $locale
+    );
+
+    return $loader();
 });
 
 I18n::config('default', function ($domain, $locale) {
-    return new \ADmad\I18n\I18n\DbMessagesLoader($domain, $locale);
+    $loader = new \ADmad\I18n\I18n\DbMessagesLoader(
+        $domain,
+        $locale
+    );
+
+    return $loader();
 });
 
 I18n::config('panel', function ($domain, $locale) {
-    return new \ADmad\I18n\I18n\DbMessagesLoader($domain, $locale);
+    $loader = new \ADmad\I18n\I18n\DbMessagesLoader(
+        $domain,
+        $locale
+    );
+
+    return $loader();
 });
 
 I18n::config('frontend', function ($domain, $locale) {
-    return new \ADmad\I18n\I18n\DbMessagesLoader($domain, $locale);
-});*/
+    $loader = new \ADmad\I18n\I18n\DbMessagesLoader(
+        $domain,
+        $locale
+    );
+
+    return $loader();
+});

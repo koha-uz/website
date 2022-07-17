@@ -21,6 +21,7 @@ use Authentication\AuthenticationServiceInterface;
 use Authentication\AuthenticationServiceProviderInterface;
 use Authentication\Identifier\IdentifierInterface;
 use Authentication\Middleware\AuthenticationMiddleware;
+use App\Service\PostsService;
 use Cake\Core\Configure;
 use Cake\Core\ContainerInterface;
 use Cake\Datasource\FactoryLocator;
@@ -82,6 +83,7 @@ class Application extends BaseApplication implements AuthenticationServiceProvid
         $this->addPlugin('Panel');
         $this->addPlugin('Published');
         $this->addPlugin('Frontend');
+        $this->addPlugin('Tags');
     }
 
     /**
@@ -120,7 +122,6 @@ class Application extends BaseApplication implements AuthenticationServiceProvid
                 // Languages available in app. The keys should match the language prefix used
                 // in URLs. Based on the language the locale will be also set.
                 'languages' => [
-                    'en' => ['locale' => 'en'],
                     'ru' => ['locale' => 'ru'],
                     'uz' => ['locale' => 'uz']
                 ],
@@ -198,6 +199,7 @@ class Application extends BaseApplication implements AuthenticationServiceProvid
      */
     public function services(ContainerInterface $container): void
     {
+        $container->add(PostsService::class);
     }
 
     /**

@@ -30,5 +30,4 @@ class I18nHelper extends Helper
 
         return $query ? $path . '?' . $query : $path;
     }
-
 }

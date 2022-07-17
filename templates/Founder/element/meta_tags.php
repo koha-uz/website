@@ -10,12 +10,11 @@
                     <div class="row">
                         <div class="col-lg-6">
                             <ul class="nav nav-tabs" role="tablist">
-                                <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#tab_meta_en" role="tab">English</a></li>
-                                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#tab_meta_ru" role="tab">Русский</a></li>
+                                <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#tab_meta_ru" role="tab">Русский</a></li>
                                 <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#tab_meta_uz" role="tab">O'zbek</a></li>
                             </ul>
                             <div class="tab-content p-3 border border-top-0">
-                                <div class="tab-pane fade show active" id="tab_meta_en" role="tabpanel">
+                                <div class="tab-pane fade show active" id="tab_meta_ru" role="tabpanel">
                                     <?php
                                     echo $this->Form->control('meta_tag.title', [
                                         'label' => __d('panel', 'Title'),
@@ -34,31 +33,6 @@
                                     ]);
 
                                     echo $this->Form->control('meta_tag.og_description', [
-                                        'label' => __d('panel', 'Open Graph description'),
-                                        'placeholder' => __d('panel', 'Open Graph description'),
-                                        'rows' => 2
-                                    ]);
-                                    ?>
-                                </div>
-                                <div class="tab-pane fade" id="tab_meta_ru" role="tabpanel">
-                                    <?php
-                                    echo $this->Form->control('meta_tag._translations.ru.title', [
-                                        'label' => __d('panel', 'Title'),
-                                        'placeholder' => __d('panel', 'Title'),
-                                    ]);
-
-                                    echo $this->Form->control('meta_tag._translations.ru.description', [
-                                        'label' => __d('panel', 'Meta description'),
-                                        'placeholder' => __d('panel', 'Meta description'),
-                                        'rows' => 2
-                                    ]);
-
-                                    echo $this->Form->control('meta_tag._translations.ru.og_title', [
-                                        'label' => __d('panel', 'Open Graph title'),
-                                        'placeholder' => __d('panel', 'Open Graph title')
-                                    ]);
-
-                                    echo $this->Form->control('meta_tag._translations.ru.og_description', [
                                         'label' => __d('panel', 'Open Graph description'),
                                         'placeholder' => __d('panel', 'Open Graph description'),
                                         'rows' => 2

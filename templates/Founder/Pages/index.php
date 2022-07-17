@@ -74,7 +74,7 @@ $(document).ready(function() {
                                     if ($page->published) {
                                         echo $this->Html->link(
                                             $this->Html->tag('i', '', ['class' => 'fal fa-eye']),
-                                            ['_name' => 'page_view', 'slug' => h($page->slug), 'lang' => 'en'],
+                                            ['_name' => 'page_view', 'slug' => h($page->slug)],
                                             ['escape' => false, 'target' => '_blank']
                                         );
                                     }
@@ -95,7 +95,7 @@ $(document).ready(function() {
                                     <code class="d-block">
                                         <?php
                                         echo $this->Url->build(
-                                            ['_name' => 'page_view', 'slug' => h($page->slug), 'lang' => 'en'],
+                                            ['_name' => 'page_view', 'slug' => h($page->slug)],
                                             ['fullBase' => true]
                                         );
                                         ?>
