@@ -1,16 +1,30 @@
 <?php
+$title = $page->title;
+$body = $page->body;
+$metaTitle = $page->meta_tag->title;
+if (isset($tag)) {
+    $title = __d('frontend', '#{0}', $tag->label);
+    $metaTitle = __d('frontend', '#{0} – Posts', $tag->label);
+    $body = '';
+    $breadcrumbs = [
+        ['title' => __d('frontend', 'Posts'), 'url' => ['controller' => 'Posts', 'action' => 'index']],
+        ['title' => $title]
+    ];
+    $this->set('breadcrumbs', $breadcrumbs);
+}
 $this->assign('meta', $this->MetaRender
-    ->init($page->meta_tag)
+    ->init($page->meta_tag, ['title' => $metaTitle])
     ->render()
 );
 ?>
 
-<section class="wrapper bg-light">
+<section class="wrapper">
     <div class="container pt-10">
         <div class="row">
-            <div class="col-md-8 col-lg-7 col-xl-6 col-xxl-5">
-                <h1 class="display-1 mb-3"><?= $page->title ?></h1>
-                <p class="lead fs-lg pe-lg-15 pe-xxl-12"><?= $page->body ?></p>
+            <div class="col-12">
+                <?= $this->element('breadcrumbs') ?>
+                <h1 class="display-2 mb-3"><?= $title ?></h1>
+                <p class="lead fs-lg pe-lg-15 pe-xxl-12"><?= $body ?></p>
             </div>
             <!-- /column -->
         </div>
@@ -20,7 +34,7 @@ $this->assign('meta', $this->MetaRender
 </section>
 <!-- /section -->
 
-<section class="wrapper bg-light">
+<section class="wrapper">
     <div class="container py-10">
         <div class="row gx-lg-8 gx-xl-12">
             <div class="col-lg-8">

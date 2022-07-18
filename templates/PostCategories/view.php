@@ -1,58 +1,98 @@
 <?php
-/**
- * @var \App\View\AppView $this
- * @var \App\Model\Entity\AdCategory $adCategory
- */
+$this->assign('meta', $this->MetaRender
+    ->init($postCategory->meta_tag)
+    ->render()
+);
+
+$breadcrumbs = [
+    ['title' => __d('frontend', 'Posts'), 'url' => ['controller' => 'Posts', 'action' => 'index']],
+    ['title' => $postCategory->title]
+];
+$this->set('breadcrumbs', $breadcrumbs);
 ?>
-<div class="row">
-    <aside class="column">
-        <div class="side-nav">
-            <h4 class="heading"><?= __('Actions') ?></h4>
-            <?= $this->Html->link(__('Edit Ad Category'), ['action' => 'edit', $adCategory->id], ['class' => 'side-nav-item']) ?>
-            <?= $this->Form->postLink(__('Delete Ad Category'), ['action' => 'delete', $adCategory->id], ['confirm' => __('Are you sure you want to delete # {0}?', $adCategory->id), 'class' => 'side-nav-item']) ?>
-            <?= $this->Html->link(__('List Ad Categories'), ['action' => 'index'], ['class' => 'side-nav-item']) ?>
-            <?= $this->Html->link(__('New Ad Category'), ['action' => 'add'], ['class' => 'side-nav-item']) ?>
-        </div>
-    </aside>
-    <div class="column-responsive column-80">
-        <div class="adCategories view content">
-            <h3><?= h($adCategory->title) ?></h3>
-            <table>
-                <tr>
-                    <th><?= __('Title') ?></th>
-                    <td><?= h($adCategory->title) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Slug') ?></th>
-                    <td><?= h($adCategory->slug) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Id') ?></th>
-                    <td><?= $this->Number->format($adCategory->id) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Date Created') ?></th>
-                    <td><?= h($adCategory->date_created) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Date Modified') ?></th>
-                    <td><?= h($adCategory->date_modified) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Date Published') ?></th>
-                    <td><?= h($adCategory->date_published) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Published') ?></th>
-                    <td><?= $adCategory->published ? __('Yes') : __('No'); ?></td>
-                </tr>
-            </table>
-            <div class="text">
-                <strong><?= __('Body') ?></strong>
-                <blockquote>
-                    <?= $this->Text->autoParagraph(h($adCategory->body)); ?>
-                </blockquote>
+
+<section class="wrapper">
+    <div class="container pt-10">
+        <div class="row">
+            <div class="col-12">
+                <?= $this->element('breadcrumbs') ?>
+                <h1 class="display-1 mb-3"><?= $postCategory->title ?></h1>
+                <p class="lead fs-lg pe-lg-15 pe-xxl-12"><?= $postCategory->body ?></p>
             </div>
+            <!-- /column -->
         </div>
+        <!-- /.row -->
     </div>
-</div>
+    <!-- /.container -->
+</section>
+<!-- /section -->
+
+<section class="wrapper">
+    <div class="container py-10">
+        <div class="row gx-lg-8 gx-xl-12">
+            <div class="col-lg-8">
+                <?php
+                $count = count($postCategory->posts);
+                if ($count > 0) {
+                    foreach($postCategory->posts as $key => $post) {
+                        if ($key === 0) {
+                            echo '<div class="blog classic-view">';
+                        }
+
+                        if (
+                            $count <= 4 ||
+                            (in_array($count, [5, 7]) && $key <= 2) ||
+                            ($count  === 6 && $key <= 3)
+                        ) {
+                            echo $this->element('Posts/post_big', ['post' => $post]);
+                        }
+
+                        if (
+                            ($count <= 4 && $count === ($key + 1)) ||
+                            (in_array($count, [5, 7]) && 3 === ($key + 1)) ||
+                            ($count === 6 && 4 === ($key + 1))
+                        ) {
+                            echo '</div>';
+                        }
+
+                        if (
+                            (in_array($count, [5, 7]) && 4 === ($key + 1)) ||
+                            ($count === 6 && 5 === ($key + 1))
+                        ) {
+                            echo '<div class="blog grid grid-view">';
+                            echo '<div class="row isotope gx-md-8 gy-8 mb-8">';
+                        }
+
+                        if (
+                            ((in_array($count, [5, 7]) && $key >= 3)) ||
+                            ($count === 6 && $key >= 4)
+                        ) {
+                            echo $this->element('Posts/post_mini', ['post' => $post]);
+                        }
+
+                        if (in_array($count, [5, 6, 7]) && $count === ($key + 1)) {
+                            echo '</div>';
+                            echo '</div>';
+                        }
+                    }
+                } else {
+
+                }
+                ?>
+
+                <?= $this->element('paginator', ['entities' => $posts]) ?>
+            </div>
+            <!-- /column -->
+          
+            <aside class="col-lg-4 sidebar mt-10 mt-md-0">
+                <?= $this->cell('Posts::popular') ?>
+                <?= $this->cell('PostCategories') ?>
+                <?= $this->cell('Posts::tags') ?>
+            </aside>
+            <!-- /column .sidebar -->
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container -->
+</section>
+<!-- /section -->

@@ -3,39 +3,22 @@ $this->assign('meta', $this->MetaRender
     ->init($post->meta_tag)
     ->render()
 );
+$breadcrumbs = [
+    ['title' => __d('frontend', 'Posts'), 'url' => ['controller' => 'Posts', 'action' => 'index']],
+    ['title' => $post->post_category->title, 'url' => ['_name' => 'post_category_view', 'slug' => $post->post_category->slug]],
+    ['title' => $post->title]
+];
+$this->set('breadcrumbs', $breadcrumbs);
 ?>
-    <section class="wrapper bg-gray">
-      <div class="container py-3 py-md-5">
-        <nav class="d-inline-block" aria-label="breadcrumb">
-          <ol class="breadcrumb mb-0">
-            <li class="breadcrumb-item"><a href="#">Home</a></li>
-            <li class="breadcrumb-item"><a href="#">Shop</a></li>
-            <li class="breadcrumb-item"><a href="#">Cosmetics</a></li>
-            <li class="breadcrumb-item active text-muted" aria-current="page">Cleansers</li>
-          </ol>
-        </nav>
-        <!-- /nav -->
-      </div>
-      <!-- /.container -->
-    </section>
-    <!-- /section -->
+
 <section class="wrapper">
     <div class="container pt-10">
         <div class="row">
             <div class="col-12">
+                <?= $this->element('breadcrumbs') ?>
                 <div class="post-header">
-                    <div class="post-category text-line">
-                        <?php
-                        echo $this->Html->link(
-                            h($post->post_category->title),
-                            ['_name' => 'post_category_view', 'slug' => h($post->post_category->slug)],
-                            ['class' => 'text-reset', 'rel' => 'category']
-                        );
-                        ?>
-                    </div>
-                    <!-- /.post-category -->
-                    <h1 class="display-2 mb-4"><?= $post->title ?></h1>
-                    <ul class="post-meta">
+                    <h1 class="display-2 mb-2"><?= $post->title ?></h1>
+                    <ul class="post-meta fs-sm">
                         <li class="post-date"><i class="uil uil-calendar-alt"></i><span><?= $post->date_published->i18nFormat('d MMMM Y HH:mm') ?></span></li>
                     </ul>
                     <!-- /.post-meta -->

@@ -16,12 +16,10 @@ echo $this->element('navigation', ['menu' => $menu]);
 $this->end();
 
 echo $this->Html->css([
-    'formplugins/summernote/summernote'
 ], ['block' => true]);
 
 echo $this->Html->script(
     [
-        'formplugins/summernote/summernote',
         '/vendor/bundle.umd.min'
     ],
     ['block' => true]
@@ -36,22 +34,6 @@ $(document).ready(function() {
         var msg = slugify(text);
         $("#slug").val(msg);
     });
-
-    $('.summernote').summernote(
-        {
-            height: '200px',
-            tabsize: 2,
-            dialogsFade: true,
-            toolbar: [
-                ['font', ['bold', 'italic', 'underline', 'clear']],
-                ['para', ['ul', 'ol', 'paragraph']],
-                ['height', ['height']]
-                ['table', ['table']],
-                ['insert', ['link', 'picture']],
-                ['view', ['fullscreen', 'codeview']]
-            ]
-        }
-    );
 });
 </script>
 <?php $this->end(); ?>
@@ -88,7 +70,6 @@ $(document).ready(function() {
 
                             echo $this->Form->control('body', [
                                 'label' => ['class' => 'sr-only'],
-                                'class' => 'summernote',
                                 'placeholder' => __d('panel', 'Body')
                             ]);
                             ?>
@@ -103,7 +84,6 @@ $(document).ready(function() {
 
                             echo $this->Form->control('_translations.uz.body', [
                                 'label' => ['class' => 'sr-only'],
-                                'class' => 'summernote',
                                 'placeholder' => __d('panel', 'Body')
                             ]);
                             ?>

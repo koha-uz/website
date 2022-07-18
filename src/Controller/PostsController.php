@@ -34,15 +34,18 @@ class PostsController extends AppController
      *
      * @return \Cake\Http\Response|null|void Renders view
      */
-    public function index()
+    public function index(PostsService $posts)
     {
         $posts = $this->Posts->find('public')
             ->contain(['PostCategories', 'Cover']);
 
         if (null !== $this->request->getQuery('tag')) {
-            $posts->find('tagged', [
-                'slug' => h($this->request->getQuery('tag'))
-            ]);
+            $tag = $this->Posts->Tags
+                ->findBySlug($this->request->getQuery('tag'))
+                ->firstOrfail();
+            $this->set('tag', $tag);
+
+            $posts->find('tagged', ['slug' => $tag->slug]);
         }
 
         $this->set('posts', $this->paginate($posts));

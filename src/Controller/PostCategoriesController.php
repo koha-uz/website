@@ -27,7 +27,8 @@ class PostCategoriesController extends AppController
             ->contain('Posts', function ($q) {
                 return $q->find('published')
                     ->contain(['PostCategories', 'Cover']);
-            });
+            })
+            ->firstOrFail();
 
         $this->set(compact('postCategory'));
     }
