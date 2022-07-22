@@ -9,6 +9,9 @@
         <?= $this->Html->css('plugins', ['fullBase' => true]) ?>
         <?= $this->Html->css('style', ['fullBase' => true]) ?>
         <?= $this->fetch('css') ?>
+
+        <?= \Cake\Core\Configure::read('Settings.Metrics.yandex') ?>
+        <?= \Cake\Core\Configure::read('Settings.Metrics.google') ?>
     </head>
 
     <body>

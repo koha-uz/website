@@ -69,7 +69,9 @@ class AppController extends Controller
 
     private function __setSettings()
     {
-        $settings = $this->getTableLocator()->get('Settings')->find();
+        $settings = $this->getTableLocator()->get('Settings')->find()
+            ->order(['field_key' => 'ASC']);
+
         foreach($settings as $setting) {
             Configure::write('Settings.' . $setting->field_key, $setting->value);
         }

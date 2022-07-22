@@ -67,6 +67,16 @@ class PostsCell extends Cell
         $this->set('posts', $posts);
     }
 
+    public function last()
+    {
+        $posts = $this->Posts->find('public')
+            ->contain(['Cover', 'PostCategories'])
+            ->limit(4)
+            ->toArray();
+
+        $this->set('posts', $posts);
+    }
+
     public function tags()
     {
         $taggeds = $this->Posts->Tagged->find('cloud')

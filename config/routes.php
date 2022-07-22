@@ -109,6 +109,8 @@ return static function (RouteBuilder $routes)
         $builder->connect('/', ['controller' => 'SystemicPages', 'action' => 'display'], ['_name' => 'home']);
         $builder->connect('/', ['controller' => 'SystemicPages', 'action' => 'display'], ['routeClass' => DashedRoute::class]);
 
+        $builder->connect('/contacts', ['controller' => 'SystemicPages', 'action' => 'contacts'], ['_name' => 'contacts']);
+
         /*
          * ...and connect the rest of 'Pages' controller's URLs.
          */
