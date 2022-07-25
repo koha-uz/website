@@ -1,3 +1,4 @@
+<a href="https://t.me/<?= \Cake\Core\Configure::read('Settings.Contacts.telegram') ?>" target="_blank"><i class="uil uil-telegram"></i></a>
 <a href="https://www.facebook.com/<?= \Cake\Core\Configure::read('Settings.Contacts.facebook') ?>" target="_blank"><i class="uil uil-facebook-f"></i></a>
 <a href="https://www.linkedin.com/in/<?= \Cake\Core\Configure::read('Settings.Contacts.linkedin') ?>" target="_blank"><i class="uil uil-linkedin"></i></a>
 <a href="https://www.youtube.com/channel/<?= \Cake\Core\Configure::read('Settings.Contacts.youtube') ?>" target="_blank"><i class="uil uil-youtube"></i></a>

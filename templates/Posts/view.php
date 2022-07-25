@@ -9,6 +9,10 @@ $breadcrumbs = [
     ['title' => $post->title]
 ];
 $this->set('breadcrumbs', $breadcrumbs);
+
+$this->start('header');
+echo $this->element('/headers/header-light');
+$this->end();
 ?>
 
 <section class="wrapper">

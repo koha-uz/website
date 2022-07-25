@@ -5,9 +5,8 @@ $this->assign('meta', $this->MetaRender
 );
 
 $this->start('header');
-//echo $this->element('header');
+echo $this->element('headers/header-gray');
 $this->end();
-?>
 
-<h1><?= h($page->title) ?></h1>
-<div><?= $page->body ?></div>
+echo $page->body;
+?>

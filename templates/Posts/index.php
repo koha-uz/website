@@ -3,7 +3,7 @@ $title = $page->title;
 $body = $page->body;
 $metaTitle = $page->meta_tag->title;
 if (isset($tag)) {
-    $title = __d('frontend', '#{0}', $tag->label);
+    $title = '#' . $tag->label;
     $metaTitle = __d('frontend', '#{0} – Posts', $tag->label);
     $body = '';
     $breadcrumbs = [
@@ -16,6 +16,10 @@ $this->assign('meta', $this->MetaRender
     ->init($page->meta_tag, ['title' => $metaTitle])
     ->render()
 );
+
+$this->start('header');
+echo $this->element('/headers/header-light');
+$this->end();
 ?>
 
 <section class="wrapper">

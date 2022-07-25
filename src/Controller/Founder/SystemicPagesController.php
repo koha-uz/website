@@ -58,7 +58,7 @@ class SystemicPagesController extends AppController
             if ($this->SystemicPages->save($systemicPage)) {
                 $this->Flash->success(__d('panel', 'The systemic page has been saved.'));
 
-                return $this->redirect(['action' => 'index']);
+                return $this->redirect(['action' => 'edit', $id]);
             }
             $this->Flash->error(__d('panel', 'The systemic page could not be saved. Please, try again.'));
         }

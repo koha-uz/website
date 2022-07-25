@@ -40,7 +40,6 @@ echo $this->Html->script(
                     <?php foreach($i18nMessages as $key => $i18nMessage): ?>
                     <div class="row border border-faded rounded p-3 m-1 mb-3 shadow-hover-inset-2">
                         <div class="col-md-6">
-                            <?= $key + 1 ?>
                             <dl class="row fs-xl">
                                 <dt class="col-sm-3"><?= __d('panel', 'Singular') ?></dt>
                                 <dd class="col-sm-9"><code><?= $i18nMessage->singular ?></code></dd>

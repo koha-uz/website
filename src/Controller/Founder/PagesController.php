@@ -89,7 +89,7 @@ class PagesController extends AppController
             if ($this->Pages->save($page)) {
                 $this->Flash->success(__d('panel', 'The page has been saved.'));
 
-                return $this->redirect(['action' => 'index']);
+                return $this->redirect(['action' => 'edit', $id]);
             }
             $this->Flash->error(__d('panel', 'The page could not be saved. Please, try again.'));
         }

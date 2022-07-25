@@ -1,22 +1,28 @@
 <!DOCTYPE html>
 <html lang="<?= $this->request->getParam('lang') ?>">
     <head>
-        <?= $this->Html->charset() ?>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <?= $this->fetch('meta') ?>
-        <title><?= $this->fetch('title') ?></title>
-        <?= $this->Html->meta('icon') ?>
-        <?= $this->Html->css('plugins', ['fullBase' => true]) ?>
-        <?= $this->Html->css('style', ['fullBase' => true]) ?>
-        <?= $this->fetch('css') ?>
+        <?php
+        echo $this->Html->charset();
 
-        <?= \Cake\Core\Configure::read('Settings.Metrics.yandex') ?>
-        <?= \Cake\Core\Configure::read('Settings.Metrics.google') ?>
+        echo $this->Html->meta(
+            'viewport',
+            'width=device-width, initial-scale=1.0'
+        );
+        echo $this->Html->meta('icon', 'Frontend.img/favicon.png');
+        echo $this->fetch('meta');
+
+        echo $this->Html->css(['plugins', 'style'], ['fullBase' => true]);
+        echo $this->fetch('css');
+
+        echo \Cake\Core\Configure::read('Settings.Metrics.yandex');
+        echo \Cake\Core\Configure::read('Settings.Metrics.google');
+        ?>
+        <title><?= $this->fetch('title') ?></title>
     </head>
 
     <body>
         <div class="content-wrapper">
-            <?= $this->element('header') ?>
+            <?= $this->fetch('header') ?>
             <!-- /header -->
             <?= $this->fetch('breadcrumbs') ?>
             <?= $this->Flash->render() ?>
@@ -30,7 +36,6 @@
             </svg>
         </div>
 
-        <?= $this->Html->script('plugins') ?>
-        <?= $this->Html->script('theme') ?>
+        <?= $this->Html->script(['plugins', 'theme'], ['fullBase' => true]) ?>
     </body>
 </html>
