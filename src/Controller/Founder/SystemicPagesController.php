@@ -38,8 +38,8 @@ class SystemicPagesController extends AppController
      */
     public function edit($id = null)
     {
-        $this->SystemicPages->setLocale('en');
-        $this->SystemicPages->MetaTags->setLocale('en');
+        $this->SystemicPages->setLocale('ru');
+        $this->SystemicPages->MetaTags->setLocale('ru');
         $systemicPage = $this->SystemicPages->findById($id)
             ->find('translations')
             ->contain([

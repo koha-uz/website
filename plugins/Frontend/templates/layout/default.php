@@ -17,7 +17,6 @@
         echo \Cake\Core\Configure::read('Settings.Metrics.yandex');
         echo \Cake\Core\Configure::read('Settings.Metrics.google');
         ?>
-        <title><?= $this->fetch('title') ?></title>
     </head>
 
     <body>

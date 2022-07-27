@@ -1,6 +1,4 @@
 <?php
-$this->assign('title', __d('frontend', 'Oops! Page Not Found.'));
-
 $this->start('header');
 echo $this->element('/headers/header-light');
 $this->end();
