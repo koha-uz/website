@@ -2,10 +2,9 @@
 $this->assign('title', __d('frontend', 'Oops! Page Not Found.'));
 
 $this->start('header');
-echo $this->element('/headers/header3');
+echo $this->element('/headers/header-light');
 $this->end();
 ?>
-
 
 <section class="wrapper bg-light">
     <div class="container pt-12 pt-md-14 pb-14 pb-md-16">

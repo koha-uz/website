@@ -4,11 +4,11 @@
             <div class="navbar-brand w-100">
                 <a href="<?= $this->Url->build(['_name' => 'home']) ?>">
                     <?php
-                    echo $this->Html->image('logo.png', [
+                    echo $this->Html->image('logo-2x.png', [
                         'class' => 'logo-dark',
                         'srcset' => $this->Url->image('Frontend.logo-2x.png'). ' 2x'
                     ]);
-                    echo $this->Html->image('logo-light.png', [
+                    echo $this->Html->image('logo-light-2x.png', [
                         'class' => 'logo-light',
                         'srcset' => $this->Url->image('Frontend.logo-light-2x.png'). ' 2x'
                     ]);

@@ -88,7 +88,7 @@
                 <aside class="page-sidebar">
                     <div class="page-logo text-center">
                         <a href="#" data-toggle="modal" data-target="#modal-shortcut">
-                            <img src="/frontend/img/logo-white.png" aria-roledescription="logo">
+                            <img src="/frontend/img/logo-light-2x.png" srcset="/frontend/img/logo-light-2x.png 2x" aria-roledescription="logo">
                         </a>
                     </div>
 

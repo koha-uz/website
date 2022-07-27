@@ -50,7 +50,7 @@ return [
     'App' => [
         'namespace' => 'App',
         'encoding' => env('APP_ENCODING', 'UTF-8'),
-        'defaultLocale' => env('APP_DEFAULT_LOCALE', 'en'),
+        'defaultLocale' => env('APP_DEFAULT_LOCALE', 'ru'),
         'defaultTimezone' => env('APP_DEFAULT_TIMEZONE', 'Asia/Tashkent'),
         'base' => false,
         'dir' => 'src',
@@ -78,6 +78,7 @@ return [
      */
     'Security' => [
         'salt' => env('SECURITY_SALT'),
+        'cookieKey' => env('COOKIE_KEY')
     ],
 
     /*

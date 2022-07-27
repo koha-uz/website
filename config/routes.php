@@ -84,6 +84,7 @@ return static function (RouteBuilder $routes)
         /**
          * ...Begin posts
          */
+        $builder->connect('/posts', ['controller' => 'Posts', 'action' => 'index'], ['_name' => 'posts']);
         $builder->connect('/posts/{slug}', ['controller' => 'Posts', 'action' => 'view'], ['_name' => 'post_view'])
             ->setPass(['slug']);
         /**
@@ -108,6 +109,8 @@ return static function (RouteBuilder $routes)
          */
         $builder->connect('/', ['controller' => 'SystemicPages', 'action' => 'display'], ['_name' => 'home']);
         $builder->connect('/', ['controller' => 'SystemicPages', 'action' => 'display'], ['routeClass' => DashedRoute::class]);
+        $builder->connect('/sitemap', ['controller' => 'SystemicPages', 'action' => 'sitemap'], ['_name' => 'sitemap', 'routeClass' => DashedRoute::class])->setExtensions(['xml']);
+        $builder->connect('/robots', ['controller' => 'SystemicPages', 'action' => 'robots'], ['_name' => 'robots', 'routeClass' => DashedRoute::class])->setExtensions(['txt']);
 
         $builder->connect('/contacts', ['controller' => 'SystemicPages', 'action' => 'contacts'], ['_name' => 'contacts']);
 

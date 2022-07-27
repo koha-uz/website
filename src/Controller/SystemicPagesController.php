@@ -53,5 +53,8 @@ class SystemicPagesController extends AppController
 
     public function sitemap()
     {
+        $pages = $this->getTableLocator()->get('Pages')->find('published');
+        $posts = $this->getTableLocator()->get('Posts')->find('public');
+        $this->set(compact('pages', 'posts'));
     }
 }
