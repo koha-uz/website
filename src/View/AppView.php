@@ -57,8 +57,8 @@ class AppView extends View
             'pathPrefix' => ASSETS
         ]);
         $this->loadHelper('Meta.MetaRender', [
-            'fb.app_id' => '559216204881816',
-            'og.site_name' => __('Bucheon University in Tashkent')
+            'fb.app_id' => \Cake\Core\Configure::read('Settings.App.facebook'),
+            'og.site_name' => __('Koha.uz')
         ]);
 
         $this->loadHelper('I18n');
