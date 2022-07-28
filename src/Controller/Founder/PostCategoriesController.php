@@ -63,8 +63,8 @@ class PostCategoriesController extends AppController
      */
     public function edit($id = null)
     {
-        $this->PostCategories->setLocale('en');
-        $this->PostCategories->MetaTags->setLocale('en');
+        $this->PostCategories->setLocale('ru');
+        $this->PostCategories->MetaTags->setLocale('ru');
         $postCategory = $this->PostCategories->findById($id)
             ->find('translations')
             ->contain([

@@ -69,8 +69,8 @@ class PagesController extends AppController
      */
     public function edit($id = null)
     {
-        $this->Pages->setLocale('en');
-        $this->Pages->MetaTags->setLocale('en');
+        $this->Pages->setLocale('ru');
+        $this->Pages->MetaTags->setLocale('ru');
         $page = $this->Pages->findById($id)
             ->find('translations')
             ->contain([

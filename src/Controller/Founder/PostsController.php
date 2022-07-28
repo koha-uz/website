@@ -71,8 +71,8 @@ class PostsController extends AppController
      */
     public function edit($id = null)
     {
-        $this->Posts->setLocale('en');
-        $this->Posts->MetaTags->setLocale('en');
+        $this->Posts->setLocale('ru');
+        $this->Posts->MetaTags->setLocale('ru');
         $post = $this->Posts->findById($id)
             ->find('translations')
             ->contain([
