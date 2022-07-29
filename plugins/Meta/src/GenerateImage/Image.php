@@ -27,8 +27,8 @@ class Image {
 
     const THEME_MAP = ['bg' => 2, 'color' => 1];
 
-    const COLOR_THEME_BG_COLOR = '#f2f2f2';
-    const COLOR_THEME_TEXT_COLOR = '#282828';
+    const COLOR_THEME_BG_COLOR = '#f5f9ee';
+    const COLOR_THEME_TEXT_COLOR = '#2B2A29';
 
     const BG_THEME_TEXT_COLOR = '#ffffff';
 

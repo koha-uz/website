@@ -9,6 +9,10 @@ $breadcrumbs = [
     ['title' => $postCategory->title]
 ];
 $this->set('breadcrumbs', $breadcrumbs);
+
+$this->start('header');
+echo $this->element('/headers/header-light');
+$this->end();
 ?>
 
 <section class="wrapper">
@@ -32,9 +36,9 @@ $this->set('breadcrumbs', $breadcrumbs);
         <div class="row gx-lg-8 gx-xl-12">
             <div class="col-lg-8">
                 <?php
-                $count = count($postCategory->posts);
+                $count = $posts->count();
                 if ($count > 0) {
-                    foreach($postCategory->posts as $key => $post) {
+                    foreach($posts as $key => $post) {
                         if ($key === 0) {
                             echo '<div class="blog classic-view">';
                         }

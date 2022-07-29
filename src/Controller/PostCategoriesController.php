@@ -11,6 +11,21 @@ namespace App\Controller;
  */
 class PostCategoriesController extends AppController
 {
+    public $paginate = [
+        'limit' => 7,
+        'order' => [
+            'Posts.date_published' => 'desc'
+        ]
+    ];
+
+    public function initialize(): void
+    {
+        parent::initialize();
+        $this->loadComponent('Paginator');
+
+        $this->Authentication->allowUnauthenticated(['view']);
+    }
+
     /**
      * View method
      *
@@ -24,12 +39,13 @@ class PostCategoriesController extends AppController
             ->find('published')
             ->find('slugged', compact('slug'))
             ->contain('MetaTags.Image')
-            ->contain('Posts', function ($q) {
-                return $q->find('published')
-                    ->contain(['PostCategories', 'Cover']);
-            })
             ->firstOrFail();
 
-        $this->set(compact('postCategory'));
+        $posts = $this->PostCategories->Posts->find('public')
+            ->where(['Posts.post_category_id' => $postCategory->id])
+            ->contain(['PostCategories', 'Cover']);
+
+        $this->set('postCategory', $postCategory);
+        $this->set('posts', $this->paginate($posts));
     }
 }

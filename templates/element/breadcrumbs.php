@@ -1,5 +1,5 @@
 <?php if (isset($breadcrumbs) && !empty($breadcrumbs)): ?>
-<nav class="d-inline-block" aria-label="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
+<nav class="d-none d-lg-inline-block" aria-label="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
     <ol class="breadcrumb mb-1 fs-sm">
         <?php
         foreach($breadcrumbs as $key => $breadcrumb) {
