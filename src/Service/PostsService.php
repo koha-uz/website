@@ -9,16 +9,22 @@ class PostsService
 {
     use LocatorAwareTrait;
 
-    public function viewed($slug)
+    public function viewed($slug, $checkAuth = null)
     {
         $post = $this->getTableLocator()->get('Posts')
             ->find('slugged', compact('slug'))
-            ->find('public')
-            ->contain(['PostCategories', 'Cover', 'MetaTags.Image', 'Tags'])
-            ->firstOrFail();
+            ->contain(['PostCategories', 'Cover', 'MetaTags.Image', 'Tags']);
 
-        $post->set('viewed', $post->viewed + 1);
-        $this->getTableLocator()->get('Posts')->save($post);
+        if ($checkAuth === null) {
+            $post->find('public');
+        }
+
+        $post = $post->firstOrFail();
+
+        if ($checkAuth === null) {
+            $post->set('viewed', $post->viewed + 1);
+            $this->getTableLocator()->get('Posts')->save($post);
+        }
 
         return $post;
     }

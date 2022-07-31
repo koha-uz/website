@@ -34,7 +34,7 @@ class PostsController extends AppController
      *
      * @return \Cake\Http\Response|null|void Renders view
      */
-    public function index(PostsService $posts)
+    public function index()
     {
         $posts = $this->Posts->find('public')
             ->contain(['PostCategories', 'Cover']);
@@ -62,7 +62,8 @@ class PostsController extends AppController
      */
     public function view(PostsService $posts, $slug = null)
     {
-        $post = $posts->viewed($slug);
+        $checkAuth = $this->request->getAttribute('authentication')->getAuthenticationProvider();
+        $post = $posts->viewed($slug, $checkAuth);
 
         $this->set(compact('post'));
     }

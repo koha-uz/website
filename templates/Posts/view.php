@@ -19,11 +19,47 @@ $this->end();
     <div class="container pt-10">
         <div class="row">
             <div class="col-12">
+                <?php if ($this->Identity->isLoggedIn()): ?>
+                <div class="row mb-5">
+                    <div class="col-lg-9">
+                        <?php if ($post->published): ?>
+                        <div class="alert alert-success alert-icon" role="alert">
+                            <strong><i class="uil uil-check-circle"></i> <?= __d('frontend', 'Success!') ?></strong>
+                            <?= __d('frontend', 'Post published.') ?>
+                        </div>
+                        <?php else: ?>
+                        <div class="alert alert-warning alert-icon" role="alert">
+                            <strong><i class="uil uil-exclamation-triangle"></i> <?= __d('frontend', 'Warning!') ?></strong>
+                            <?= __d('frontend', 'Post not published.') ?>
+                        </div>
+                        <?php endif; ?>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="d-grid gap-2">
+                            <?php
+                            echo $this->Html->link(
+                                $this->Html->tag('i', '', ['class' => 'uil uil-edit']) . ' ' . __d('frontend', 'Edit'),
+                                [
+                                    'controller' => 'posts',
+                                    'action' => 'edit',
+                                    $post->id,
+                                    'prefix' => 'Founder'
+                                ],
+                                ['escape' => false, 'class' => 'btn btn-lg btn-primary mt-1']
+                            );
+                            ?>
+                        </div>
+                    </div>
+                </div>
+                <?php endif; ?>
+
                 <?= $this->element('breadcrumbs') ?>
                 <div class="post-header">
                     <h1 class="display-2 mb-2"><?= $post->title ?></h1>
                     <ul class="post-meta fs-sm">
+                        <?php if ($post->published): ?>
                         <li class="post-date"><i class="uil uil-calendar-alt"></i><span><?= $post->date_published->i18nFormat('d MMMM Y HH:mm') ?></span></li>
+                        <?php endif; ?>
                     </ul>
                     <!-- /.post-meta -->
                 </div>
