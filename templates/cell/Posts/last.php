@@ -35,7 +35,7 @@
                                                 <div class="post-category text-line">
                                                     <?php
                                                     echo $this->Html->link(
-                                                        h($post->post_category->title),
+                                                        $post->post_category->title,
                                                         ['_name' => 'post_category_view', 'slug' => h($post->post_category->slug)],
                                                         ['class' => 'hover', 'rel' => 'category']
                                                     );
@@ -45,7 +45,7 @@
                                                 <h2 class="post-title h3 mt-1 mb-3">
                                                     <?php
                                                     echo $this->Html->link(
-                                                        h($post->title),
+                                                        $post->title,
                                                         ['_name' => 'post_view', 'slug' => h($post->slug)],
                                                         ['class' => 'link-dark']
                                                     );

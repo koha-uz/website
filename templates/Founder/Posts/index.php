@@ -28,7 +28,7 @@ $(document).ready(function() {
             }
         },
         columnDefs: [{
-            targets: [0, 4, 5],
+            targets: [0, 5, 6],
             orderable: false
         }],
         order: [[3, 'desc']]
@@ -60,7 +60,8 @@ $(document).ready(function() {
                             <tr>
                                 <th class="all"></th>
                                 <th class="min-tablet"><?= __d('panel', 'Category') ?></th>
-                                <th class="all" style="width: 60%"><?= __d('panel', 'Title') ?></th>
+                                <th class="all" style="width: 50%"><?= __d('panel', 'Title') ?></th>
+                                <th class="min-desktop"><?= __d('panel', 'Date Created') ?></th>
                                 <th class="min-desktop"><?= __d('panel', 'Date Published') ?></th>
                                 <th class="min-phone text-center"><?= __d('panel', 'Mode') ?></th>
                                 <th class="all"></th>
@@ -71,13 +72,11 @@ $(document).ready(function() {
                             <tr>
                                 <td class="text-center">
                                     <?php
-                                    if ($post->published && $post->post_category->published) {
-                                        echo $this->Html->link(
-                                            $this->Html->tag('i', '', ['class' => 'fal fa-eye']),
-                                            ['_name' => 'post_view', 'slug' => h($post->slug), 'lang' => 'ru'],
-                                            ['escape' => false, 'target' => '_blank']
-                                        );
-                                    }
+                                    echo $this->Html->link(
+                                        $this->Html->tag('i', '', ['class' => 'fal fa-eye']),
+                                        ['_name' => 'post_view', 'slug' => h($post->slug), 'lang' => 'ru'],
+                                        ['escape' => false, 'target' => '_blank']
+                                    );
                                     ?>
                                 </td>
                                 <td>
@@ -100,7 +99,8 @@ $(document).ready(function() {
                                         ?>
                                     </code>
                                 </td>
-                                <td><?= $this->Time->i18nFormat($post->date_published, 'dd MMMM Y H:mm:ss') ?></td>
+                                <td><?= $this->Time->i18nFormat($post->date_created, 'dd MMMM Y') ?></td>
+                                <td><?= $this->Time->i18nFormat($post->date_published, 'dd MMMM Y') ?></td>
                                 <td class="text-center"><?= $this->Published->publishLink($post) ?></td>
                                 <td class="text-center">
                                     <?php

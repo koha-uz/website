@@ -1,4 +1,5 @@
 <header class="wrapper bg-soft-primary">
+    <?= $this->element('headers/founder') ?>
     <nav class="navbar navbar-expand-lg center-nav transparent position-absolute navbar-dark">
         <div class="container flex-lg-row flex-nowrap align-items-center">
             <div class="navbar-brand w-100">

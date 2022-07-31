@@ -24,7 +24,7 @@
                         <h2 class="post-title h3 mt-1 mb-3">
                             <?php
                             echo $this->Html->link(
-                                h($post->title),
+                                $post->title,
                                 ['_name' => 'post_view', 'slug' => h($post->slug)],
                                 ['class' => 'link-dark', 'title' => h($post->title)]
                             );
