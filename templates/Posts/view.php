@@ -77,71 +77,59 @@ $this->end();
         <div class="row gx-lg-8 gx-xl-12">
             <div class="col-lg-8">
                 <div class="blog single">
-                    <div class="card">
-                        <?php if (!empty($post->youtubeId)): ?>
-                        <div class="card-img-top">
-                            <div class="player" data-plyr-provider="youtube" data-plyr-embed-id="<?= $post->youtubeId ?>"></div>
-                        </div>
-                        <?php elseif(!empty($post->cover)): ?>
-                            <figure class="card-img-top"><?= $this->Image->display($post->cover, 'big') ?></figure>
-                        <?php endif; ?>
-                        
-                        <div class="card-body">
-                            <div class="classic-view">
-                                <article class="post">
-                                    <div class="post-content mb-5"><?= $post->body ?></div>
-                                    <!-- /.post-content -->
-                                    <div class="post-footer d-md-flex flex-md-row justify-content-md-between align-items-center mt-8">
-
-                                        <?php if (!empty($post->tags)): ?>
-                                        <div>
-                                            <ul class="list-unstyled tag-list mb-0">
-                                                <?php foreach($post->tags as $tag): ?>
-                                                <li>
-                                                    <?php
-                                                    echo $this->Html->link(
-                                                        h($tag->label),
-                                                        [
-                                                            'controller' => 'Posts',
-                                                            'action' => 'index',
-                                                            '?' => ['tag' => h($tag->slug)]
-                                                        ],
-                                                        ['class' => 'btn btn-soft-ash btn-sm rounded-pill mb-0']
-                                                    );
-                                                    ?>
-                                                </li>
-                                                <?php endforeach; ?>
-                                            </ul>
-                                        </div>
-                                        <?php endif; ?>
-
-                                        <div class="mb-0 mb-md-2">
-                                            <div class="dropdown share-dropdown btn-group">
-                                                <button class="btn btn-sm btn-red rounded-pill btn-icon btn-icon-start dropdown-toggle mb-0 me-0" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                    <i class="uil uil-share-alt"></i> Share
-                                                </button>
-                                                <div class="dropdown-menu">
-                                                    <a class="dropdown-item" href="#"><i class="uil uil-twitter"></i>Twitter</a>
-                                                    <a class="dropdown-item" href="#"><i class="uil uil-facebook-f"></i>Facebook</a>
-                                                    <a class="dropdown-item" href="#"><i class="uil uil-linkedin"></i>Linkedin</a>
-                                                </div>
-                                                <!--/.dropdown-menu -->
-                                            </div>
-                                            <!--/.share-dropdown -->
-                                        </div>
-                                    </div>
-                                    <!-- /.post-footer -->
-                                </article>
-                                <!-- /.post -->
-                            </div>
-                            <!-- /.classic-view -->
-                            
-                            <?= $this->cell('Posts::samePostCategory', ['post' => $post]) ?>
-
-                        </div>
-                        <!-- /.card-body -->
+                    <?php if (!empty($post->youtubeId)): ?>
+                    <div class="mb-6">
+                        <div class="player" data-plyr-provider="youtube" data-plyr-embed-id="<?= $post->youtubeId ?>"></div>
                     </div>
-                    <!-- /.card -->
+                    <?php endif; ?>
+                        
+                    <div class="classic-view">
+                        <article class="post">
+                            <div class="post-content mb-5"><?= $post->body ?></div>
+                            <!-- /.post-content -->
+                            <div class="post-footer d-md-flex flex-md-row justify-content-md-between align-items-center mt-8">
+
+                                <?php if (!empty($post->tags)): ?>
+                                <div>
+                                    <ul class="list-unstyled tag-list mb-0">
+                                        <?php foreach($post->tags as $tag): ?>
+                                        <li>
+                                            <?php
+                                            echo $this->Html->link(h($tag->label), [
+                                                'controller' => 'Posts',
+                                                'action' => 'index',
+                                                '?' => ['tag' => h($tag->slug)]
+                                            ],
+                                            ['class' => 'btn btn-soft-ash btn-sm rounded-pill mb-0']);
+                                            ?>
+                                        </li>
+                                        <?php endforeach; ?>
+                                    </ul>
+                                </div>
+                                <?php endif; ?>
+
+                                <div class="mb-0 mb-md-2">
+                                    <div class="dropdown share-dropdown btn-group">
+                                        <button class="btn btn-sm btn-red rounded-pill btn-icon btn-icon-start dropdown-toggle mb-0 me-0" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <i class="uil uil-share-alt"></i> Share
+                                        </button>
+                                        <div class="dropdown-menu">
+                                            <a class="dropdown-item" href="#"><i class="uil uil-twitter"></i>Twitter</a>
+                                            <a class="dropdown-item" href="#"><i class="uil uil-facebook-f"></i>Facebook</a>
+                                            <a class="dropdown-item" href="#"><i class="uil uil-linkedin"></i>Linkedin</a>
+                                        </div>
+                                        <!--/.dropdown-menu -->
+                                    </div>
+                                    <!--/.share-dropdown -->
+                                </div>
+                            </div>
+                            <!-- /.post-footer -->
+                        </article>
+                        <!-- /.post -->
+                    </div>
+                    <!-- /.classic-view -->
+                            
+                    <?= $this->cell('Posts::samePostCategory', ['post' => $post]) ?>
                 </div>
                 <!-- /.blog -->
             </div>
