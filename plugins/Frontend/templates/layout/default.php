@@ -8,7 +8,7 @@
             'viewport',
             'width=device-width, initial-scale=1.0'
         );
-        echo $this->Html->meta('icon', 'Frontend.img/favicon.png');
+        echo $this->Html->meta('icon', 'Frontend.img/favicon.svg', ['type' => 'image/svg+xml']);
         echo $this->fetch('meta');
 
         echo $this->Html->css(['plugins', 'style'], ['fullBase' => true]);

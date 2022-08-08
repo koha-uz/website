@@ -1,6 +1,6 @@
 <div class="navbar-collapse offcanvas offcanvas-nav offcanvas-start">
     <div class="offcanvas-header d-lg-none">
-        <?= $this->Html->image('logo-light.png') ?>
+        <?= $this->Html->image('logo-light.svg') ?>
         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
     <div class="offcanvas-body ms-lg-auto d-flex flex-column h-100">
