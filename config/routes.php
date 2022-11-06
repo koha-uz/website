@@ -112,6 +112,7 @@ return static function (RouteBuilder $routes)
         $builder->connect('/sitemap', ['controller' => 'SystemicPages', 'action' => 'sitemap'], ['_name' => 'sitemap', 'routeClass' => DashedRoute::class])->setExtensions(['xml']);
         $builder->connect('/robots', ['controller' => 'SystemicPages', 'action' => 'robots'], ['_name' => 'robots', 'routeClass' => DashedRoute::class])->setExtensions(['txt']);
 
+        $builder->connect('/about-us', ['controller' => 'SystemicPages', 'action' => 'aboutUs'], ['_name' => 'about_us']);
         $builder->connect('/contacts', ['controller' => 'SystemicPages', 'action' => 'contacts'], ['_name' => 'contacts']);
 
         /*

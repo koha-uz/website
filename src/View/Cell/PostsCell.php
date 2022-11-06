@@ -71,6 +71,7 @@ class PostsCell extends Cell
     {
         $posts = $this->Posts->find('public')
             ->contain(['Cover', 'PostCategories'])
+            ->order(['Posts.date_published' => 'desc'])
             ->limit(4)
             ->toArray();
 

@@ -10,5 +10,3 @@ $this->end();
 
 echo $page->body;
 echo $this->element('show_room');
-echo $this->cell('Posts::last');
-?>

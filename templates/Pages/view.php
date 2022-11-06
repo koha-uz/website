@@ -5,8 +5,9 @@ $this->assign('meta', $this->MetaRender
 );
 
 $this->start('header');
-echo $this->element('headers/header-gray');
+echo $this->element('/headers/header-light');
 $this->end();
 
 echo $page->body;
+echo $this->element('show_room');
 ?>

@@ -9,7 +9,7 @@
                 <?php
                 echo $this->Html->link(
                     __d('frontend', 'About Us'),
-                    ['_name' => 'page_view', 'slug' => 'about-us'],
+                    ['_name' => 'about_us'],
                     ['title' => __d('frontend', 'About Us'), 'class' => 'nav-link']
                 );
                 ?>
