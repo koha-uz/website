@@ -16,6 +16,7 @@ use Cake\ORM\Entity;
  * @property string $title
  * @property string $slug
  * @property string $body
+ * @property int $header
  * @property \Cake\I18n\FrozenTime $date_created
  * @property \Cake\I18n\FrozenTime|null $date_modified
  * @property bool $published
@@ -46,6 +47,7 @@ class Page extends Entity
         'title' => true,
         'slug' => true,
         'body' => true,
+        'header' => true,
         'date_created' => true,
         'date_modified' => true,
         'date_published' => true,

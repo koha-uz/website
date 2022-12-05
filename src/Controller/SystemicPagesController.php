@@ -22,17 +22,12 @@ class SystemicPagesController extends AppController
         parent::initialize();
         $this->loadComponent('SystemicPages');
 
-        $this->Authentication->allowUnauthenticated(['aboutUs', 'contacts', 'display', 'robots', 'sitemap']);
+        $this->Authentication->allowUnauthenticated(['contacts', 'display', 'robots', 'sitemap']);
     }
 
     public function beforeFilter(EventInterface $event)
     {
         parent::beforeFilter($event);
-    }
-
-    public function aboutUs()
-    {
-        $this->SystemicPages->setupPage();
     }
 
     public function display()

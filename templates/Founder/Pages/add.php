@@ -147,6 +147,28 @@ $(document).ready(function() {
                 </div>
             </div>
         </div>
+
+        <div id="panel-4" class="panel shadow-0" data-panel-close data-panel-sortable data-panel-fullscreen data-panel-refresh data-panel-locked>
+            <div class="panel-hdr">
+                <h2><?= __d('panel', 'Header') ?></h2>
+            </div>
+            <div class="panel-container show">
+                <div class="panel-content">
+                    <?php
+                    echo $this->Form->control('header', [
+                        'label' => ['class' => 'sr-only'],
+                        'options' => [
+                            1 => __d('panel', 'Light'),
+                            2 => __d('panel', 'Absoulte'),
+                            3 => __d('panel', 'Gray'),
+                            4 => __d('panel', 'Primary')
+                        ],
+                        'class' => 'form-control select2 w-100'
+                    ]);
+                    ?>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 
