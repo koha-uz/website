@@ -4,10 +4,6 @@
         <priority>1.0</priority>
     </url>
     <url>
-        <loc><?= $this->Url->build(['_name' => 'about_us'], ['fullBase' => true]) ?></loc>
-        <priority>0.8</priority>
-    </url>
-    <url>
         <loc><?= $this->Url->build(['_name' => 'contacts'], ['fullBase' => true]) ?></loc>
         <priority>0.8</priority>
     </url>
