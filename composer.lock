@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "4cd8ea379e63faf4ad3af2cbac4b4837",
+    "content-hash": "19d89629b347abfa0b49a3868801f6da",
     "packages": [
         {
             "name": "admad/cakephp-i18n",
@@ -231,20 +231,20 @@
         },
         {
             "name": "cakephp/authentication",
-            "version": "2.9.0",
+            "version": "2.11.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/authentication.git",
-                "reference": "71cfa8ab1b3e34699400528714a3575c5778e27d"
+                "reference": "62f63d0c625766b93b03d2e2e275078388ee39e7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/authentication/zipball/71cfa8ab1b3e34699400528714a3575c5778e27d",
-                "reference": "71cfa8ab1b3e34699400528714a3575c5778e27d",
+                "url": "https://api.github.com/repos/cakephp/authentication/zipball/62f63d0c625766b93b03d2e2e275078388ee39e7",
+                "reference": "62f63d0c625766b93b03d2e2e275078388ee39e7",
                 "shasum": ""
             },
             "require": {
-                "cakephp/http": "^4.0",
+                "cakephp/http": "^4.5",
                 "laminas/laminas-diactoros": "^2.2.2",
                 "psr/http-client": "^1.0",
                 "psr/http-message": "^1.0",
@@ -252,9 +252,9 @@
                 "psr/http-server-middleware": "^1.0"
             },
             "require-dev": {
-                "cakephp/cakephp": "^4.0",
+                "cakephp/cakephp": "^4.5",
                 "cakephp/cakephp-codesniffer": "^4.0",
-                "firebase/php-jwt": "^5.5",
+                "firebase/php-jwt": "^6.2",
                 "phpunit/phpunit": "^8.5 || ^9.3"
             },
             "suggest": {
@@ -295,20 +295,20 @@
                 "issues": "https://github.com/cakephp/authentication/issues",
                 "source": "https://github.com/cakephp/authentication"
             },
-            "time": "2022-01-06T20:01:45+00:00"
+            "time": "2024-10-18T13:15:59+00:00"
         },
         {
             "name": "cakephp/cakephp",
-            "version": "4.5.10",
+            "version": "4.6.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/cakephp.git",
-                "reference": "789c840475a9b55ada2c2f80b41a22f61815b7c4"
+                "reference": "d3c196c92fde430dc395b14b058dd240c3de42be"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/cakephp/zipball/789c840475a9b55ada2c2f80b41a22f61815b7c4",
-                "reference": "789c840475a9b55ada2c2f80b41a22f61815b7c4",
+                "url": "https://api.github.com/repos/cakephp/cakephp/zipball/d3c196c92fde430dc395b14b058dd240c3de42be",
+                "reference": "d3c196c92fde430dc395b14b058dd240c3de42be",
                 "shasum": ""
             },
             "require": {
@@ -408,7 +408,7 @@
                 "issues": "https://github.com/cakephp/cakephp/issues",
                 "source": "https://github.com/cakephp/cakephp"
             },
-            "time": "2025-03-22T03:03:08+00:00"
+            "time": "2025-04-26T22:40:45+00:00"
         },
         {
             "name": "cakephp/chronos",

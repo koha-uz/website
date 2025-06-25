@@ -25,7 +25,6 @@ class I18nMessagesCell extends Cell
      */
     public function initialize(): void
     {
-        $this->loadModel('I18nMessages');
     }
 
     /**
@@ -44,8 +43,9 @@ class I18nMessagesCell extends Cell
      */
     public function domainListMenu($menu): void
     {
-        $domains = $this->I18nMessages
+        $domains = $this->fetchTable('I18nMessages')
             ->find('domains')
+            ->all()
             ->toList();
 
         $this->set(compact('domains', 'menu'));
