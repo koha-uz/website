@@ -16,7 +16,7 @@
         "burzum/cakephp-file-storage": "dev-fix_cakephp-version",
         "burzum/cakephp-imagine-plugin": "4.x-dev",
         "cakephp/authentication": "^2.9",
-        "cakephp/cakephp": "4.4.*",
+        "cakephp/cakephp": "4.5.*",
         "cakephp/migrations": "^3.2",
         "cakephp/plugin-installer": "^1.3",
         "dereuromark/cakephp-ajax": "^2.0",

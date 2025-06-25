@@ -38,30 +38,30 @@ class AppView extends View
     public function initialize(): void
     {
         if ($this->request->getParam('prefix') == 'Founder') {
-            $this->loadHelper('Panel.Files');
-            $this->loadHelper('Panel.Panel');
-            $this->loadHelper('Panel.PhoneNumbers');
-            $this->loadHelper('Form', [
+            $this->addHelper('Panel.Files');
+            $this->addHelper('Panel.Panel');
+            $this->addHelper('Panel.PhoneNumbers');
+            $this->addHelper('Form', [
                 'className' => 'Panel.Form',
                 'errorClass' => 'form-control is-invalid'
             ]);
-            $this->loadHelper('Meta.MetaImageForm');
+            $this->addHelper('Meta.MetaImageForm');
 
-            $this->loadHelper('Published.Published');
+            $this->addHelper('Published.Published');
         } {
-            $this->loadHelper('Paginator', ['templates' => 'Frontend.paginator-templates']);
+            $this->addHelper('Paginator', ['templates' => 'Frontend.paginator-templates']);
         }
 
-        $this->loadHelper('Authentication.Identity');
-        $this->loadHelper('Burzum/FileStorage.Image', [
+        $this->addHelper('Authentication.Identity');
+        $this->addHelper('Burzum/FileStorage.Image', [
             'pathPrefix' => ASSETS
         ]);
-        $this->loadHelper('Meta.MetaRender', [
+        $this->addHelper('Meta.MetaRender', [
             'fb.app_id' => \Cake\Core\Configure::read('Settings.App.facebook'),
             'og.site_name' => __('Koha.uz')
         ]);
 
-        $this->loadHelper('I18n');
-        $this->loadHelper('Tags.Tag');
+        $this->addHelper('I18n');
+        $this->addHelper('Tags.Tag');
     }
 }
