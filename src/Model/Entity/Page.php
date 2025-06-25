@@ -17,14 +17,13 @@ use Cake\ORM\Entity;
  * @property string $slug
  * @property string $body
  * @property int $header
- * @property \Cake\I18n\FrozenTime $date_created
- * @property \Cake\I18n\FrozenTime|null $date_modified
+ * @property \Cake\I18n\DateTime $date_created
+ * @property \Cake\I18n\DateTime|null $date_modified
  * @property bool $published
- * 
+ *
  * @property \App\Model\Entity\Page[] $child_pages
  * @property \App\Model\Entity\Page $parent_page
  * @property \Meta\Model\Entity\MetaTag $meta_tag
- * 
  */
 class Page extends Entity
 {
@@ -39,7 +38,7 @@ class Page extends Entity
      *
      * @var array
      */
-    protected $_accessible = [
+    protected array $_accessible = [
         '_translations' => true,
         'parent_id' => true,
         'lft' => true,

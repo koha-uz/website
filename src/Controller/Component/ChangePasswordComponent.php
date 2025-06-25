@@ -17,7 +17,7 @@ class ChangePasswordComponent extends Component
      *
      * @var array
      */
-    protected $_defaultConfig = [];
+    protected array $_defaultConfig = [];
 
     public function changePassword()
     {

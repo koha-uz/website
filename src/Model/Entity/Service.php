@@ -16,9 +16,9 @@ use Cake\ORM\Entity;
  * @property string $title
  * @property string $slug
  * @property string $body
- * @property \Cake\I18n\FrozenTime $date_created
- * @property \Cake\I18n\FrozenTime|null $date_modified
- * @property \Cake\I18n\FrozenTime|null $date_published
+ * @property \Cake\I18n\DateTime $date_created
+ * @property \Cake\I18n\DateTime|null $date_modified
+ * @property \Cake\I18n\DateTime|null $date_published
  * @property bool $published
  *
  * @property \App\Model\Entity\ParentService $parent_service
@@ -35,7 +35,7 @@ class Service extends Entity
      *
      * @var array
      */
-    protected $_accessible = [
+    protected array $_accessible = [
         '_translations' => true,
         'parent_id' => true,
         'lft' => true,

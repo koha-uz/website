@@ -35,9 +35,7 @@ class ServicesController extends AppController
      */
     public function view($id = null)
     {
-        $service = $this->Services->get($id, [
-            'contain' => ['ParentServices', 'ChildServices'],
-        ]);
+        $service = $this->Services->get($id, contain: ['ParentServices', 'ChildServices']);
 
         $this->set(compact('service'));
     }
@@ -72,9 +70,7 @@ class ServicesController extends AppController
      */
     public function edit($id = null)
     {
-        $service = $this->Services->get($id, [
-            'contain' => [],
-        ]);
+        $service = $this->Services->get($id, contain: []);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $service = $this->Services->patchEntity($service, $this->request->getData());
             if ($this->Services->save($service)) {

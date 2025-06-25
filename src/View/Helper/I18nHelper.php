@@ -12,13 +12,13 @@ use Cake\View\View;
  */
 class I18nHelper extends Helper
 {
-    public $helpers = ['Url', 'Html'];
+    public array $helpers = ['Url', 'Html'];
     /**
      * Default configuration.
      *
      * @var array
      */
-    protected $_defaultConfig = [];
+    protected array $_defaultConfig = [];
 
     public function changeLocaleUri($locale = 'en')
     {

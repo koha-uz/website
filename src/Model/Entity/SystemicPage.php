@@ -14,8 +14,8 @@ use Cake\ORM\Entity;
  * @property string $notation
  * @property string $title
  * @property string $body
- * @property \Cake\I18n\FrozenTime $date_created
- * @property \Cake\I18n\FrozenTime|null $date_modified
+ * @property \Cake\I18n\DateTime $date_created
+ * @property \Cake\I18n\DateTime|null $date_modified
  *
  * @property \Meta\Model\Entity\MetaTag $meta_tag
  */
@@ -30,7 +30,7 @@ class SystemicPage extends Entity
      *
      * @var array
      */
-    protected $_accessible = [
+    protected array $_accessible = [
         '_translations' => true,
         'short_name' => true,
         'notation' => false,

@@ -13,7 +13,7 @@ use App\Service\PostsService;
  */
 class PostsController extends AppController
 {
-    public $paginate = [
+    public array $paginate = [
         'limit' => 7,
         'order' => [
             'Posts.date_published' => 'desc'
@@ -45,7 +45,7 @@ class PostsController extends AppController
                 ->firstOrfail();
             $this->set('tag', $tag);
 
-            $posts->find('tagged', ['slug' => $tag->slug]);
+            $posts->find('tagged', slug: $tag->slug);
         }
 
         $this->set('posts', $this->paginate($posts));

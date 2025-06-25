@@ -16,7 +16,7 @@ class PostsCell extends Cell
      *
      * @var array
      */
-    protected $_validCellOptions = [];
+    protected array $_validCellOptions = [];
 
     /**
      * Initialization logic run at the end of object construction.

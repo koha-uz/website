@@ -15,7 +15,7 @@ class SystemicPagesComponent extends Component
      *
      * @var array
      */
-    protected $_defaultConfig = [];
+    protected array $_defaultConfig = [];
 
     public function setupPage()
     {
@@ -23,9 +23,7 @@ class SystemicPagesComponent extends Component
         $action = $this->getController()->getRequest()->getParam('action');
 
         $page = $this->getController()->getTableLocator()->get('SystemicPages')
-            ->find('byNotation', [
-                'notation' => "{$controller}.{$action}"
-            ])
+            ->find('byNotation', notation: "{$controller}.{$action}")
             ->contain('MetaTags.Image')
             ->firstOrFail();
 

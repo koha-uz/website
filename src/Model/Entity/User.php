@@ -12,10 +12,9 @@ use Cake\ORM\Entity;
  * @property int $id
  * @property string $username
  * @property string $password
- * @property \Cake\I18n\FrozenTime $date_created
- * @property \Cake\I18n\FrozenTime|null $date_modified
- * @property \Cake\I18n\FrozenTime|null $date_visited
- *
+ * @property \Cake\I18n\DateTime $date_created
+ * @property \Cake\I18n\DateTime|null $date_modified
+ * @property \Cake\I18n\DateTime|null $date_visited
  */
 class User extends Entity
 {
@@ -28,7 +27,7 @@ class User extends Entity
      *
      * @var array
      */
-    protected $_accessible = [
+    protected array $_accessible = [
         'username' => true,
         'password' => true,
         'current_password' => true,
@@ -45,7 +44,7 @@ class User extends Entity
      *
      * @var array
      */
-    protected $_hidden = [
+    protected array $_hidden = [
         'password'
     ];
 

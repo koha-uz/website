@@ -21,7 +21,7 @@ class NullableBehavior extends Behavior {
 	/**
 	 * @var array
 	 */
-	protected $_defaultConfig = [
+	protected array $_defaultConfig = [
 		'on' => 'beforeMarshal', // beforeMarshal/afterSave
 	];
 

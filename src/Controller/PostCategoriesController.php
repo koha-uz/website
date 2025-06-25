@@ -11,7 +11,7 @@ namespace App\Controller;
  */
 class PostCategoriesController extends AppController
 {
-    public $paginate = [
+    public array $paginate = [
         'limit' => 7,
         'order' => [
             'Posts.date_published' => 'desc'

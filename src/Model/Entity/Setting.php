@@ -14,8 +14,8 @@ use Cake\ORM\Entity;
  * @property string $title
  * @property string $field_type
  * @property int|null $weight
- * @property \Cake\I18n\FrozenTime $date_created
- * @property \Cake\I18n\FrozenTime|null $date_modified
+ * @property \Cake\I18n\DateTime $date_created
+ * @property \Cake\I18n\DateTime|null $date_modified
  */
 class Setting extends Entity
 {
@@ -28,7 +28,7 @@ class Setting extends Entity
      *
      * @var array
      */
-    protected $_accessible = [
+    protected array $_accessible = [
         'field_key' => true,
         'value' => true,
         'title' => true,

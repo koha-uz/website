@@ -172,7 +172,7 @@ class Application extends BaseApplication implements AuthenticationServiceProvid
         // Load the authenticators. Session should be first.
         $service->loadAuthenticator('Authentication.Cookie', [
             'cookie' => [
-                'expires' => FrozenTime::now()->modify('+30 days')
+                'expires' => \Cake\I18n\DateTime::now()->modify('+30 days')
             ]
         ]);
         $service->loadAuthenticator('Authentication.Session');

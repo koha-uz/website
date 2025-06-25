@@ -48,6 +48,6 @@ class I18nMessagesTable extends Table
     {
         return $query
             ->select([$this->aliasField('domain')])
-            ->group([$this->aliasField('domain')]);
+            ->groupBy([$this->aliasField('domain')]);
     }
 }

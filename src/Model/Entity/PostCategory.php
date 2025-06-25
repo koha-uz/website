@@ -13,11 +13,11 @@ use Cake\ORM\Entity;
  * @property string $title
  * @property string $slug
  * @property string|null $body
- * @property \Cake\I18n\FrozenTime $date_created
- * @property \Cake\I18n\FrozenTime|null $date_modified
- * @property \Cake\I18n\FrozenTime|null $date_published
+ * @property \Cake\I18n\DateTime $date_created
+ * @property \Cake\I18n\DateTime|null $date_modified
+ * @property \Cake\I18n\DateTime|null $date_published
  * @property bool $published
- * 
+ *
  * @property \App\Model\Entity\Post[] $posts
  */
 class PostCategory extends Entity
@@ -33,7 +33,7 @@ class PostCategory extends Entity
      *
      * @var array
      */
-    protected $_accessible = [
+    protected array $_accessible = [
         '_translations' => true,
         'title' => true,
         'slug' => true,

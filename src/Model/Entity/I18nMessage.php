@@ -29,7 +29,7 @@ class I18nMessage extends Entity
      *
      * @var array
      */
-    protected $_accessible = [
+    protected array $_accessible = [
         'domain' => true,
         'locale' => true,
         'singular' => true,

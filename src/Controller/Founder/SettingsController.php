@@ -69,7 +69,7 @@ class SettingsController extends AppController
         $this->Settings->save($setting);
 
         $this->set('valid', true);
-        $this->set('_serialize', 'valid');
+        $this->viewBuilder()->setOption('serialize', 'valid');
     }
 
     /**
