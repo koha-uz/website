@@ -47,8 +47,6 @@ use Cake\Routing\Router;
 use Cake\Utility\Security;
 use Cake\I18n\I18n;
 
-require __DIR__ . DS . 'file_storage.php';
-
 /*
  * See https://github.com/josegonzalez/php-dotenv for API details.
  *

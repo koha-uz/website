@@ -77,7 +77,6 @@ class Application extends BaseApplication implements AuthenticationServiceProvid
         $this->addPlugin('ADmad/I18n');
         $this->addPlugin('Ajax', ['bootstrap' => true]);
         $this->addPlugin('Authentication');
-        $this->addPlugin('Burzum/FileStorage');
         $this->addPlugin('Meta');
         $this->addPlugin('Muffin/Slug');
         $this->addPlugin('Panel');

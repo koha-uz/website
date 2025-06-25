@@ -53,9 +53,6 @@ class AppView extends View
         }
 
         $this->addHelper('Authentication.Identity');
-        $this->addHelper('Burzum/FileStorage.Image', [
-            'pathPrefix' => ASSETS
-        ]);
         $this->addHelper('Meta.MetaRender', [
             'fb.app_id' => \Cake\Core\Configure::read('Settings.App.facebook'),
             'og.site_name' => __('Koha.uz')
