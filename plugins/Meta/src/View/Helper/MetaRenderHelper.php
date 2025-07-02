@@ -16,14 +16,14 @@ class MetaRenderHelper extends Helper
      *
      * @var array
      */
-    public $helpers = ['Html', 'Text', 'Image', 'Url'];
+    public array $helpers = ['Html', 'Text', 'Image', 'Url'];
 
     /**
      * Default configuration.
      *
      * @var array
      */
-    protected $_defaultConfig = [
+    protected array $_defaultConfig = [
         'title' => null,
         'description' => null,
         'fb' => [

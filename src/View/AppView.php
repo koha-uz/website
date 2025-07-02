@@ -37,6 +37,8 @@ class AppView extends View
      */
     public function initialize(): void
     {
+        $this->loadHelper('FileStorage.Image');
+
         if ($this->request->getParam('prefix') == 'Founder') {
             $this->addHelper('Panel.Files');
             $this->addHelper('Panel.Panel');
@@ -55,7 +57,7 @@ class AppView extends View
         $this->addHelper('Authentication.Identity');
         $this->addHelper('Meta.MetaRender', [
             'fb.app_id' => \Cake\Core\Configure::read('Settings.App.facebook'),
-            'og.site_name' => __('Koha.uz')
+            'og.site_name' => 'Koha.uz'
         ]);
 
         $this->addHelper('I18n');

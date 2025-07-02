@@ -16,9 +16,11 @@ declare(strict_types=1);
  */
 namespace App;
 
+use ADmad\I18n\Middleware\I18nMiddleware;
 use Authentication\AuthenticationService;
 use Authentication\AuthenticationServiceInterface;
 use Authentication\AuthenticationServiceProviderInterface;
+use Authentication\Identifier\AbstractIdentifier;
 use Authentication\Identifier\IdentifierInterface;
 use Authentication\Middleware\AuthenticationMiddleware;
 use App\Service\PostsService;
@@ -26,18 +28,16 @@ use Cake\Core\Configure;
 use Cake\Core\ContainerInterface;
 use Cake\Datasource\FactoryLocator;
 use Cake\Error\Middleware\ErrorHandlerMiddleware;
-use Cake\I18n\FrozenTime;
 use Cake\Http\BaseApplication;
 use Cake\Http\Middleware\BodyParserMiddleware;
 use Cake\Http\Middleware\CsrfProtectionMiddleware;
 use Cake\Http\Middleware\EncryptedCookieMiddleware;
 use Cake\Http\MiddlewareQueue;
+use Cake\Routing\Router;
 use Cake\ORM\Locator\TableLocator;
 use Cake\Routing\Middleware\AssetMiddleware;
 use Cake\Routing\Middleware\RoutingMiddleware;
-use Cake\Routing\Router;
 use Psr\Http\Message\ServerRequestInterface;
-
 /**
  * Application setup class.
  *
@@ -117,7 +117,7 @@ class Application extends BaseApplication implements AuthenticationServiceProvid
                 'detectLanguage' => true,
                 // Default language for app. If language detection is disabled or no
                 // matching language is found redirect to this language
-                'defaultLanguage' => 'ru',
+                'defaultLanguage' => Configure::read('I18n.defaultLanguage'),
                 // Languages available in app. The keys should match the language prefix used
                 // in URLs. Based on the language the locale will be also set.
                 'languages' => [
@@ -156,31 +156,28 @@ class Application extends BaseApplication implements AuthenticationServiceProvid
     {
         $service = new AuthenticationService();
 
+        $loginUrl = Router::url([
+            '_name' => 'login'
+        ]);
+
         // Define where users should be redirected to when they are not authenticated
         $service->setConfig([
-            'unauthenticatedRedirect' => Router::url([
-                '_name' => 'login'
-            ]),
+            'unauthenticatedRedirect' => $loginUrl,
             'queryParam' => 'redirect',
         ]);
 
         $fields = [
-            IdentifierInterface::CREDENTIAL_USERNAME => 'username',
-            IdentifierInterface::CREDENTIAL_PASSWORD => 'password'
+            AbstractIdentifier::CREDENTIAL_USERNAME => 'username',
+            AbstractIdentifier::CREDENTIAL_PASSWORD => 'password'
         ];
-
-        // Load the authenticators. Session should be first.
-        $service->loadAuthenticator('Authentication.Cookie', [
-            'cookie' => [
-                'expires' => \Cake\I18n\DateTime::now()->modify('+30 days')
-            ]
-        ]);
         $service->loadAuthenticator('Authentication.Session');
+        $service->loadAuthenticator('Authentication.Cookie', [
+            'fields' => $fields,
+            'loginUrl' => $loginUrl,
+        ]);
         $service->loadAuthenticator('Authentication.Form', [
             'fields' => $fields,
-            'loginUrl' => Router::url([
-                '_name' => 'login'
-            ]),
+            'loginUrl' => $loginUrl,
         ]);
 
         // Load identifiers

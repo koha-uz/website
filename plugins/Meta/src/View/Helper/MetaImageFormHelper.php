@@ -15,13 +15,13 @@ class MetaImageFormHelper extends Helper
      *
      * @var array
      */
-    public $helpers = ['Form', 'Image', 'Html', 'Text', 'Url'];
+    public array $helpers = ['Form', 'Image', 'Html', 'Text', 'Url'];
     /**
      * Default configuration.
      *
      * @var array
      */
-    protected $_defaultConfig = [];
+    protected array $_defaultConfig = [];
 
     public function controls()
     {

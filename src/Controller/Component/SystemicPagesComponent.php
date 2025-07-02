@@ -3,7 +3,6 @@ namespace App\Controller\Component;
 
 use Cake\Controller\Component;
 use Cake\Controller\ComponentRegistry;
-use Cake\Http\Exception\InternalErrorException;
 
 /**
  * SystemicPages component
@@ -24,7 +23,7 @@ class SystemicPagesComponent extends Component
 
         $page = $this->getController()->getTableLocator()->get('SystemicPages')
             ->find('byNotation', notation: "{$controller}.{$action}")
-            ->contain('MetaTags.Image')
+            ->contain('MetaTags')
             ->firstOrFail();
 
         $this->getController()->set('page', $page);

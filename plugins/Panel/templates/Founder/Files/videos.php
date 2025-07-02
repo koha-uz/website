@@ -1,15 +1,16 @@
 <?php
-$this->assign('title', __d('panel', 'Files'));
+$this->assign('title', __d('panel', 'Videos'));
 
 $this->start('breadcrumbs');
 $breadcrumbs = [
-    ['title' => __d('panel', 'Files')]
+    ['title' => __d('panel', 'Files'), 'url' => ['action' => 'index']],
+    ['title' => __d('panel', 'Videos')]
 ];
 echo $this->element('breadcrumbs', ['breadcrumbs' => $breadcrumbs]);
 $this->end();
 
 $this->start('navigation');
-$menu['files'][1] = true;
+$menu['files']['types']['videos'] = true;
 echo $this->element('navigation', ['menu' => $menu]);
 $this->end();
 
@@ -41,10 +42,9 @@ $(document).ready(function() {
 </script>
 <?php $this->end(); ?>
 
-
 <div class="subheader">
     <h1 class="subheader-title">
-        <i class="subheader-icon fal fa-file"></i> <?= __d('panel', 'Files') ?>
+        <i class="subheader-icon fal  fa-video"></i> <?= __d('panel', 'Videos') ?>
     </h1>
 </div>
 
@@ -52,7 +52,7 @@ $(document).ready(function() {
     <div class="col-xl-12">
         <div id="panel-1" class="panel" data-panel-close data-panel-sortable data-panel-fullscreen data-panel-refresh data-panel-locked data-panel-collapsed>
             <div class="panel-hdr">
-                <h2><?= __d('panel', 'Files') ?></h2>
+                <h2><?= __d('panel', 'Videos') ?></h2>
                 <div class="panel-toolbar ml-auto mr-3">
                     <?= $this->Html->link(__d('panel', 'Create new'), ['action' => 'add'], ['class' => 'btn btn-xs btn-success']) ?>
                 </div>
@@ -88,8 +88,8 @@ $(document).ready(function() {
                                         $this->Url->build(['action' => 'delete', h($file->id)]),
                                         [
                                             'class' => 'color-danger-900 mt-2 pr-2 mr-auto',
-                                            'data-title' => __d('panel', 'Are you sure you want to delete the file?'),
-                                            'data-message' => __d('panel', 'Deletion eliminates the possibility of data recovery.')
+                                            'escape' => false,
+                                            'confirm' => __d('panel', 'Are you sure you want to delete the video?')
                                         ]
                                     );
                                     ?>

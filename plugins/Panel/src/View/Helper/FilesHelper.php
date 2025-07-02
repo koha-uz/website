@@ -14,7 +14,7 @@ class FilesHelper extends Helper
      *
      * @var array
      */
-    protected $_defaultConfig = [];
+    protected array $_defaultConfig = [];
 
     public function fileSizeConvert($bytes)
     {

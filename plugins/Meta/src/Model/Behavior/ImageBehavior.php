@@ -22,7 +22,7 @@ class ImageBehavior extends Behavior
      *
      * @var array
      */
-    protected $_defaultConfig = [];
+    protected array $_defaultConfig = [];
 
     public function beforeSave(EventInterface $event, EntityInterface $entity, ArrayObject $options): void
     {

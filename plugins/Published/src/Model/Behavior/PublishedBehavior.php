@@ -19,7 +19,7 @@ class PublishedBehavior extends Behavior
      *
      * @var array
      */
-    protected $_defaultConfig = [
+    protected array $_defaultConfig = [
         'implementedMethods' => [
             'changePublished' => 'changePublished',
             'incrementViewCount' => 'incrementViewCount'

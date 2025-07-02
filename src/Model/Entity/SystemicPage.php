@@ -21,6 +21,8 @@ use Cake\ORM\Entity;
  */
 class SystemicPage extends Entity
 {
+    use TranslateTrait;
+
     /**
      * Fields that can be mass assigned using newEntity() or patchEntity().
      *

@@ -1,14 +1,11 @@
 <?php
+declare(strict_types=1);
+
 namespace App\Model\Table;
 
-use ArrayObject;
-use Cake\Event\Event;
-use Cake\ORM\Entity;
-use Cake\ORM\Query;
-use Cake\ORM\RulesChecker;
+use Cake\ORM\Query\SelectQuery;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
-use Cake\Http\ServerRequest;
 
 /**
  * SystemicPages Model
@@ -49,7 +46,11 @@ class SystemicPagesTable extends Table
                 ]
             ]
         ]);
-        $this->addBehavior('Translate', ['fields' => ['title', 'body']]);
+
+        $this->addBehavior('Translate', [
+            'strategyClass' => \Cake\ORM\Behavior\Translate\EavStrategy::class,
+            'fields' => ['title', 'body'],
+        ]);
     }
 
     /**
@@ -83,12 +84,7 @@ class SystemicPagesTable extends Table
         return $validator;
     }
 
-    public function beforeSave(Event $event, Entity $entity, ArrayObject $options)
-    {
-
-    }
-
-    public function findWithoutAssociations(Query $query, Array $options)
+    public function findWithoutAssociations(SelectQuery $query, $options)
     {
         return $query->where([
                 'SystemicPages.foreign_key IS' => null,
@@ -96,10 +92,10 @@ class SystemicPagesTable extends Table
             ]);
     }
 
-    public function findByNotation(Query $query, Array $options)
+    public function findByNotation(SelectQuery $query, string $notation)
     {
         return $query->where([
-            $this->aliasField('notation') => $options['notation']
+            $this->aliasField('notation') => $notation
         ]);
     }
 }

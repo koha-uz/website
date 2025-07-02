@@ -15,12 +15,12 @@ class PublishedComponent extends Component
      *
      * @var array
      */
-    protected $_defaultConfig = [];
+    protected array $_defaultConfig = [];
 
     protected $table;
     protected $controller;
 
-    public $components = ['Flash'];
+    public array $components = ['Flash'];
 
     public function initialize(array $config): void
     {

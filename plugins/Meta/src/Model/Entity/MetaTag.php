@@ -33,7 +33,7 @@ class MetaTag extends Entity
      *
      * @var array
      */
-    protected $_accessible = [
+    protected array $_accessible = [
         '_translations' => true,
         'foreign_key' => true,
         'model' => true,

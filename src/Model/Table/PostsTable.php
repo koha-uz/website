@@ -6,7 +6,7 @@ namespace App\Model\Table;
 use ArrayObject;
 use Cake\Datasource\EntityInterface;
 use Cake\Event\EventInterface;
-use Cake\ORM\Query;
+use Cake\ORM\Query\SelectQuery;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
@@ -71,7 +71,11 @@ class PostsTable extends Table
                 ]
             ]
         ]);
-        $this->addBehavior('Translate', ['fields' => ['title', 'body', 'notes']]);
+
+        $this->addBehavior('Translate', [
+            'strategyClass' => \Cake\ORM\Behavior\Translate\EavStrategy::class,
+            'fields' => ['title', 'body', 'notes'],
+        ]);
     }
 
     /**
@@ -137,7 +141,7 @@ class PostsTable extends Table
         }
     }
 
-    public function findPublic(Query $query, Array $options)
+    public function findPublic(SelectQuery $query, Array $options)
     {
         return $query->find('published')
             ->innerJoinWith('PostCategories', function ($q) {

@@ -9,13 +9,13 @@ use Cake\View\View;
  */
 class PublishedHelper extends Helper
 {
-    public $helpers = ['Url', 'Html', 'Form'];
+    public array $helpers = ['Url', 'Html', 'Form'];
     /**
      * Default configuration.
      *
      * @var array
      */
-    protected $_defaultConfig = [];
+    protected array $_defaultConfig = [];
 
     public function control($item)
     {

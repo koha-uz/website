@@ -2,11 +2,9 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
-use Cake\ORM\TableRegistry;
 use Cake\Datasource\Exception\RecordNotFoundException;
 use Cake\Event\EventInterface;
 use Cake\Core\App;
-use Cake\Core\Configure;
 
 /**
  * SystemicPages Controller
@@ -20,7 +18,9 @@ class SystemicPagesController extends AppController
     public function initialize(): void
     {
         parent::initialize();
-        $this->loadComponent('SystemicPages');
+        $this->loadComponent('SystemicPagesComponent', [
+            'className' => 'SystemicPages'
+        ]);
 
         $this->Authentication->allowUnauthenticated(['contacts', 'display', 'robots', 'sitemap']);
     }
@@ -32,12 +32,12 @@ class SystemicPagesController extends AppController
 
     public function display()
     {
-        $this->SystemicPages->setupPage();
+        $this->SystemicPagesComponent->setupPage();
     }
 
     public function contacts()
     {
-        $this->SystemicPages->setupPage();
+        $this->SystemicPagesComponent->setupPage();
     }
 
     public function robots()

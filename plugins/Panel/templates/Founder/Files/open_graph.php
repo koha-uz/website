@@ -1,16 +1,16 @@
 <?php
-$this->assign('title', __d('panel', 'Images'));
+$this->assign('title', __d('panel', 'OpenGraph images'));
 
 $this->start('breadcrumbs');
 $breadcrumbs = [
-    ['title' => __d('panel', 'Files'), 'url' => ['action' => 'index']],
-    ['title' => __d('panel', 'Images')]
+    ['title' => __d('panel', 'Files')],
+    ['title' => __d('panel', 'OpenGraph images')]
 ];
 echo $this->element('breadcrumbs', ['breadcrumbs' => $breadcrumbs]);
 $this->end();
 
 $this->start('navigation');
-$menu['files']['types'][1] = true;
+$menu['files']['types']['open_graph'] = true;
 echo $this->element('navigation', ['menu' => $menu]);
 $this->end();
 
@@ -24,7 +24,7 @@ echo $this->Html->script(
 <script>
 $(document).ready(function() {
     let modal = $('#detailImage');
-    let deleteLink = modal.find('#deleteLink').prop('outerHTML');
+    let deleteLi = modal.find('#delete').prop('outerHTML');
     const size = filesize.partial({standard: "iec"});
     $('.detail-image').on('click', function(event) {
         event.preventDefault();
@@ -36,7 +36,7 @@ $(document).ready(function() {
         let mimeType = $this.attr('data-mimeType');
         let created = $this.attr('data-created');
 
-        $('#deleteLink').replaceWith(deleteLink.replace('FILE_ID', id));
+        $('#delete').replaceWith(deleteLi.replace('FILE_ID', id));
         modal.find('#imgFull').attr('src', path);
         modal.find('#filename').text(filename);
         modal.find('#mimeType').text(mimeType);
@@ -62,8 +62,8 @@ $(document).ready(function() {
 <style>
 .grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(8rem, 1fr));
-    grid-auto-rows: 1fr;
+    grid-template-columns: repeat(auto-fill, minmax(200px,200px));
+    grid-auto-rows: 105px;
 }
 
 .grid::before {
@@ -87,6 +87,11 @@ $(document).ready(function() {
 }
 </style>
 
+<div class="subheader">
+    <h1 class="subheader-title">
+        <i class="subheader-icon fal fa-image"></i> <?= __d('panel', 'OpenGraph images') ?>
+    </h1>
+</div>
 
 
 <div class="row">
@@ -95,7 +100,7 @@ $(document).ready(function() {
             <?php
             foreach($files as $file) {
                 echo $this->Html->link(
-                    $this->Image->display($file, 'crop160', ['class' => 'img-fluid']),
+                    $this->Image->display($file, '200x105', ['class' => 'img-fluid']),
                     '#',
                     [
                         'escape' => false,
@@ -118,14 +123,14 @@ $(document).ready(function() {
     <div class="modal-dialog" role="document">
         <div class="modal-content h-100 border-0 shadow-0">
             <div class="modal-header">
-                <h5 class="modal-title h2"><?= __d('panel', 'Detail Image') ?></h5>
+                <h5 class="modal-title"><?= __d('panel', 'Detail Image') ?></h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true"><i class="fal fa-times"></i></span>
                 </button>
             </div>
             <div class="modal-body">
                 <div class="row">
-                    <div class="col-12 col-md-8 pr-5">
+                    <div class="col-12 col-md-8 pr-5 text-center">
                         <img src="" id="imgFull" class="img-fluid border border-secondary" />
                     </div>
                     <div class="col-12 col-md-4">
@@ -160,10 +165,9 @@ $(document).ready(function() {
                                     $this->Html->tag('i', '', ['class' => 'fal fa-trash mr-1']) . __d('panel', 'Delete'),
                                     $this->Url->build(['action' => 'delete', 'FILE_ID']),
                                     [
-                                        'id' => 'deleteLink',
                                         'class' => 'color-danger-900 mt-2 pr-2 mr-auto',
-                                        'data-title' => __d('panel', 'Are you sure you want to delete the image?'),
-                                        'data-message' => __d('panel', 'Deletion eliminates the possibility of data recovery.')
+                                        'escape' => false,
+                                        'confirm' => __d('panel', 'Are you sure you want to delete the image?')
                                     ]
                                 );
                                 ?>

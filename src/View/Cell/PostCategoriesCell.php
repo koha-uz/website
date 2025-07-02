@@ -25,7 +25,6 @@ class PostCategoriesCell extends Cell
      */
     public function initialize(): void
     {
-        $this->loadModel('PostCategories');
     }
 
     /**
@@ -35,7 +34,7 @@ class PostCategoriesCell extends Cell
      */
     public function display()
     {
-        $postCategories = $this->PostCategories->find('published')
+        $postCategories = $this->fetchTable('PostCategories')->find('published')
             ->contain('Posts', function ($q) {
                 return $q->find('published');
             })

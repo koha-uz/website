@@ -17,9 +17,9 @@ class EmailAddressesHelper extends Helper
      *
      * @var array
      */
-    protected $_defaultConfig = [];
+    protected array $_defaultConfig = [];
 
-    public $helpers = ['Url', 'Html', 'Form'];
+    public array $helpers = ['Url', 'Html', 'Form'];
 
     public function createFields($key, EmailAddress $entity = null)
     {

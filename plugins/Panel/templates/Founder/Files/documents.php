@@ -10,7 +10,7 @@ echo $this->element('breadcrumbs', ['breadcrumbs' => $breadcrumbs]);
 $this->end();
 
 $this->start('navigation');
-$menu['files']['types'][0] = true;
+$menu['files']['types']['documents'] = true;
 echo $this->element('navigation', ['menu' => $menu]);
 $this->end();
 
@@ -41,6 +41,7 @@ $(document).ready(function() {
 });
 </script>
 <?php $this->end(); ?>
+
 <div class="subheader">
     <h1 class="subheader-title">
         <i class="subheader-icon fal  fa-file-word"></i> <?= __d('panel', 'Documents') ?>
@@ -49,7 +50,7 @@ $(document).ready(function() {
 
 <div class="row">
     <div class="col-xl-12">
-        <div id="panel-1" class="panel">
+        <div id="panel-1" class="panel" data-panel-close data-panel-sortable data-panel-fullscreen data-panel-refresh data-panel-locked data-panel-collapsed>
             <div class="panel-hdr">
                 <h2><?= __d('panel', 'Documents') ?></h2>
                 <div class="panel-toolbar ml-auto mr-3">
@@ -87,8 +88,8 @@ $(document).ready(function() {
                                         $this->Url->build(['action' => 'delete', h($file->id)]),
                                         [
                                             'class' => 'color-danger-900 mt-2 pr-2 mr-auto',
-                                            'data-title' => __d('panel', 'Are you sure you want to delete the file?'),
-                                            'data-message' => __d('panel', 'Deletion eliminates the possibility of data recovery.')
+                                            'escape' => false,
+                                            'confirm' => __d('panel', 'Are you sure you want to delete the document?')
                                         ]
                                     );
                                     ?>

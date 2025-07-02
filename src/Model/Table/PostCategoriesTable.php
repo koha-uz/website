@@ -63,7 +63,10 @@ class PostCategoriesTable extends Table
             ]
         ]);
 
-        $this->addBehavior('Translate', ['fields' => ['title', 'body']]);
+        $this->addBehavior('Translate', [
+            'strategyClass' => \Cake\ORM\Behavior\Translate\EavStrategy::class,
+            'fields' => ['title', 'body'],
+        ]);
     }
 
     /**

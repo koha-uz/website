@@ -56,9 +56,12 @@ class MetaTagsTable extends Table
             'dependent' => true
         ]);
 
-
         $this->addBehavior('Meta.Image');
-        $this->addBehavior('Translate', ['fields' => ['title', 'description', 'og_title', 'og_description']]);
+
+        $this->addBehavior('Translate', [
+            'strategyClass' => \Cake\ORM\Behavior\Translate\EavStrategy::class,
+            'fields' => ['title', 'description', 'og_title', 'og_description'],
+        ]);
     }
 
     /**

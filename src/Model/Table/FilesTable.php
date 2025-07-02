@@ -1,11 +1,14 @@
 <?php
 namespace App\Model\Table;
 
-use Cake\ORM\Query;
+use ArrayObject;
+use Cake\Datasource\EntityInterface;
+use Cake\Event\EventInterface;
+use Cake\ORM\Query\SelectQuery;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
-use Burzum\FileStorage\Model\Table\FileStorageTable;
+use FileStorage\Model\Table\FileStorageTable;
 /**
  * Files Model
  *
@@ -31,27 +34,45 @@ class FilesTable extends FileStorageTable
         parent::initialize($config);
     }
 
-    public function beforeFind($event, $query, $options, $primary)
+    public function beforeFind(EventInterface $event, SelectQuery $query, ArrayObject $options, $primary): void
     {
         $order = $query->clause('order');
         if ($order === null || !count($order)) {
-            $query->order([
+            $query->orderBy([
                 $this->aliasField('created') => 'DESC'
             ]);
         }
     }
 
-    public function findCommon(Query $query, array $options)
+    public function findFileModel(SelectQuery $query)
     {
         return $query->where([
             'Files.foreign_key IS' => null,
-            'Files.model' => 'file_storage'
+            'Files.model' => $this->getAlias()
         ]);
     }
 
-    public function findByType(Query $query, array $options)
+    public function findOpenGraphModel(SelectQuery $query, $options)
+    {
+        return $query->where([
+            'Files.foreign_key IS' => null,
+            'Files.model' => FILE_OPENGRAPH_MODEL,
+            'Files.mime_type LIKE' => 'image/%'
+        ]);
+    }
+
+    public function findPostCoverModel(SelectQuery $query, $options)
+    {
+        return $query->where([
+            'Files.foreign_key IS' => null,
+            'Files.model' => FILE_POST_COVER_MODEL,
+            'Files.mime_type LIKE' => 'image/%'
+        ]);
+    }
+
+    public function findByType(SelectQuery $query, $type)
     {
         return $query
-            ->where(['Files.mime_type LIKE' => $options['type'] . '/%']);
+            ->where(['Files.mime_type LIKE' => $type . '/%']);
     }
 }

@@ -25,7 +25,7 @@ class PostsCell extends Cell
      */
     public function initialize(): void
     {
-        $this->loadModel('Posts');
+
     }
 
     /**
@@ -39,8 +39,8 @@ class PostsCell extends Cell
 
     public function popular($post = null)
     {
-        $posts = $this->Posts->find('public')
-            ->order(['Posts.viewed' => 'desc'])
+        $posts = $this->fetchTable('Posts')->find('public')
+            ->orderBy(['Posts.viewed' => 'desc'])
             ->contain(['Cover'])
             ->limit(3);
 
@@ -55,7 +55,7 @@ class PostsCell extends Cell
 
     public function samePostCategory($post)
     {
-        $posts = $this->Posts->find('public')
+        $posts = $this->fetchTable('Posts')->find('public')
             ->where([
                 'Posts.id !=' => $post->id,
                 'Posts.post_category_id' => $post->post_category_id
@@ -69,9 +69,9 @@ class PostsCell extends Cell
 
     public function last()
     {
-        $posts = $this->Posts->find('public')
+        $posts = $this->fetchTable('Posts')->find('public')
             ->contain(['Cover', 'PostCategories'])
-            ->order(['Posts.date_published' => 'desc'])
+            ->orderBy(['Posts.date_published' => 'desc'])
             ->limit(4)
             ->toArray();
 
@@ -80,7 +80,7 @@ class PostsCell extends Cell
 
     public function tags()
     {
-        $taggeds = $this->Posts->Tagged->find('cloud')
+        $taggeds = $this->fetchTable('Posts')->Tagged->find('cloud')
             ->toArray();
 
         $this->set('taggeds', $taggeds);

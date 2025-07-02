@@ -13,7 +13,7 @@ use Cake\View\View;
  */
 class FormHelper extends CakeFormHelper
 {
-    private $templates = [
+    private array $templates = [
         // Used for button elements in button().
         'button' => '<button{{attrs}}>{{text}}</button>',
         // Used for checkboxes in checkbox() and multiCheckbox().

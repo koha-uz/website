@@ -13,7 +13,7 @@ use App\Service\PostsService;
  */
 class PostsController extends AppController
 {
-    public array $paginate = [
+    protected array $paginate = [
         'limit' => 7,
         'order' => [
             'Posts.date_published' => 'desc'
@@ -23,7 +23,6 @@ class PostsController extends AppController
     public function initialize(): void
     {
         parent::initialize();
-        $this->loadComponent('Paginator');
         $this->loadComponent('SystemicPages');
 
         $this->Authentication->allowUnauthenticated(['index', 'view']);
@@ -37,7 +36,7 @@ class PostsController extends AppController
     public function index()
     {
         $posts = $this->Posts->find('public')
-            ->contain(['PostCategories', 'Cover']);
+            ->contain(['PostCategories'/*, 'Cover'*/]);
 
         if (null !== $this->request->getQuery('tag')) {
             $tag = $this->Posts->Tags

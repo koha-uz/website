@@ -3,13 +3,13 @@ declare(strict_types=1);
 
 namespace App\Model\Entity;
 
-use Cake\ORM\Entity;
+use FileStorage\Model\Entity\FileStorage;
 
 /**
  * File Entity
  *
  */
-class File extends Entity
+class File extends FileStorage
 {
     /**
      * Fields that can be mass assigned using newEntity() or patchEntity().

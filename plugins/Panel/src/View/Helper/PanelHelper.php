@@ -16,9 +16,9 @@ class PanelHelper extends Helper
      *
      * @var array
      */
-    protected $_defaultConfig = [];
+    protected array $_defaultConfig = [];
 
-    public $helpers = ['Html'];
+    public array $helpers = ['Html'];
 
     public function boolIcon($status)
     {

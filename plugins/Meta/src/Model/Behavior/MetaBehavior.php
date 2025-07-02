@@ -19,7 +19,7 @@ class MetaBehavior extends Behavior
      *
      * @var array
      */
-    protected $_defaultConfig = [];
+    protected array $_defaultConfig = [];
 
     /**
      * Initialize method

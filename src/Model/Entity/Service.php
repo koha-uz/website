@@ -26,6 +26,8 @@ use Cake\ORM\Entity;
  */
 class Service extends Entity
 {
+    use TranslateTrait;
+
     /**
      * Fields that can be mass assigned using newEntity() or patchEntity().
      *
