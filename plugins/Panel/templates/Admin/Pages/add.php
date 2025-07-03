@@ -1,9 +1,10 @@
 <?php
-$this->assign('title', __d('panel', 'Create page'));
+$this->assign('title', __d('panel', 'Create Dynamic Page'));
 
 $this->start('breadcrumbs');
 $breadcrumbs = [
-    ['title' => __d('panel', 'Pages'), 'url' => ['controller' => 'Pages', 'action' => 'index']],
+    ['title' => __d('admin', 'Pages')],
+    ['title' => __d('panel', 'Dynamic Pages'), 'url' => ['controller' => 'Pages', 'action' => 'index']],
     ['title' => __d('panel', 'Create')]
 ];
 echo $this->element('breadcrumbs', ['breadcrumbs' => $breadcrumbs]);
@@ -61,69 +62,66 @@ $(document).ready(function() {
 
 <div class="subheader">
     <h1 class="subheader-title">
-        <i class="subheader-icon fal fa-plus-circle"></i> <?= __d('panel', 'Create page') ?>
+        <i class="subheader-icon fal fa-plus-circle"></i> <?= __d('panel', 'Create Dynamic Page') ?>
     </h1>
 </div>
 
 <?= $this->Form->create($page, ['type' => 'file']) ?>
 <div class="row">
-    <div class="col-md-9">
-        <div id="panel-1" class="panel">
-            <div class="panel-container show">
-                <div class="panel-content">
-                    <?php
-                    echo $this->Form->control('title', [
-                        'label' => ['class' => 'sr-only'],
-                        'class' => 'form-control input-lg form-control-lg rounded-0 border-top-0 border-left-0 border-right-0 px-0',
-                        'placeholder' => __d('panel', 'Title')
-                    ]);
-                    echo $this->Form->control('slug', [
-                        'label' => ['class' => 'sr-only'],
-                        'placeholder' => __d('panel', 'Slug')
-                    ]);
-                    echo $this->Form->control('body', [
-                        'label' => ['class' => 'sr-only'],
-                        'placeholder' => __d('panel', 'Body')
-                    ]);
-                    ?>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-3">
-        <div id="panel-2" class="panel shadow-0" data-panel-close data-panel-collapsed data-panel-sortable data-panel-fullscreen data-panel-refresh data-panel-locked>
+    <div class="col-12">
+        <div id="panel-1" class="panel" data-panel-close data-panel-fullscreen data-panel-refresh data-panel-locked>
             <div class="panel-hdr">
-                <h2><?= __d('panel', 'Publish mode') ?></h2>
+                <h2><?= __d('admin', 'Create Dynamic Page') ?></h2>
             </div>
             <div class="panel-container show">
                 <div class="panel-content">
-                    <?= $this->Form->control('is_published') ?>
-                    <div class="border-top pt-3 text-right">
-                        <?= $this->Form->submit(__d('panel', 'Save')) ?>
+                    <div class="row mb-4">
+                        <div class="col-lg-8">
+                            <?php
+                            echo $this->Form->control('title', [
+                                'label' => __d('admin', 'Title') . $this->Html->tag('span' , '*', ['class' => 'ml-1 text-danger']),
+                                'escape' => false,
+                                'placeholder' => __d('panel', 'Title')
+                            ]);
+                            echo $this->Form->control('slug', [
+                                'label' => __d('admin', 'Slug') . $this->Html->tag('span' , '*', ['class' => 'ml-1 text-danger']),
+                                'escape' => false,
+                                'placeholder' => __d('panel', 'Slug')
+                            ]);
+                            echo $this->Form->control('parent_id', [
+                                'empty' => __d('panel', 'Select the parent'),
+                                'label' => __d('admin', 'Parent'),
+                                'class' => 'form-control select2 w-100'
+                            ]);
+                            echo $this->Form->control('body', [
+                                'label' => __d('admin', 'Body') . $this->Html->tag('span' , '*', ['class' => 'ml-1 text-danger']),
+                                'escape' => false,
+                                'rows' => 11,
+                                'placeholder' => __d('panel', 'Body')
+                            ]);
+                            ?>
+                        </div>
+                        <div class="col-lg-4">
+                            <?= $this->element('MetaTags/default') ?>
+                        </div>
                     </div>
-                </div>
-            </div>
-        </div>
-
-        <div id="panel-3" class="panel shadow-0" data-panel-close data-panel-sortable data-panel-fullscreen data-panel-refresh data-panel-locked>
-            <div class="panel-hdr">
-                <h2><?= __d('panel', 'Parent page') ?></h2>
-            </div>
-            <div class="panel-container show">
-                <div class="panel-content">
-                    <?php
-                    echo $this->Form->control('parent_id', [
-                        'empty' => __d('panel', 'Select the parent'),
-                        'label' => ['class' => 'sr-only'],
-                        'class' => 'form-control select2 w-100'
-                    ]);
-                    ?>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="border-top pt-3 text-right">
+                                <?php
+                                echo $this->Html->link(
+                                    __d('admin', 'Cancel'),
+                                    ['controller' => 'Pages', 'action' => 'index'],
+                                    ['class' => 'btn btn-default mr-2']
+                                );
+                                echo $this->Form->submit(__d('panel', 'Create'));
+                                ?>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
-<?= $this->element('meta_tags') ?>
-
 <?= $this->Form->end() ?>

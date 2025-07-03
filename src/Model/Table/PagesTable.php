@@ -46,6 +46,7 @@ class PagesTable extends Table
         $this->addBehavior('Meta');
         $this->addBehavior('Muffin/Slug.Slug');
         $this->addBehavior('Published');
+        $this->addBehavior('Timestamp');
         $this->addBehavior('Translate');
         $this->addBehavior('Tree');
     }
@@ -80,11 +81,6 @@ class PagesTable extends Table
             ->maxLength('body', 4294967295)
             ->requirePresence('body', 'create')
             ->notEmptyString('body');
-
-        $validator
-            ->boolean('is_published')
-            ->requirePresence('is_published', 'create')
-            ->notEmptyString('is_published');
 
         $validator
             ->dateTime('published')

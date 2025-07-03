@@ -29,10 +29,10 @@ $(document).ready(function() {
             }
         },
         columnDefs: [{
-            targets: [2, 3, 5],
+            targets: [2, 3, 4, 6],
             orderable: false
         }],
-        order: [[4, 'desc']]
+        order: [[5, 'desc']]
     });
 });
 </script>
@@ -51,7 +51,7 @@ $(document).ready(function() {
             <div class="panel-hdr">
                 <h2><?= __d('panel', 'Dynamic Pages') ?></h2>
                 <div class="panel-toolbar ml-auto mr-3">
-                    <?= $this->Html->link(__d('panel', 'Create new'), ['action' => 'add'], ['class' => 'btn btn-xs btn-success']) ?>
+                    <?= $this->Html->link(__d('panel', 'Create new'), ['controller' => 'Pages', 'action' => 'add'], ['class' => 'btn btn-xs btn-success']) ?>
                 </div>
             </div>
             <div class="panel-container show">
@@ -59,10 +59,11 @@ $(document).ready(function() {
                     <table class="table table-bordered table-hover table-striped w-100 datatable">
                         <thead>
                             <tr>
-                                <th class="min-tablet"><?= __d('panel', 'Parent') ?></th>
+                                <th class="min-desktop"><?= __d('panel', 'Parent') ?></th>
                                 <th class="all"><?= __d('panel', 'Title') ?></th>
-                                <th class="min-tablet text-center"><?= $this->Html->image('flag/en.png', ['style' => 'width: 20px']) ?></th>
-                                <th class="min-tablet text-center"><?= $this->Html->image('flag/uz.png', ['style' => 'width: 20px']) ?></th>
+                                <th class="min-desktop text-center"><?= $this->Html->image('flag/ru.png', ['style' => 'width: 20px']) ?></th>
+                                <th class="min-desktop text-center"><?= $this->Html->image('flag/en.png', ['style' => 'width: 20px']) ?></th>
+                                <th class="min-desktop text-center"><?= $this->Html->image('flag/uz.png', ['style' => 'width: 20px']) ?></th>
                                 <th class="min-desktop"><?= __d('panel', 'Date Published') ?></th>
                                 <th class="min-phone text-center"><?= __d('panel', 'Mode') ?></th>
                             </tr>
@@ -81,15 +82,17 @@ $(document).ready(function() {
                                     ?>
                                 </td>
                                 <td class="align-middle">
-                                    <?php
-                                    echo $this->Html->link(
-                                        h($page->title),
-                                        ['action' => 'edit', h($page->id)],
-                                        ['escape' => false, 'class' => 'h3 text-dark']
-                                    );
-                                    ?>
+                                    <div class="h4">
+                                        <?php
+                                        if (isset($page->title)) {
+                                            echo h($page->title);
+                                        } else {
+                                            echo $this->Panel->notSet('');
+                                        }
+                                        ?>
+                                    </div>
 
-                                    <?php if ($page->is_published): ?>
+                                    <?php if (isset($page->slug) && isset($page->is_published) && $page->is_published): ?>
                                     <code class="d-block">
                                         <?php
                                         echo $this->Html->link(
@@ -106,6 +109,15 @@ $(document).ready(function() {
                                 </td>
                                 <td class="text-center align-middle">
                                     <?php
+                                    echo $this->Html->link(
+                                        $this->Html->tag('i', '', ['class' => 'fal fa-pencil']),
+                                        ['controller' => 'Pages', 'action' => 'edit', h($page->id)],
+                                        ['escape' => false]
+                                    );
+                                    ?>
+                                </td>
+                                <td class="text-center align-middle">
+                                    <?php
                                     $color = 'success';
                                     $title = $this->Html->tag('i', '', ['class' => 'fal fa-plus']);
                                     if (array_key_exists('en', $page->_translations)) {
@@ -113,7 +125,7 @@ $(document).ready(function() {
                                         $title = $this->Html->tag('i', '', ['class' => 'fal fa-pencil']);
                                     }
                                     echo $this->Html->link($title,
-                                        ['action' => 'translate', h($page->id), 'en'],
+                                        ['controller' => 'Pages', 'action' => 'translate', h($page->id), 'en'],
                                         ['escape' => false, 'class' => 'text-' . $color]
                                     );
                                     ?>
@@ -127,12 +139,20 @@ $(document).ready(function() {
                                         $title = $this->Html->tag('i', '', ['class' => 'fal fa-pencil']);
                                     }
                                     echo $this->Html->link($title,
-                                        ['action' => 'translate', h($page->id), 'uz'],
+                                        ['controller' => 'Pages', 'action' => 'translate', h($page->id), 'uz'],
                                         ['escape' => false, 'class' => 'text-' . $color]
                                     );
                                     ?>
                                 </td>
-                                <td class="align-middle"><?= $this->Time->i18nFormat($page->published, 'd MMMM Y H:mm:ss') ?></td>
+                                <td class="align-middle" data-order="<?= !isset($page->published) ? : $page->published->getTimestamp() ?>">
+                                    <?php
+                                    if (isset($page->published)) {
+                                        echo $this->Time->i18nFormat($page->published, 'd MMMM Y H:mm:ss');
+                                    } else {
+                                        echo $this->Panel->notSet('');
+                                    }
+                                    ?>
+                                </td>
                                 <td class="text-center align-middle">
                                     <?= $this->Published->publishLink($page) ?>
                                 </td>

@@ -3,7 +3,8 @@ $this->assign('title', __d('panel', 'Page Translation: {0}', h($page->title)));
 
 $this->start('breadcrumbs');
 $breadcrumbs = [
-    ['title' => __d('panel', 'Pages'), 'url' => ['controller' => 'Pages', 'action' => 'index']],
+    ['title' => __d('admin', 'Pages')],
+    ['title' => __d('panel', 'Dynamic Pages'), 'url' => ['controller' => 'Pages', 'action' => 'index']],
     ['title' => h($page->title), 'url' => ['controller' => 'Pages', 'action' => 'edit', h($page->id)]],
     ['title' => __d('panel', 'Translate')]
 ];
@@ -66,6 +67,9 @@ $(document).ready(function() {
 <?= $this->Form->create($page, ['type' => 'file']) ?>
 
 <?php
+
+debug($this->request);
+
 echo $this->Form->control('_locale', [
     'type' => 'hidden',
     'value' => $this->request->getParam('locale')
@@ -77,44 +81,55 @@ echo $this->Form->control('_locale', [
         <div id="panel-1" class="panel">
             <div class="panel-container show">
                 <div class="panel-content">
-                    <div class="row">
-                        <div class="col-md-6">
+                    <div class="row mb-4">
+                        <div class="col-lg-6">
                             <h2 class="h3 mb-5"><?= __d('panel', 'Original:') ?> <?= $this->Html->image('flag/ru.png', ['class' => 'ml-2', 'style' => 'width: 30px']) ?></h2>
                             <?php
                             echo $this->Form->control('title', [
-                                'label' => ['class' => 'sr-only'],
-                                'class' => 'form-control input-lg form-control-lg',
+                                'label' => __d('admin', 'Title'),
                                 'disabled' => true,
                                 'placeholder' => __d('panel', 'Title')
                             ]);
                             echo $this->Form->control('body', [
-                                'label' => ['class' => 'sr-only'],
+                                'label' => __d('admin', 'Body'),
                                 'disabled' => true,
+                                'rows' => 10,
                                 'placeholder' => __d('panel', 'Body')
                             ]);
-                            echo $this->element('meta_tags_original');
+                            echo $this->element('MetaTags/original');
                             ?>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-lg-6">
                             <h2 class="h3 mb-5"><?= __d('panel', 'Translate To:') ?> <?= $this->Html->image('flag/' . $this->request->getParam('locale') . '.png', ['class' => 'ml-2', 'style' => 'width: 30px']) ?></h2>
                             <?php
                             echo $this->Form->control('_translations.' . $this->request->getParam('locale') . '.title', [
-                                'label' => ['class' => 'sr-only'],
-                                'class' => 'form-control input-lg form-control-lg',
+                                'label' => __d('admin', 'Title') . $this->Html->tag('span' , '*', ['class' => 'ml-1 text-danger']),
+                                'escape' => false,
                                 'placeholder' => __d('panel', 'Title')
                             ]);
                             echo $this->Form->control('_translations.' . $this->request->getParam('locale') . '.body', [
-                                'label' => ['class' => 'sr-only'],
+                                'label' => __d('admin', 'Body') . $this->Html->tag('span' , '*', ['class' => 'ml-1 text-danger']),
+                                'escape' => false,
+                                'rows' => 10,
                                 'placeholder' => __d('panel', 'Body')
                             ]);
-                            echo $this->element('meta_tags_translate', ['locale' => $this->request->getParam('locale')]);
+                            echo $this->element('MetaTags/translate', ['locale' => $this->request->getParam('locale')]);
                             ?>
                         </div>
                     </div>
 
-                    <div class="row mt-5">
+                    <div class="row">
                         <div class="col-12">
-                            <?= $this->Form->submit(__d('panel', 'Save')) ?>
+                            <div class="border-top pt-3 text-right">
+                                <?php
+                                echo $this->Html->link(
+                                    __d('admin', 'Cancel'),
+                                    ['controller' => 'Pages', 'action' => 'index'],
+                                    ['class' => 'btn btn-default mr-2']
+                                );
+                                echo $this->Form->submit(__d('panel', 'Save'));
+                                ?>
+                            </div>
                         </div>
                     </div>
                 </div>

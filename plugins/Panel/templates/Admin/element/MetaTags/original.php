@@ -1,13 +1,6 @@
-<?php
-/**
- * @var \App\View\AppView $this
- * @var object $meta_tag
- */
-?>
-
-<div class="card">
+<div class="card shadow-0">
     <div class="card-header py-2">
-        <h2 class="card-title"><?= __d('panel', 'Meta Tag') ?></h2>
+        <h2 class="card-title"><?= __d('panel', 'Meta Tags') ?></h2>
     </div>
     <div class="card-body">
         <?php
@@ -36,7 +29,7 @@
         echo $this->Form->control('meta_tag.og_image_url', [
             'label' => __d('panel', 'Open Graph Image URL'),
             'disabled' => true,
-            'placeholder' => __d('panel', 'Open Graph Image URL')
+            'placeholder' => 'https://...'
         ]);
         ?>
     </div>

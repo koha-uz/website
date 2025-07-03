@@ -1,13 +1,6 @@
-<?php
-/**
- * @var \App\View\AppView $this
- * @var object $meta_tag
- */
-?>
-
-<div class="card">
+<div class="card shadow-0">
     <div class="card-header py-2">
-        <h3 class="card-title"><?= __d('panel', 'Meta Tag') ?></h3>
+        <h3 class="card-title"><?= __d('panel', 'Meta Tags') ?></h3>
     </div>
     <div class="card-body">
         <?php
@@ -34,9 +27,8 @@
             'rows' => 2
         ]);
         echo $this->Form->control('meta_tag._translations.' . $locale . '.og_image_url', [
-            'label' => __d('panel', 'Open Graph Image URL') . $this->Html->tag('span' , '*', ['class' => 'ml-1 text-danger']),
-            'escape' => false,
-            'placeholder' => __d('panel', 'Open Graph Image URL')
+            'label' => __d('panel', 'Open Graph Image URL'),
+            'placeholder' => 'https://...'
         ]);
         ?>
     </div>
