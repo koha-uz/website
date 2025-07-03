@@ -15,6 +15,7 @@ declare(strict_types=1);
  */
 namespace App\View;
 
+use Cake\Core\Configure;
 use Cake\View\View;
 
 /**
@@ -39,7 +40,7 @@ class AppView extends View
     {
         $this->loadHelper('FileStorage.Image');
 
-        if ($this->request->getParam('prefix') == 'Founder') {
+        if ($this->request->getParam('prefix') == 'Admin') {
             $this->addHelper('Panel.Files');
             $this->addHelper('Panel.Panel');
             $this->addHelper('Panel.PhoneNumbers');
@@ -47,16 +48,16 @@ class AppView extends View
                 'className' => 'Panel.Form',
                 'errorClass' => 'form-control is-invalid'
             ]);
-            $this->addHelper('Meta.MetaImageForm');
+            //$this->addHelper('Meta.MetaImageForm');
 
-            $this->addHelper('Published.Published');
+            $this->loadHelper('Published');
         } {
             $this->addHelper('Paginator', ['templates' => 'Frontend.paginator-templates']);
         }
 
         $this->addHelper('Authentication.Identity');
-        $this->addHelper('Meta.MetaRender', [
-            'fb.app_id' => \Cake\Core\Configure::read('Settings.App.facebook'),
+        $this->addHelper('MetaRender', [
+            'fb.app_id' => Configure::read('Settings.App.facebook'),
             'og.site_name' => 'Koha.uz'
         ]);
 

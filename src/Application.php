@@ -56,6 +56,9 @@ class Application extends BaseApplication implements AuthenticationServiceProvid
         // Call parent to load bootstrap from files.
         parent::bootstrap();
 
+        Configure::load('storage_configure', 'default');
+        require_once $this->configDir . 'storage.php';
+
         if (PHP_SAPI === 'cli') {
             $this->bootstrapCli();
         } else {

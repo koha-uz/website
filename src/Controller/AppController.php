@@ -59,7 +59,7 @@ class AppController extends Controller
     public function beforeRender(EventInterface $event)
     {
         $this->viewBuilder()->setTheme('Frontend');
-        if ($this->request->getParam('prefix') == 'Founder') {
+        if ($this->request->getParam('prefix') == 'Admin') {
             $this->viewBuilder()->setTheme('Panel');
         }
 

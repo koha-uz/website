@@ -1,4 +1,6 @@
 <?php
+use Cake\Core\Configure;
+
 // Container
 $container = new \League\Container\Container();
 //$container = \App\Container\Container::getSingletonInstance();
@@ -14,21 +16,21 @@ $storageService = new \PhpCollective\Infrastructure\Storage\StorageService(
 
 $storageService->setAdapterConfigFromArray([
     'Local' => [
-        'class' => \PhpCollective\Infrastructure\Storage\Factories\LocalFactory::class,
+        'class'   => \PhpCollective\Infrastructure\Storage\Factories\LocalFactory::class,
         'options' => [
-            'root' => FILE_STORAGE
+            'root' => Configure::read('FileStorage.Local.root')
         ]
     ],
-    'S3' => [
-        'class' => \PhpCollective\Infrastructure\Storage\Factories\AwsS3v3Factory::class,
+    'AwsS3' => [
+        'class'   => \PhpCollective\Infrastructure\Storage\Factories\AwsS3v3Factory::class,
         'options' =>     [
-            'bucket' => env('FILE_STORAGE_ADAPTER_AWS3_BUCKET', ''),
+            'bucket' => Configure::read('FileStorage.AwsS3.bucket'),
             'client' => [
-                'region' => env('FILE_STORAGE_ADAPTER_AWS3_REGION', ''),
-                'version' => env('FILE_STORAGE_ADAPTER_AWS3_VERSION', ''),
+                'region'      => Configure::read('FileStorage.AwsS3.region'),
+                'version'     => Configure::read('FileStorage.AwsS3.version'),
                 'credentials' => [
-                    'key'    => env('FILE_STORAGE_ADAPTER_AWS3_KEY', ''),
-                    'secret' => env('FILE_STORAGE_ADAPTER_AWS3_SECRET', '')
+                    'key'    => Configure::read('FileStorage.AwsS3.key'),
+                    'secret' => Configure::read('FileStorage.AwsS3.secret')
                 ]
             ]
         ]
@@ -62,11 +64,12 @@ $stackProcessor = new \PhpCollective\Infrastructure\Storage\Processor\StackProce
 ]);
 
 // Configure variants
-/*$collectionFiles = \PhpCollective\Infrastructure\Storage\Processor\Image\ImageVariantCollection::create();
+$collectionFiles = \PhpCollective\Infrastructure\Storage\Processor\Image\ImageVariantCollection::create();
 $collectionFiles->addNew('160x160')
     ->fit(160, 160)
     ->optimize();
 
+/*
 $collectionOpenGraph = \PhpCollective\Infrastructure\Storage\Processor\Image\ImageVariantCollection::create();
 $collectionOpenGraph->addNew('200x105')
     ->fit(200, 105)
@@ -77,24 +80,18 @@ $collectionPostCover->addNew('200x125')
     ->fit(200, 125)
     ->optimize();*/
 
-\Cake\Core\Configure::write([
-    'FileStorage' => [
-        /*'imageVariants' => [
-            'Files' => [
-                'Files' => $collectionFiles->toArray()
-            ],
-            'OpenGraph' => [
-                'OpenGraph' => $collectionOpenGraph->toArray()
-            ],
-            'PostCover' => [
-                'PostCover' => $collectionPostCover->toArray()
-            ]
-        ],*/
-        'behaviorConfig' => [
-            'defaultStorageConfig' => 'S3',
-            'fileStorage' => $fileStorage,
-            'fileProcessor' => $stackProcessor,
-            //'fileValidator' => \App\Storage\Validation\ImageValidator::class,
-        ],
+Configure::write('FileStorage.imageVariants', [
+    'Files' => [
+        'Files' => $collectionFiles->toArray()
+    ],/*
+    'OpenGraph' => [
+        'OpenGraph' => $collectionOpenGraph->toArray()
     ],
+    'PostCover' => [
+        'PostCover' => $collectionPostCover->toArray()
+    ]*/
 ]);
+
+Configure::write('FileStorage.behaviorConfig.fileStorage', $fileStorage);
+Configure::write('FileStorage.behaviorConfig.fileProcessor', $stackProcessor);
+//Configure::write('FileStorage.behaviorConfig.fileValidator', \App\Storage\Validation\ImageValidator::class);

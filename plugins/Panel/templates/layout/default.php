@@ -21,7 +21,7 @@
         <link rel="icon" type="image/png" sizes="32x32" href="/panel/img/favicon/favicon-32x32.png">
         <link rel="mask-icon" href="/panel/img/favicon/safari-pinned-tab.svg" color="#5bbad5">
     </head>
-    <body class="mod-bg-1 ">
+    <body class="mod-bg-1 nav-function-fixed mod-nav-link">
     <script>
             /**
              *	This script should be placed right after the body tag for fast execution

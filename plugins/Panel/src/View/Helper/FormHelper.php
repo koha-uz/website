@@ -88,7 +88,7 @@ class FormHelper extends CakeFormHelper
         parent::__construct($View, $config);
     }
 
-    public function postLink(string $title, $url = null, array $options = []): string
+    /*public function postLink(string $title, $url = null, array $options = []): string
     {
         $modalTitle = null;
         if (isset($options['data-title'])) {
@@ -106,5 +106,5 @@ class FormHelper extends CakeFormHelper
         $options['escape'] = false;
 
         return $this->Html->link($title, 'javascript:void(0);', $options);
-    }
+    }*/
 }

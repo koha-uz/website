@@ -1,10 +1,6 @@
 <?php
 namespace App\Model\Table;
 
-use ArrayObject;
-use Cake\Datasource\EntityInterface;
-use Cake\Event\EventInterface;
-use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
@@ -47,19 +43,10 @@ class PagesTable extends Table
             'foreignKey' => 'parent_id'
         ]);
 
-        $this->addBehavior('Meta.Meta');
+        $this->addBehavior('Meta');
         $this->addBehavior('Muffin/Slug.Slug');
-        $this->addBehavior('Published.Published');
-
-        $this->addBehavior('Timestamp', [
-            'events' => [
-                'Model.beforeSave' => [
-                    'date_created' => 'new',
-                    'date_modified' => 'always',
-                ]
-            ]
-        ]);
-        $this->addBehavior('Translate', ['fields' => ['title', 'body']]);
+        $this->addBehavior('Published');
+        $this->addBehavior('Translate');
         $this->addBehavior('Tree');
     }
 
@@ -72,18 +59,36 @@ class PagesTable extends Table
     public function validationDefault(Validator $validator): Validator
     {
         $validator
-            ->nonNegativeInteger('id')
-            ->allowEmptyString('id', null, 'create');
+            ->nonNegativeInteger('parent_id')
+            ->allowEmptyString('parent_id');
+
+        $validator
+            ->scalar('title')
+            ->maxLength('title', 255)
+            ->requirePresence('title', 'create')
+            ->notEmptyString('title');
 
         $validator
             ->scalar('slug')
             ->maxLength('slug', 180)
+            ->requirePresence('slug', 'create')
             ->notEmptyString('slug')
             ->add('slug', 'unique', ['rule' => 'validateUnique', 'provider' => 'table']);
 
         $validator
             ->scalar('body')
+            ->maxLength('body', 4294967295)
+            ->requirePresence('body', 'create')
             ->notEmptyString('body');
+
+        $validator
+            ->boolean('is_published')
+            ->requirePresence('is_published', 'create')
+            ->notEmptyString('is_published');
+
+        $validator
+            ->dateTime('published')
+            ->allowEmptyDateTime('published');
 
         return $validator;
     }
@@ -97,13 +102,9 @@ class PagesTable extends Table
      */
     public function buildRules(RulesChecker $rules): RulesChecker
     {
-        $rules->add($rules->isUnique(['slug']));
+        $rules->add($rules->isUnique(['slug']), ['errorField' => 'slug']);
+        $rules->add($rules->existsIn(['parent_id'], 'ParentPages'), ['errorField' => 'parent_id']);
 
         return $rules;
-    }
-
-    public function beforeSave(EventInterface $event, EntityInterface $entity, ArrayObject $options): void
-    {
-
     }
 }

@@ -16,14 +16,13 @@ use Cake\ORM\Entity;
  * @property string $title
  * @property string $slug
  * @property string $body
- * @property int $header
- * @property \Cake\I18n\DateTime $date_created
- * @property \Cake\I18n\DateTime|null $date_modified
- * @property bool $published
+ * @property bool $is_published
+ * @property \Cake\I18n\DateTime|null $published
+ * @property \Cake\I18n\DateTime $created
+ * @property \Cake\I18n\DateTime|null $modified
  *
- * @property \App\Model\Entity\Page[] $child_pages
- * @property \App\Model\Entity\Page $parent_page
- * @property \Meta\Model\Entity\MetaTag $meta_tag
+ * @property \App\Model\Entity\ParentPage $parent_page
+ * @property \App\Model\Entity\ChildPage[] $child_pages
  */
 class Page extends Entity
 {
@@ -46,13 +45,12 @@ class Page extends Entity
         'title' => true,
         'slug' => true,
         'body' => true,
-        'header' => true,
-        'date_created' => true,
-        'date_modified' => true,
-        'date_published' => true,
+        'is_published' => true,
         'published' => true,
-        'meta_tag' => true,
+        'created' => true,
+        'modified' => true,
         'parent_page' => true,
-        'child_pages' => true
+        'child_pages' => true,
+        'meta_tag' => true
     ];
 }
