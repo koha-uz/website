@@ -1,18 +1,18 @@
 <?php
-$this->assign('title', __d('panel', 'Page Translation: {0}', h($page->title)));
+$this->assign('title', __d('panel', 'Page Translation: {0}', h($systemicPage->title)));
 
 $this->start('breadcrumbs');
 $breadcrumbs = [
-    ['title' => __d('admin', 'Pages')],
-    ['title' => __d('panel', 'Dynamic Pages'), 'url' => ['controller' => 'Pages', 'action' => 'index']],
-    ['title' => h($page->title), 'url' => ['controller' => 'Pages', 'action' => 'edit', h($page->id)]],
+    ['title' => __d('panel', 'Pages')],
+    ['title' => __d('panel', 'Systemic pages'), 'url' => ['controller' => 'SystemicPages', 'action' => 'index']],
+    ['title' => h($systemicPage->short_name), 'url' => ['controller' => 'SystemicPages', 'action' => 'edit', h($systemicPage->id)]],
     ['title' => __d('panel', 'Translate')]
 ];
 echo $this->element('breadcrumbs', ['breadcrumbs' => $breadcrumbs]);
 $this->end();
 
 $this->start('navigation');
-$menu['pages']['dynamic'] = true;
+$menu['pages']['systemic'] = true;
 echo $this->element('navigation', ['menu' => $menu]);
 $this->end();
 
@@ -60,11 +60,11 @@ $(document).ready(function() {
 <div class="subheader">
     <h1 class="subheader-title">
         <i class="subheader-icon fal fa-globe"></i> <?= __d('panel', 'Page Translation:') ?> 
-        <?= $this->Html->link(h($page->title), ['action' => 'edit', h($page->id)]) ?>
+        <?= $this->Html->link(h($systemicPage->short_name), ['action' => 'edit', h($systemicPage->id)]) ?>
     </h1>
 </div>
 
-<?= $this->Form->create($page, ['type' => 'file']) ?>
+<?= $this->Form->create($systemicPage, ['type' => 'file']) ?>
 
 <?php
 echo $this->Form->control('_locale', [
@@ -78,55 +78,46 @@ echo $this->Form->control('_locale', [
         <div id="panel-1" class="panel">
             <div class="panel-container show">
                 <div class="panel-content">
-                    <div class="row mb-4">
-                        <div class="col-lg-6">
+                    <div class="row">
+                        <div class="col-md-6">
                             <h2 class="h3 mb-5"><?= __d('panel', 'Original:') ?> <?= $this->Html->image('flag/ru.png', ['class' => 'ml-2', 'style' => 'width: 30px']) ?></h2>
                             <?php
                             echo $this->Form->control('title', [
-                                'label' => __d('admin', 'Title'),
+                                'label' => ['class' => 'sr-only'],
+                                'class' => 'form-control input-lg form-control-lg',
                                 'disabled' => true,
                                 'placeholder' => __d('panel', 'Title')
                             ]);
                             echo $this->Form->control('body', [
-                                'label' => __d('admin', 'Body'),
+                                'label' => ['class' => 'sr-only'],
                                 'disabled' => true,
-                                'rows' => 10,
+                                'class' => 'summernote-original',
                                 'placeholder' => __d('panel', 'Body')
                             ]);
-                            echo $this->element('MetaTags/original');
+                            echo $this->element('meta_tags_original');
                             ?>
                         </div>
-                        <div class="col-lg-6">
+                        <div class="col-md-6">
                             <h2 class="h3 mb-5"><?= __d('panel', 'Translate To:') ?> <?= $this->Html->image('flag/' . $this->request->getParam('locale') . '.png', ['class' => 'ml-2', 'style' => 'width: 30px']) ?></h2>
                             <?php
                             echo $this->Form->control('_translations.' . $this->request->getParam('locale') . '.title', [
-                                'label' => __d('admin', 'Title') . $this->Html->tag('span' , '*', ['class' => 'ml-1 text-danger']),
-                                'escape' => false,
+                                'label' => ['class' => 'sr-only'],
+                                'class' => 'form-control input-lg form-control-lg',
                                 'placeholder' => __d('panel', 'Title')
                             ]);
                             echo $this->Form->control('_translations.' . $this->request->getParam('locale') . '.body', [
-                                'label' => __d('admin', 'Body') . $this->Html->tag('span' , '*', ['class' => 'ml-1 text-danger']),
-                                'escape' => false,
-                                'rows' => 10,
+                                'label' => ['class' => 'sr-only'],
+                                'class' => 'summernote-translate',
                                 'placeholder' => __d('panel', 'Body')
                             ]);
-                            echo $this->element('MetaTags/translate', ['locale' => $this->request->getParam('locale')]);
+                            echo $this->element('meta_tags_translate', ['locale' => $this->request->getParam('locale')]);
                             ?>
                         </div>
                     </div>
 
-                    <div class="row">
+                    <div class="row mt-5">
                         <div class="col-12">
-                            <div class="border-top pt-3 text-right">
-                                <?php
-                                echo $this->Html->link(
-                                    __d('admin', 'Cancel'),
-                                    ['controller' => 'Pages', 'action' => 'index'],
-                                    ['class' => 'btn btn-default mr-2']
-                                );
-                                echo $this->Form->submit(__d('panel', 'Save'));
-                                ?>
-                            </div>
+                            <?= $this->Form->submit(__d('panel', 'Save')) ?>
                         </div>
                     </div>
                 </div>

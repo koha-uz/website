@@ -1,9 +1,9 @@
 <?php
-$this->assign('title', __d('panel', 'Systemic pages'));
+$this->assign('title', __d('panel', 'Systemic Pages'));
 
 $this->start('breadcrumbs');
 $breadcrumbs = [
-    ['title' => __d('panel', 'Systemic pages')]
+    ['title' => __d('panel', 'Systemic Pages')]
 ];
 echo $this->element('breadcrumbs', ['breadcrumbs' => $breadcrumbs]);
 $this->end();
@@ -21,31 +21,38 @@ echo $this->Html->script('datagrid/datatables/datatables.bundle', ['block' => tr
 <script>
 $(document).ready(function() {
     $('.datatable').dataTable({
-        pageLength: 25,
+        serviceLength: 25,
         responsive: {
             details: {
                 type: 'column', target: 'tr'
             }
         },
         columnDefs: [{
-            targets: [3],
+            targets: [2, 3],
             orderable: false
         }],
-        order: [[1, 'asc']]
+        order: false
     });
 });
 </script>
 <?php $this->end(); ?>
 
+
 <div class="subheader">
     <h1 class="subheader-title">
-        <i class="subheader-icon fal fa-paperclip"></i> <?= __d('panel', 'Systemic pages') ?>
+        <i class="subheader-icon fal fa-file-alt"></i> <?= __d('panel', 'Systemic Pages') ?>
     </h1>
 </div>
 
 <div class="row">
     <div class="col-xl-12">
-        <div id="panel-1" class="panel">
+        <div id="panel-1" class="panel" data-panel-close data-panel-sortable data-panel-fullscreen data-panel-refresh data-panel-locked data-panel-collapsed>
+            <div class="panel-hdr">
+                <h2><?= __d('panel', 'Systemic Pages') ?></h2>
+                <div class="panel-toolbar ml-auto mr-3">
+                    <?= $this->Html->link(__d('panel', 'Create new'), ['action' => 'add'], ['class' => 'btn btn-xs btn-success']) ?>
+                </div>
+            </div>
             <div class="panel-container show">
                 <div class="panel-content">
                     <table class="table table-bordered table-hover table-striped w-100 datatable">
@@ -53,29 +60,57 @@ $(document).ready(function() {
                             <tr>
                                 <th class="min-desktop"><?= __d('panel', 'Notation') ?></th>
                                 <th class="all" style="width: 60%"><?= __d('panel', 'Short name') ?></th>
+                                <th class="min-tablet text-center"><?= $this->Html->image('flag/en.png', ['style' => 'width: 20px']) ?></th>
+                                <th class="min-tablet text-center"><?= $this->Html->image('flag/uz.png', ['style' => 'width: 20px']) ?></th>
                                 <th class="min-desktop" style="width: 18%"><?= __d('panel', 'Date modified') ?></th>
-                                <th class="all" style="width: 5%"></th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php foreach ($systemicPages as $page): ?>
                             <tr>
-                                <td><?= h($page->notation) ?></td>
-                                <td><?= h($page->short_name) ?></td>
-                                <td>
-                                    <?php
-                                    if ($page->has('date_modified')) {
-                                        echo $page->date_modified->format('d.m.Y H:i');
-                                    }
-                                    ?>
-                                </td>
-                                <td class="text-center">
+                                <td class="align-middle"><?= h($page->notation) ?></td>
+                                <td class="align-middle">
                                     <?php
                                     echo $this->Html->link(
-                                        $this->Html->tag('i', '', ['class' => 'fal fa-pencil']),
+                                        h($page->short_name),
                                         ['action' => 'edit', h($page->id)],
-                                        ['escape' => false]
+                                        ['escape' => false, 'class' => 'h3 text-dark']
                                     );
+                                    ?>
+                                </td>
+                                <td class="text-center align-middle">
+                                    <?php
+                                    $color = 'success';
+                                    $title = $this->Html->tag('i', '', ['class' => 'fal fa-plus']);
+                                    if (array_key_exists('en', $page->_translations)) {
+                                        $color = 'info';
+                                        $title = $this->Html->tag('i', '', ['class' => 'fal fa-pencil']);
+                                    }
+                                    echo $this->Html->link($title,
+                                        ['action' => 'translate', h($page->id), 'en'],
+                                        ['escape' => false, 'class' => 'text-' . $color]
+                                    );
+                                    ?>
+                                </td>
+                                <td class="text-center align-middle">
+                                    <?php
+                                    $color = 'success';
+                                    $title = $this->Html->tag('i', '', ['class' => 'fal fa-plus']);
+                                    if (array_key_exists('uz', $page->_translations)) {
+                                        $color = 'info';
+                                        $title = $this->Html->tag('i', '', ['class' => 'fal fa-pencil']);
+                                    }
+                                    echo $this->Html->link($title,
+                                        ['action' => 'translate', h($page->id), 'uz'],
+                                        ['escape' => false, 'class' => 'text-' . $color]
+                                    );
+                                    ?>
+                                </td>
+                                <td class="align-middle">
+                                    <?php
+                                    if ($page->has('modified')) {
+                                        echo $page->modified->format('d.m.Y H:i:s');
+                                    }
                                     ?>
                                 </td>
                             </tr>

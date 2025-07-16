@@ -37,20 +37,9 @@ class SystemicPagesTable extends Table
         $this->setDisplayField('short_name');
         $this->setPrimaryKey('id');
 
-        $this->addBehavior('Meta.Meta');
-        $this->addBehavior('Timestamp', [
-            'events' => [
-                'Model.beforeSave' => [
-                    'date_created' => 'new',
-                    'date_modified' => 'always'
-                ]
-            ]
-        ]);
-
-        $this->addBehavior('Translate', [
-            'strategyClass' => \Cake\ORM\Behavior\Translate\EavStrategy::class,
-            'fields' => ['title', 'body'],
-        ]);
+        $this->addBehavior('Meta');
+        $this->addBehavior('Timestamp');
+        $this->addBehavior('Translate');
     }
 
     /**
@@ -84,7 +73,7 @@ class SystemicPagesTable extends Table
         return $validator;
     }
 
-    public function findWithoutAssociations(SelectQuery $query, $options)
+    public function findWithoutAssociations(SelectQuery $query)
     {
         return $query->where([
                 'SystemicPages.foreign_key IS' => null,

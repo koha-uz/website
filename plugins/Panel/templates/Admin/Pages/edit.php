@@ -115,7 +115,7 @@ $(document).ready(function() {
                             ?>
                         </div>
                         <div class="col-lg-4">
-                            <?= $this->element('meta_tags') ?>
+                            <?= $this->element('MetaTags/default') ?>
                         </div>
                     </div>
                     <div class="row">

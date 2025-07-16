@@ -46,10 +46,13 @@ class PagesController extends AppController
      */
     public function add()
     {
-        $page = $this->Pages->newEmptyEntity();
+        $pagesTable = $this->Pages->removeBehavior('Translate');
+        $pagesTable->MetaTags->removeBehavior('Translate');
+        $page = $pagesTable->newEmptyEntity();
         if ($this->request->is('post')) {
-            $page = $this->Pages->patchEntity($page, $this->request->getData());
-            if ($this->Pages->save($page)) {
+            $page = $pagesTable->patchEntity($page, $this->request->getData());
+
+            if ($pagesTable->save($page)) {
                 $this->Flash->success(__('The page has been saved.'));
 
                 return $this->redirect(['action' => 'index']);
@@ -94,11 +97,13 @@ class PagesController extends AppController
      */
     public function edit($id = null)
     {
-        $this->Pages->setLocale(Configure::read('I18n.defaultLanguage'));
-        $page = $this->Pages->get($id, contain: ['MetaTags']);
+        $pagesTable = $this->Pages->removeBehavior('Translate');
+        $pagesTable->MetaTags->removeBehavior('Translate');
+        $page = $pagesTable->get($id, contain: ['MetaTags']);
+
         if ($this->request->is(['patch', 'post', 'put'])) {
-            $page = $this->Pages->patchEntity($page, $this->request->getData());
-            if ($this->Pages->save($page)) {
+            $page = $pagesTable->patchEntity($page, $this->request->getData());
+            if ($pagesTable->save($page)) {
                 $this->Flash->success(__('The page has been saved.'));
 
                 return $this->redirect(['action' => 'index']);

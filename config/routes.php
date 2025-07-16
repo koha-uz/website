@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 /**
  * Routes configuration.
  *
@@ -32,6 +34,17 @@ return static function (RouteBuilder $routes)
 
     $routes->prefix('admin', function (RouteBuilder $builder) {
         $builder->setRouteClass(I18nRoute::class);
+
+        $builder->connect(
+            '/{controller}/{action}/{id}/{locale}',
+            ['action' => 'translate']
+        )
+            ->setPass(['id', 'locale'])
+            ->setPatterns([
+                'id' => '[0-9]+',
+                'locale' => 'en|uz'
+            ]);
+
         $builder->connect('/', ['controller' => 'SystemicPages', 'action' => 'dashboard']);
         $builder->connect('/i18n-messages/{domain}/{locale}', ['controller' => 'I18nMessages', 'action' => 'edit'])->setPass(['domain', 'locale']);
 

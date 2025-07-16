@@ -1,10 +1,10 @@
 <?php
-$this->assign('title', h($systemicPage->title));
+$this->assign('title', __d('panel', 'Create systemic page'));
 
 $this->start('breadcrumbs');
 $breadcrumbs = [
-    ['title' => __d('panel', 'Systemic Pages'), 'url' => ['controller' => 'SystemicPages', 'action' => 'index']],
-    ['title' => h($systemicPage->title)]
+    ['title' => __d('panel', 'Systemic pages'), 'url' => ['controller' => 'SystemicPages', 'action' => 'index']],
+    ['title' => __d('panel', 'Create')]
 ];
 echo $this->element('breadcrumbs', ['breadcrumbs' => $breadcrumbs]);
 $this->end();
@@ -61,7 +61,7 @@ $(document).ready(function() {
 
 <div class="subheader">
     <h1 class="subheader-title">
-        <i class="subheader-icon fal fa-pencil"></i> <?= h($systemicPage->title) ?>
+        <i class="subheader-icon fal fa-plus-circle"></i> <?= __d('panel', 'Create systemic page') ?>
     </h1>
 </div>
 

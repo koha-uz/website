@@ -1,6 +1,9 @@
 <?php
 namespace App\Model\Table;
 
+use ArrayObject;
+use Cake\Datasource\EntityInterface;
+use Cake\Event\EventInterface;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
@@ -44,7 +47,6 @@ class PagesTable extends Table
         ]);
 
         $this->addBehavior('Meta');
-        $this->addBehavior('Muffin/Slug.Slug');
         $this->addBehavior('Published');
         $this->addBehavior('Timestamp');
         $this->addBehavior('Translate');
@@ -82,10 +84,6 @@ class PagesTable extends Table
             ->requirePresence('body', 'create')
             ->notEmptyString('body');
 
-        $validator
-            ->dateTime('published')
-            ->allowEmptyDateTime('published');
-
         return $validator;
     }
 
@@ -102,5 +100,10 @@ class PagesTable extends Table
         $rules->add($rules->existsIn(['parent_id'], 'ParentPages'), ['errorField' => 'parent_id']);
 
         return $rules;
+    }
+
+    public function beforeSave(EventInterface $event, EntityInterface $entity, ArrayObject $options): void
+    {
+
     }
 }
