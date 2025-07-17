@@ -50,14 +50,14 @@ return [
     'App' => [
         'namespace' => 'App',
         'encoding' => env('APP_ENCODING', 'UTF-8'),
-        'defaultLocale' => env('APP_DEFAULT_LOCALE', 'en_US'),
-        'defaultTimezone' => env('APP_DEFAULT_TIMEZONE', 'UTC'),
+        'defaultLocale' => env('APP_DEFAULT_LOCALE', 'ru'),
+        'defaultTimezone' => env('APP_DEFAULT_TIMEZONE', 'Asia/Tashkent'),
         'base' => false,
         'dir' => 'src',
         'webroot' => 'webroot',
         'wwwRoot' => WWW_ROOT,
         //'baseUrl' => env('SCRIPT_NAME'),
-        'fullBaseUrl' => false,
+        'fullBaseUrl' => env('FULL_BASE_URL', ''),
         'imageBaseUrl' => 'img/',
         'cssBaseUrl' => 'css/',
         'jsBaseUrl' => 'js/',
@@ -77,6 +77,8 @@ return [
      */
     'Security' => [
         'salt' => env('SECURITY_SALT'),
+        'cookieKey' => env('SECURITY_COOKIE_KEY'),
+        'key' => env('SECURITY_KEY')
     ],
 
     /*

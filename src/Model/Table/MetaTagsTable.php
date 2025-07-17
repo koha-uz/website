@@ -79,12 +79,6 @@ class MetaTagsTable extends Table
             ->requirePresence('og_description', 'create')
             ->notEmptyString('og_description');
 
-        $validator
-            ->scalar('og_image_url')
-            ->maxLength('og_image_url', 255)
-            ->requirePresence('og_image_url', 'create')
-            ->notEmptyString('og_image_url');
-
         return $validator;
     }
 }

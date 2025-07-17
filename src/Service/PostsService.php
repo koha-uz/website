@@ -13,7 +13,7 @@ class PostsService
     {
         $post = $this->getTableLocator()->get('Posts')
             ->find('slugged', compact('slug'))
-            ->contain(['PostCategories', 'Cover', 'MetaTags.Image', 'Tags']);
+            ->contain(['PostCategories', 'Cover', 'MetaTags', 'Tags']);
 
         if ($checkAuth === null) {
             $post->find('public');

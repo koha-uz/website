@@ -28,7 +28,7 @@ class PagesController extends AppController
         $page = $this->Pages
             ->find('slugged', slug: $slug)
             ->find('published')
-            ->contain('MetaTags.Image')
+            ->contain('MetaTags')
             ->firstOrFail();
 
         $this->set('page', $page);

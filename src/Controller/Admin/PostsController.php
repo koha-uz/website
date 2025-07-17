@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace App\Controller\Admin;
 
 use App\Controller\AppController;
+use Cake\Core\Configure;
 
 /**
  * Posts Controller
@@ -17,7 +18,7 @@ class PostsController extends AppController
     {
         parent::initialize();
 
-        $this->loadComponent('Published.Published');
+        $this->loadComponent('Published');
     }
 
     /**
@@ -27,10 +28,13 @@ class PostsController extends AppController
      */
     public function index()
     {
-        $posts = $this->Posts->find()
+        $this->Posts->setLocale(Configure::read('I18n.defaultLanguage'));
+        $posts = $this->Posts
+            ->find('translations')
             ->contain([
-                'PostCategories',
-                'Cover'
+                'PostCategories' => function ($query) {
+                    return $query->find('translations');
+                }
             ]);
 
         $this->set(compact('posts'));
@@ -46,7 +50,7 @@ class PostsController extends AppController
         $post = $this->Posts->newEmptyEntity();
         if ($this->request->is('post')) {
             $post = $this->Posts->patchEntity($post, $this->request->getData(),
-                ['associated' => ['Cover', 'MetaTags.ImageBg', 'MetaTags.Image', 'Tags']]
+                ['associated' => ['Cover', 'MetaTags', 'Tags']]
             );
             if ($this->Posts->save($post)) {
                 $this->Flash->success(__('The post has been saved.'));
@@ -78,8 +82,7 @@ class PostsController extends AppController
             ->contain([
                 'Cover',
                 'MetaTags' => function ($query) {
-                    return $query->find('translations')
-                        ->contain(['ImageBg', 'Image']);
+                    return $query->find('translations');
                 },
                 'Tags'
             ])
@@ -93,10 +96,6 @@ class PostsController extends AppController
             $post = $this->Posts->patchEntity($post, $this->request->getData(),
                 ['associated' => ['Cover', 'MetaTags.ImageBg', 'MetaTags.Image', 'Tags']]
             );
-
-            //debug($this->request->getData());
-            //debug($post);
-            //exit;
 
             if ($this->Posts->save($post)) {
                 $this->Flash->success(__('The post has been saved.'));

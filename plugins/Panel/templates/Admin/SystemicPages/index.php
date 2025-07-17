@@ -3,6 +3,7 @@ $this->assign('title', __d('panel', 'Systemic Pages'));
 
 $this->start('breadcrumbs');
 $breadcrumbs = [
+    ['title' => __d('panel', 'Pages')],
     ['title' => __d('panel', 'Systemic Pages')]
 ];
 echo $this->element('breadcrumbs', ['breadcrumbs' => $breadcrumbs]);
@@ -28,7 +29,7 @@ $(document).ready(function() {
             }
         },
         columnDefs: [{
-            targets: [2, 3],
+            targets: [2, 3, 4],
             orderable: false
         }],
         order: false
@@ -58,11 +59,12 @@ $(document).ready(function() {
                     <table class="table table-bordered table-hover table-striped w-100 datatable">
                         <thead>
                             <tr>
-                                <th class="min-desktop"><?= __d('panel', 'Notation') ?></th>
-                                <th class="all" style="width: 60%"><?= __d('panel', 'Short name') ?></th>
-                                <th class="min-tablet text-center"><?= $this->Html->image('flag/en.png', ['style' => 'width: 20px']) ?></th>
-                                <th class="min-tablet text-center"><?= $this->Html->image('flag/uz.png', ['style' => 'width: 20px']) ?></th>
-                                <th class="min-desktop" style="width: 18%"><?= __d('panel', 'Date modified') ?></th>
+                                <th class="min-desktop align-middle"><?= __d('panel', 'Notation') ?></th>
+                                <th class="all align-middle"><?= __d('panel', 'Short name') ?></th>
+                                <th class="min-desktop text-center align-middle"><?= $this->Html->image('flag/ru.png', ['style' => 'width: 20px']) ?></th>
+                                <th class="min-desktop text-center align-middle"><?= $this->Html->image('flag/en.png', ['style' => 'width: 20px']) ?></th>
+                                <th class="min-desktop text-center align-middle"><?= $this->Html->image('flag/uz.png', ['style' => 'width: 20px']) ?></th>
+                                <th class="min-desktop align-middle" style="width: 18%"><?= __d('panel', 'Date modified') ?></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -70,11 +72,17 @@ $(document).ready(function() {
                             <tr>
                                 <td class="align-middle"><?= h($page->notation) ?></td>
                                 <td class="align-middle">
+                                    <div class="h4 mb-0">
+                                        <?= isset($page->short_name) ? h($page->short_name) : $this->Panel->notSet('') ?>
+                                    </div>
+                                    
+                                </td>
+                                <td class="text-center align-middle">
                                     <?php
                                     echo $this->Html->link(
-                                        h($page->short_name),
-                                        ['action' => 'edit', h($page->id)],
-                                        ['escape' => false, 'class' => 'h3 text-dark']
+                                        $this->Html->tag('i', '', ['class' => 'fal fa-pencil']),
+                                        ['controller' => 'SystemicPages', 'action' => 'edit', h($page->id)],
+                                        ['escape' => false]
                                     );
                                     ?>
                                 </td>

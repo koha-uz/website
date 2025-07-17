@@ -69,7 +69,6 @@ $collectionFiles->addNew('160x160')
     ->fit(160, 160)
     ->optimize();
 
-/*
 $collectionOpenGraph = \PhpCollective\Infrastructure\Storage\Processor\Image\ImageVariantCollection::create();
 $collectionOpenGraph->addNew('200x105')
     ->fit(200, 105)
@@ -78,18 +77,18 @@ $collectionOpenGraph->addNew('200x105')
 $collectionPostCover = \PhpCollective\Infrastructure\Storage\Processor\Image\ImageVariantCollection::create();
 $collectionPostCover->addNew('200x125')
     ->fit(200, 125)
-    ->optimize();*/
+    ->optimize();
 
 Configure::write('FileStorage.imageVariants', [
     'Files' => [
         'Files' => $collectionFiles->toArray()
-    ],/*
+    ],
     'OpenGraph' => [
         'OpenGraph' => $collectionOpenGraph->toArray()
     ],
     'PostCover' => [
         'PostCover' => $collectionPostCover->toArray()
-    ]*/
+    ]
 ]);
 
 Configure::write('FileStorage.behaviorConfig.fileStorage', $fileStorage);

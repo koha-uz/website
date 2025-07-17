@@ -9,7 +9,7 @@ echo $this->element('breadcrumbs', ['breadcrumbs' => $breadcrumbs]);
 $this->end();
 
 $this->start('navigation');
-$menu['posts'][1] = true;
+$menu['posts']['list'] = true;
 echo $this->element('navigation', ['menu' => $menu]);
 $this->end();
 
@@ -28,10 +28,10 @@ $(document).ready(function() {
             }
         },
         columnDefs: [{
-            targets: [0, 5, 6],
+            targets: [2, 3, 4, 7],
             orderable: false
         }],
-        order: [[3, 'desc']]
+        order: [[6, 'desc']]
     });
 });
 </script>
@@ -58,28 +58,32 @@ $(document).ready(function() {
                     <table class="table table-bordered table-hover table-striped w-100 datatable">
                         <thead>
                             <tr>
-                                <th class="all"></th>
-                                <th class="min-tablet"><?= __d('panel', 'Category') ?></th>
-                                <th class="all" style="width: 50%"><?= __d('panel', 'Title') ?></th>
-                                <th class="min-desktop"><?= __d('panel', 'Date Created') ?></th>
-                                <th class="min-desktop"><?= __d('panel', 'Date Published') ?></th>
-                                <th class="min-phone text-center"><?= __d('panel', 'Mode') ?></th>
-                                <th class="all"></th>
+                                <th class="all align-middle" style="width: 50%"><?= __d('panel', 'Title') ?></th>
+                                <th class="min-desktop align-middle"><?= __d('panel', 'Category') ?></th>
+                                <th class="min-desktop text-center align-middle"><?= $this->Html->image('flag/ru.png', ['style' => 'width: 20px']) ?></th>
+                                <th class="min-desktop text-center align-middle"><?= $this->Html->image('flag/en.png', ['style' => 'width: 20px']) ?></th>
+                                <th class="min-desktop text-center align-middle"><?= $this->Html->image('flag/uz.png', ['style' => 'width: 20px']) ?></th>
+                                <th class="min-desktop align-middle"><?= __d('panel', 'Date Created') ?></th>
+                                <th class="min-desktop align-middle"><?= __d('panel', 'Date Published') ?></th>
+                                <th class="min-tablet text-center align-middle"><?= __d('panel', 'Mode') ?></th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php foreach ($posts as $post): ?>
                             <tr>
-                                <td class="text-center">
+                                <td class="align-middle">
                                     <?php
                                     echo $this->Html->link(
-                                        $this->Html->tag('i', '', ['class' => 'fal fa-eye']),
+                                        $this->Html->tag('i', '', ['class' => 'fal fa-external-link-alt']),
                                         ['_name' => 'post_view', 'slug' => h($post->slug), 'lang' => 'ru'],
                                         ['escape' => false, 'target' => '_blank']
                                     );
                                     ?>
+                                    <span class="h4 ml-2">
+                                        <?= isset($post->title) ? h($post->title) : $this->Panel->notSet('title') ?>
+                                    </span>
                                 </td>
-                                <td>
+                                <td class="align-middle">
                                     <?php
                                     echo $this->Html->link(
                                         $post->post_category->title,
@@ -88,28 +92,51 @@ $(document).ready(function() {
                                     echo ' ' . $this->Panel->boolIcon($post->post_category->published);
                                     ?>
                                 </td>
-                                <td>
-                                    <?= h($post->title) ?>
-                                    <code class="d-block">
-                                        <?php
-                                        echo $this->Url->build(
-                                            ['_name' => 'post_view', 'slug' => h($post->slug), 'lang' => 'ru'],
-                                            ['fullBase' => true]
-                                        );
-                                        ?>
-                                    </code>
-                                </td>
-                                <td><?= $this->Time->i18nFormat($post->date_created, 'dd MMMM Y') ?></td>
-                                <td><?= $this->Time->i18nFormat($post->date_published, 'dd MMMM Y') ?></td>
-                                <td class="text-center"><?= $this->Published->publishLink($post) ?></td>
-                                <td class="text-center">
+                                <td class="text-center align-middle">
                                     <?php
                                     echo $this->Html->link(
                                         $this->Html->tag('i', '', ['class' => 'fal fa-pencil']),
-                                        ['action' => 'edit', h($post->id)],
+                                        ['controller' => 'Posts', 'action' => 'edit', h($post->id)],
                                         ['escape' => false]
                                     );
                                     ?>
+                                </td>
+                                <td class="text-center align-middle">
+                                    <?php
+                                    $color = 'success';
+                                    $title = $this->Html->tag('i', '', ['class' => 'fal fa-plus']);
+                                    if (array_key_exists('en', $post->_translations)) {
+                                        $color = 'info';
+                                        $title = $this->Html->tag('i', '', ['class' => 'fal fa-pencil']);
+                                    }
+                                    echo $this->Html->link($title,
+                                        ['controller' => 'Posts', 'action' => 'translate', h($post->id), 'en'],
+                                        ['escape' => false, 'class' => 'text-' . $color]
+                                    );
+                                    ?>
+                                </td>
+                                <td class="text-center align-middle">
+                                    <?php
+                                    $color = 'success';
+                                    $title = $this->Html->tag('i', '', ['class' => 'fal fa-plus']);
+                                    if (array_key_exists('uz', $post->_translations)) {
+                                        $color = 'info';
+                                        $title = $this->Html->tag('i', '', ['class' => 'fal fa-pencil']);
+                                    }
+                                    echo $this->Html->link($title,
+                                        ['controller' => 'Posts', 'action' => 'translate', h($post->id), 'uz'],
+                                        ['escape' => false, 'class' => 'text-' . $color]
+                                    );
+                                    ?>
+                                </td>
+                                <td class="align-middle" data-order="<?= !isset($post->created) ? : $post->created->getTimestamp() ?>">
+                                    <?= isset($post->created) ? $post->created->format('d.m.Y H:i:s') : $this->Panel->notSet('') ?>
+                                </td>
+                                <td class="align-middle" data-order="<?= !isset($post->published) ? : $post->published->getTimestamp() ?>">
+                                    <?= isset($post->published) ? $post->published->format('d.m.Y H:i') : $this->Panel->notSet('') ?>
+                                </td>
+                                <td class="text-center align-middle">
+                                    <?= $this->Published->publishLink($post) ?>
                                 </td>
                             </tr>
                             <?php endforeach; ?>

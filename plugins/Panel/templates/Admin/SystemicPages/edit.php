@@ -1,10 +1,11 @@
 <?php
-$this->assign('title', h($systemicPage->title));
+$this->assign('title', h($systemicPage->short_name));
 
 $this->start('breadcrumbs');
 $breadcrumbs = [
+    ['title' => __d('panel', 'Pages')],
     ['title' => __d('panel', 'Systemic Pages'), 'url' => ['controller' => 'SystemicPages', 'action' => 'index']],
-    ['title' => h($systemicPage->title)]
+    ['title' => h($systemicPage->short_name)]
 ];
 echo $this->element('breadcrumbs', ['breadcrumbs' => $breadcrumbs]);
 $this->end();
@@ -14,17 +15,13 @@ $menu['pages']['systemic'] = true;
 echo $this->element('navigation', ['menu' => $menu]);
 $this->end();
 
-echo $this->Html->css([
-    'formplugins/select2/select2.bundle',
-    'formplugins/summernote/summernote'
-], ['block' => true]);
+echo $this->Html->css(
+    ['formplugins/summernote/summernote'],
+    ['block' => true]
+);
 
 echo $this->Html->script(
-    [
-        'formplugins/select2/select2.bundle',
-        'formplugins/summernote/summernote',
-        '/vendor/bundle.umd.min'
-    ],
+    ['formplugins/summernote/summernote'],
     ['block' => true]
 );
 ?>
@@ -32,14 +29,6 @@ echo $this->Html->script(
 <?php $this->start('script-code'); ?>
 <script>
 $(document).ready(function() {
-    $('#title').on('input', function() {
-        var text = $(this).val();
-        var msg = slugify(text);
-        $("#slug").val(msg);
-    });
-
-    $('.select2').select2();
-
     $('.summernote').summernote(
         {
             height: '200px',
@@ -61,59 +50,79 @@ $(document).ready(function() {
 
 <div class="subheader">
     <h1 class="subheader-title">
-        <i class="subheader-icon fal fa-pencil"></i> <?= h($systemicPage->title) ?>
+        <i class="subheader-icon fal fa-file-alt"></i> <?= h($systemicPage->short_name) ?>
     </h1>
 </div>
 
-<?= $this->Form->create($systemicPage, ['type' => 'file']) ?>
 <div class="row">
-    <div class="col-md-9">
-        <div id="panel-1" class="panel">
-            <div class="panel-container show">
-                <div class="panel-content">
+    <div class="col-12">
+        <div id="panel-1" class="panel" data-panel-close data-panel-sortable data-panel-fullscreen data-panel-refresh data-panel-locked data-panel-collapsed>
+            <div class="panel-hdr">
+                <h2><?= h($systemicPage->short_name) ?></h2>
+                <div class="panel-toolbar ml-auto mr-3">
                     <?php
-                    echo $this->Form->control('title', [
-                        'label' => ['class' => 'sr-only'],
-                        'class' => 'form-control input-lg form-control-lg rounded-0 border-top-0 border-left-0 border-right-0 px-0',
-                        'placeholder' => __d('panel', 'Title')
-                    ]);
-                    echo $this->Form->control('body', [
-                        'label' => ['class' => 'sr-only'],
-                        'class' => 'summernote',
-                        'placeholder' => __d('panel', 'Body')
-                    ]);
-                    ?>
-
-                    <hr/>
-
-                    <?php
-                    echo $this->Form->control('short_name', [
-                        'label' => __d('panel', 'Short name'),
-                        'placeholder' => __d('panel', 'Short name')
-                    ]);
-                    echo $this->Form->control('notation', [
-                        'label' => __d('panel', 'Notation'),
-                        'placeholder' => __d('panel', 'Notation')
-                    ]);
+                    echo $this->Form->deleteLink(
+                        $this->Html->tag('i', '', ['class' => 'fal fa-trash']) . ' ' . __d('panel', 'Delete'),
+                        ['controller' => 'SystemicPages', 'action' => 'delete', h($systemicPage->id)],
+                        [
+                            'class' => 'btn btn-danger btn-xs mr-auto',
+                            'confirm' => __d('panel', 'Are you sure you want to delete this systemic page?'),
+                            'escape' => false
+                        ]
+                    );
                     ?>
                 </div>
             </div>
-        </div>
-    </div>
-    <div class="col-md-3">
-        <div id="panel-2" class="panel shadow-0" data-panel-close data-panel-collapsed data-panel-sortable data-panel-fullscreen data-panel-refresh data-panel-locked>
-            <div class="panel-hdr">
-                <h2><?= __d('panel', 'Publish mode') ?></h2>
-            </div>
             <div class="panel-container show">
-                <div class="panel-content text-right">
-                    <?= $this->Form->submit(__d('panel', 'Save')) ?>
+                <div class="panel-content">
+                    <?= $this->Form->create($systemicPage) ?>
+                    <div class="row mb-4">
+                        <div class="col-lg-8">
+                            <?php
+                            echo $this->Form->control('title', [
+                                'label' => __d('admin', 'Title') . $this->Html->tag('span' , '*', ['class' => 'ml-1 text-danger']),
+                                'escape' => false,
+                                'placeholder' => __d('panel', 'Title')
+                            ]);
+                            echo $this->Form->control('short_name', [
+                                'label' => __d('panel', 'Short name') . $this->Html->tag('span' , '*', ['class' => 'ml-1 text-danger']),
+                                'escape' => false,
+                                'placeholder' => __d('panel', 'Short name')
+                            ]);
+                            echo $this->Form->control('notation', [
+                                'label' => __d('panel', 'Notation') . $this->Html->tag('span' , '*', ['class' => 'ml-1 text-danger']),
+                                'escape' => false,
+                                'placeholder' => __d('panel', 'Notation')
+                            ]);
+                            echo $this->Form->control('body', [
+                                'label' => __d('admin', 'Body') . $this->Html->tag('span' , '*', ['class' => 'ml-1 text-danger']),
+                                'escape' => false,
+                                'rows' => 11,
+                                'placeholder' => __d('panel', 'Body')
+                            ]);
+                            ?>
+                        </div>
+                        <div class="col-lg-4">
+                            <?= $this->element('MetaTags/default') ?>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="border-top pt-3 text-right">
+                                <?php
+                                echo $this->Html->link(
+                                    __d('admin', 'Cancel'),
+                                    ['controller' => 'SystemicPages', 'action' => 'index'],
+                                    ['class' => 'btn btn-default mr-2']
+                                );
+                                echo $this->Form->submit(__d('panel', 'Create'));
+                                ?>
+                            </div>
+                        </div>
+                    </div>
+                    <?= $this->Form->end() ?>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
-<?= $this->element('meta_tags') ?>
-
-<?= $this->Form->end() ?>

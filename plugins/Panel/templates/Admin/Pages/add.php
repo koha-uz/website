@@ -66,7 +66,7 @@ $(document).ready(function() {
     </h1>
 </div>
 
-<?= $this->Form->create($page, ['type' => 'file']) ?>
+<?= $this->Form->create($page) ?>
 <div class="row">
     <div class="col-12">
         <div id="panel-1" class="panel" data-panel-close data-panel-fullscreen data-panel-refresh data-panel-locked>
@@ -88,11 +88,30 @@ $(document).ready(function() {
                                 'escape' => false,
                                 'placeholder' => __d('panel', 'Slug')
                             ]);
-                            echo $this->Form->control('parent_id', [
-                                'empty' => __d('panel', 'Select the parent'),
-                                'label' => __d('admin', 'Parent'),
-                                'class' => 'form-control select2 w-100'
-                            ]);
+                            ?>
+
+                            <div class="row mb-4">
+                                <div class="col-lg-6">
+                                    <?php
+                                    echo $this->Form->control('parent_id', [
+                                        'empty' => __d('panel', 'Select the parent'),
+                                        'label' => __d('admin', 'Parent'),
+                                        'class' => 'form-control select2 w-100'
+                                    ]);
+                                    ?>
+                                </div>
+                                <div class="col-lg-6">
+                                    <?php
+                                    echo $this->Form->control('header', [
+                                        'empty' => __d('panel', 'Select the header template'),
+                                        'label' => __d('admin', 'Header Template'),
+                                        'options' => $this->Template->headerList()
+                                    ]);
+                                    ?>
+                                </div>
+                            </div>
+
+                            <?php
                             echo $this->Form->control('body', [
                                 'label' => __d('admin', 'Body') . $this->Html->tag('span' , '*', ['class' => 'ml-1 text-danger']),
                                 'escape' => false,

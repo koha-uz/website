@@ -22,7 +22,7 @@ class SystemicPagesController extends AppController
             'className' => 'SystemicPages'
         ]);
 
-        $this->Authentication->allowUnauthenticated(['contacts', 'display', 'robots', 'sitemap']);
+        $this->Authentication->allowUnauthenticated(['display', 'robots', 'sitemap']);
     }
 
     public function beforeFilter(EventInterface $event)
@@ -31,11 +31,6 @@ class SystemicPagesController extends AppController
     }
 
     public function display()
-    {
-        $this->SystemicPagesComponent->setupPage();
-    }
-
-    public function contacts()
     {
         $this->SystemicPagesComponent->setupPage();
     }

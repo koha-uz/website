@@ -49,23 +49,11 @@ class PostCategoriesTable extends Table
             'foreignKey' => 'post_category_id',
         ]);
 
-        $this->addBehavior('Meta.Meta');
+        $this->addBehavior('Meta');
         $this->addBehavior('Muffin/Slug.Slug');
-        $this->addBehavior('Published.Published');
-
-        $this->addBehavior('Timestamp', [
-            'events' => [
-                'Model.beforeSave' => [
-                    'date_created' => 'new',
-                    'date_modified' => 'always'
-                ]
-            ]
-        ]);
-
-        $this->addBehavior('Translate', [
-            'strategyClass' => \Cake\ORM\Behavior\Translate\EavStrategy::class,
-            'fields' => ['title', 'body'],
-        ]);
+        $this->addBehavior('Published');
+        $this->addBehavior('Timestamp');
+        $this->addBehavior('Translate');
     }
 
     /**
@@ -76,10 +64,6 @@ class PostCategoriesTable extends Table
      */
     public function validationDefault(Validator $validator): Validator
     {
-        $validator
-            ->nonNegativeInteger('id')
-            ->allowEmptyString('id', null, 'create');
-
         $validator
             ->scalar('title')
             ->maxLength('title', 255)

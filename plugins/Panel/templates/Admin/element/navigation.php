@@ -74,29 +74,10 @@ use Cake\Core\Configure;
         );
         ?>
         <ul>
-            <li <?php if (isset($menu['posts'][0])) echo 'class="active"'; ?>>
+            <li <?php if (isset($menu['posts']['list'])) echo 'class="active"'; ?>>
                 <?php
                 echo $this->Html->link(
-                    $this->Html->tag('i', '', ['class' => 'fal fa-lg fa-fw fa-plus-circle']) .
-                    $this->Html->tag(
-                        'span',
-                        __d('panel', 'Create'),
-                        ['class' => 'nav-link-text']
-                    ),
-                    ['controller' => 'Posts', 'action' => 'add'],
-                    ['escape' => false, 'title' => __d('panel', 'Create post'), 'data-filter-tags' => __d('panel', 'create post')]
-                );
-                ?>
-            </li>
-            <li <?php if (isset($menu['posts'][1])) echo 'class="active"'; ?>>
-                <?php
-                echo $this->Html->link(
-                    $this->Html->tag('i', '', ['class' => 'fal fa-lg fa-fw fa-table']) .
-                    $this->Html->tag(
-                        'span',
-                        __d('panel', 'List'),
-                        ['class' => 'nav-link-text']
-                    ),
+                    $this->Html->tag('span', __d('panel', 'List'), ['class' => 'nav-link-text']),
                     ['controller' => 'Posts', 'action' => 'index'],
                     ['escape' => false, 'title' => __d('panel', 'List posts'), 'data-filter-tags' => __d('panel', 'list posts')]
                 );
@@ -107,46 +88,11 @@ use Cake\Core\Configure;
             <li class="<?php if (isset($menu['posts']['categories'])) echo 'active open'; ?>">
                 <?php
                 echo $this->Html->link(
-                    $this->Html->tag('i', '', ['class' => 'fal fa-lg fa-fw fa-archive']) .
-                    $this->Html->tag(
-                        'span',
-                        __d('panel', 'Categories'),
-                        ['class' => 'nav-link-text']
-                    ),
-                    '#',
+                    $this->Html->tag('span', __d('panel', 'Categories'), ['class' => 'nav-link-text']),
+                    ['controller' => 'PostCategories', 'action' => 'index'],
                     ['escape' => false, 'title' => __d('panel', 'Post categories'), 'data-filter-tags' => __d('panel', 'post categories')]
                 );
                 ?>
-                <ul>
-                    <li <?php if (isset($menu['posts']['categories'][0])) echo 'class="active"'; ?>>
-                        <?php
-                        echo $this->Html->link(
-                            $this->Html->tag('i', '', ['class' => 'fal fa-lg fa-fw fa-plus-circle']) .
-                            $this->Html->tag(
-                                'span',
-                                __d('panel', 'Create'),
-                                ['class' => 'nav-link-text']
-                            ),
-                            ['controller' => 'PostCategories', 'action' => 'add'],
-                            ['escape' => false, 'title' => __d('panel', 'Create post category'), 'data-filter-tags' => __d('panel', 'create post category')]
-                        );
-                        ?>
-                    </li>
-                    <li <?php if (isset($menu['posts']['categories'][1])) echo 'class="active"'; ?>>
-                        <?php
-                        echo $this->Html->link(
-                            $this->Html->tag('i', '', ['class' => 'fal fa-lg fa-fw fa-table']) .
-                            $this->Html->tag(
-                                'span',
-                                __d('panel', 'List'),
-                                ['class' => 'nav-link-text']
-                            ),
-                            ['controller' => 'PostCategories', 'action' => 'index'],
-                            ['escape' => false, 'title' => __d('panel', 'List post categories'), 'data-filter-tags' => __d('panel', 'list post categories')]
-                        );
-                        ?>
-                    </li>
-                </ul>
             </li>
         </ul>
     </li>

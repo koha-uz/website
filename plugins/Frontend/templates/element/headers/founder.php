@@ -6,7 +6,7 @@
         [
             'controller' => 'SystemicPages',
             'action' => 'dashboard',
-            'prefix' => 'Founder'
+            'prefix' => 'Admin'
         ],
         ['class' => 'text-white hover']
     );

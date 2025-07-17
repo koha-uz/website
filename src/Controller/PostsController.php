@@ -16,7 +16,7 @@ class PostsController extends AppController
     protected array $paginate = [
         'limit' => 7,
         'order' => [
-            'Posts.date_published' => 'desc'
+            'Posts.published' => 'desc'
         ]
     ];
 

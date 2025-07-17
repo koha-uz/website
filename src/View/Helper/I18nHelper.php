@@ -5,7 +5,6 @@ namespace App\View\Helper;
 
 use Cake\Http\ServerRequest;
 use Cake\View\Helper;
-use Cake\View\View;
 
 /**
  * I18n helper
@@ -20,14 +19,36 @@ class I18nHelper extends Helper
      */
     protected array $_defaultConfig = [];
 
-    public function changeLocaleUri($locale = 'en')
+    protected ServerRequest $request;
+
+    public function initialize(array $config): void
     {
-        $request = new ServerRequest();
-        $path = $request->getUri()->getPath();
-        $query = $request->getUri()->getQuery();
+        $this->request = $this->_View->getRequest();
+    }
+
+    public function changeLocaleUri($locale = 'ru')
+    {
+        $path = $this->request->getPath();
+        $query = $this->request->getQuery();
 
         $path = substr_replace($path, $locale, 1, 2);
 
         return $query ? $path . '?' . $query : $path;
+    }
+
+    public function titleLocale($locale = null)
+    {
+        if (null === $locale) {
+            $locale = $this->request->getParam('lang');
+        }
+
+        switch($locale) {
+            case 'ru':
+                return 'Русский';
+            case 'en':
+                return 'English';
+            case 'uz':
+                return 'O\'zbek';
+        }
     }
 }

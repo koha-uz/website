@@ -48,6 +48,7 @@ class PagesController extends AppController
     {
         $pagesTable = $this->Pages->removeBehavior('Translate');
         $pagesTable->MetaTags->removeBehavior('Translate');
+
         $page = $pagesTable->newEmptyEntity();
         if ($this->request->is('post')) {
             $page = $pagesTable->patchEntity($page, $this->request->getData());
@@ -99,8 +100,8 @@ class PagesController extends AppController
     {
         $pagesTable = $this->Pages->removeBehavior('Translate');
         $pagesTable->MetaTags->removeBehavior('Translate');
-        $page = $pagesTable->get($id, contain: ['MetaTags']);
 
+        $page = $pagesTable->get($id, contain: ['MetaTags']);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $page = $pagesTable->patchEntity($page, $this->request->getData());
             if ($pagesTable->save($page)) {

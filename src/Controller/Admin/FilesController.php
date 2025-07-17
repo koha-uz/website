@@ -27,7 +27,7 @@ class FilesController extends AppController
      */
     public function index()
     {
-        $files = $this->Files->find('fileModel');
+        $files = $this->Files->find();
         $this->set('files', $files);
     }
 

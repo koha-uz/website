@@ -39,6 +39,7 @@ class AppView extends View
     public function initialize(): void
     {
         $this->loadHelper('FileStorage.Image');
+        $this->addHelper('Frontend.Template');
 
         if ($this->request->getParam('prefix') == 'Admin') {
             $this->addHelper('Panel.Files');
@@ -48,7 +49,6 @@ class AppView extends View
                 'className' => 'Panel.Form',
                 'errorClass' => 'form-control is-invalid'
             ]);
-            //$this->addHelper('Meta.MetaImageForm');
 
             $this->loadHelper('Published');
         } {

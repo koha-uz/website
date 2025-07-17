@@ -71,7 +71,7 @@ class PostsCell extends Cell
     {
         $posts = $this->fetchTable('Posts')->find('public')
             ->contain(['Cover', 'PostCategories'])
-            ->orderBy(['Posts.date_published' => 'desc'])
+            ->orderBy(['Posts.published' => 'desc'])
             ->limit(4)
             ->toArray();
 

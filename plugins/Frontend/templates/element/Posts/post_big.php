@@ -54,7 +54,7 @@
         <div class="card-footer">
             <ul class="post-meta d-flex mb-0">
                 <li class="post-date">
-                    <i class="uil uil-calendar-alt"></i><span><?= $post->date_published->i18nFormat('d MMMM Y HH:mm') ?></span>
+                    <i class="uil uil-calendar-alt"></i><span><?= $post->published->i18nFormat('d MMMM Y HH:mm') ?></span>
                 </li>
                 <li class="ms-auto">
                     <i class="uil uil-eye"></i><span><?= $post->viewed ?></span>

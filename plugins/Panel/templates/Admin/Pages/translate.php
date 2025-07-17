@@ -64,7 +64,7 @@ $(document).ready(function() {
     </h1>
 </div>
 
-<?= $this->Form->create($page, ['type' => 'file']) ?>
+<?= $this->Form->create($page) ?>
 
 <?php
 echo $this->Form->control('_locale', [

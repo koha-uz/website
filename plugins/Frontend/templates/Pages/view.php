@@ -6,16 +6,16 @@ $this->assign('meta', $this->MetaRender
 
 $this->start('header');
 switch ($page->header) {
-    case 1:
+    case HEADER_THEME_LIGHT:
         echo $this->element('/headers/header-light');
         break;
-    case 2:
+    case HEADER_THEME_ABSOLUTE:
         echo $this->element('/headers/header-absolute');
         break;
-    case 3:
+    case HEADER_THEME_GRAY:
         echo $this->element('/headers/header-gray');
         break;
-    case 4:
+    default:
         echo $this->element('/headers/header-primary');
         break;
 }

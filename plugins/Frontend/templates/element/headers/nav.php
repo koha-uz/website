@@ -59,7 +59,7 @@
                 <?php
                 echo $this->Html->link(
                     __d('frontend', 'Contacts'),
-                    ['_name' => 'contacts'],
+                    ['_name' => 'page_view', 'slug' => 'contacts'],
                     ['title' => __d('frontend', 'Contacts'), 'class' => 'nav-link']
                 );
                 ?>
@@ -85,18 +85,16 @@
 <!-- /.navbar-collapse -->
 
 <div class="navbar-other w-100 d-flex ms-auto">
-    <?php $lang = $this->request->getParam('lang'); ?>
     <ul class="navbar-nav flex-row align-items-center ms-auto">
-        <li class="nav-item dropdown language-select text-uppercase">
-            <a class="nav-link dropdown-item dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><?= $lang ?></a>
+        <li class="nav-item dropdown language-select">
+            <a class="nav-link dropdown-item dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <?= $this->I18n->titleLocale() ?>
+            </a>
             <ul class="dropdown-menu">                  
                 <li class="nav-item">
                     <?php
-                    if ($lang == 'ru') {
-                        echo $this->Html->link('Uz', $this->I18n->changeLocaleUri('uz'), ['title' => 'O\'zbek', 'class' => 'dropdown-item', 'hreflang' => 'uz']);
-                    } else {
-                        echo $this->Html->link('Ru', $this->I18n->changeLocaleUri('ru'), ['title' => 'Russian', 'class' => 'dropdown-item', 'hreflang' => 'ru']);
-                    }
+                    echo $this->Html->link($this->I18n->titleLocale('uz'), $this->I18n->changeLocaleUri('uz'), ['title' => $this->I18n->titleLocale('uz'), 'class' => 'dropdown-item', 'hreflang' => 'uz']);
+                    echo $this->Html->link($this->I18n->titleLocale('ru'), $this->I18n->changeLocaleUri('ru'), ['title' => $this->I18n->titleLocale('ru'), 'class' => 'dropdown-item', 'hreflang' => 'ru']);
                     ?>
                 </li>
             </ul>

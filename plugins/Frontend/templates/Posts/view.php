@@ -43,7 +43,7 @@ $this->end();
                                     'controller' => 'posts',
                                     'action' => 'edit',
                                     $post->id,
-                                    'prefix' => 'Founder'
+                                    'prefix' => 'Admin'
                                 ],
                                 ['escape' => false, 'class' => 'btn btn-lg btn-primary mt-1']
                             );
@@ -58,7 +58,7 @@ $this->end();
                     <h1 class="display-2 mb-2"><?= $post->title ?></h1>
                     <ul class="post-meta fs-sm">
                         <?php if ($post->published): ?>
-                        <li class="post-date"><i class="uil uil-calendar-alt"></i><span><?= $post->date_published->i18nFormat('d MMMM Y HH:mm') ?></span></li>
+                        <li class="post-date"><i class="uil uil-calendar-alt"></i><span><?= $post->published->i18nFormat('d MMMM Y HH:mm') ?></span></li>
                         <?php endif; ?>
                     </ul>
                     <!-- /.post-meta -->

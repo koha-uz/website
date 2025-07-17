@@ -47,35 +47,23 @@ class PostsTable extends Table
         $this->setPrimaryKey('id');
 
         $this->belongsTo('PostCategories', [
-            'foreignKey' => 'post_category_id',
-            'joinType' => 'INNER',
+            'foreignKey' => 'post_category_id'
         ]);
 
         $this->hasOne('Cover', [
-            'className' => 'Burzum/FileStorage.FileStorage',
+            'className' => 'FileStorage.FileStorage',
             'foreignKey' => 'foreign_key',
             'conditions' => ['Cover.model' => 'Posts'],
             'cascadeCallbacks' => true,
             'dependent' => true
         ]);
 
-        $this->addBehavior('Meta.Meta');
+        $this->addBehavior('Meta');
         $this->addBehavior('Muffin/Slug.Slug');
-        $this->addBehavior('Published.Published');
+        $this->addBehavior('Published');
         $this->addBehavior('Tags.Tag', ['taggedCounter' => false]);
-        $this->addBehavior('Timestamp', [
-            'events' => [
-                'Model.beforeSave' => [
-                    'date_created' => 'new',
-                    'date_modified' => 'always',
-                ]
-            ]
-        ]);
-
-        $this->addBehavior('Translate', [
-            'strategyClass' => \Cake\ORM\Behavior\Translate\EavStrategy::class,
-            'fields' => ['title', 'body', 'notes'],
-        ]);
+        $this->addBehavior('Timestamp');
+        $this->addBehavior('Translate');
     }
 
     /**
@@ -87,11 +75,8 @@ class PostsTable extends Table
     public function validationDefault(Validator $validator): Validator
     {
         $validator
-            ->nonNegativeInteger('id')
-            ->allowEmptyString('id', null, 'create');
-
-        $validator
-            ->nonNegativeInteger('post_category_id');
+            ->nonNegativeInteger('post_category_id')
+            ->allowEmptyString('post_category_id');
 
         $validator
             ->scalar('title')
@@ -111,10 +96,6 @@ class PostsTable extends Table
             ->maxLength('body', 4294967295)
             ->requirePresence('body', 'create')
             ->notEmptyString('body');
-
-        $validator
-            ->boolean('published')
-            ->notEmptyString('published');
 
         return $validator;
     }

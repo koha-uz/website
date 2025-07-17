@@ -35,7 +35,7 @@ class SystemicPage extends Entity
     protected array $_accessible = [
         '_translations' => true,
         'short_name' => true,
-        'notation' => false,
+        'notation' => true,
         'title' => true,
         'body' => true,
         'date_created' => true,

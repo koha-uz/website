@@ -30,7 +30,7 @@ $(document).ready(function() {
             }
         },
         columnDefs: [{
-            targets: [0, 4],
+            targets: [0, 5],
             orderable: false
         }],
         order: false
@@ -64,31 +64,41 @@ $(document).ready(function() {
                             <tr>
                                 <th class="all" style="width: 5%"></th>
                                 <th class="all"><?= __d('panel', 'Name') ?></th>
-                                <th class="min-tablet" style="width: 10%"><?= __d('panel', 'Size') ?></th>
+                                <th class="min-desktop text-center"><?= __d('panel', 'Model') ?></th>
+                                <th class="min-desktop" style="width: 10%"><?= __d('panel', 'Size') ?></th>
                                 <th class="min-desktop w-25"><?= __d('panel', 'Mime Type') ?></th>
-                                <th class="all"></th>
+                                <th class="min-desktop"></th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php foreach ($files as $file): ?>
                             <tr>
-                                <td class="text-center">
+                                <td class="text-center align-middle">
                                     <button type="button" class="btn btn-link fal fa-copy copy" data-clipboard-text="<?= h($file->url) ?>"></button>
                                 </td>
                                 <td>
                                     <strong><?= h($file->filename) ?></strong>
                                     <code class="d-block"><?= h($file->url) ?></code>
                                 </td>
-                                <td><?= $this->Files->fileSizeConvert(h($file->filesize)) ?></td>
-                                <td><?= h($file->mime_type) ?></td>
-                                <td class="text-center">
+                                <td class="text-center align-middle">
+                                    <?php
+                                    if (isset($file->model)) {
+                                        echo $file->model;
+                                    } else {
+                                        echo $this->Panel->notSet('');
+                                    }
+                                    ?>
+                                </td>
+                                <td class="align-middle"><?= $this->Files->fileSizeConvert(h($file->filesize)) ?></td>
+                                <td class="align-middle"><?= h($file->mime_type) ?></td>
+                                <td class="text-center align-middle">
                                     <?php
                                     echo $this->Form->deleteLink(
                                         $this->Html->tag('i', '', ['class' => 'fal fa-trash']),
                                         ['action' => 'delete', h($file->id)],
                                         [
                                             'escape' => false,
-                                            'class' => 'color-danger-900 mt-2 pr-2 mr-auto',
+                                            'class' => 'color-danger-900',
                                             'confirm' => __d('panel', 'Are you sure you want to delete the file?')
                                         ]
                                     );

@@ -47,6 +47,7 @@ class PagesTable extends Table
         ]);
 
         $this->addBehavior('Meta');
+        $this->addBehavior('Muffin/Slug.Slug');
         $this->addBehavior('Published');
         $this->addBehavior('Timestamp');
         $this->addBehavior('Translate');

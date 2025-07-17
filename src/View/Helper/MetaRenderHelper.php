@@ -6,7 +6,6 @@ namespace App\View\Helper;
 use App\Model\Entity\MetaTag;
 use Cake\Core\Configure;
 use Cake\View\Helper;
-use Cake\View\View;
 
 /**
  * MetaRender helper
@@ -49,7 +48,7 @@ class MetaRenderHelper extends Helper
 
     private $entity;
 
-    public function init(MetaTag $metaTag, array $options = null)
+    public function init(MetaTag $metaTag, ?array $options = null)
     {
         $this->setConfig('title', $metaTag->title);
         $this->setConfig('description', $metaTag->description);

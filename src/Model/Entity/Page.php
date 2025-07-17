@@ -45,6 +45,7 @@ class Page extends Entity
         'title' => true,
         'slug' => true,
         'body' => true,
+        'header' => true,
         'is_published' => true,
         'published' => true,
         'created' => true,
