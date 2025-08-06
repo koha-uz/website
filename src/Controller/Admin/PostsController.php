@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace App\Controller\Admin;
 
 use App\Controller\AppController;
+use App\Service\Admin\PostsService as AdminPostsService;
 use Cake\Core\Configure;
 
 /**
@@ -45,21 +46,22 @@ class PostsController extends AppController
      *
      * @return \Cake\Http\Response|null|void Redirects on successful add, renders view otherwise.
      */
-    public function add()
+    public function add(AdminPostsService $adminPosts)
     {
-        $post = $this->Posts->newEmptyEntity();
+        $postsTable = $this->Posts->removeBehavior('Translate');
+        $postsTable->MetaTags->removeBehavior('Translate');
+
+        $post = $postsTable->newEmptyEntity();
         if ($this->request->is('post')) {
-            $post = $this->Posts->patchEntity($post, $this->request->getData(),
-                ['associated' => ['Cover', 'MetaTags', 'Tags']]
-            );
-            if ($this->Posts->save($post)) {
+            if ($adminPosts->create($post, $this->request->getData())) {
                 $this->Flash->success(__('The post has been saved.'));
 
-                return $this->redirect(['action' => 'edit', $post->id]);
+                return $this->redirect(['controller' => 'Posts', 'action' => 'index']);
             }
             $this->Flash->error(__('The post could not be saved. Please, try again.'));
         }
-        $postCategories = $this->Posts->PostCategories->find('list')
+
+        $postCategories = $postsTable->PostCategories->find('list')
             ->find('published')
             ->all();
 
@@ -75,41 +77,59 @@ class PostsController extends AppController
      */
     public function edit($id = null)
     {
-        $this->Posts->setLocale('ru');
-        $this->Posts->MetaTags->setLocale('ru');
-        $post = $this->Posts->findById($id)
-            ->find('translations')
-            ->contain([
-                'Cover',
-                'MetaTags' => function ($query) {
-                    return $query->find('translations');
-                },
-                'Tags'
-            ])
+        $postsTable = $this->Posts->removeBehavior('Translate');
+        $postsTable->MetaTags->removeBehavior('Translate');
+
+        $post = $postsTable->findById($id)
+            ->contain(['Cover', 'MetaTags', 'Tags'])
             ->firstOrFail();
 
         if ($this->request->is(['patch', 'post', 'put'])) {
-            if (!empty($this->request->getData('cover.file.tmp_name'))) {
-                $post->set('cover', $this->Posts->Cover->newEmptyEntity());
-            }
 
             $post = $this->Posts->patchEntity($post, $this->request->getData(),
-                ['associated' => ['Cover', 'MetaTags.ImageBg', 'MetaTags.Image', 'Tags']]
+                ['associated' => ['Cover', 'MetaTags', 'Tags']]
             );
 
             if ($this->Posts->save($post)) {
                 $this->Flash->success(__('The post has been saved.'));
 
-                return $this->redirect(['action' => 'edit', $post->id]);
+                return $this->redirect(['controller' => 'Posts', 'action' => 'index']);
             }
             $this->Flash->error(__('The post could not be saved. Please, try again.'));
         }
+
         $postCategories = $this->Posts->PostCategories->find('list')
             ->find('published')
             ->all();
+
         $tags = $this->Posts->Tags->find('list', ['keyField' => 'slug']);
 
         $this->set(compact('post', 'postCategories', 'tags'));
+    }
+
+    public function translate($id, $locale)
+    {
+        $this->Posts->setLocale(Configure::read('I18n.defaultLanguage'));
+        $post = $this->Posts->findById($id)
+            ->find('translations', locales: [$locale])
+            ->contain([
+                'MetaTags' => function ($q) {
+                    return $q->find('translations');
+                }
+            ])
+            ->firstOrFail();
+
+        if ($this->request->is(['patch', 'post', 'put'])) {
+            $post = $this->Posts->patchEntity($post, $this->request->getData());
+            if ($this->Posts->save($post)) {
+                $this->Flash->success(__('The post has been saved.'));
+
+                return $this->redirect(['controller' => 'Posts', 'action' => 'index']);
+            }
+            $this->Flash->error(__('The post could not be saved. Please, try again.'));
+        }
+
+        $this->set(compact('post'));
     }
 
     /**

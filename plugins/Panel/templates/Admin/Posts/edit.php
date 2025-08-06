@@ -1,16 +1,16 @@
 <?php
-$this->assign('title', $post->title);
+$this->assign('title', h($post->title));
 
 $this->start('breadcrumbs');
 $breadcrumbs = [
-    ['title' => __d('panel', 'Posts'), 'url' => ['controller' => 'Posts', 'action' => 'index']],
-    ['title' => $post->title]
+    ['title' => __d('admin', 'Posts'), 'url' => ['controller' => 'Posts', 'action' => 'index']],
+    ['title' => h($post->title)]
 ];
 echo $this->element('breadcrumbs', ['breadcrumbs' => $breadcrumbs]);
 $this->end();
 
 $this->start('navigation');
-$menu['posts'][1] = true;
+$menu['posts']['list'] = true;
 echo $this->element('navigation', ['menu' => $menu]);
 $this->end();
 
@@ -42,7 +42,7 @@ $(document).ready(function() {
 
     $('.summernote').summernote(
         {
-            height: '600px',
+            height: '200px',
             tabsize: 2,
             dialogsFade: true,
             toolbar: [
@@ -61,146 +61,136 @@ $(document).ready(function() {
 
 <div class="subheader">
     <h1 class="subheader-title">
-        <i class="subheader-icon fal fa-newspaper"></i> <?= $post->title ?>
+        <i class="subheader-icon fal fa-newspaper"></i> <?= h($post->title) ?>
     </h1>
 </div>
 
-<?= $this->Form->create($post, ['type' => 'file']) ?>
 <div class="row">
-    <div class="col-md-9">
-        <div id="panel-1" class="panel">
-            <div class="panel-container show">
-                <div class="panel-content">
-                    <ul class="nav nav-tabs" role="tablist">
-                        <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#tab_ru" role="tab">Русский</a></li>
-                        <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#tab_uz" role="tab">O'zbek</a></li>
-                    </ul>
-                    <div class="tab-content p-3 border border-top-0">
-                        <div class="tab-pane fade show active" id="tab_ru" role="tabpanel">
-                            <?php
-                            echo $this->Form->control('title', [
-                                'label' => ['class' => 'sr-only'],
-                                'class' => 'form-control input-lg form-control-lg rounded-0 border-top-0 border-left-0 border-right-0 px-0',
-                                'placeholder' => __d('panel', 'Title')
-                            ]);
-                            echo $this->Form->control('slug', [
-                                'label' => ['class' => 'sr-only'],
-                                'placeholder' => __d('panel', 'Slug')
-                            ]);
-                            echo $this->Form->control('notes', [
-                                'label' => ['class' => 'sr-only'],
-                                'placeholder' => __d('panel', 'Notes'),
-                                'rows' => 4,
-                                'maxlength' => 150,
-                                'templateVars' => ['help' => __d('panel', 'Available number of characters for input: {0}', 150)]
-                            ]);
-                            echo $this->Form->control('body', [
-                                'label' => ['class' => 'sr-only'],
-                                'class' => 'summernote',
-                                'placeholder' => __d('panel', 'Body')
-                            ]);
-                            ?>
-                        </div>
-                        <div class="tab-pane fade" id="tab_uz" role="tabpanel">
-                            <?php
-                            echo $this->Form->control('_translations.uz.title', [
-                                'label' => ['class' => 'sr-only'],
-                                'class' => 'form-control input-lg form-control-lg rounded-0 border-top-0 border-left-0 border-right-0 px-0',
-                                'placeholder' => __d('panel', 'Title')
-                            ]);
-                            echo $this->Form->control('_translations.uz.notes', [
-                                'label' => ['class' => 'sr-only'],
-                                'placeholder' => __d('panel', 'Notes'),
-                                'rows' => 4,
-                                'maxlength' => 150,
-                                'templateVars' => ['help' => __d('panel', 'Available number of characters for input: {0}', 150)]
-                            ]);
-                            echo $this->Form->control('_translations.uz.body', [
-                                'label' => ['class' => 'sr-only'],
-                                'class' => 'summernote',
-                                'placeholder' => __d('panel', 'Body')
-                            ]);
-                            ?>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-3">
-    <div id="panel-2" class="panel shadow-0" data-panel-close data-panel-collapsed data-panel-sortable data-panel-fullscreen data-panel-refresh data-panel-locked>
+    <div class="col-12">
+        <div id="panel-1" class="panel" data-panel-close data-panel-sortable data-panel-fullscreen data-panel-refresh data-panel-locked data-panel-collapsed>
             <div class="panel-hdr">
-                <h2><?= __d('panel', 'Publish mode') ?></h2>
-                <div class="pr-3">
+                <h2><?= h($post->title) ?></h2>
+                <div class="panel-toolbar ml-auto mr-3">
                     <?php
-                    echo $this->Html->link(
-                        $this->Html->tag('i', '', ['class' => 'fal fa-external-link']) . ' ' . __d('panel', 'View'),
-                        ['_name' => 'post_view', 'slug' => h($post->slug)],
-                        ['class' => 'color-info-800', 'escape' => false, 'target' => '_blank']
+                    echo $this->Form->deleteLink(
+                        $this->Html->tag('i', '', ['class' => 'fal fa-trash']) . ' ' . __d('panel', 'Delete'),
+                        ['controller' => 'Posts', 'action' => 'delete', h($post->id)],
+                        [
+                            'class' => 'btn btn-danger btn-xs mr-auto',
+                            'confirm' => __d('panel', 'Are you sure you want to delete this post?'),
+                            'escape' => false
+                        ]
                     );
                     ?>
                 </div>
             </div>
             <div class="panel-container show">
                 <div class="panel-content">
-                    <?= $this->Form->control('published') ?>
-                    <div class="d-flex border-top pt-3">
-                        <?php
-                        echo $this->Form->postLink(
-                            $this->Html->tag('i', '', ['class' => 'fal fa-trash']) . ' ' . __d('panel', 'Delete'),
-                            $this->Url->build(['action' => 'delete', h($post->id)]),
-                            [
-                                'class' => 'color-danger-900 mt-2 pr-2 mr-auto',
-                                'data-title' => __d('panel', 'Are you sure you want to delete the post?'),
-                                'data-message' => __d('panel', 'Deletion eliminates the possibility of data recovery.')
-                            ]
-                        );
+                    <?= $this->Form->create($post, ['type' => 'file']) ?>
+                    <div class="row mb-4">
+                        <div class="col-lg-8">
+                            <?php
+                            echo $this->Form->control('title', [
+                                'label' => __d('admin', 'Title') . $this->Html->tag('span' , '*', ['class' => 'ml-1 text-danger']),
+                                'escape' => false,
+                                'placeholder' => __d('panel', 'Title')
+                            ]);
+                            echo $this->Form->control('slug', [
+                                'label' => __d('admin', 'Slug') . $this->Html->tag('span' , '*', ['class' => 'ml-1 text-danger']),
+                                'escape' => false,
+                                'placeholder' => __d('panel', 'Slug')
+                            ]);
+                            echo $this->Form->control('notes', [
+                                'label' => __d('admin', 'Notes') . $this->Html->tag('span' , '*', ['class' => 'ml-1 text-danger']),
+                                'escape' => false,
+                                'type' => 'textarea',
+                                'rows' => 3,
+                                'placeholder' => __d('panel', 'Notes')
+                            ]);
+                            ?>
 
-                        echo $this->Form->submit(__d('panel', 'Save'));
-                        ?>
+                            <div class="row mb-4">
+                                <div class="col-lg-6">
+                                    <?php
+                                    echo $this->Form->control('post_category_id', [
+                                        'empty' => __d('panel', 'Select the post category'),
+                                        'label' => __d('admin', 'Category') . $this->Html->tag('span' , '*', ['class' => 'ml-1 text-danger']),
+                                        'escape' => false,
+                                        'class' => 'form-control select2 w-100'
+                                    ]);
+                                    ?>
+                                </div>
+                                <div class="col-lg-6">
+                                    <?php
+                                    echo $this->Tag->control([
+                                        'label' => __d('admin', 'Tags')
+                                    ]);
+                                    ?>
+                                </div>
+                            </div>
+
+                            <?php
+                            echo $this->Form->control('body', [
+                                'label' => __d('admin', 'Body') . $this->Html->tag('span' , '*', ['class' => 'ml-1 text-danger']),
+                                'escape' => false,
+                                'rows' => 17,
+                                'placeholder' => __d('panel', 'Body')
+                            ]);
+                            ?>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="card shadow-0 mb-4">
+                                <div class="card-header py-2">
+                                    <h3 class="card-title"><?= __d('panel', 'Illustration') ?></h3>
+                                </div>
+                                <div class="card-body">
+                                    <?php
+                                    echo $this->Form->control('cover.file', [
+                                        'label' => __d('admin', 'Cover') . $this->Html->tag('span' , '*', ['class' => 'ml-1 text-danger']),
+                                        'type' => 'file',
+                                        'accept' => 'image/*,image/jpeg,image/png,image/tiff',
+                                        'escape' => false,
+                                        'required' => true
+                                    ]);
+
+                                    if (!empty($post->cover)) {
+                                        echo $this->Image->display($post->cover, 'mini', ['class' => 'img-fluid mt-2']);
+                                        echo $this->Form->control('cover.old_file_id', [
+                                            'type' => 'hidden',
+                                            'value' => h($post->cover->id)
+                                        ]);
+                                    }
+
+                                    echo $this->Form->control('youtubeId', [
+                                        'label' => __d('admin', 'Youtube Embed ID')
+                                    ]);
+                                    ?>
+                                </div>
+                            </div>
+
+                            <?= $this->element('MetaTags/default') ?>
+                        </div>
                     </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="border-top pt-3 text-right">
+                                <?php
+                                echo $this->Html->link(
+                                    __d('admin', 'Cancel'),
+                                    ['controller' => 'Posts', 'action' => 'index'],
+                                    ['class' => 'btn btn-default mr-2']
+                                );
+                                echo $this->Form->submit(__d('panel', 'Create'));
+                                ?>
+                            </div>
+                        </div>
+                    </div>
+                    <?= $this->Form->end() ?>
                 </div>
             </div>
         </div>
-
-        <div id="panel-3" class="panel shadow-0" data-panel-close data-panel-sortable data-panel-fullscreen data-panel-refresh data-panel-locked>
-            <div class="panel-hdr">
-                <h2><?= __d('panel', 'Post category') ?></h2>
-            </div>
-            <div class="panel-container show">
-                <div class="panel-content">
-                    <?php
-                    echo $this->Form->control('post_category_id', [
-                        'empty' => __d('panel', 'Select the category'),
-                        'label' => ['class' => 'sr-only'],
-                        'class' => 'form-control select2 w-100'
-                    ]);
-                    ?>
-                </div>
-            </div>
-        </div>
-
-        <div id="panel-4" class="panel shadow-0" data-panel-close data-panel-sortable data-panel-fullscreen data-panel-refresh data-panel-locked>
-            <div class="panel-hdr">
-                <h2><?= __d('panel', 'Post tags') ?></h2>
-            </div>
-            <div class="panel-container show">
-                <div class="panel-content">
-                    <?= $this->Tag->control(['label' => false]) ?>
-                </div>
-            </div>
-        </div>
-
-        <div id="panel-5" class="panel shadow-0" data-panel-close data-panel-sortable data-panel-fullscreen data-panel-refresh data-panel-locked>
-            <div class="panel-hdr">
-                <h2><?= __d('panel', 'Cover') ?></h2>
-            </div>
-            <div class="panel-container show">
-                <div class="panel-content">
-                    <?php
-                    echo $this->Form->control('youtubeId', [
-                        'label' => __d('panel', 'Youtube Embed ID')
-                    ]);
+    </div>
+</div>
 
                     $requiredFile = function () use ($post) {
                         if (
@@ -227,20 +217,3 @@ $(document).ready(function() {
                             'value' => h($post->cover->id)
                         ]);
                     }
-                    ?>
-                    <div class="alert alert-warning mt-3 mb-0" role="alert">
-                        <strong><?= __d('panel', 'Image Requirement!') ?></strong><br/>
-                        <ul class="pl-3 mt-2 mb-0">
-                            <li><?= __d('panel', 'Landscape orientation') ?></li>
-                            <li><?= __d('panel', 'Width minimum 837 px') ?></li>
-                            <li><?= __d('panel', 'Height minimum 523 px') ?></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<?= $this->element('meta_tags', ['meta_tag' => $post->meta_tag]) ?>
-<?= $this->Form->end() ?>

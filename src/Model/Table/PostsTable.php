@@ -53,7 +53,10 @@ class PostsTable extends Table
         $this->hasOne('Cover', [
             'className' => 'FileStorage.FileStorage',
             'foreignKey' => 'foreign_key',
-            'conditions' => ['Cover.model' => 'Posts'],
+            'conditions' => [
+                'Cover.model' => 'Posts',
+                'Cover.collection' => 'Cover'
+            ],
             'cascadeCallbacks' => true,
             'dependent' => true
         ]);
@@ -115,10 +118,11 @@ class PostsTable extends Table
         return $rules;
     }
 
-    public function beforeSave(EventInterface $event, EntityInterface $entity, ArrayObject $options): void
+    public function beforeMarshal(EventInterface $event, ArrayObject $data, ArrayObject $options)
     {
-        if (!empty($entity->cover->file)) {
-            $entity->cover->set('model', 'Posts');
+        if (isset($data['cover']['file'])) {
+            $data['cover']['model'] = 'Posts';
+            $data['cover']['collection'] = 'Cover';
         }
     }
 

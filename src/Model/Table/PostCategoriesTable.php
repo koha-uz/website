@@ -45,6 +45,16 @@ class PostCategoriesTable extends Table
         $this->setDisplayField('title');
         $this->setPrimaryKey('id');
 
+        $this->belongsTo('ParentPostCategories', [
+            'className' => 'PostCategories',
+            'foreignKey' => 'parent_id'
+        ]);
+
+        $this->hasMany('ChildPostCategories', [
+            'className' => 'PostCategories',
+            'foreignKey' => 'parent_id'
+        ]);
+
         $this->hasMany('Posts', [
             'foreignKey' => 'post_category_id',
         ]);
@@ -54,6 +64,7 @@ class PostCategoriesTable extends Table
         $this->addBehavior('Published');
         $this->addBehavior('Timestamp');
         $this->addBehavior('Translate');
+        $this->addBehavior('Tree');
     }
 
     /**

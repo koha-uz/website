@@ -23,6 +23,7 @@ use Authentication\AuthenticationServiceProviderInterface;
 use Authentication\Identifier\AbstractIdentifier;
 use Authentication\Identifier\IdentifierInterface;
 use Authentication\Middleware\AuthenticationMiddleware;
+use App\Service\Admin\PostsService as AdminPostsService;
 use App\Service\PostsService;
 use Cake\Core\Configure;
 use Cake\Core\ContainerInterface;
@@ -198,6 +199,7 @@ class Application extends BaseApplication implements AuthenticationServiceProvid
      */
     public function services(ContainerInterface $container): void
     {
+        $container->add(AdminPostsService::class);
         $container->add(PostsService::class);
     }
 

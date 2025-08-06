@@ -43,7 +43,6 @@ class Post extends Entity
         'title' => true,
         'slug' => true,
         'body' => true,
-        'notes' => true,
         'youtubeId' => true,
         'date_created' => true,
         'date_modified' => true,

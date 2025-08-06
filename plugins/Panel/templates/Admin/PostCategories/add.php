@@ -1,30 +1,28 @@
 <?php
-$this->assign('title', __d('panel', 'Create post category'));
+$this->assign('title', __d('panel', 'Create Post Category'));
 
 $this->start('breadcrumbs');
 $breadcrumbs = [
     ['title' => __d('panel', 'Posts'), 'url' => ['controller' => 'Posts', 'action' => 'index']],
-    ['title' => __d('panel', 'Post categories'), 'url' => ['controller' => 'PostCategories', 'action' => 'index']],
+    ['title' => __d('panel', 'Post Categories'), 'url' => ['controller' => 'PostCategories', 'action' => 'index']],
     ['title' => __d('panel', 'Create')]
 ];
 echo $this->element('breadcrumbs', ['breadcrumbs' => $breadcrumbs]);
 $this->end();
 
 $this->start('navigation');
-$menu['posts']['categories'][0] = true;
+$menu['posts']['categories'] = true;
 echo $this->element('navigation', ['menu' => $menu]);
 $this->end();
 
 echo $this->Html->css([
-
+    'formplugins/select2/select2.bundle'
 ], ['block' => true]);
 
-echo $this->Html->script(
-    [
-        '/vendor/bundle.umd.min'
-    ],
-    ['block' => true]
-);
+echo $this->Html->script([
+    '/vendor/bundle.umd.min',
+    'formplugins/select2/select2.bundle'
+], ['block' => true]);
 ?>
 
 <?php $this->start('script-code'); ?>
@@ -35,81 +33,74 @@ $(document).ready(function() {
         var msg = slugify(text);
         $("#slug").val(msg);
     });
+
+    $('.select2').select2();
 });
 </script>
 <?php $this->end(); ?>
 
 <div class="subheader">
     <h1 class="subheader-title">
-        <i class="subheader-icon fal fa-plus-circle"></i> <?= __d('panel', 'Create post category') ?>
+        <i class="subheader-icon fal fa-plus-circle"></i> <?= __d('panel', 'Create Post Category') ?>
     </h1>
 </div>
 
-<?= $this->Form->create($postCategory, ['type' => 'file']) ?>
+<?= $this->Form->create($postCategory) ?>
 <div class="row">
-    <div class="col-md-9">
-        <div id="panel-1" class="panel">
+    <div class="col-12">
+        <div id="panel-1" class="panel" data-panel-close data-panel-fullscreen data-panel-refresh data-panel-locked>
+            <div class="panel-hdr">
+                <h2><?= __d('admin', 'Create Post Category') ?></h2>
+            </div>
             <div class="panel-container show">
                 <div class="panel-content">
-                    <ul class="nav nav-tabs" role="tablist">
-                        <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#tab_ru" role="tab">Русский</a></li>
-                        <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#tab_uz" role="tab">O'zbek</a></li>
-                    </ul>
-                    <div class="tab-content p-3 border border-top-0">
-                        <div class="tab-pane fade show active" id="tab_ru" role="tabpanel">
+                    <div class="row mb-4">
+                        <div class="col-lg-8">
                             <?php
                             echo $this->Form->control('title', [
-                                'label' => ['class' => 'sr-only'],
-                                'class' => 'form-control input-lg form-control-lg rounded-0 border-top-0 border-left-0 border-right-0 px-0',
+                                'label' => __d('admin', 'Title') . $this->Html->tag('span' , '*', ['class' => 'ml-1 text-danger']),
+                                'escape' => false,
                                 'placeholder' => __d('panel', 'Title')
                             ]);
-
                             echo $this->Form->control('slug', [
-                                'label' => ['class' => 'sr-only'],
+                                'label' => __d('admin', 'Slug') . $this->Html->tag('span' , '*', ['class' => 'ml-1 text-danger']),
+                                'escape' => false,
                                 'placeholder' => __d('panel', 'Slug')
                             ]);
-
+                            echo $this->Form->control('parent_id', [
+                                'empty' => __d('panel', 'Select the parent'),
+                                'label' => __d('admin', 'Parent'),
+                                'class' => 'form-control select2 w-100'
+                            ]);
                             echo $this->Form->control('body', [
-                                'label' => ['class' => 'sr-only'],
+                                'label' => __d('admin', 'Body') . $this->Html->tag('span' , '*', ['class' => 'ml-1 text-danger']),
+                                'escape' => false,
+                                'rows' => 11,
                                 'placeholder' => __d('panel', 'Body')
                             ]);
                             ?>
                         </div>
-                        <div class="tab-pane fade" id="tab_uz" role="tabpanel">
-                            <?php
-                            echo $this->Form->control('_translations.uz.title', [
-                                'label' => ['class' => 'sr-only'],
-                                'class' => 'form-control input-lg form-control-lg rounded-0 border-top-0 border-left-0 border-right-0 px-0',
-                                'placeholder' => __d('panel', 'Title')
-                            ]);
-
-                            echo $this->Form->control('_translations.uz.body', [
-                                'label' => ['class' => 'sr-only'],
-                                'placeholder' => __d('panel', 'Body')
-                            ]);
-                            ?>
+                        <div class="col-lg-4">
+                            <?= $this->element('MetaTags/default') ?>
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-3">
-        <div id="panel-2" class="panel shadow-0" data-panel-close data-panel-collapsed data-panel-sortable data-panel-fullscreen data-panel-refresh data-panel-locked>
-            <div class="panel-hdr">
-                <h2><?= __d('panel', 'Publish mode') ?></h2>
-            </div>
-            <div class="panel-container show">
-                <div class="panel-content">
-                    <?= $this->Form->control('published') ?>
-                    <div class="border-top pt-3 text-right">
-                        <?= $this->Form->submit(__d('panel', 'Save')) ?>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="border-top pt-3 text-right">
+                                <?php
+                                echo $this->Html->link(
+                                    __d('admin', 'Cancel'),
+                                    ['controller' => 'PostCategories', 'action' => 'index'],
+                                    ['class' => 'btn btn-default mr-2']
+                                );
+                                echo $this->Form->submit(__d('panel', 'Create'));
+                                ?>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
-<?= $this->element('meta_tags', ['meta_tag' => $postCategory->meta_tag]) ?>
 <?= $this->Form->end() ?>

@@ -69,25 +69,27 @@ $collectionFiles->addNew('160x160')
     ->fit(160, 160)
     ->optimize();
 
-$collectionOpenGraph = \PhpCollective\Infrastructure\Storage\Processor\Image\ImageVariantCollection::create();
-$collectionOpenGraph->addNew('200x105')
+$collectionFilesOpenGraph = \PhpCollective\Infrastructure\Storage\Processor\Image\ImageVariantCollection::create();
+$collectionFilesOpenGraph->addNew('200x105')
     ->fit(200, 105)
     ->optimize();
 
-$collectionPostCover = \PhpCollective\Infrastructure\Storage\Processor\Image\ImageVariantCollection::create();
-$collectionPostCover->addNew('200x125')
-    ->fit(200, 125)
+$collectionPostsCover = \PhpCollective\Infrastructure\Storage\Processor\Image\ImageVariantCollection::create();
+$collectionPostsCover->addNew('400x250')
+    ->fit(400, 250)
     ->optimize();
+$collectionPostsCover->addNew('1070x670')
+    ->fit(1070, 670)
+    ->optimize();
+
 
 Configure::write('FileStorage.imageVariants', [
     'Files' => [
-        'Files' => $collectionFiles->toArray()
+        'Files' => $collectionFiles->toArray(),
+        'OpenGraph' => $collectionFilesOpenGraph->toArray()
     ],
-    'OpenGraph' => [
-        'OpenGraph' => $collectionOpenGraph->toArray()
-    ],
-    'PostCover' => [
-        'PostCover' => $collectionPostCover->toArray()
+    'Posts' => [
+        'Cover' => $collectionPostsCover->toArray()
     ]
 ]);
 

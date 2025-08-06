@@ -30,7 +30,7 @@ $(document).ready(function() {
             }
         },
         columnDefs: [{
-            targets: [0, 5],
+            targets: [0, 7],
             orderable: false
         }],
         order: false
@@ -62,11 +62,13 @@ $(document).ready(function() {
                     <table class="table table-bordered table-hover table-striped w-100 datatable">
                         <thead>
                             <tr>
-                                <th class="all" style="width: 5%"></th>
+                                <th class="all"></th>
                                 <th class="all"><?= __d('panel', 'Name') ?></th>
                                 <th class="min-desktop text-center"><?= __d('panel', 'Model') ?></th>
-                                <th class="min-desktop" style="width: 10%"><?= __d('panel', 'Size') ?></th>
-                                <th class="min-desktop w-25"><?= __d('panel', 'Mime Type') ?></th>
+                                <th class="min-desktop text-center"><?= __d('panel', 'Collection') ?></th>
+                                <th class="text-center min-desktop"><?= __d('panel', 'Size') ?></th>
+                                <th class="text-center min-desktop"><?= __d('panel', 'Mime Type') ?></th>
+                                <th class="min-desktop"><?= __d('panel', 'Date Created') ?></th>
                                 <th class="min-desktop"></th>
                             </tr>
                         </thead>
@@ -89,8 +91,26 @@ $(document).ready(function() {
                                     }
                                     ?>
                                 </td>
-                                <td class="align-middle"><?= $this->Files->fileSizeConvert(h($file->filesize)) ?></td>
-                                <td class="align-middle"><?= h($file->mime_type) ?></td>
+                                <td class="text-center align-middle">
+                                    <?php
+                                    if (isset($file->collection)) {
+                                        echo $file->collection;
+                                    } else {
+                                        echo $this->Panel->notSet('');
+                                    }
+                                    ?>
+                                </td>
+                                <td class="text-center align-middle"><?= $this->Files->fileSizeConvert(h($file->filesize)) ?></td>
+                                <td class="text-center align-middle"><?= h($file->mime_type) ?></td>
+                                <td class="align-middle">
+                                    <?php
+                                    if (isset($file->created)) {
+                                        echo $file->created->format('Y-m-d H:i:s');
+                                    } else {
+                                        echo $this->Panel->notSet('');
+                                    }
+                                    ?>
+                                </td>
                                 <td class="text-center align-middle">
                                     <?php
                                     echo $this->Form->deleteLink(

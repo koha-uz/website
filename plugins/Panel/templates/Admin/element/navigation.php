@@ -84,7 +84,7 @@ use Cake\Core\Configure;
                 ?>
             </li>
 
-            <!-- Posr Categories menu -->
+            <!-- Post Categories menu -->
             <li class="<?php if (isset($menu['posts']['categories'])) echo 'active open'; ?>">
                 <?php
                 echo $this->Html->link(
@@ -228,18 +228,6 @@ use Cake\Core\Configure;
                             ),
                             ['controller' => 'Files', 'action' => 'videos'],
                             ['escape' => false, 'title' => __d('panel', 'Videos'), 'data-filter-tags' => __d('panel', 'videos')]
-                        );
-                        ?>
-                    </li>
-                    <li class="<?= !isset($menu['files']['types']['post_cover']) ?: 'active' ?>">
-                        <?php
-                        echo $this->Html->link(
-                            $this->Html->tag('span',
-                                __d('panel', 'Post cover'),
-                                ['class' => 'nav-link-text']
-                            ),
-                            ['controller' => 'Files', 'action' => 'postCover'],
-                            ['escape' => false, 'title' => __d('panel', 'Post cover'), 'data-filter-tags' => __d('panel', 'post cover')]
                         );
                         ?>
                     </li>

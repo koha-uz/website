@@ -60,6 +60,7 @@ class PagesController extends AppController
             }
             $this->Flash->error(__('The page could not be saved. Please, try again.'));
         }
+
         $parents = $this->Pages->find('treeList');
         $this->set(compact('page', 'parents'));
     }

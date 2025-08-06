@@ -115,7 +115,7 @@ $(document).ready(function() {
                                     ['controller' => 'SystemicPages', 'action' => 'index'],
                                     ['class' => 'btn btn-default mr-2']
                                 );
-                                echo $this->Form->submit(__d('panel', 'Create'));
+                                echo $this->Form->submit(__d('panel', 'Save'));
                                 ?>
                             </div>
                         </div>

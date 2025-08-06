@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace App\Controller\Admin;
 
 use App\Controller\AppController;
+use Cake\Core\Configure;
 
 /**
  * PostCategories Controller
@@ -17,7 +18,7 @@ class PostCategoriesController extends AppController
     {
         parent::initialize();
 
-        $this->loadComponent('Published.Published');
+        $this->loadComponent('Published');
     }
 
     /**
@@ -27,7 +28,15 @@ class PostCategoriesController extends AppController
      */
     public function index()
     {
-        $postCategories = $this->PostCategories->find();
+        $this->PostCategories->setLocale(Configure::read('I18n.defaultLanguage'));
+        $postCategories = $this->PostCategories
+            ->find('translations')
+            ->contain([
+                'ParentPostCategories' => function ($query) {
+                    return $query->find('translations');
+                }
+            ]);
+
         $this->set('postCategories', $postCategories);
     }
 
@@ -38,20 +47,23 @@ class PostCategoriesController extends AppController
      */
     public function add()
     {
-        $postCategory = $this->PostCategories->newEmptyEntity();
-        if ($this->request->is('post')) {
-            $postCategory = $this->PostCategories->patchEntity($postCategory, $this->request->getData(),
-                ['associated' => ['MetaTags.ImageBg', 'MetaTags.Image']]
-            );
+        $postCategoriesTable = $this->PostCategories->removeBehavior('Translate');
+        $postCategoriesTable->MetaTags->removeBehavior('Translate');
 
-            if ($this->PostCategories->save($postCategory)) {
+        $postCategory = $postCategoriesTable->newEmptyEntity();
+        if ($this->request->is('post')) {
+            $postCategory = $postCategoriesTable->patchEntity($postCategory, $this->request->getData());
+
+            if ($postCategoriesTable->save($postCategory)) {
                 $this->Flash->success(__('The post category has been saved.'));
 
                 return $this->redirect(['action' => 'index']);
             }
             $this->Flash->error(__('The post category could not be saved. Please, try again.'));
         }
-        $this->set(compact('postCategory'));
+
+        $parents = $postCategoriesTable->find('treeList');
+        $this->set(compact('parents', 'postCategory'));
     }
 
     /**
@@ -63,23 +75,13 @@ class PostCategoriesController extends AppController
      */
     public function edit($id = null)
     {
-        $this->PostCategories->setLocale('ru');
-        $this->PostCategories->MetaTags->setLocale('ru');
-        $postCategory = $this->PostCategories->findById($id)
-            ->find('translations')
-            ->contain([
-                'Posts',
-                'MetaTags' => function ($query) {
-                    return $query->find('translations')
-                        ->contain(['ImageBg', 'Image']);
-                }
-            ])
-            ->firstOrFail();
+        $postCategoriesTable = $this->PostCategories->removeBehavior('Translate');
+        $postCategoriesTable->MetaTags->removeBehavior('Translate');
 
+        $postCategory = $postCategoriesTable->get($id, contain: ['MetaTags']);
         if ($this->request->is(['patch', 'post', 'put'])) {
-            $postCategory = $this->PostCategories->patchEntity($postCategory, $this->request->getData(),
-                ['associated' => ['MetaTags.ImageBg', 'MetaTags.Image']]
-            );
+            $postCategory = $this->PostCategories->patchEntity($postCategory, $this->request->getData());
+
             if ($this->PostCategories->save($postCategory)) {
                 $this->Flash->success(__('The post category has been saved.'));
 
@@ -87,7 +89,9 @@ class PostCategoriesController extends AppController
             }
             $this->Flash->error(__('The post category could not be saved. Please, try again.'));
         }
-        $this->set(compact('postCategory'));
+
+        $parents = $postCategoriesTable->find('treeList');
+        $this->set(compact('parents', 'postCategory'));
     }
 
     /**

@@ -35,6 +35,9 @@ class PostCategory extends Entity
      */
     protected array $_accessible = [
         '_translations' => true,
+        'parent_id' => true,
+        'lft' => true,
+        'rght' => true,
         'title' => true,
         'slug' => true,
         'body' => true,
@@ -43,6 +46,8 @@ class PostCategory extends Entity
         'date_published' => true,
         'published' => true,
         'meta_tag' => true,
-        'posts' => true
+        'posts' => true,
+        'parent_post_category' => true,
+        'child_post_categories' => true
     ];
 }

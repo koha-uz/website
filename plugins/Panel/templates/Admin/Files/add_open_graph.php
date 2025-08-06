@@ -40,7 +40,6 @@ $(document).ready(function() {
     </h1>
     <div class="subheader-block d-none d-sm-flex align-items-center">
         <?= $this->Html->link(__d('panel', 'Upload file(s)'), ['action' => 'add'], ['class' => 'btn btn-xs btn-success']) ?>
-        <?= $this->Html->link(__d('panel', 'Upload Post cover(s)'), ['action' => 'addPostCover'], ['class' => 'btn btn-xs btn-success ml-2']) ?>
     </div>
 </div>
 

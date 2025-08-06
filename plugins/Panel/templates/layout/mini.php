@@ -16,7 +16,33 @@
         <?= $this->Html->meta('icon') ?>
     </head>
     <body>
-        <?= $this->fetch('content') ?>
+        <div class="page-wrapper auth">
+            <div class="page-inner bg-brand-gradient">
+                <div class="page-content-wrapper bg-transparent m-0">
+                    <div class="flex-1">
+                        <div class="text-center mt-5 mb-4">
+                            <a href="https://bucheon.uz">
+                            </a>
+
+                        </div>
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-12">
+                                    <?= $this->Flash->render() ?>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <?= $this->fetch('content') ?>
+
+                        <div class="position-absolute pos-bottom pos-left pos-right p-3 text-center text-white">
+                            2021 - <?= date('Y') ?> © <?= __('Bucheon University in Tashkent') ?>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <?= $this->Html->script('vendors.bundle') ?>
         <?= $this->Html->script('app.bundle') ?>
     </body>

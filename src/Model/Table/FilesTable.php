@@ -2,12 +2,8 @@
 namespace App\Model\Table;
 
 use ArrayObject;
-use Cake\Datasource\EntityInterface;
 use Cake\Event\EventInterface;
 use Cake\ORM\Query\SelectQuery;
-use Cake\ORM\RulesChecker;
-use Cake\ORM\Table;
-use Cake\Validation\Validator;
 use FileStorage\Model\Table\FileStorageTable;
 /**
  * Files Model
@@ -57,15 +53,6 @@ class FilesTable extends FileStorageTable
         return $query->where([
             'Files.foreign_key IS' => null,
             'Files.model' => FILE_OPENGRAPH_MODEL,
-            'Files.mime_type LIKE' => 'image/%'
-        ]);
-    }
-
-    public function findPostCoverModel(SelectQuery $query, $options)
-    {
-        return $query->where([
-            'Files.foreign_key IS' => null,
-            'Files.model' => FILE_POST_COVER_MODEL,
             'Files.mime_type LIKE' => 'image/%'
         ]);
     }
