@@ -51,7 +51,7 @@ class PostsTable extends Table
         ]);
 
         $this->hasOne('Cover', [
-            'className' => 'FileStorage.FileStorage',
+            'className' => 'Files',
             'foreignKey' => 'foreign_key',
             'conditions' => [
                 'Cover.model' => 'Posts',

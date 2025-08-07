@@ -15,14 +15,12 @@ echo $this->element('navigation', ['menu' => $menu]);
 $this->end();
 
 echo $this->Html->css([
-    'formplugins/select2/select2.bundle',
-    'formplugins/summernote/summernote'
+    'formplugins/select2/select2.bundle'
 ], ['block' => true]);
 
 echo $this->Html->script(
     [
         'formplugins/select2/select2.bundle',
-        'formplugins/summernote/summernote',
         '/vendor/bundle.umd.min'
     ],
     ['block' => true]
@@ -39,29 +37,13 @@ $(document).ready(function() {
     });
 
     $('.select2').select2();
-
-    $('.summernote').summernote(
-        {
-            height: '200px',
-            tabsize: 2,
-            dialogsFade: true,
-            toolbar: [
-                ['font', ['bold', 'italic', 'underline', 'clear']],
-                ['para', ['ul', 'ol', 'paragraph']],
-                ['height', ['height']]
-                ['table', ['table']],
-                ['insert', ['link', 'picture']],
-                ['view', ['fullscreen', 'codeview']]
-            ]
-        }
-    );
 });
 </script>
 <?php $this->end(); ?>
 
 <div class="subheader">
     <h1 class="subheader-title">
-        <i class="subheader-icon fal fa-newspaper"></i> <?= __d('panel', 'Create Post') ?>
+        <i class="subheader-icon fal fa-plus-circle"></i> <?= __d('panel', 'Create Post') ?>
     </h1>
 </div>
 

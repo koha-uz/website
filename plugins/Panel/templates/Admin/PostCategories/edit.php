@@ -11,7 +11,7 @@ echo $this->element('breadcrumbs', ['breadcrumbs' => $breadcrumbs]);
 $this->end();
 
 $this->start('navigation');
-$menu['posts']['categories'][1] = true;
+$menu['posts']['categories'] = true;
 echo $this->element('navigation', ['menu' => $menu]);
 $this->end();
 
@@ -41,18 +41,31 @@ $(document).ready(function() {
 
 <div class="subheader">
     <h1 class="subheader-title">
-        <?= $postCategory->title ?>
+        <i class="subheader-icon fal fa-pencil"></i> <?= h($postCategory->title) ?>
     </h1>
 </div>
 
-<?= $this->Form->create($postCategory) ?>
 <div class="row">
     <div class="col-12">
-        <div id="panel-1" class="panel" data-panel-close data-panel-fullscreen data-panel-refresh data-panel-locked>
+        <div id="panel-1" class="panel" data-panel-close data-panel-sortable data-panel-fullscreen data-panel-refresh data-panel-locked data-panel-collapsed>
             <div class="panel-hdr">
-                <h2><?= __d('admin', 'Create Post Category') ?></h2>
+                <h2><?= __d('admin', 'Edit Post Category') ?></h2>
+                <div class="panel-toolbar ml-auto mr-3">
+                    <?php
+                    echo $this->Form->deleteLink(
+                        $this->Html->tag('i', '', ['class' => 'fal fa-trash']) . ' ' . __d('panel', 'Delete'),
+                        ['controller' => 'PostCategories', 'action' => 'delete', h($postCategory->id)],
+                        [
+                            'class' => 'btn btn-danger btn-xs mr-auto',
+                            'confirm' => __d('panel', 'Are you sure you want to delete this post category?'),
+                            'escape' => false
+                        ]
+                    );
+                    ?>
+                </div>
             </div>
             <div class="panel-container show">
+                <?= $this->Form->create($postCategory) ?>
                 <div class="panel-content">
                     <div class="row mb-4">
                         <div class="col-lg-8">
@@ -93,14 +106,14 @@ $(document).ready(function() {
                                     ['controller' => 'PostCategories', 'action' => 'index'],
                                     ['class' => 'btn btn-default mr-2']
                                 );
-                                echo $this->Form->submit(__d('panel', 'Create'));
+                                echo $this->Form->submit(__d('panel', 'Save'));
                                 ?>
                             </div>
                         </div>
                     </div>
                 </div>
+                <?= $this->Form->end() ?>
             </div>
         </div>
     </div>
 </div>
-<?= $this->Form->end() ?>

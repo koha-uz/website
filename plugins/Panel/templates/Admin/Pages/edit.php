@@ -62,7 +62,7 @@ $(document).ready(function() {
 
 <div class="subheader">
     <h1 class="subheader-title">
-        <i class="subheader-icon fal fa-file-alt"></i> <?= h($page->title) ?>
+        <i class="subheader-icon fal fa-pencil"></i> <?= h($page->title) ?>
     </h1>
 </div>
 

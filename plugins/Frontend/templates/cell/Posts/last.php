@@ -21,7 +21,7 @@
                                         <figure class="card-img-top overlay overlay-1 hover-scale">
                                             <?php
                                             echo $this->Html->link(
-                                                $this->Image->display($post->cover, 'mini'),
+                                                $this->Image->display($post->cover, '400x250'),
                                                 ['_name' => 'post_view', 'slug' => h($post->slug)],
                                                 ['escape' => false, 'title' => h($post->title)]
                                             );
@@ -42,7 +42,7 @@
                                                     ?>
                                                 </div>
                                                 <!-- /.post-category -->
-                                                <h2 class="post-title h3 mt-1 mb-3">
+                                                <h2 class="post-title h3 mt-1">
                                                     <?php
                                                     echo $this->Html->link(
                                                         $post->title,
@@ -53,10 +53,6 @@
                                                 </h2>
                                             </div>
                                             <!-- /.post-header -->
-                                            <div class="post-content">
-                                                <p><?= $post->notes ?></p>
-                                            </div>
-                                            <!-- /.post-content -->
                                         </div>
                                         <!--/.card-body -->
                                         <div class="card-footer">

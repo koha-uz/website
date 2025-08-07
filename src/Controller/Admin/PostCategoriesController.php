@@ -90,8 +90,36 @@ class PostCategoriesController extends AppController
             $this->Flash->error(__('The post category could not be saved. Please, try again.'));
         }
 
-        $parents = $postCategoriesTable->find('treeList');
+        $parents = $postCategoriesTable
+            ->find('treeList')
+            ->where(['PostCategories.id !=' => $id]);
+
         $this->set(compact('parents', 'postCategory'));
+    }
+
+    public function translate($id, $locale)
+    {
+        $this->PostCategories->setLocale(Configure::read('I18n.defaultLanguage'));
+        $postCategory = $this->PostCategories->findById($id)
+            ->find('translations', locales: [$locale])
+            ->contain([
+                'MetaTags' => function ($q) {
+                    return $q->find('translations');
+                }
+            ])
+            ->firstOrFail();
+
+        if ($this->request->is(['patch', 'post', 'put'])) {
+            $postCategory = $this->PostCategories->patchEntity($postCategory, $this->request->getData());
+            if ($this->PostCategories->save($postCategory)) {
+                $this->Flash->success(__('The post category has been saved.'));
+
+                return $this->redirect(['action' => 'index']);
+            }
+            $this->Flash->error(__('The post category could not be saved. Please, try again.'));
+        }
+
+        $this->set(compact('postCategory'));
     }
 
     /**

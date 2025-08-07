@@ -15,14 +15,12 @@ echo $this->element('navigation', ['menu' => $menu]);
 $this->end();
 
 echo $this->Html->css([
-    'formplugins/select2/select2.bundle',
-    'formplugins/summernote/summernote'
+    'formplugins/select2/select2.bundle'
 ], ['block' => true]);
 
 echo $this->Html->script(
     [
         'formplugins/select2/select2.bundle',
-        'formplugins/summernote/summernote',
         '/vendor/bundle.umd.min'
     ],
     ['block' => true]
@@ -39,29 +37,13 @@ $(document).ready(function() {
     });
 
     $('.select2').select2();
-
-    $('.summernote').summernote(
-        {
-            height: '200px',
-            tabsize: 2,
-            dialogsFade: true,
-            toolbar: [
-                ['font', ['bold', 'italic', 'underline', 'clear']],
-                ['para', ['ul', 'ol', 'paragraph']],
-                ['height', ['height']]
-                ['table', ['table']],
-                ['insert', ['link', 'picture']],
-                ['view', ['fullscreen', 'codeview']]
-            ]
-        }
-    );
 });
 </script>
 <?php $this->end(); ?>
 
 <div class="subheader">
     <h1 class="subheader-title">
-        <i class="subheader-icon fal fa-newspaper"></i> <?= h($post->title) ?>
+        <i class="subheader-icon fal fa-pencil"></i> <?= h($post->title) ?>
     </h1>
 </div>
 
@@ -69,7 +51,7 @@ $(document).ready(function() {
     <div class="col-12">
         <div id="panel-1" class="panel" data-panel-close data-panel-sortable data-panel-fullscreen data-panel-refresh data-panel-locked data-panel-collapsed>
             <div class="panel-hdr">
-                <h2><?= h($post->title) ?></h2>
+                <h2><?= __d('admin', 'Edit Post') ?></h2>
                 <div class="panel-toolbar ml-auto mr-3">
                     <?php
                     echo $this->Form->deleteLink(
@@ -100,13 +82,6 @@ $(document).ready(function() {
                                 'escape' => false,
                                 'placeholder' => __d('panel', 'Slug')
                             ]);
-                            echo $this->Form->control('notes', [
-                                'label' => __d('admin', 'Notes') . $this->Html->tag('span' , '*', ['class' => 'ml-1 text-danger']),
-                                'escape' => false,
-                                'type' => 'textarea',
-                                'rows' => 3,
-                                'placeholder' => __d('panel', 'Notes')
-                            ]);
                             ?>
 
                             <div class="row mb-4">
@@ -133,7 +108,7 @@ $(document).ready(function() {
                             echo $this->Form->control('body', [
                                 'label' => __d('admin', 'Body') . $this->Html->tag('span' , '*', ['class' => 'ml-1 text-danger']),
                                 'escape' => false,
-                                'rows' => 17,
+                                'rows' => 24,
                                 'placeholder' => __d('panel', 'Body')
                             ]);
                             ?>
@@ -145,21 +120,23 @@ $(document).ready(function() {
                                 </div>
                                 <div class="card-body">
                                     <?php
-                                    echo $this->Form->control('cover.file', [
-                                        'label' => __d('admin', 'Cover') . $this->Html->tag('span' , '*', ['class' => 'ml-1 text-danger']),
-                                        'type' => 'file',
-                                        'accept' => 'image/*,image/jpeg,image/png,image/tiff',
-                                        'escape' => false,
-                                        'required' => true
-                                    ]);
-
                                     if (!empty($post->cover)) {
-                                        echo $this->Image->display($post->cover, 'mini', ['class' => 'img-fluid mt-2']);
+                                        echo $this->Html->tag('div',
+                                            $this->Image->display($post->cover, '400x250', ['class' => 'img-fluid mb-3']),
+                                            ['class' => 'text-center']
+                                        );
                                         echo $this->Form->control('cover.old_file_id', [
                                             'type' => 'hidden',
                                             'value' => h($post->cover->id)
                                         ]);
                                     }
+                                    echo $this->Form->control('cover.file', [
+                                        'label' => __d('admin', 'Cover') . (empty($post->cover) ? $this->Html->tag('span' , '*', ['class' => 'ml-1 text-danger']) : ''),
+                                        'type' => 'file',
+                                        'accept' => 'image/*,image/jpeg,image/png,image/tiff',
+                                        'escape' => false,
+                                        'required' => empty($post->cover) ? true : false
+                                    ]);
 
                                     echo $this->Form->control('youtubeId', [
                                         'label' => __d('admin', 'Youtube Embed ID')
@@ -180,7 +157,7 @@ $(document).ready(function() {
                                     ['controller' => 'Posts', 'action' => 'index'],
                                     ['class' => 'btn btn-default mr-2']
                                 );
-                                echo $this->Form->submit(__d('panel', 'Create'));
+                                echo $this->Form->submit(__d('panel', 'Save'));
                                 ?>
                             </div>
                         </div>
@@ -191,29 +168,3 @@ $(document).ready(function() {
         </div>
     </div>
 </div>
-
-                    $requiredFile = function () use ($post) {
-                        if (
-                            is_object($post->cover) &&
-                            $post->cover instanceof \Burzum\FileStorage\Model\Entity\FileStorage &&
-                            $post->cover->isNew()
-                        ) {
-                            return true;
-                        }
-                        return false;
-                    };
-                    echo $this->Form->control('cover.file', [
-                        'label' => __d('panel', 'Cover') . $this->Html->tag('span' , '*', ['class' => 'ml-1 text-danger']),
-                        'type' => 'file',
-                        'accept' => 'image/*,image/jpeg,image/png,image/tiff',
-                        'escape' => false,
-                        'required' => $requiredFile
-                    ]);
-
-                    if (!empty($post->cover)) {
-                        echo $this->Image->display($post->cover, 'mini', ['class' => 'img-fluid mt-2']);
-                        echo $this->Form->control('cover.old_file_id', [
-                            'type' => 'hidden',
-                            'value' => h($post->cover->id)
-                        ]);
-                    }
