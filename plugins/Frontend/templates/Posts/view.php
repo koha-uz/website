@@ -11,46 +11,16 @@ $breadcrumbs = [
 $this->set('breadcrumbs', $breadcrumbs);
 
 $this->start('header');
-echo $this->element('/headers/header-primary');
+echo $this->element('/headers/header-gray');
 $this->end();
 ?>
 
-<?php if ($this->Identity->isLoggedIn()): ?>
-<!--<div class="row mb-5">
-    <div class="col-lg-9">
-        <?php if ($post->published): ?>
-        <div class="alert alert-success alert-icon" role="alert">
-            <strong><i class="uil uil-check-circle"></i> <?= __d('frontend', 'Success!') ?></strong>
-            <?= __d('frontend', 'Post published.') ?>
-        </div>
-        <?php else: ?>
-        <div class="alert alert-warning alert-icon" role="alert">
-            <strong><i class="uil uil-exclamation-triangle"></i> <?= __d('frontend', 'Warning!') ?></strong>
-            <?= __d('frontend', 'Post not published.') ?>
-        </div>
-        <?php endif; ?>
-    </div>
-    <div class="col-lg-3">
-        <div class="d-grid gap-2">
-            <?php
-            echo $this->Html->link(
-                $this->Html->tag('i', '', ['class' => 'uil uil-edit']) . ' ' . __d('frontend', 'Edit'),
-                [
-                    'controller' => 'posts',
-                    'action' => 'edit',
-                    $post->id,
-                    'prefix' => 'Admin'
-                ],
-                ['escape' => false, 'class' => 'btn btn-lg btn-primary mt-1']
-            );
-            ?>
-        </div>
-    </div>
-</div>-->
-<?php endif; ?>
+<div class="d-none">
+    <?= $this->element('breadcrumbs') ?>
+</div>
 
 <!-- /header -->
-<section class="wrapper bg-soft-primary">
+<section class="wrapper bg-gray">
     <div class="container pt-10 pb-19 pt-md-14 pb-md-20 text-center">
         <div class="row">
             <div class="col-lg-8 mx-auto">
@@ -91,82 +61,66 @@ $this->end();
 
 <section class="wrapper bg-light">
     <div class="container pb-14 pb-md-16">
-        <div class="row">
-            <div class="col-lg-10 mx-auto">
-                <div class="blog single mt-n17">
-                    <div class="mb-6">
-                        <?php
-                        if (isset($post->youtubeId) && !empty($post->youtubeId)) {
-                            echo $this->Html->tag('div', '', [
-                                'class' => 'player',
-                                'data-plyr-provider' => 'youtube',
-                                'data-plyr-embed-id' => $post->youtubeId
-                            ]);
-                        }
-                        ?>
-                    </div>
-
-                    <div class="card mb-6">
-                        <figure class="card-img-top"><?= $this->Image->display($post->cover, '1070x670', ['class' => 'img-fluid']) ?></figure>
-                    </div>
-                        
-                    <div class="classic-view">
-                        <article class="post">
-                            <div class="post-content mb-5"><?= $post->body ?></div>
-                            <!-- /.post-content -->
-                            <div class="post-footer d-md-flex flex-md-row justify-content-md-between align-items-center mt-8">
-
-                                <?php if (!empty($post->tags)): ?>
-                                <div>
-                                    <ul class="list-unstyled tag-list mb-0">
-                                        <?php foreach($post->tags as $tag): ?>
-                                        <li>
-                                            <?php
-                                            echo $this->Html->link(h($tag->label), [
-                                                'controller' => 'Posts',
-                                                'action' => 'index',
-                                                '?' => ['tag' => h($tag->slug)]
-                                            ],
-                                            ['class' => 'btn btn-soft-ash btn-sm rounded-pill mb-0']);
-                                            ?>
-                                        </li>
-                                        <?php endforeach; ?>
-                                    </ul>
-                                </div>
-                                <?php endif; ?>
-
-                                <div class="mb-0 mb-md-2">
-                                    <div class="dropdown share-dropdown btn-group">
-                                        <button class="btn btn-sm btn-red rounded-pill btn-icon btn-icon-start dropdown-toggle mb-0 me-0" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            <i class="uil uil-share-alt"></i> Share
-                                        </button>
-                                        <div class="dropdown-menu">
-                                            <a class="dropdown-item" href="#"><i class="uil uil-twitter"></i>Twitter</a>
-                                            <a class="dropdown-item" href="#"><i class="uil uil-facebook-f"></i>Facebook</a>
-                                            <a class="dropdown-item" href="#"><i class="uil uil-linkedin"></i>Linkedin</a>
-                                        </div>
-                                        <!--/.dropdown-menu -->
-                                    </div>
-                                    <!--/.share-dropdown -->
-                                </div>
-                            </div>
-                            <!-- /.post-footer -->
-                        </article>
-                        <!-- /.post -->
-                    </div>
-                    <!-- /.classic-view -->
-                            
-                    <?= $this->cell('Posts::samePostCategory', ['post' => $post]) ?>
+        <div class="row mb-10">
+            <div class="col-lg-9 mx-auto">
+                <div class="mt-n17">
+                    <?php
+                    if (isset($post->youtubeId) && !empty($post->youtubeId)) {
+                        echo $this->Html->tag('div', '', [
+                            'class' => 'player',
+                            'data-plyr-provider' => 'youtube',
+                            'data-plyr-embed-id' => $post->youtubeId
+                        ]);
+                    } elseif (isset($post->cover) && !empty($post->cover)) {
+                        echo $this->Image->display($post->cover, '1070x670', ['class' => 'img-fluid mx-auto rounded shadow-lg']);
+                    }
+                    ?>
                 </div>
-                <!-- /.blog -->
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-7 mx-auto">
+                <div class="classic-view">
+                    <article class="post">
+                        <div class="post-content mb-5"><?= $post->body ?></div>
+                        <!-- /.post-content -->
+                        <div class="post-footer d-md-flex flex-md-row justify-content-md-between align-items-center mt-8">
+
+                            <?php if (!empty($post->tags)): ?>
+                            <div>
+                                <ul class="list-unstyled tag-list mb-0">
+                                    <?php foreach($post->tags as $tag): ?>
+                                    <li>
+                                        <?php
+                                        echo $this->Html->link(h($tag->label), [
+                                            'controller' => 'Posts',
+                                            'action' => 'index',
+                                            '?' => ['tag' => h($tag->slug)]
+                                        ],
+                                        ['class' => 'btn btn-soft-ash btn-sm rounded-pill mb-0']);
+                                        ?>
+                                    </li>
+                                    <?php endforeach; ?>
+                                </ul>
+                            </div>
+                            <?php endif; ?>
+                        </div>
+                        <!-- /.post-footer -->
+                    </article>
+                    <!-- /.post -->
+                </div>
+                <!-- /.classic-view -->
             </div>
             <!-- /column -->
         </div>
         <!-- /.row -->
+
+        <div class="row">
+            <div class="col-lg-10 mx-auto">
+                <?= $this->cell('Posts::samePostCategory', ['post' => $post]) ?>
+            </div>
+        </div>
     </div>
     <!-- /.container -->
 </section>
 <!-- /section -->
-
-
-<?= $this->element('breadcrumbs') ?>

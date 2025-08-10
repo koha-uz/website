@@ -14,8 +14,8 @@ use Cake\ORM\Entity;
  * @property string $title
  * @property string $field_type
  * @property int|null $weight
- * @property \Cake\I18n\DateTime $date_created
- * @property \Cake\I18n\DateTime|null $date_modified
+ * @property \Cake\I18n\DateTime $created
+ * @property \Cake\I18n\DateTime|null $modified
  */
 class Setting extends Entity
 {
@@ -34,7 +34,7 @@ class Setting extends Entity
         'title' => true,
         'field_type' => true,
         'weight' => true,
-        'date_created' => true,
-        'date_modified' => true,
+        'created' => true,
+        'modified' => true,
     ];
 }

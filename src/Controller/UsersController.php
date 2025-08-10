@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace App\Controller\Admin;
+namespace App\Controller;
 
 use App\Controller\AppController;
 use Cake\Event\EventInterface;
@@ -18,10 +18,6 @@ class UsersController extends AppController
     public function initialize(): void
     {
         parent::initialize();
-
-        $this->loadComponent('Ajax.Ajax', [
-            'actions' => ['applicantsForExam', 'applicantsForGroup']
-        ]);
     }
 
     public function beforeFilter(EventInterface $event)
@@ -33,14 +29,13 @@ class UsersController extends AppController
 
     public function login()
     {
-        $this->viewBuilder()->setLayout('mini');
-
         $result = $this->Authentication->getResult();
 
         if ($result->isValid()) {
             return $this->redirect([
                 'controller' => 'SystemicPages',
                 'action' => 'dashboard',
+                'prefix' => 'Admin'
             ]);
         }
         if ($this->request->is('post') && !$result->isValid()) {
@@ -52,11 +47,5 @@ class UsersController extends AppController
     {
         $this->Authentication->logout();
         return $this->redirect(['_name' => 'home']);
-    }
-
-    public function changePassword()
-    {
-        $this->loadComponent('ChangePassword');
-        $this->ChangePassword->changePassword();
     }
 }

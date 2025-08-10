@@ -236,43 +236,6 @@ ServerRequest::addDetector('tablet', function ($request) {
 Configure::write('I18n.defaultLanguage', 'ru');
 Configure::write('I18n.languages', ['ru', 'uz']);
 
-
-/*I18n::config('cake', function ($domain, $locale) {
-    $loader = new \ADmad\I18n\I18n\DbMessagesLoader(
-        $domain,
-        $locale
-    );
-
-    return $loader();
-});
-
-I18n::config('default', function ($domain, $locale) {
-    $loader = new \ADmad\I18n\I18n\DbMessagesLoader(
-        $domain,
-        $locale
-    );
-
-    return $loader();
-});
-
-I18n::config('panel', function ($domain, $locale) {
-    $loader = new \ADmad\I18n\I18n\DbMessagesLoader(
-        $domain,
-        $locale
-    );
-
-    return $loader();
-});
-
-I18n::config('frontend', function ($domain, $locale) {
-    $loader = new \ADmad\I18n\I18n\DbMessagesLoader(
-        $domain,
-        $locale
-    );
-
-    return $loader();
-});*/
-
 define('FILE_FILE_MODEL', 'Files');
 define('FILE_OPENGRAPH_MODEL', 'OpenGraph');
 define('FILE_POST_COVER_MODEL', 'PostCover');

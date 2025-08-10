@@ -125,10 +125,10 @@ $(document).ready(function() {
                                             $this->Image->display($post->cover, '400x250', ['class' => 'img-fluid mb-3']),
                                             ['class' => 'text-center']
                                         );
-                                        echo $this->Form->control('cover.old_file_id', [
+                                        /*echo $this->Form->control('cover.old_file_id', [
                                             'type' => 'hidden',
                                             'value' => h($post->cover->id)
-                                        ]);
+                                        ]);*/
                                     }
                                     echo $this->Form->control('cover.file', [
                                         'label' => __d('admin', 'Cover') . (empty($post->cover) ? $this->Html->tag('span' , '*', ['class' => 'ml-1 text-danger']) : ''),

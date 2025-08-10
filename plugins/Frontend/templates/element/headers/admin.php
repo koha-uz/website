@@ -1,5 +1,5 @@
 <?php if ($this->Identity->isLoggedIn()): ?>
-<div class="bg-primary fs-15 text-center p-1">
+<!--<div class="bg-dark fs-11 py-1 px-3">
     <?php
     echo $this->Html->link(
         __d('frontend', 'Go to office'),
@@ -11,5 +11,5 @@
         ['class' => 'text-white hover']
     );
     ?>
-</div>
+</div>-->
 <?php endif; ?>

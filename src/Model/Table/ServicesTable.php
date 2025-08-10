@@ -49,7 +49,10 @@ class ServicesTable extends Table
         $this->setDisplayField('title');
         $this->setPrimaryKey('id');
 
-        $this->addBehavior('Tree');
+        $this->hasMany('Faqs', [
+            'className' => 'Faqs',
+            'foreignKey' => 'service_id',
+        ]);
 
         $this->belongsTo('ParentServices', [
             'className' => 'Services',
@@ -60,19 +63,12 @@ class ServicesTable extends Table
             'foreignKey' => 'parent_id',
         ]);
 
-        $this->addBehavior('Meta.Meta');
+        $this->addBehavior('Meta');
         $this->addBehavior('Muffin/Slug.Slug');
-        $this->addBehavior('Published.Published');
-
-        $this->addBehavior('Timestamp', [
-            'events' => [
-                'Model.beforeSave' => [
-                    'date_created' => 'new',
-                    'date_modified' => 'always',
-                ]
-            ]
-        ]);
-        $this->addBehavior('Translate', ['fields' => ['title', 'body']]);
+        $this->addBehavior('Published');
+        $this->addBehavior('Timestamp');
+        $this->addBehavior('Translate');
+        $this->addBehavior('Tree');
     }
 
     /**
@@ -84,8 +80,8 @@ class ServicesTable extends Table
     public function validationDefault(Validator $validator): Validator
     {
         $validator
-            ->nonNegativeInteger('id')
-            ->allowEmptyString('id', null, 'create');
+            ->nonNegativeInteger('parent_id')
+            ->allowEmptyString('parent_id');
 
         $validator
             ->scalar('title')

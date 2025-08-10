@@ -120,9 +120,11 @@ class PostsTable extends Table
 
     public function beforeMarshal(EventInterface $event, ArrayObject $data, ArrayObject $options)
     {
-        if (isset($data['cover']['file'])) {
+        if (isset($data['cover']['file']) && $data['cover']['file']->getError() === 0) {
             $data['cover']['model'] = 'Posts';
             $data['cover']['collection'] = 'Cover';
+        } else {
+            unset($data['cover']);
         }
     }
 

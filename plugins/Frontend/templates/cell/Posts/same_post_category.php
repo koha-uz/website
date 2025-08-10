@@ -1,8 +1,8 @@
 <?php if (!empty($posts)): ?>
 <hr class="my-10" />
-<h3 class="mb-6"><?= __d('frontend', 'You Might Also Like') ?></h3>
+<h3 class="mb-6 h2 text-center"><?= __d('frontend', 'You Might Also Like') ?></h3>
 
-<div class="swiper-container blog grid-view mb-10" data-margin="30" data-dots="true" data-items-md="2" data-items-xs="1">
+<div class="swiper-container blog grid-view mb-10" data-margin="40" data-dots="true" data-items-md="3" data-items-xs="1">
     <div class="swiper">
         <div class="swiper-wrapper">
             <?php foreach($posts as $post): ?>
@@ -11,7 +11,7 @@
                     <figure class="overlay overlay-1 hover-scale rounded mb-5">
                         <?php
                         echo $this->Html->link(
-                            $this->Image->display($post->cover, 'mini'),
+                            $this->Image->display($post->cover, '400x250'),
                             ['_name' => 'post_view', 'slug' => h($post->slug)],
                             ['escape' => false, 'title' => h($post->title)]
                         );
@@ -21,7 +21,7 @@
                         </figcaption>
                     </figure>
                     <div class="post-header">
-                        <h2 class="post-title h3 mt-1 mb-3">
+                        <h2 class="post-title h4 mt-1 mb-3">
                             <?php
                             echo $this->Html->link(
                                 $post->title,
@@ -36,7 +36,7 @@
                         <ul class="post-meta mb-0">
                             <li class="post-date">
                                 <i class="uil uil-calendar-alt"></i>
-                                <span><?= $post->date_published->i18nFormat('d MMMM Y HH:mm') ?></span>
+                                <span><?= $post->published->i18nFormat('d MMMM Y HH:mm') ?></span>
                             </li>
                             <li class="post-date">
                                 <i class="uil uil-eye"></i><span><?= $post->viewed ?></span>

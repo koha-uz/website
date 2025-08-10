@@ -3,7 +3,10 @@ declare(strict_types=1);
 
 namespace App\Model\Table;
 
-use Cake\ORM\Query;
+use ArrayObject;
+use Cake\Datasource\EntityInterface;
+use Cake\Event\EventInterface;
+use Cake\ORM\Query\SelectQuery;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
@@ -41,14 +44,7 @@ class SettingsTable extends Table
         $this->setDisplayField('title');
         $this->setPrimaryKey('id');
 
-        $this->addBehavior('Timestamp', [
-            'events' => [
-                'Model.beforeSave' => [
-                    'date_created' => 'new',
-                    'date_modified' => 'always',
-                ]
-            ]
-        ]);
+        $this->addBehavior('Timestamp');
     }
 
     /**
@@ -92,9 +88,10 @@ class SettingsTable extends Table
         return $validator;
     }
 
-    public function findPrefixSettings(Query $query, array $options)
+    public function findPrefixSettings(SelectQuery $query, $key)
     {
-        return $query
-            ->where(['Settings.field_key LIKE' => $options['key'] . '.%']);
+        return $query->where([
+            'Settings.field_key LIKE' => $key . '.%'
+        ]);
     }
 }

@@ -1,5 +1,6 @@
 <header class="wrapper bg-soft-primary">
-    <?= $this->element('headers/founder') ?>
+    <?= $this->element('headers/admin') ?>
+    <?= $this->element('headers/contacts') ?>
     <nav class="navbar navbar-expand-lg center-nav transparent position-absolute navbar-dark">
         <div class="container flex-lg-row flex-nowrap align-items-center">
             <div class="navbar-brand w-100">

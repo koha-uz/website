@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Panel\View\Helper;
+namespace Frontend\View\Helper;
 
 use Cake\View\Helper\FormHelper as CakeFormHelper;
 
@@ -17,12 +17,12 @@ class FormHelper extends CakeFormHelper
         // Used for button elements in button().
         'button' => '<button{{attrs}}>{{text}}</button>',
         // Used for checkboxes in checkbox() and multiCheckbox().
-        'checkbox' => '<input type="checkbox" class="custom-control-input" name="{{name}}" value="{{value}}"{{attrs}}>',
+        'checkbox' => '<input type="checkbox" class="form-check-input" name="{{name}}" value="{{value}}"{{attrs}}>',
         // Input group wrapper for checkboxes created via control().
         'checkboxFormGroup' => '{{label}}',
         // Wrapper container for checkboxes.
         'checkboxWrapper' => '<div class="checkbox">{{label}}</div>',
-        'checkboxContainer' => '<div class="form-group custom-control custom-checkbox">{{content}}</div>',
+        'checkboxContainer' => '<div class="form-check mb-4">{{content}}</div>',
         'checkboxContainerError' => '<div class="form-group custom-control custom-checkbox">{{content}}{{error}}</div>',
         // Widget ordering for date/time/datetime pickers.
         'dateWidget' => '{{year}}{{month}}{{day}}{{hour}}{{minute}}{{second}}{{meridian}}',
@@ -41,19 +41,19 @@ class FormHelper extends CakeFormHelper
         // Close tag used by end().
         'formEnd' => '</form>',
         // General grouping container for control(). Defines input/label ordering.
-        'formGroup' => '{{label}}{{input}}',
+        'formGroup' => '{{input}}{{label}}',
         // Wrapper content used to hide other content.
         'hiddenBlock' => '<div style="display:none;">{{content}}</div>',
         // Generic input element.
         'input' => '<input type="{{type}}" autocomplete="off" name="{{name}}"{{attrs}}class="form-control"/>',
         // Submit input element.
-        'inputSubmit' => '<input class="btn btn-primary js-waves-off" type="{{type}}"{{attrs}}/>',
+        'inputSubmit' => '<input class="btn btn-primary rounded-pill btn-login w-100 mb-2" type="{{type}}"{{attrs}}/>',
         // Container element used by control().
-        'inputContainer' => '<div class="form-group{{required}}">{{content}}<span class="help-block">{{help}}</span></div>',
+        'inputContainer' => '<div class="form-floating mb-4{{required}}">{{content}}<span class="help-block">{{help}}</span></div>',
         // Container element used by control() when a field has an error.
         'inputContainerError' => '<div class="input {{type}}{{required}}">{{content}}{{error}}</div>',
         // Label element when inputs are not nested inside the label.
-        'label' => '<label{{attrs}} class="form-label d-block">{{text}}</label>',
+        'label' => '<label{{attrs}}>{{text}}</label>',
         // Label element used for radio and multi-checkbox inputs.
         'nestingLabel' => '{{hidden}}{{input}}<label class="custom-control-label cursor-pointer"{{attrs}}>{{text}}</label>',
         // Legends created by allControls()

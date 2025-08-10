@@ -7,23 +7,23 @@ use Cake\ORM\Behavior\Translate\TranslateTrait;
 use Cake\ORM\Entity;
 
 /**
- * Post Entity
+ * Faq Entity
  *
  * @property int $id
- * @property int $post_category_id
- * @property string $title
+ * @property int $service_id
+ * @property string $question
  * @property string $slug
- * @property string $body
- * @property string|null $youtubeId
+ * @property string $answer
+ * @property bool $is_published
+ * @property \Cake\I18n\DateTime|null $published
  * @property \Cake\I18n\DateTime $created
  * @property \Cake\I18n\DateTime|null $modified
- * @property \Cake\I18n\DateTime|null $published
- * @property int $viewed
- * @property bool $is_published
  *
- * @property \App\Model\Entity\PostCategory $post_category
+ * @property \App\Model\Entity\Service $service
+ * @property \App\Model\Entity\MetaTag $meta_tag
+ * @property \App\Model\Entity\FaqsTranslation[] $_translations
  */
-class Post extends Entity
+class Faq extends Entity
 {
     use TranslateTrait;
 
@@ -34,22 +34,19 @@ class Post extends Entity
      * be mass assigned. For security purposes, it is advised to set '*' to false
      * (or remove it), and explicitly make individual fields accessible as needed.
      *
-     * @var array
+     * @var array<string, bool>
      */
     protected array $_accessible = [
         '_translations' => true,
-        'post_category_id' => true,
-        'title' => true,
+        'service_id' => true,
+        'question' => true,
         'slug' => true,
-        'body' => true,
-        'youtubeId' => true,
+        'answer' => true,
+        'is_published' => true,
+        'published' => true,
         'created' => true,
         'modified' => true,
-        'published' => true,
-        'viewed' => true,
-        'is_published' => true,
-        'post_category' => true,
-        'meta_tag' => true,
-        'cover' => true
+        'service' => true,
+        'meta_tag' => true
     ];
 }

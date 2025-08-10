@@ -1,15 +1,16 @@
 <?php
-$this->assign('title', __d('panel', 'Posts'));
+$this->assign('title', __d('panel', 'FAQs'));
 
 $this->start('breadcrumbs');
 $breadcrumbs = [
-    ['title' => __d('panel', 'Posts')]
+    ['title' => __d('admin', 'Services'), 'url' => ['controller' => 'Services', 'action' => 'index']],
+    ['title' => __d('panel', 'FAQs')]
 ];
 echo $this->element('breadcrumbs', ['breadcrumbs' => $breadcrumbs]);
 $this->end();
 
 $this->start('navigation');
-$menu['posts']['list'] = true;
+$menu['services']['faqs'] = true;
 echo $this->element('navigation', ['menu' => $menu]);
 $this->end();
 
@@ -40,7 +41,7 @@ $(document).ready(function() {
 
 <div class="subheader">
     <h1 class="subheader-title">
-        <i class="subheader-icon fal fa-newspaper"></i> <?= __d('panel', 'Posts') ?>
+        <i class="subheader-icon fal fa-question"></i> <?= __d('panel', 'FAQs') ?>
     </h1>
 </div>
 
@@ -48,9 +49,9 @@ $(document).ready(function() {
     <div class="col-xl-12">
         <div id="panel-1" class="panel" data-panel-close data-panel-sortable data-panel-fullscreen data-panel-refresh data-panel-locked data-panel-collapsed>
             <div class="panel-hdr">
-                <h2><?= __d('panel', 'Posts') ?></h2>
+                <h2><?= __d('panel', 'FAQs') ?></h2>
                 <div class="panel-toolbar ml-auto mr-3">
-                    <?= $this->Html->link(__d('panel', 'Create new'), ['controller' => 'Posts', 'action' => 'add'], ['class' => 'btn btn-xs btn-success']) ?>
+                    <?= $this->Html->link(__d('panel', 'Create new'), ['controller' => 'Faqs', 'action' => 'add'], ['class' => 'btn btn-xs btn-success']) ?>
                 </div>
             </div>
             <div class="panel-container show">
@@ -58,8 +59,8 @@ $(document).ready(function() {
                     <table class="table table-bordered table-hover table-striped w-100 datatable">
                         <thead>
                             <tr>
-                                <th class="all align-middle" style="width: 50%"><?= __d('panel', 'Title') ?></th>
-                                <th class="min-desktop align-middle"><?= __d('panel', 'Category') ?></th>
+                                <th class="all align-middle" style="width: 40%"><?= __d('panel', 'Question') ?></th>
+                                <th class="min-desktop align-middle"><?= __d('panel', 'Service') ?></th>
                                 <th class="min-desktop text-center align-middle"><?= $this->Html->image('flag/ru.png', ['style' => 'width: 20px']) ?></th>
                                 <th class="min-desktop text-center align-middle"><?= $this->Html->image('flag/en.png', ['style' => 'width: 20px']) ?></th>
                                 <th class="min-desktop text-center align-middle"><?= $this->Html->image('flag/uz.png', ['style' => 'width: 20px']) ?></th>
@@ -69,34 +70,27 @@ $(document).ready(function() {
                             </tr>
                         </thead>
                         <tbody>
-                            <?php foreach ($posts as $post): ?>
+                            <?php foreach ($faqs as $faq): ?>
                             <tr>
                                 <td class="align-middle">
-                                    <?php
-                                    echo $this->Html->link(
-                                        $this->Html->tag('i', '', ['class' => 'fal fa-external-link-alt']),
-                                        ['_name' => 'post_view', 'slug' => h($post->slug), 'lang' => 'ru'],
-                                        ['escape' => false, 'target' => '_blank']
-                                    );
-                                    ?>
                                     <span class="h4 ml-2">
-                                        <?= isset($post->title) ? h($post->title) : $this->Panel->notSet('title') ?>
+                                        <?= isset($faq->question) ? h($faq->question) : $this->Panel->notSet('') ?>
                                     </span>
                                 </td>
                                 <td class="align-middle">
                                     <?php
                                     echo $this->Html->link(
-                                        $post->post_category->title,
-                                        ['controller' => 'PostCategories', 'action' => 'edit', $post->post_category->id]
+                                        h($faq->service->title),
+                                        ['controller' => 'Services', 'action' => 'edit', $faq->service->id]
                                     );
-                                    echo ' ' . $this->Panel->boolIcon($post->post_category->is_published);
+                                    echo ' ' . $this->Panel->boolIcon($faq->service->is_published);
                                     ?>
                                 </td>
                                 <td class="text-center align-middle">
                                     <?php
                                     echo $this->Html->link(
                                         $this->Html->tag('i', '', ['class' => 'fal fa-pencil']),
-                                        ['controller' => 'Posts', 'action' => 'edit', h($post->id)],
+                                        ['controller' => 'Faqs', 'action' => 'edit', h($faq->id)],
                                         ['escape' => false]
                                     );
                                     ?>
@@ -105,12 +99,12 @@ $(document).ready(function() {
                                     <?php
                                     $color = 'success';
                                     $title = $this->Html->tag('i', '', ['class' => 'fal fa-plus']);
-                                    if (array_key_exists('en', $post->_translations)) {
+                                    if (array_key_exists('en', $faq->_translations)) {
                                         $color = 'info';
                                         $title = $this->Html->tag('i', '', ['class' => 'fal fa-pencil']);
                                     }
                                     echo $this->Html->link($title,
-                                        ['controller' => 'Posts', 'action' => 'translate', h($post->id), 'en'],
+                                        ['controller' => 'Faqs', 'action' => 'translate', h($faq->id), 'en'],
                                         ['escape' => false, 'class' => 'text-' . $color]
                                     );
                                     ?>
@@ -119,24 +113,24 @@ $(document).ready(function() {
                                     <?php
                                     $color = 'success';
                                     $title = $this->Html->tag('i', '', ['class' => 'fal fa-plus']);
-                                    if (array_key_exists('uz', $post->_translations)) {
+                                    if (array_key_exists('uz', $faq->_translations)) {
                                         $color = 'info';
                                         $title = $this->Html->tag('i', '', ['class' => 'fal fa-pencil']);
                                     }
                                     echo $this->Html->link($title,
-                                        ['controller' => 'Posts', 'action' => 'translate', h($post->id), 'uz'],
+                                        ['controller' => 'Faqs', 'action' => 'translate', h($faq->id), 'uz'],
                                         ['escape' => false, 'class' => 'text-' . $color]
                                     );
                                     ?>
                                 </td>
-                                <td class="align-middle" data-order="<?= !isset($post->created) ? : $post->created->getTimestamp() ?>">
-                                    <?= isset($post->created) ? $post->created->format('d.m.Y H:i:s') : $this->Panel->notSet('') ?>
+                                <td class="align-middle" data-order="<?= !isset($faq->created) ? : $faq->created->getTimestamp() ?>">
+                                    <?= isset($faq->created) ? $faq->created->format('d.m.Y H:i:s') : $this->Panel->notSet('') ?>
                                 </td>
-                                <td class="align-middle" data-order="<?= !isset($post->published) ? : $post->published->getTimestamp() ?>">
-                                    <?= isset($post->published) ? $post->published->format('d.m.Y H:i') : $this->Panel->notSet('') ?>
+                                <td class="align-middle" data-order="<?= !isset($faq->published) ? : $faq->published->getTimestamp() ?>">
+                                    <?= isset($faq->published) ? $faq->published->format('d.m.Y H:i') : $this->Panel->notSet('') ?>
                                 </td>
                                 <td class="text-center align-middle">
-                                    <?= $this->Published->publishLink($post) ?>
+                                    <?= $this->Published->publishLink($faq) ?>
                                 </td>
                             </tr>
                             <?php endforeach; ?>

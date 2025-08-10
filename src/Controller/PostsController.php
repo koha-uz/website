@@ -14,7 +14,7 @@ use App\Service\PostsService;
 class PostsController extends AppController
 {
     protected array $paginate = [
-        'limit' => 7,
+        'limit' => 9,
         'order' => [
             'Posts.published' => 'desc'
         ]
@@ -36,13 +36,14 @@ class PostsController extends AppController
     public function index()
     {
         $posts = $this->Posts->find('public')
-            ->contain(['PostCategories'/*, 'Cover'*/]);
+            ->contain(['PostCategories', 'Cover']);
 
         if (null !== $this->request->getQuery('tag')) {
             $tag = $this->Posts->Tags
                 ->findBySlug($this->request->getQuery('tag'))
                 ->firstOrfail();
-            $this->set('tag', $tag);
+
+            $this->set(compact('tag'));
 
             $posts->find('tagged', slug: $tag->slug);
         }

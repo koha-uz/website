@@ -22,11 +22,6 @@ class PostsController extends AppController
         $this->loadComponent('Published');
     }
 
-    /**
-     * Index method
-     *
-     * @return \Cake\Http\Response|null|void Renders view
-     */
     public function index()
     {
         $this->Posts->setLocale(Configure::read('I18n.defaultLanguage'));
@@ -41,15 +36,11 @@ class PostsController extends AppController
         $this->set(compact('posts'));
     }
 
-    /**
-     * Add method
-     *
-     * @return \Cake\Http\Response|null|void Redirects on successful add, renders view otherwise.
-     */
     public function add(AdminPostsService $adminPosts)
     {
         $postsTable = $this->Posts->removeBehavior('Translate');
         $postsTable->MetaTags->removeBehavior('Translate');
+        $postsTable->PostCategories->removeBehavior('Translate');
 
         $post = $postsTable->newEmptyEntity();
         if ($this->request->is('post')) {
@@ -65,44 +56,40 @@ class PostsController extends AppController
             ->find('published')
             ->all();
 
-        $this->set(compact('post', 'postCategories'));
+        $tags = $postsTable->Tags->find('list', keyField: 'slug');
+
+        $this->set(compact('post', 'postCategories', 'tags'));
     }
 
-    /**
-     * Edit method
-     *
-     * @param string|null $id Ad id.
-     * @return \Cake\Http\Response|null|void Redirects on successful edit, renders view otherwise.
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-     */
     public function edit($id = null)
     {
         $postsTable = $this->Posts->removeBehavior('Translate');
         $postsTable->MetaTags->removeBehavior('Translate');
+        $postsTable->PostCategories->removeBehavior('Translate');
 
         $post = $postsTable->findById($id)
             ->contain(['Cover', 'MetaTags', 'Tags'])
             ->firstOrFail();
 
         if ($this->request->is(['patch', 'post', 'put'])) {
-
-            $post = $this->Posts->patchEntity($post, $this->request->getData(),
+            $post = $postsTable->patchEntity($post, $this->request->getData(),
                 ['associated' => ['Cover', 'MetaTags', 'Tags']]
             );
 
-            if ($this->Posts->save($post)) {
+            if ($postsTable->save($post)) {
                 $this->Flash->success(__('The post has been saved.'));
 
                 return $this->redirect(['controller' => 'Posts', 'action' => 'index']);
             }
+
             $this->Flash->error(__('The post could not be saved. Please, try again.'));
         }
 
-        $postCategories = $this->Posts->PostCategories->find('list')
+        $postCategories = $postsTable->PostCategories->find('list')
             ->find('published')
             ->all();
 
-        $tags = $this->Posts->Tags->find('list', ['keyField' => 'slug']);
+        $tags = $postsTable->Tags->find('list', keyField: 'slug');
 
         $this->set(compact('post', 'postCategories', 'tags'));
     }
@@ -132,26 +119,11 @@ class PostsController extends AppController
         $this->set(compact('post'));
     }
 
-    /**
-     * setPublished method
-     *
-     * @param string|null $slug Item slug.
-     * @return \Cake\Http\Response|null Redirects to index.
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-     */
     public function setPublished($slug = null)
     {
         $this->Published->setPublished($slug);
     }
 
-
-    /**
-     * Delete method
-     *
-     * @param string|null $id Ad id.
-     * @return \Cake\Http\Response|null|void Redirects to index.
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-     */
     public function delete($id = null)
     {
         $this->request->allowMethod(['post', 'delete']);

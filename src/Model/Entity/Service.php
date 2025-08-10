@@ -45,12 +45,14 @@ class Service extends Entity
         'title' => true,
         'slug' => true,
         'body' => true,
-        'date_created' => true,
-        'date_modified' => true,
-        'date_published' => true,
+        'header' => true,
+        'created' => true,
+        'modified' => true,
         'published' => true,
+        'is_published' => true,
         'meta_tag' => true,
         'parent_service' => true,
         'child_services' => true,
+        'faqs' => true
     ];
 }

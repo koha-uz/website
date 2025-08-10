@@ -1,3 +1,7 @@
+<?php
+use Cake\Core\Configure;
+?>
+
 <!DOCTYPE html>
 <html lang="<?= $this->request->getParam('lang') ?>">
     <head>
@@ -14,8 +18,8 @@
         echo $this->Html->css(['plugins', 'style'], ['fullBase' => true]);
         echo $this->fetch('css');
 
-        echo \Cake\Core\Configure::read('Settings.Metrics.yandex');
-        echo \Cake\Core\Configure::read('Settings.Metrics.google');
+        echo Configure::read('Settings.Metrics.yandex');
+        echo Configure::read('Settings.Metrics.google');
         ?>
     </head>
 

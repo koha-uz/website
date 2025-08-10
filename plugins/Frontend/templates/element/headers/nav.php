@@ -1,3 +1,7 @@
+<?php
+use Cake\Core\Configure;
+?>
+
 <div class="navbar-collapse offcanvas offcanvas-nav offcanvas-start">
     <div class="offcanvas-header d-lg-none">
         <?= $this->Html->image('logo-light.svg') ?>
@@ -35,6 +39,15 @@
                         );
                         ?>
                     </li>
+                    <li class="nav-item">
+                        <?php
+                        echo $this->Html->link(
+                            __d('frontend', 'Translation by Koha'),
+                            ['_name' => 'page_view', 'slug' => 'translation-by-koha'],
+                            ['title' => __d('frontend', 'Translation by Koha'), 'class' => 'dropdown-item']
+                        );
+                        ?>
+                    </li>
                 </ul>
             </li>
             <li class="nav-item">
@@ -68,10 +81,22 @@
         <!-- /.navbar-nav -->
         <div class="offcanvas-footer d-lg-none">
             <div>
-                <a href="mailto:<?= \Cake\Core\Configure::read('Settings.Contacts.email') ?>" class="link-inverse">
-                    <?= \Cake\Core\Configure::read('Settings.Contacts.email') ?>
+                <a href="mailto:<?= Configure::read('Settings.Contacts.email') ?>" class="link-inverse">
+                    <?= Configure::read('Settings.Contacts.email') ?>
                 </a>
-                <br /> <?= \Cake\Core\Configure::read('Settings.Contacts.telephone') ?> <br />
+                <br /> 
+                
+                <a href="tel:<?= Configure::read('Settings.Contacts.telephone') ?>" class="link-inverse">
+                    <?= Configure::read('Settings.Contacts.telephone') ?>
+                </a>
+                <br/>
+
+                <address class="mt-3">
+                    <a href="<?= Configure::read('Settings.Contacts.address_google') ?>" target="_blank" class="link-inverse">
+                        <?= Configure::read('Settings.Contacts.address') ?>
+                    </a>
+                </address>
+
                 <nav class="nav social social-white mt-4">
                     <?= $this->element('social') ?>
                 </nav>

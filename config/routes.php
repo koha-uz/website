@@ -48,17 +48,8 @@ return static function (RouteBuilder $routes)
         $builder->connect('/', ['controller' => 'SystemicPages', 'action' => 'dashboard']);
         $builder->connect('/i18n-messages/{domain}/{locale}', ['controller' => 'I18nMessages', 'action' => 'edit'])->setPass(['domain', 'locale']);
 
-        $builder->connect('/settings/key/{key}', ['controller' => 'Settings', 'action' => 'index'], ['_name' => 'settings'])->setPass(['key']);
+        $builder->connect('/settings/key/{key}', ['controller' => 'Settings', 'action' => 'byKey'])->setPass(['key']);
         $builder->connect('/settings/edit', ['controller' => 'Settings', 'action' => 'edit'])->setExtensions(['json']);
-    
-        /**
-         * ...Begin users
-         */
-        $builder->connect('/login', ['controller' => 'Users', 'action' => 'login'], ['_name' => 'login']);
-        $builder->connect('/logout', ['controller' => 'Users', 'action' => 'logout'], ['_name' => 'logout']);
-        /**
-         * ...End users
-         */
 
         $builder->fallbacks();
     });
@@ -78,7 +69,7 @@ return static function (RouteBuilder $routes)
         /**
          * ...Begin services
          */
-        $builder->connect('/services/{slug}', ['controller' => 'Services', 'action' => 'view'], ['_name' => 'service_view'])
+        $builder->connect('/services/{slug}', ['controller' => 'Services', 'action' => 'view'])
             ->setPass(['slug']);
         /**
          * ...End services
@@ -105,21 +96,14 @@ return static function (RouteBuilder $routes)
          */
 
         /**
-         * ...Begin docs
+         * ...Begin users
          */
-        $builder->connect('/docs/{slug}', ['controller' => 'Docs', 'action' => 'view'], ['_name' => 'doc_view'])
-            ->setPass(['slug']);
+        $builder->connect('/login', ['controller' => 'Users', 'action' => 'login'], ['_name' => 'login']);
+        $builder->connect('/logout', ['controller' => 'Users', 'action' => 'logout'], ['_name' => 'logout']);
         /**
-         * ...End docs
+         * ...End users
          */
 
-        /**
-         * ...Begin faq pages
-         */
-        $builder->connect('/faq', ['controller' => 'Faqs', 'action' => 'index'], ['_name' => 'faq']);
-        /**
-         * ...End faq pages
-         */
         $builder->connect('/', ['controller' => 'SystemicPages', 'action' => 'display'], ['_name' => 'home']);
         $builder->connect('/', ['controller' => 'SystemicPages', 'action' => 'display'], ['routeClass' => DashedRoute::class]);
         $builder->connect('/sitemap', ['controller' => 'SystemicPages', 'action' => 'sitemap'], ['_name' => 'sitemap', 'routeClass' => DashedRoute::class])->setExtensions(['xml']);

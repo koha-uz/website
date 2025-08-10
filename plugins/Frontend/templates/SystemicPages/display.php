@@ -5,7 +5,7 @@ $this->assign('meta', $this->MetaRender
 );
 
 $this->start('header');
-echo $this->element('/headers/header-primary');
+echo $this->element('header', ['theme' => HEADER_THEME_PRIMARY]);
 $this->end();
 
 echo $page->body;

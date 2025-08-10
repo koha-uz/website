@@ -1,15 +1,16 @@
 <?php
-$this->assign('title', __d('panel', 'Settings'));
+$this->assign('title', __d('panel', '{0} — Settings', $this->request->getParam('key')));
 
 $this->start('breadcrumbs');
 $breadcrumbs = [
-    ['title' => __d('panel', 'Settings')]
+    ['title' => __d('panel', 'Settings'), 'url' => ['controller' => 'Settings', 'action' => 'index']],
+    ['title' => $this->request->getParam('key')]
 ];
 echo $this->element('breadcrumbs', ['breadcrumbs' => $breadcrumbs]);
 $this->end();
 
 $this->start('navigation');
-$menu['settings']['list'] = true;
+$menu['settings']['keys'][$this->request->getParam('key')] = true;
 echo $this->element('navigation', ['menu' => $menu]);
 $this->end();
 
@@ -53,7 +54,7 @@ $(document).ready(function () {
 
 <div class="subheader">
     <h1 class="subheader-title">
-        <i class="subheader-icon fal fa-cog"></i> <?= __d('panel', 'Settings') ?>
+        <i class="subheader-icon fal fa-cog"></i> <?= $this->request->getParam('key') ?>
     </h1>
 </div>
 

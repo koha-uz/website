@@ -51,14 +51,18 @@ class AppView extends View
             ]);
 
             $this->loadHelper('Published');
-        } {
+        } else {
             $this->addHelper('Paginator', ['templates' => 'Frontend.paginator-templates']);
+            $this->addHelper('Form', [
+                'className' => 'Frontend.Form',
+                'errorClass' => 'form-control is-invalid'
+            ]);
         }
 
         $this->addHelper('Authentication.Identity');
         $this->addHelper('MetaRender', [
             'fb.app_id' => Configure::read('Settings.App.facebook'),
-            'og.site_name' => 'Koha.uz'
+            'og.site_name' => Configure::read('Settings.App.site_name')
         ]);
 
         $this->addHelper('I18n');

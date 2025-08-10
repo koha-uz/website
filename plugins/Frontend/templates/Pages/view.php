@@ -5,20 +5,7 @@ $this->assign('meta', $this->MetaRender
 );
 
 $this->start('header');
-switch ($page->header) {
-    case HEADER_THEME_LIGHT:
-        echo $this->element('/headers/header-light');
-        break;
-    case HEADER_THEME_ABSOLUTE:
-        echo $this->element('/headers/header-absolute');
-        break;
-    case HEADER_THEME_GRAY:
-        echo $this->element('/headers/header-gray');
-        break;
-    default:
-        echo $this->element('/headers/header-primary');
-        break;
-}
+echo $this->element('header', ['theme' => $page->header]);
 $this->end();
 
 echo $page->body;

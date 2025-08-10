@@ -105,6 +105,7 @@ class PostCategoriesTable extends Table
     public function buildRules(RulesChecker $rules): RulesChecker
     {
         $rules->add($rules->isUnique(['slug']), ['errorField' => 'slug']);
+        $rules->add($rules->existsIn(['parent_id'], 'ParentPostCategories'), ['errorField' => 'parent_id']);
 
         return $rules;
     }

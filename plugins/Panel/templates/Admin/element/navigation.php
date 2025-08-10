@@ -4,7 +4,7 @@ use Cake\Core\Configure;
 
 <ul id="js-nav-menu" class="nav-menu">
     <!-- Dashboard menu -->
-    <li class="<?= !isset($menu['dashboard']) ? : 'active' ?>">
+    <li class="<?= !isset($menu['dashboard']) ?: 'active' ?>">
         <?php
         echo $this->Html->link(
             $this->Html->tag('i', '', ['class' => 'fal fa-lg fa-fw fa-home']).
@@ -23,7 +23,7 @@ use Cake\Core\Configure;
     <li class="nav-title"><?= __d('panel', 'Publications and files') ?></li>
 
     <!-- Begin pages -->
-    <li class="<?= !isset($menu['pages']) ? : 'active open' ?>">
+    <li class="<?= !isset($menu['pages']) ?: 'active open' ?>">
         <?php
         echo $this->Html->link(
             $this->Html->tag('i', '', ['class' => 'fal fa-lg fa-fw fa-file-alt']) .
@@ -37,7 +37,7 @@ use Cake\Core\Configure;
         );
         ?>
         <ul>
-            <li class="<?= !isset($menu['pages']['dynamic']) ? : 'active' ?>">
+            <li class="<?= !isset($menu['pages']['dynamic']) ?: 'active' ?>">
                 <?php
                 echo $this->Html->link(
                     $this->Html->tag('span', __d('panel', 'Dynamic'), ['class' => 'nav-link-text']),
@@ -46,7 +46,7 @@ use Cake\Core\Configure;
                 );
                 ?>
             </li>
-            <li class="<?= !isset($menu['pages']['systemic']) ? : 'active' ?>">
+            <li class="<?= !isset($menu['pages']['systemic']) ?: 'active' ?>">
                 <?php
                 echo $this->Html->link(
                     $this->Html->tag('span', __d('panel', 'Systemic'), ['class' => 'nav-link-text']),
@@ -60,7 +60,7 @@ use Cake\Core\Configure;
     <!-- End pages -->
 
     <!-- Begin Posts -->
-    <li class="<?php if (isset($menu['posts'])) echo 'active open'; ?>">
+    <li class="<?= !isset($menu['posts']) ?: 'active open' ?>">
         <?php
         echo $this->Html->link(
             $this->Html->tag('i', '', ['class' => 'fal fa-lg fa-fw fa-newspaper']) .
@@ -74,7 +74,7 @@ use Cake\Core\Configure;
         );
         ?>
         <ul>
-            <li <?php if (isset($menu['posts']['list'])) echo 'class="active"'; ?>>
+            <li class="<?= !isset($menu['posts']['list']) ?: 'active' ?>">
                 <?php
                 echo $this->Html->link(
                     $this->Html->tag('span', __d('panel', 'List'), ['class' => 'nav-link-text']),
@@ -85,7 +85,7 @@ use Cake\Core\Configure;
             </li>
 
             <!-- Post Categories menu -->
-            <li class="<?php if (isset($menu['posts']['categories'])) echo 'active open'; ?>">
+            <li class="<?= !isset($menu['posts']['categories']) ?: 'active' ?>">
                 <?php
                 echo $this->Html->link(
                     $this->Html->tag('span', __d('panel', 'Categories'), ['class' => 'nav-link-text']),
@@ -98,52 +98,44 @@ use Cake\Core\Configure;
     </li>
     <!-- End Posts -->
 
-    <!-- Begin services -->
-    <li class="<?php if (isset($menu['services'])) echo 'active open'; ?>">
+    <!-- Begin Services -->
+    <li class="<?= !isset($menu['services']) ?: 'active open' ?>">
         <?php
         echo $this->Html->link(
-            $this->Html->tag('i', '', ['class' => 'fa-lg fa-fw far fa-concierge-bell']) .
+            $this->Html->tag('i', '', ['class' => 'fal fa-lg fa-fw fa-concierge-bell']) .
             $this->Html->tag(
                 'span',
                 __d('panel', 'Services'),
                 ['class' => 'nav-link-text']
             ),
             '#',
-            ['escape' => false, 'title' => __d('panel', 'Services'), 'data-filter-tags' => __d('panel', 'services')]
+            ['escape' => false, 'title' => __d('panel', 'services'), 'data-filter-tags' => __d('panel', 'services')]
         );
         ?>
         <ul>
-            <li <?php if (isset($menu['services'][0])) echo 'class="active"'; ?>>
+            <li class="<?= !isset($menu['services']['list']) ?: 'active' ?>">
                 <?php
                 echo $this->Html->link(
-                    $this->Html->tag('i', '', ['class' => 'fal fa-lg fa-fw fa-plus-circle']) .
-                    $this->Html->tag(
-                        'span',
-                        __d('panel', 'Create'),
-                        ['class' => 'nav-link-text']
-                    ),
-                    ['controller' => 'Services', 'action' => 'add'],
-                    ['escape' => false, 'title' => __d('panel', 'Create service'), 'data-filter-tags' => __d('panel', 'create service')]
-                );
-                ?>
-            </li>
-            <li <?php if (isset($menu['services'][1])) echo 'class="active"'; ?>>
-                <?php
-                echo $this->Html->link(
-                    $this->Html->tag('i', '', ['class' => 'fal fa-lg fa-fw fa-table']) .
-                    $this->Html->tag(
-                        'span',
-                        __d('panel', 'List'),
-                        ['class' => 'nav-link-text']
-                    ),
+                    $this->Html->tag('span', __d('panel', 'List'), ['class' => 'nav-link-text']),
                     ['controller' => 'Services', 'action' => 'index'],
                     ['escape' => false, 'title' => __d('panel', 'List services'), 'data-filter-tags' => __d('panel', 'list services')]
                 );
                 ?>
             </li>
+
+            <!-- Services FAQs -->
+            <li class="<?= !isset($menu['services']['faqs']) ?: 'active' ?>">
+                <?php
+                echo $this->Html->link(
+                    $this->Html->tag('span', __d('panel', 'FAQs'), ['class' => 'nav-link-text']),
+                    ['controller' => 'Faqs', 'action' => 'index'],
+                    ['escape' => false, 'title' => __d('panel', 'Services FAQs'), 'data-filter-tags' => __d('panel', 'services faqs')]
+                );
+                ?>
+            </li>
         </ul>
     </li>
-    <!-- End services -->
+    <!-- End Services -->
 
     <!-- Begin files -->
     <li class="<?= !isset($menu['files']) ?: 'active open' ?>">
@@ -256,50 +248,60 @@ use Cake\Core\Configure;
 
     <li class="nav-title"><?= __d('panel', 'Settings') ?></li>
 
-    <!-- Begin settings -->
-    <li class="<?php if (isset($menu['settings'])) echo 'active open'; ?>">
+    <!-- Begin Settings -->
+    <li class="<?= !isset($menu['settings']) ?: 'active open' ?>">
         <?php
         echo $this->Html->link(
             $this->Html->tag('i', '', ['class' => 'fa-lg fa-fw fal fa-cog']) .
-            $this->Html->tag(
-                'span',
-                __d('panel', 'Settings'),
-                ['class' => 'nav-link-text']
-            ),
+                $this->Html->tag('span', __d('panel', 'Settings'), ['class' => 'nav-link-text']),
             '#',
             ['escape' => false, 'title' => __d('panel', 'Settings'), 'data-filter-tags' => __d('panel', 'settings')]
         );
         ?>
         <ul>
-            <li <?php if (isset($menu['settings'][0])) echo 'class="active"'; ?>>
+            <li class="<?= !isset($menu['settings']['create']) ?: 'active' ?>">
                 <?php
                 echo $this->Html->link(
-                    $this->Html->tag('i', '', ['class' => 'fal fa-lg fa-fw fa-plus-circle']) .
-                    $this->Html->tag(
-                        'span',
-                        __('Create'),
-                        ['class' => 'nav-link-text']
-                    ),
+                    $this->Html->tag('span', __d('panel', 'Create'), ['class' => 'nav-link-text']),
                     ['controller' => 'Settings', 'action' => 'add'],
-                    ['escape' => false, 'title' => __d('panel', 'Create setting'), 'data-filter-tags' => __d('panel', 'create setting')]
+                    ['escape' => false, 'title' => __d('panel', 'Create Setting'), 'data-filter-tags' => __d('panel', 'create setting')]
                 );
                 ?>
             </li>
-
-            <?php foreach(Configure::read('Settings') as $key => $setting): ?>
-            <li <?php if (isset($menu['settings'][$key])) echo 'class="active"'; ?>>
+            <li class="<?= !isset($menu['settings']['list']) ?: 'active' ?>">
                 <?php
                 echo $this->Html->link(
-                    $this->Html->tag('span', $key, ['class' => 'nav-link-text']),
-                    ['_name' => 'settings', 'key' => $key],
-                    ['escape' => false, 'title' => $key, 'data-filter-tags' => $key]
+                    $this->Html->tag('span', __d('panel', 'List'), ['class' => 'nav-link-text']),
+                    ['controller' => 'Settings', 'action' => 'index'],
+                    ['escape' => false, 'title' => __d('panel', 'List Settings'), 'data-filter-tags' => __d('panel', 'list settings')]
                 );
                 ?>
             </li>
-            <?php endforeach; ?>
+            <li class="<?= !isset($menu['settings']['keys']) ?: 'active open' ?>">
+                <?php
+                echo $this->Html->link(
+                    $this->Html->tag('span', __d('panel', 'By Key'), ['class' => 'nav-link-text']),
+                    '#',
+                    ['escape' => false, 'title' => __d('panel', 'Settings by Key'), 'data-filter-tags' => __d('panel', 'settings by key')]
+                );
+                ?>
+                <ul>
+                    <?php foreach(Configure::read('Settings') as $key => $setting): ?>
+                    <li class="<?= !isset($menu['settings']['keys'][$key]) ?: 'active' ?>">
+                        <?php
+                        echo $this->Html->link(
+                            $this->Html->tag('span', $key, ['class' => 'nav-link-text']),
+                            ['controller' => 'Settings', 'action' => 'byKey', 'key' => $key],
+                            ['escape' => false, 'title' => $key, 'data-filter-tags' => $key]
+                        );
+                        ?>
+                    </li>
+                    <?php endforeach; ?>
+                </ul>
+            </li>
         </ul>
-
-    <!-- End settings -->
+    </li>
+    <!-- End Settings -->
 
     <!-- ########################### End settings ########################### -->
 
