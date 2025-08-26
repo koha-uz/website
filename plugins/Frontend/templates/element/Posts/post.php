@@ -5,7 +5,7 @@
             <?php
             echo $this->Html->link(
                 $this->Image->display($post->cover, '400x250'),
-                ['_name' => 'post_view', 'slug' => h($post->slug)],
+                ['controller' => 'Posts', 'action' => 'view', 'slug' => h($post->slug)],
                 ['escape' => false, 'title' => h($post->title)]
             );
             ?>
@@ -22,7 +22,7 @@
                     if (isset($post->post_category->title) && !empty($post->post_category->title)) {
                         echo $this->Html->link(
                             h($post->post_category->title),
-                            ['_name' => 'post_category_view', 'slug' => h($post->post_category->slug)],
+                            ['controller' => 'PostCategories', 'action' => 'view', 'slug' => h($post->post_category->slug)],
                             ['class' => 'hover', 'rel' => 'category']
                         );
                     }
@@ -34,7 +34,7 @@
                     if (isset($post->title) && !empty($post->title)) {
                         echo $this->Html->link(
                             h($post->title),
-                            ['_name' => 'post_view', 'slug' => h($post->slug)],
+                            ['controller' => 'Posts', 'action' => 'view', 'slug' => h($post->slug)],
                             ['class' => 'link-dark']
                         );
                     }

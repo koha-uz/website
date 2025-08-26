@@ -39,7 +39,7 @@ class PhoneNumbersHelper extends Helper
                             'type' => 'text',
                             'data-inputmask' => "'mask': '+|9|9 (999) 999-99-99', 'escapeChar': '|'",
                             'class' => 'form-control form-control-sm',
-                            'placeholder' => __d('panel', 'Phone number')
+                            'placeholder' => __d('admin', 'Phone number')
                         ]) .
                     '</div>' .
                     '<div class="col-5">' .
@@ -47,7 +47,7 @@ class PhoneNumbersHelper extends Helper
                             'label' => ['class' => 'sr-only'],
                             'data-inputmask' => "'mask': '999999'",
                             'class' => 'form-control form-control-sm',
-                            'placeholder' => __d('panel', 'Prefix')
+                            'placeholder' => __d('admin', 'Prefix')
                         ]) .
                     '</div>' .
                     '<div class="col-12 mt-1">' .
@@ -56,7 +56,7 @@ class PhoneNumbersHelper extends Helper
                             'type' => 'textarea',
                             'rows' => 1,
                             'class' => 'form-control form-control-sm',
-                            'placeholder' => __d('panel', 'Target')
+                            'placeholder' => __d('admin', 'Target')
                         ]) .
                     '</div>' .
                 '</div>' .
@@ -83,7 +83,7 @@ class PhoneNumbersHelper extends Helper
             mb_substr($phoneNumber->phone, 10, 2);
 
         if (!empty($phoneNumber->prefix)) {
-            $str = $str . ' (' . __d('panel', 'ext.') . ' ' . h($phoneNumber->prefix) . ')';
+            $str = $str . ' (' . __d('admin', 'ext.') . ' ' . h($phoneNumber->prefix) . ')';
         }
 
         return $str;

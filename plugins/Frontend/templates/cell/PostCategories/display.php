@@ -7,7 +7,7 @@
             <?php
             echo $this->Html->link(
                 $category->title . ' (' . count($category->posts) . ')',
-                ['_name' => 'post_category_view', 'slug' => $category->slug]
+                ['controller' => 'PostCategories', 'action' => 'view', 'slug' => $category->slug]
             );
             ?>
         </li>

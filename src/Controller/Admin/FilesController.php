@@ -17,7 +17,7 @@ class FilesController extends AppController
         parent::initialize();
 
         $this->loadComponent('Ajax.Ajax', [
-            'actions' => ['add', 'addOpenGraph', 'addPostCover']
+            'actions' => ['add', 'addOpenGraph']
         ]);
     }
     /**
@@ -49,25 +49,9 @@ class FilesController extends AppController
         $this->set('files', $files);
     }
 
-    public function videos()
-    {
-        $files = $this->Files
-            ->find('fileModel')
-            ->find('byType', ['type' => 'video']);
-
-        $this->set('files', $files);
-    }
-
     public function openGraph()
     {
         $files = $this->Files->find('openGraphModel');
-
-        $this->set('files', $files);
-    }
-
-    public function postCover()
-    {
-        $files = $this->Files->find('postCoverModel');
 
         $this->set('files', $files);
     }
@@ -86,11 +70,10 @@ class FilesController extends AppController
             $file->set('model', FILE_FILE_MODEL);
             $file->set('collection', FILE_FILE_MODEL);
             if ($this->Files->save($file)) {
-                $this->Flash->success(__d('panel', 'The file has been saved.'));
-
+                $this->Flash->success(__('The file has been saved.'));
                 return $this->redirect(['action' => 'add']);
             }
-            $this->Flash->error(__d('panel', 'The file could not be saved. Please, try again.'));
+            $this->Flash->error(__('The file could not be saved. Please, try again.'));
         }
         $this->set(compact('file'));
     }
@@ -129,9 +112,9 @@ class FilesController extends AppController
         $this->request->allowMethod(['post', 'delete']);
         $file = $this->Files->get($id);
         if ($this->Files->delete($file)) {
-            $this->Flash->success(__d('panel', 'The file has been deleted.'));
+            $this->Flash->success(__('The file has been deleted.'));
         } else {
-            $this->Flash->error(__d('panel', 'The file could not be deleted. Please, try again.'));
+            $this->Flash->error(__('The file could not be deleted. Please, try again.'));
         }
 
         return $this->redirect($this->referer());

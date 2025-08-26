@@ -1,12 +1,12 @@
 <?php
-$this->assign('title', __d('panel', 'Post Category Translation: {0}', h($postCategory->title)));
+$this->assign('title', __d('admin', 'Post Category Translation: {0}', h($postCategory->title)));
 
 $this->start('breadcrumbs');
 $breadcrumbs = [
-    ['title' => __d('panel', 'Posts'), 'url' => ['controller' => 'Posts', 'action' => 'index']],
-    ['title' => __d('panel', 'Post categories'), 'url' => ['controller' => 'PostCategories', 'action' => 'index']],
+    ['title' => __d('admin', 'Posts'), 'url' => ['controller' => 'Posts', 'action' => 'index']],
+    ['title' => __d('admin', 'Post categories'), 'url' => ['controller' => 'PostCategories', 'action' => 'index']],
     ['title' => $postCategory->title, 'url' => ['controller' => 'PostCategories', 'action' => 'edit', $postCategory->id]],
-    ['title' => __d('panel', 'Translate')]
+    ['title' => __d('admin', 'Translate')]
 ];
 echo $this->element('breadcrumbs', ['breadcrumbs' => $breadcrumbs]);
 $this->end();
@@ -19,8 +19,8 @@ $this->end();
 
 <div class="subheader">
     <h1 class="subheader-title">
-        <i class="subheader-icon fal fa-globe"></i> <?= __d('panel', 'Post Category Translation:') ?> 
-        <?= $this->Html->link(h($postCategory->title), ['action' => 'edit', h($postCategory->id)]) ?>
+        <i class="subheader-icon fal fa-globe"></i> <?= __d('admin', 'Post Category Translation:') ?> 
+        <?= $this->AuthUser->link(h($postCategory->title), ['controller' => 'PostCategories', 'action' => 'edit', h($postCategory->id)]) ?>
     </h1>
 </div>
 
@@ -40,35 +40,35 @@ echo $this->Form->control('_locale', [
                 <div class="panel-content">
                     <div class="row mb-4">
                         <div class="col-lg-6">
-                            <h2 class="h3 mb-5"><?= __d('panel', 'Original:') ?> <?= $this->Html->image('flag/ru.png', ['class' => 'ml-2', 'style' => 'width: 30px']) ?></h2>
+                            <h2 class="h3 mb-5"><?= __d('admin', 'Original:') ?> <?= $this->Html->image('flag/ru.png', ['class' => 'ml-2', 'style' => 'width: 30px']) ?></h2>
                             <?php
                             echo $this->Form->control('title', [
                                 'label' => __d('admin', 'Title'),
                                 'disabled' => true,
-                                'placeholder' => __d('panel', 'Title')
+                                'placeholder' => __d('admin', 'Title')
                             ]);
                             echo $this->Form->control('body', [
                                 'label' => __d('admin', 'Body'),
                                 'disabled' => true,
                                 'rows' => 10,
-                                'placeholder' => __d('panel', 'Body')
+                                'placeholder' => __d('admin', 'Body')
                             ]);
                             echo $this->element('MetaTags/original');
                             ?>
                         </div>
                         <div class="col-lg-6">
-                            <h2 class="h3 mb-5"><?= __d('panel', 'Translate To:') ?> <?= $this->Html->image('flag/' . $this->request->getParam('locale') . '.png', ['class' => 'ml-2', 'style' => 'width: 30px']) ?></h2>
+                            <h2 class="h3 mb-5"><?= __d('admin', 'Translate To:') ?> <?= $this->Html->image('flag/' . $this->request->getParam('locale') . '.png', ['class' => 'ml-2', 'style' => 'width: 30px']) ?></h2>
                             <?php
                             echo $this->Form->control('_translations.' . $this->request->getParam('locale') . '.title', [
                                 'label' => __d('admin', 'Title') . $this->Html->tag('span' , '*', ['class' => 'ml-1 text-danger']),
                                 'escape' => false,
-                                'placeholder' => __d('panel', 'Title')
+                                'placeholder' => __d('admin', 'Title')
                             ]);
                             echo $this->Form->control('_translations.' . $this->request->getParam('locale') . '.body', [
                                 'label' => __d('admin', 'Body') . $this->Html->tag('span' , '*', ['class' => 'ml-1 text-danger']),
                                 'escape' => false,
                                 'rows' => 10,
-                                'placeholder' => __d('panel', 'Body')
+                                'placeholder' => __d('admin', 'Body')
                             ]);
                             echo $this->element('MetaTags/translate', ['locale' => $this->request->getParam('locale')]);
                             ?>
@@ -79,12 +79,12 @@ echo $this->Form->control('_locale', [
                         <div class="col-12">
                             <div class="border-top pt-3 text-right">
                                 <?php
-                                echo $this->Html->link(
+                                echo $this->AuthUser->link(
                                     __d('admin', 'Cancel'),
                                     ['controller' => 'PostCategories', 'action' => 'index'],
                                     ['class' => 'btn btn-default mr-2']
                                 );
-                                echo $this->Form->submit(__d('panel', 'Save'));
+                                echo $this->Form->submit(__d('admin', 'Save'));
                                 ?>
                             </div>
                         </div>

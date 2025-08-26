@@ -8,18 +8,18 @@
                     echo $this->Form->controls(
                         [
                             'current_password'  => [
-                                'label' => __d('panel', 'Current password'),
-                                'placeholder' => __d('panel', 'Current password'),
+                                'label' => __d('admin', 'Current password'),
+                                'placeholder' => __d('admin', 'Current password'),
                                 'type'        => 'password'
                             ],
                             'new_password'  => [
-                                'label' => __d('panel', 'New password'),
-                                'placeholder' => __d('panel', 'New password'),
+                                'label' => __d('admin', 'New password'),
+                                'placeholder' => __d('admin', 'New password'),
                                 'type'        => 'password'
                             ],
                             'new_password_confirm'  => [
-                                'label' => __d('panel', 'Confirm new password'),
-                                'placeholder' => __d('panel', 'Confirm new password'),
+                                'label' => __d('admin', 'Confirm new password'),
+                                'placeholder' => __d('admin', 'Confirm new password'),
                                 'type'        => 'password'
                             ],
                         ],

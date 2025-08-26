@@ -28,7 +28,7 @@ class I18nMessagesController extends AppController
             ->toArray();
 
         if (empty($i18nMessages)) {
-            throw new RecordNotFoundException(__d('panel', 'Domain not found.'));
+            throw new RecordNotFoundException(__('Domain not found.'));
         }
 
         if ($this->request->is(['patch', 'post', 'put'])) {
@@ -38,7 +38,7 @@ class I18nMessagesController extends AppController
                 $this->I18nMessages->save($i18nMessage);
             }
 
-            $this->Flash->success(__d('panel', 'The i18n message has been saved.'));
+            $this->Flash->success(__('The i18n message has been saved.'));
             return $this->redirect($this->request->getRequestTarget());
         }
         $this->set(compact('i18nMessages'));

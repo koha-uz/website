@@ -22,7 +22,7 @@
                                             <?php
                                             echo $this->Html->link(
                                                 $this->Image->display($post->cover, '400x250'),
-                                                ['_name' => 'post_view', 'slug' => h($post->slug)],
+                                                ['controller' => 'Posts', 'action' => 'view', 'slug' => h($post->slug)],
                                                 ['escape' => false, 'title' => h($post->title)]
                                             );
                                             ?>
@@ -36,7 +36,7 @@
                                                     <?php
                                                     echo $this->Html->link(
                                                         $post->post_category->title,
-                                                        ['_name' => 'post_category_view', 'slug' => h($post->post_category->slug)],
+                                                        ['controller' => 'PostCategories', 'action' => 'view', 'slug' => h($post->post_category->slug)],
                                                         ['class' => 'hover', 'rel' => 'category']
                                                     );
                                                     ?>
@@ -46,7 +46,7 @@
                                                     <?php
                                                     echo $this->Html->link(
                                                         $post->title,
-                                                        ['_name' => 'post_view', 'slug' => h($post->slug)],
+                                                        ['controller' => 'Posts', 'action' => 'view', 'slug' => h($post->slug)],
                                                         ['class' => 'link-dark']
                                                     );
                                                     ?>

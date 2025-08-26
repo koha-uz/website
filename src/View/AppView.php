@@ -40,6 +40,7 @@ class AppView extends View
     {
         $this->loadHelper('FileStorage.Image');
         $this->addHelper('Frontend.Template');
+        $this->loadHelper('TinyAuth.AuthUser');
 
         if ($this->request->getParam('prefix') == 'Admin') {
             $this->addHelper('Panel.Files');

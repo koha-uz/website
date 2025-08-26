@@ -23,8 +23,6 @@ class UsersController extends AppController
     public function beforeFilter(EventInterface $event)
     {
         parent::beforeFilter($event);
-
-        $this->Authentication->allowUnauthenticated(['login']);
     }
 
     public function login()
@@ -39,7 +37,7 @@ class UsersController extends AppController
             ]);
         }
         if ($this->request->is('post') && !$result->isValid()) {
-            $this->Flash->error(__d('panel', 'Username or password is incorrect'));
+            $this->Flash->error(__('Username or password is incorrect'));
         }
     }
 

@@ -1,10 +1,10 @@
 <?php
-$this->assign('title', __d('panel', 'Upload file(s)'));
+$this->assign('title', __d('admin', 'Upload file(s)'));
 
 $this->start('breadcrumbs');
 $breadcrumbs = [
-    ['title' => __d('panel', 'Files'), 'url' => ['action' => 'index']],
-    ['title' => __d('panel', 'Upload file(s)')]
+    ['title' => __d('admin', 'Files'), 'url' => ['action' => 'index']],
+    ['title' => __d('admin', 'Upload file(s)')]
 ];
 echo $this->element('breadcrumbs', ['breadcrumbs' => $breadcrumbs]);
 $this->end();
@@ -36,16 +36,16 @@ $(document).ready(function() {
 
 <div class="subheader">
     <h1 class="subheader-title">
-        <i class="subheader-icon fal fa-plus-circle"></i> <?= __d('panel', 'Upload file(s)') ?>
+        <i class="subheader-icon fal fa-plus-circle"></i> <?= __d('admin', 'Upload file(s)') ?>
     </h1>
     <div class="subheader-block d-none d-sm-flex align-items-center">
-        <?= $this->Html->link(__d('panel', 'Upload OpenGraph image(s)'), ['action' => 'addOpenGraph'], ['class' => 'btn btn-xs btn-success']) ?>
+        <?= $this->AuthUser->link(__d('admin', 'Upload OpenGraph image(s)'), ['controller' => 'Files', 'action' => 'addOpenGraph'], ['class' => 'btn btn-xs btn-success']) ?>
     </div>
 </div>
 
 <?= $this->Form->create($file, ['type' => 'file', 'class' => 'dropzone needsclick', 'id' => 'form']) ?>
 <div class="dz-message needsclick">
     <i class="fal fa-cloud-upload text-muted mb-3"></i> <br>
-    <span class="text-uppercase"><?= __d('panel', 'Drop files here or click to upload') ?></span>
+    <span class="text-uppercase"><?= __d('admin', 'Drop files here or click to upload') ?></span>
 </div>
 <?= $this->Form->end() ?>

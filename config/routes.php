@@ -40,13 +40,11 @@ return static function (RouteBuilder $routes)
             ['action' => 'translate']
         )
             ->setPass(['id', 'locale'])
-            ->setPatterns([
-                'id' => '[0-9]+',
-                'locale' => 'en|uz'
-            ]);
+            ->setPatterns(['id' => '[0-9]+', 'locale' => 'en|uz']);
 
         $builder->connect('/', ['controller' => 'SystemicPages', 'action' => 'dashboard']);
-        $builder->connect('/i18n-messages/{domain}/{locale}', ['controller' => 'I18nMessages', 'action' => 'edit'])->setPass(['domain', 'locale']);
+        $builder->connect('/i18n-messages/{domain}/{locale}', ['controller' => 'I18nMessages', 'action' => 'edit'])
+            ->setPass(['domain', 'locale']);
 
         $builder->connect('/settings/key/{key}', ['controller' => 'Settings', 'action' => 'byKey'])->setPass(['key']);
         $builder->connect('/settings/edit', ['controller' => 'Settings', 'action' => 'edit'])->setExtensions(['json']);
@@ -60,8 +58,7 @@ return static function (RouteBuilder $routes)
         /**
          * ...Begin dynamic pages
          */
-        $builder->connect('/p/{slug}', ['controller' => 'Pages', 'action' => 'view'], ['_name' => 'page_view'])
-            ->setPass(['slug']);
+        $builder->connect('/p/{slug}', ['controller' => 'Pages', 'action' => 'view'])->setPass(['slug']);
         /**
          * ...End dynamic pages
          */
@@ -69,8 +66,7 @@ return static function (RouteBuilder $routes)
         /**
          * ...Begin services
          */
-        $builder->connect('/services/{slug}', ['controller' => 'Services', 'action' => 'view'])
-            ->setPass(['slug']);
+        $builder->connect('/services/{slug}', ['controller' => 'Services', 'action' => 'view'])->setPass(['slug']);
         /**
          * ...End services
          */
@@ -78,8 +74,7 @@ return static function (RouteBuilder $routes)
         /**
          * ...Begin post categories
          */
-        $builder->connect('/posts/c/{slug}', ['controller' => 'PostCategories', 'action' => 'view'], ['_name' => 'post_category_view'])
-            ->setPass(['slug']);
+        $builder->connect('/posts/c/{slug}', ['controller' => 'PostCategories', 'action' => 'view'])->setPass(['slug']);
         /**
          * ...End post categories
          */
@@ -88,8 +83,8 @@ return static function (RouteBuilder $routes)
         /**
          * ...Begin posts
          */
-        $builder->connect('/posts', ['controller' => 'Posts', 'action' => 'index'], ['_name' => 'posts']);
-        $builder->connect('/posts/{slug}', ['controller' => 'Posts', 'action' => 'view'], ['_name' => 'post_view'])
+        $builder->connect('/posts', ['controller' => 'Posts', 'action' => 'index']);
+        $builder->connect('/posts/{slug}', ['controller' => 'Posts', 'action' => 'view'])
             ->setPass(['slug']);
         /**
          * ...End posts
@@ -98,7 +93,7 @@ return static function (RouteBuilder $routes)
         /**
          * ...Begin users
          */
-        $builder->connect('/login', ['controller' => 'Users', 'action' => 'login'], ['_name' => 'login']);
+        $builder->connect('/login', ['controller' => 'Users', 'action' => 'login']);
         $builder->connect('/logout', ['controller' => 'Users', 'action' => 'logout'], ['_name' => 'logout']);
         /**
          * ...End users

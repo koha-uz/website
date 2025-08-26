@@ -1,10 +1,10 @@
 <?php
-$this->assign('title', __d('panel', 'Systemic Pages'));
+$this->assign('title', __d('admin', 'Systemic Pages'));
 
 $this->start('breadcrumbs');
 $breadcrumbs = [
-    ['title' => __d('panel', 'Pages')],
-    ['title' => __d('panel', 'Systemic Pages')]
+    ['title' => __d('admin', 'Pages')],
+    ['title' => __d('admin', 'Systemic Pages')]
 ];
 echo $this->element('breadcrumbs', ['breadcrumbs' => $breadcrumbs]);
 $this->end();
@@ -41,7 +41,7 @@ $(document).ready(function() {
 
 <div class="subheader">
     <h1 class="subheader-title">
-        <i class="subheader-icon fal fa-file-alt"></i> <?= __d('panel', 'Systemic Pages') ?>
+        <i class="subheader-icon fal fa-file-alt"></i> <?= __d('admin', 'Systemic Pages') ?>
     </h1>
 </div>
 
@@ -49,9 +49,15 @@ $(document).ready(function() {
     <div class="col-xl-12">
         <div id="panel-1" class="panel" data-panel-close data-panel-sortable data-panel-fullscreen data-panel-refresh data-panel-locked data-panel-collapsed>
             <div class="panel-hdr">
-                <h2><?= __d('panel', 'Systemic Pages') ?></h2>
+                <h2><?= __d('admin', 'Systemic Pages') ?></h2>
                 <div class="panel-toolbar ml-auto mr-3">
-                    <?= $this->Html->link(__d('panel', 'Create new'), ['action' => 'add'], ['class' => 'btn btn-xs btn-success']) ?>
+                    <?php
+                    echo $this->AuthUser->link(
+                        __d('admin', 'Create new'),
+                        ['controller' => 'SystemicPages', 'action' => 'add'],
+                        ['class' => 'btn btn-xs btn-success']
+                    );
+                    ?>
                 </div>
             </div>
             <div class="panel-container show">
@@ -59,12 +65,12 @@ $(document).ready(function() {
                     <table class="table table-bordered table-hover table-striped w-100 datatable">
                         <thead>
                             <tr>
-                                <th class="min-desktop align-middle"><?= __d('panel', 'Notation') ?></th>
-                                <th class="all align-middle"><?= __d('panel', 'Short name') ?></th>
+                                <th class="min-desktop align-middle"><?= __d('admin', 'Notation') ?></th>
+                                <th class="all align-middle"><?= __d('admin', 'Short name') ?></th>
                                 <th class="min-desktop text-center align-middle"><?= $this->Html->image('flag/ru.png', ['style' => 'width: 20px']) ?></th>
                                 <th class="min-desktop text-center align-middle"><?= $this->Html->image('flag/en.png', ['style' => 'width: 20px']) ?></th>
                                 <th class="min-desktop text-center align-middle"><?= $this->Html->image('flag/uz.png', ['style' => 'width: 20px']) ?></th>
-                                <th class="min-desktop align-middle" style="width: 18%"><?= __d('panel', 'Date modified') ?></th>
+                                <th class="min-desktop align-middle" style="width: 18%"><?= __d('admin', 'Date modified') ?></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -79,7 +85,7 @@ $(document).ready(function() {
                                 </td>
                                 <td class="text-center align-middle">
                                     <?php
-                                    echo $this->Html->link(
+                                    echo $this->AuthUser->link(
                                         $this->Html->tag('i', '', ['class' => 'fal fa-pencil']),
                                         ['controller' => 'SystemicPages', 'action' => 'edit', h($page->id)],
                                         ['escape' => false]
@@ -94,8 +100,8 @@ $(document).ready(function() {
                                         $color = 'info';
                                         $title = $this->Html->tag('i', '', ['class' => 'fal fa-pencil']);
                                     }
-                                    echo $this->Html->link($title,
-                                        ['action' => 'translate', h($page->id), 'en'],
+                                    echo $this->AuthUser->link($title,
+                                        ['controller' => 'SystemicPages', 'action' => 'translate', h($page->id), 'en'],
                                         ['escape' => false, 'class' => 'text-' . $color]
                                     );
                                     ?>
@@ -108,8 +114,8 @@ $(document).ready(function() {
                                         $color = 'info';
                                         $title = $this->Html->tag('i', '', ['class' => 'fal fa-pencil']);
                                     }
-                                    echo $this->Html->link($title,
-                                        ['action' => 'translate', h($page->id), 'uz'],
+                                    echo $this->AuthUser->link($title,
+                                        ['controller' => 'SystemicPages', 'action' => 'translate', h($page->id), 'uz'],
                                         ['escape' => false, 'class' => 'text-' . $color]
                                     );
                                     ?>

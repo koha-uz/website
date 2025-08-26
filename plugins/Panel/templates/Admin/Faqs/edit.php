@@ -55,15 +55,17 @@ $(document).ready(function() {
                 <h2><?= __d('admin', 'Edit FAQ') ?></h2>
                 <div class="panel-toolbar ml-auto mr-3">
                     <?php
-                    echo $this->Form->deleteLink(
-                        $this->Html->tag('i', '', ['class' => 'fal fa-trash']) . ' ' . __d('panel', 'Delete'),
-                        ['controller' => 'Faqs', 'action' => 'delete', h($faq->id)],
-                        [
-                            'class' => 'btn btn-danger btn-xs mr-auto',
-                            'confirm' => __d('panel', 'Are you sure you want to delete this FAQ?'),
-                            'escape' => false
-                        ]
-                    );
+                    if ($this->AuthUser->hasAccess(['controller' => 'Faqs', 'action' => 'delete', h($faq->id)])) {
+                        echo $this->Form->deleteLink(
+                            $this->Html->tag('i', '', ['class' => 'fal fa-trash']) . ' ' . __d('admin', 'Delete'),
+                            ['controller' => 'Faqs', 'action' => 'delete', h($faq->id)],
+                            [
+                                'class' => 'btn btn-danger btn-xs mr-auto',
+                                'confirm' => __d('admin', 'Are you sure you want to delete this FAQ?'),
+                                'escape' => false
+                            ]
+                        );
+                    }
                     ?>
                 </div>
             </div>
@@ -76,15 +78,15 @@ $(document).ready(function() {
                             echo $this->Form->control('question', [
                                 'label' => __d('admin', 'Question') . $this->Html->tag('span' , '*', ['class' => 'ml-1 text-danger']),
                                 'escape' => false,
-                                'placeholder' => __d('panel', 'Question')
+                                'placeholder' => __d('admin', 'Question')
                             ]);
                             echo $this->Form->control('slug', [
                                 'label' => __d('admin', 'Slug') . $this->Html->tag('span' , '*', ['class' => 'ml-1 text-danger']),
                                 'escape' => false,
-                                'placeholder' => __d('panel', 'Slug')
+                                'placeholder' => __d('admin', 'Slug')
                             ]);
                             echo $this->Form->control('service_id', [
-                                'empty' => __d('panel', 'Select the service'),
+                                'empty' => __d('admin', 'Select the service'),
                                 'label' => __d('admin', 'Service') . $this->Html->tag('span' , '*', ['class' => 'ml-1 text-danger']),
                                 'escape' => false,
                                 'class' => 'form-control select2 w-100'
@@ -93,7 +95,7 @@ $(document).ready(function() {
                                 'label' => __d('admin', 'Answer') . $this->Html->tag('span' , '*', ['class' => 'ml-1 text-danger']),
                                 'escape' => false,
                                 'rows' => 11,
-                                'placeholder' => __d('panel', 'Answer')
+                                'placeholder' => __d('admin', 'Answer')
                             ]);
                             ?>
                         </div>
@@ -105,12 +107,12 @@ $(document).ready(function() {
                         <div class="col-12">
                             <div class="border-top pt-3 text-right">
                                 <?php
-                                echo $this->Html->link(
+                                echo $this->AuthUser->link(
                                     __d('admin', 'Cancel'),
                                     ['controller' => 'Faqs', 'action' => 'index'],
                                     ['class' => 'btn btn-default mr-2']
                                 );
-                                echo $this->Form->submit(__d('panel', 'Save'));
+                                echo $this->Form->submit(__d('admin', 'Save'));
                                 ?>
                             </div>
                         </div>

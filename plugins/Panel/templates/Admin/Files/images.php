@@ -1,10 +1,10 @@
 <?php
-$this->assign('title', __d('panel', 'Images'));
+$this->assign('title', __d('admin', 'Images'));
 
 $this->start('breadcrumbs');
 $breadcrumbs = [
-    ['title' => __d('panel', 'Files'), 'url' => ['action' => 'index']],
-    ['title' => __d('panel', 'Images')]
+    ['title' => __d('admin', 'Files'), 'url' => ['action' => 'index']],
+    ['title' => __d('admin', 'Images')]
 ];
 echo $this->element('breadcrumbs', ['breadcrumbs' => $breadcrumbs]);
 $this->end();
@@ -89,7 +89,7 @@ $(document).ready(function() {
 
 <div class="subheader">
     <h1 class="subheader-title">
-        <i class="subheader-icon fal  fa-image"></i> <?= __d('panel', 'Images') ?>
+        <i class="subheader-icon fal  fa-image"></i> <?= __d('admin', 'Images') ?>
     </h1>
 </div>
 
@@ -122,7 +122,7 @@ $(document).ready(function() {
     <div class="modal-dialog" role="document">
         <div class="modal-content h-100 border-0 shadow-0">
             <div class="modal-header">
-                <h5 class="modal-title"><?= __d('panel', 'Detail Image') ?></h5>
+                <h5 class="modal-title"><?= __d('admin', 'Detail Image') ?></h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true"><i class="fal fa-times"></i></span>
                 </button>
@@ -134,13 +134,13 @@ $(document).ready(function() {
                     </div>
                     <div class="col-12 col-md-4">
                         <dl class="row border-bottom pb-4">
-                            <dt class="col-md-4"><?= __d('panel', 'Filename') ?></dt>
+                            <dt class="col-md-4"><?= __d('admin', 'Filename') ?></dt>
                             <dd class="col-md-8 text-truncate" id="filename"></dd>
-                            <dt class="col-md-4"><?= __d('panel', 'Mime Type') ?></dt>
+                            <dt class="col-md-4"><?= __d('admin', 'Mime Type') ?></dt>
                             <dd class="col-md-8 text-truncate" id="mimeType"></dd>
-                            <dt class="col-md-4 text-truncate"><?= __d('panel', 'Date Created') ?></dt>
+                            <dt class="col-md-4 text-truncate"><?= __d('admin', 'Date Created') ?></dt>
                             <dd class="col-md-8 text-truncate" id="created"></dd>
-                            <dt class="col-md-4"><?= __d('panel', 'Filesize') ?></dt>
+                            <dt class="col-md-4"><?= __d('admin', 'Filesize') ?></dt>
                             <dd class="col-md-8 text-truncate" id="filesize"></dd>
                         </dl>
 
@@ -148,7 +148,7 @@ $(document).ready(function() {
                             <li class="list-inline-item mr-4">
                                 <?php
                                 echo $this->Html->link(
-                                    $this->Html->tag('i', '', ['class' => 'fal fa-copy mr-1']) . __d('panel', 'Copy URL'),
+                                    $this->Html->tag('i', '', ['class' => 'fal fa-copy mr-1']) . __d('admin', 'Copy URL'),
                                     '#',
                                     [
                                         'escape' => false,
@@ -160,15 +160,17 @@ $(document).ready(function() {
                             </li>
                             <li class="list-inline-item mr-4" id="delete">
                                 <?php
-                                echo $this->Form->postLink(
-                                    $this->Html->tag('i', '', ['class' => 'fal fa-trash mr-1']) . __d('panel', 'Delete'),
-                                    $this->Url->build(['action' => 'delete', 'FILE_ID']),
-                                    [
-                                        'class' => 'color-danger-900 mt-2 pr-2 mr-auto',
-                                        'escape' => false,
-                                        'confirm' => __d('panel', 'Are you sure you want to delete the image?')
-                                    ]
-                                );
+                                if ($this->AuthUser->hasAccess(['controller' => 'Files', 'action' => 'delete', 'FILE_ID'])) {
+                                    echo $this->Form->postLink(
+                                        $this->Html->tag('i', '', ['class' => 'fal fa-trash mr-1']) . __d('admin', 'Delete'),
+                                        $this->Url->build(['controller' => 'Files', 'action' => 'delete', 'FILE_ID']),
+                                        [
+                                            'class' => 'color-danger-900 mt-2 pr-2 mr-auto',
+                                            'escape' => false,
+                                            'confirm' => __d('admin', 'Are you sure you want to delete the image?')
+                                        ]
+                                    );
+                                }
                                 ?>
                             </li>
                         </ul>

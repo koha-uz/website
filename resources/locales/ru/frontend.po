@@ -1,0 +1,147 @@
+# LANGUAGE translation of CakePHP Application
+# Copyright YEAR NAME <EMAIL@ADDRESS>
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: 2025-08-26 23:27+0500\n"
+"PO-Revision-Date: 2025-08-26 23:29+0500\n"
+"Last-Translator: \n"
+"Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
+"Language: ru\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.7\n"
+
+#: plugins/Frontend/config/paginator-templates.php:3
+#: plugins/Frontend/config/paginator-templates.php:4
+#: plugins/Frontend/templates/element/paginator.php:7
+msgid "Next"
+msgstr "Следующий"
+
+#: plugins/Frontend/config/paginator-templates.php:5
+#: plugins/Frontend/config/paginator-templates.php:6
+#: plugins/Frontend/templates/element/paginator.php:5
+msgid "Previous"
+msgstr "Предыдущий"
+
+#: plugins/Frontend/templates/PostCategories/view.php:8
+#: plugins/Frontend/templates/Posts/index.php:11
+#: plugins/Frontend/templates/Posts/index.php:16
+#: plugins/Frontend/templates/Posts/view.php:7
+#: plugins/Frontend/templates/element/headers/nav.php:65
+#: plugins/Frontend/templates/element/headers/nav.php:67
+msgid "Posts"
+msgstr "Публикации"
+
+#: plugins/Frontend/templates/Posts/index.php:8
+msgid "#{0} – Posts"
+msgstr "#{0} – Публикации"
+
+#: plugins/Frontend/templates/Users/login.php:11
+#: plugins/Frontend/templates/Users/login.php:40
+msgid "Sign In"
+msgstr "Войти"
+
+#: plugins/Frontend/templates/Users/login.php:27
+msgid "Welcome Back"
+msgstr "Вернуться назад"
+
+#: plugins/Frontend/templates/Users/login.php:28
+msgid "Fill your username and password to sign in."
+msgstr "Введите имя пользователя и пароль для входа."
+
+#: plugins/Frontend/templates/Users/login.php:34
+msgid "Username"
+msgstr "Имя пользователя"
+
+#: plugins/Frontend/templates/Users/login.php:37
+msgid "Password"
+msgstr "Пароль"
+
+#: plugins/Frontend/templates/Users/login.php:39
+msgid "Remember me for the next 30 days"
+msgstr "Запомнить на следующие 30 дней"
+
+#: plugins/Frontend/templates/cell/PostCategories/display.php:3
+msgid "Categories"
+msgstr "Категории"
+
+#: plugins/Frontend/templates/cell/Posts/last.php:6
+msgid "Our publications"
+msgstr "Наши публикации"
+
+#: plugins/Frontend/templates/cell/Posts/last.php:30
+#: plugins/Frontend/templates/cell/Posts/same_post_category.php:20
+#: plugins/Frontend/templates/element/Posts/post.php:13
+msgid "Read More"
+msgstr "Подробнее"
+
+#: plugins/Frontend/templates/cell/Posts/popular.php:3
+msgid "Popular Posts"
+msgstr "Популярные публикации"
+
+#: plugins/Frontend/templates/cell/Posts/same_post_category.php:3
+msgid "You Might Also Like"
+msgstr "Вам также может понравиться"
+
+#: plugins/Frontend/templates/cell/Posts/tags.php:3
+msgid "Tags"
+msgstr "Теги"
+
+#: plugins/Frontend/templates/cell/Services/nav-list.php:3
+#: plugins/Frontend/templates/element/headers/nav.php:56
+#: plugins/Frontend/templates/element/headers/nav.php:58
+msgid "Services"
+msgstr "Услуги"
+
+#: plugins/Frontend/templates/element/footer.php:4
+msgid "Koha.uz. All rights reserved."
+msgstr "Koha.uz Все права защищены."
+
+#: plugins/Frontend/templates/element/headers/admin.php:5
+msgid "Go to office"
+msgstr "Перейти в панель управления"
+
+#: plugins/Frontend/templates/element/headers/nav.php:15
+#: plugins/Frontend/templates/element/headers/nav.php:17
+msgid "About Us"
+msgstr "О нас"
+
+#: plugins/Frontend/templates/element/headers/nav.php:22
+msgid "Koha"
+msgstr "Koha"
+
+#: plugins/Frontend/templates/element/headers/nav.php:27
+#: plugins/Frontend/templates/element/headers/nav.php:29
+msgid "About Koha"
+msgstr "О Koha"
+
+#: plugins/Frontend/templates/element/headers/nav.php:36
+#: plugins/Frontend/templates/element/headers/nav.php:38
+msgid "Demo Koha"
+msgstr "Демо-версия Koha"
+
+#: plugins/Frontend/templates/element/headers/nav.php:45
+#: plugins/Frontend/templates/element/headers/nav.php:47
+msgid "Translation by Koha"
+msgstr "Перевод Koha"
+
+#: plugins/Frontend/templates/element/headers/nav.php:74
+#: plugins/Frontend/templates/element/headers/nav.php:76
+msgid "Contacts"
+msgstr "Контакты"
+
+#: plugins/Frontend/templates/element/show_room.php:11
+msgid ""
+"Would you like to see the work of ILS Koha in <span class=\"underline-3 "
+"style-2 yellow\">the current</span> library?"
+msgstr ""
+"Хотите ли вы увидеть работу АБИС Koha в <span class=\"underline-3 "
+"style-2 yellow\">текущей</span> библиотеке?"
+
+#: plugins/Frontend/templates/element/show_room.php:12
+msgid "Sign up for a consultation"
+msgstr "Записаться на консультацию"

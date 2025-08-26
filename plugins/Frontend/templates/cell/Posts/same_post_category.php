@@ -12,7 +12,7 @@
                         <?php
                         echo $this->Html->link(
                             $this->Image->display($post->cover, '400x250'),
-                            ['_name' => 'post_view', 'slug' => h($post->slug)],
+                            ['controller' => 'Posts', 'action' => 'view', 'slug' => h($post->slug)],
                             ['escape' => false, 'title' => h($post->title)]
                         );
                         ?>
@@ -25,7 +25,7 @@
                             <?php
                             echo $this->Html->link(
                                 $post->title,
-                                ['_name' => 'post_view', 'slug' => h($post->slug)],
+                                ['controller' => 'Posts', 'action' => 'view', 'slug' => h($post->slug)],
                                 ['class' => 'link-dark', 'title' => h($post->title)]
                             );
                             ?>

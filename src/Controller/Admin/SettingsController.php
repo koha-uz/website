@@ -39,7 +39,7 @@ class SettingsController extends AppController
             ->toArray();
 
         if (empty($settings)) {
-            throw new RecordNotFoundException(__d('panel', 'Settings not found'));
+            throw new RecordNotFoundException(__('Settings not found'));
         }
 
         $this->set(compact('settings'));

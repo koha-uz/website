@@ -1,9 +1,9 @@
 <?php
-$this->assign('title', __d('panel', 'Services'));
+$this->assign('title', __d('admin', 'Services'));
 
 $this->start('breadcrumbs');
 $breadcrumbs = [
-    ['title' => __d('panel', 'Services')]
+    ['title' => __d('admin', 'Services')]
 ];
 echo $this->element('breadcrumbs', ['breadcrumbs' => $breadcrumbs]);
 $this->end();
@@ -40,7 +40,7 @@ $(document).ready(function() {
 
 <div class="subheader">
     <h1 class="subheader-title">
-        <i class="subheader-icon fal fa-concierge-bell"></i> <?= __d('panel', 'Services') ?>
+        <i class="subheader-icon fal fa-concierge-bell"></i> <?= __d('admin', 'Services') ?>
     </h1>
 </div>
 
@@ -48,9 +48,9 @@ $(document).ready(function() {
     <div class="col-xl-12">
         <div id="panel-1" class="panel" data-panel-close data-panel-sortable data-panel-fullscreen data-panel-refresh data-panel-locked data-panel-collapsed>
             <div class="panel-hdr">
-                <h2><?= __d('panel', 'Services') ?></h2>
+                <h2><?= __d('admin', 'Services') ?></h2>
                 <div class="panel-toolbar ml-auto mr-3">
-                    <?= $this->Html->link(__d('panel', 'Create new'), ['controller' => 'Services', 'action' => 'add'], ['class' => 'btn btn-xs btn-success']) ?>
+                    <?= $this->AuthUser->link(__d('admin', 'Create new'), ['controller' => 'Services', 'action' => 'add'], ['class' => 'btn btn-xs btn-success']) ?>
                 </div>
             </div>
             <div class="panel-container show">
@@ -58,14 +58,14 @@ $(document).ready(function() {
                     <table class="table table-bordered table-hover table-striped w-100 datatable">
                         <thead>
                             <tr>
-                                <th class="min-desktop"><?= __d('panel', 'Parent') ?></th>
-                                <th class="all"><?= __d('panel', 'Title') ?></th>
+                                <th class="min-desktop"><?= __d('admin', 'Parent') ?></th>
+                                <th class="all"><?= __d('admin', 'Title') ?></th>
                                 <th class="min-desktop text-center"><?= $this->Html->image('flag/ru.png', ['style' => 'width: 20px']) ?></th>
                                 <th class="min-desktop text-center"><?= $this->Html->image('flag/en.png', ['style' => 'width: 20px']) ?></th>
                                 <th class="min-desktop text-center"><?= $this->Html->image('flag/uz.png', ['style' => 'width: 20px']) ?></th>
-                                <th class="min-desktop align-middle"><?= __d('panel', 'Date Created') ?></th>
-                                <th class="min-desktop"><?= __d('panel', 'Date Published') ?></th>
-                                <th class="min-phone text-center"><?= __d('panel', 'Mode') ?></th>
+                                <th class="min-desktop align-middle"><?= __d('admin', 'Date Created') ?></th>
+                                <th class="min-desktop"><?= __d('admin', 'Date Published') ?></th>
+                                <th class="min-phone text-center"><?= __d('admin', 'Mode') ?></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -77,7 +77,7 @@ $(document).ready(function() {
                                         echo h($service->parent_page->title);
                                         echo $this->Html->tag('code', h($service->parent_page->slug), ['class' => 'd-block']);
                                     } else {
-                                        echo $this->Html->tag('span', __d('panel', 'Root'), ['class' => 'color-danger-600 fs-xl font-italic']);
+                                        echo $this->Html->tag('span', __d('admin', 'Root'), ['class' => 'color-danger-600 fs-xl font-italic']);
                                     }
                                     ?>
                                 </td>
@@ -101,7 +101,7 @@ $(document).ready(function() {
                                 </td>
                                 <td class="text-center align-middle">
                                     <?php
-                                    echo $this->Html->link(
+                                    echo $this->AuthUser->link(
                                         $this->Html->tag('i', '', ['class' => 'fal fa-pencil']),
                                         ['controller' => 'Services', 'action' => 'edit', h($service->id)],
                                         ['escape' => false]
@@ -116,7 +116,7 @@ $(document).ready(function() {
                                         $color = 'info';
                                         $title = $this->Html->tag('i', '', ['class' => 'fal fa-pencil']);
                                     }
-                                    echo $this->Html->link($title,
+                                    echo $this->AuthUser->link($title,
                                         ['controller' => 'Services', 'action' => 'translate', h($service->id), 'en'],
                                         ['escape' => false, 'class' => 'text-' . $color]
                                     );
@@ -130,7 +130,7 @@ $(document).ready(function() {
                                         $color = 'info';
                                         $title = $this->Html->tag('i', '', ['class' => 'fal fa-pencil']);
                                     }
-                                    echo $this->Html->link($title,
+                                    echo $this->AuthUser->link($title,
                                         ['controller' => 'Services', 'action' => 'translate', h($service->id), 'uz'],
                                         ['escape' => false, 'class' => 'text-' . $color]
                                     );
@@ -149,7 +149,11 @@ $(document).ready(function() {
                                     ?>
                                 </td>
                                 <td class="text-center align-middle">
-                                    <?= $this->Published->publishLink($service) ?>
+                                    <?php
+                                    if ($this->AuthUser->hasAccess(['controller' => $service->getSource(), 'action' => 'setPublished', h($service->id)])) {
+                                        echo $this->Published->publishLink($service);
+                                    }
+                                    ?>
                                 </td>
                             </tr>
                             <?php endforeach; ?>

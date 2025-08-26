@@ -238,7 +238,6 @@ Configure::write('I18n.languages', ['ru', 'uz']);
 
 define('FILE_FILE_MODEL', 'Files');
 define('FILE_OPENGRAPH_MODEL', 'OpenGraph');
-define('FILE_POST_COVER_MODEL', 'PostCover');
 
 define('HEADER_THEME_LIGHT', 'light');
 define('HEADER_THEME_ABSOLUTE', 'absolute');

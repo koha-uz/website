@@ -3,7 +3,7 @@ $this->assign('title', h($service->title));
 
 $this->start('breadcrumbs');
 $breadcrumbs = [
-    ['title' => __d('panel', 'Services'), 'url' => ['controller' => 'Services', 'action' => 'index']],
+    ['title' => __d('admin', 'Services'), 'url' => ['controller' => 'Services', 'action' => 'index']],
     ['title' => h($service->title)]
 ];
 echo $this->element('breadcrumbs', ['breadcrumbs' => $breadcrumbs]);
@@ -54,15 +54,17 @@ $(document).ready(function() {
                 <h2><?= __d('admin', 'Edit Service') ?></h2>
                 <div class="panel-toolbar ml-auto mr-3">
                     <?php
-                    echo $this->Form->deleteLink(
-                        $this->Html->tag('i', '', ['class' => 'fal fa-trash']) . ' ' . __d('panel', 'Delete'),
-                        ['controller' => 'Services', 'action' => 'delete', h($service->id)],
-                        [
-                            'class' => 'btn btn-danger btn-xs mr-auto',
-                            'confirm' => __d('panel', 'Are you sure you want to delete this service?'),
-                            'escape' => false
-                        ]
-                    );
+                    if ($this->AuthUser->hasAccess(['controller' => 'Services', 'action' => 'delete', h($service->id)])) {
+                        echo $this->Form->deleteLink(
+                            $this->Html->tag('i', '', ['class' => 'fal fa-trash']) . ' ' . __d('admin', 'Delete'),
+                            ['controller' => 'Services', 'action' => 'delete', h($service->id)],
+                            [
+                                'class' => 'btn btn-danger btn-xs mr-auto',
+                                'confirm' => __d('admin', 'Are you sure you want to delete this service?'),
+                                'escape' => false
+                            ]
+                        );
+                    }
                     ?>
                 </div>
             </div>
@@ -75,12 +77,12 @@ $(document).ready(function() {
                             echo $this->Form->control('title', [
                                 'label' => __d('admin', 'Title') . $this->Html->tag('span' , '*', ['class' => 'ml-1 text-danger']),
                                 'escape' => false,
-                                'placeholder' => __d('panel', 'Title')
+                                'placeholder' => __d('admin', 'Title')
                             ]);
                             echo $this->Form->control('slug', [
                                 'label' => __d('admin', 'Slug') . $this->Html->tag('span' , '*', ['class' => 'ml-1 text-danger']),
                                 'escape' => false,
-                                'placeholder' => __d('panel', 'Slug')
+                                'placeholder' => __d('admin', 'Slug')
                             ]);
                             ?>
 
@@ -88,7 +90,7 @@ $(document).ready(function() {
                                 <div class="col-lg-6">
                                     <?php
                                     echo $this->Form->control('parent_id', [
-                                        'empty' => __d('panel', 'Select the parent'),
+                                        'empty' => __d('admin', 'Select the parent'),
                                         'label' => __d('admin', 'Parent'),
                                         'class' => 'form-control select2 w-100'
                                     ]);
@@ -97,7 +99,7 @@ $(document).ready(function() {
                                 <div class="col-lg-6">
                                     <?php
                                     echo $this->Form->control('header', [
-                                        'empty' => __d('panel', 'Select the header template'),
+                                        'empty' => __d('admin', 'Select the header template'),
                                         'label' => __d('admin', 'Header Template'),
                                         'options' => $this->Template->headerList()
                                     ]);
@@ -110,7 +112,7 @@ $(document).ready(function() {
                                 'label' => __d('admin', 'Body') . $this->Html->tag('span' , '*', ['class' => 'ml-1 text-danger']),
                                 'escape' => false,
                                 'rows' => 11,
-                                'placeholder' => __d('panel', 'Body')
+                                'placeholder' => __d('admin', 'Body')
                             ]);
                             ?>
                         </div>
@@ -122,12 +124,12 @@ $(document).ready(function() {
                         <div class="col-12">
                             <div class="border-top pt-3 text-right">
                                 <?php
-                                echo $this->Html->link(
+                                echo $this->AuthUser->link(
                                     __d('admin', 'Cancel'),
                                     ['controller' => 'Services', 'action' => 'index'],
                                     ['class' => 'btn btn-default mr-2']
                                 );
-                                echo $this->Form->submit(__d('panel', 'Save'));
+                                echo $this->Form->submit(__d('admin', 'Save'));
                                 ?>
                             </div>
                         </div>

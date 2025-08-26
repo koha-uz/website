@@ -88,7 +88,7 @@
                 <aside class="page-sidebar">
                     <div class="page-logo text-center">
                         <a href="#" data-toggle="modal" data-target="#modal-shortcut">
-                            <span class="page-logo-text mr-1"><?= __d('panel', 'Control Panel') ?></span>
+                            <span class="page-logo-text mr-1"><?= __d('admin', 'Control Panel') ?></span>
                         </a>
                     </div>
 
@@ -96,7 +96,7 @@
                     <nav id="js-primary-nav" class="primary-nav" role="navigation">
                         <div class="nav-filter">
                             <div class="position-relative">
-                                <input type="text" id="nav_filter_input" placeholder="<?= __d('panel', 'Filter menu') ?>" class="form-control" tabindex="0">
+                                <input type="text" id="nav_filter_input" placeholder="<?= __d('admin', 'Filter menu') ?>" class="form-control" tabindex="0">
                                 <a href="#" onclick="return false;" class="btn-primary btn-search-close js-waves-off" data-action="toggle" data-class="list-filter-active" data-target=".page-sidebar">
                                     <i class="fal fa-chevron-up"></i>
                                 </a>
@@ -150,17 +150,17 @@
                     <header class="page-header" role="banner">
                         <!-- DOC: nav menu layout change shortcut -->
                         <div class="hidden-md-down dropdown-icon-menu position-relative">
-                            <a href="#" class="header-btn btn js-waves-off" data-action="toggle" data-class="nav-function-hidden" title="<?= __d('panel', 'Hide navigation') ?>">
+                            <a href="#" class="header-btn btn js-waves-off" data-action="toggle" data-class="nav-function-hidden" title="<?= __d('admin', 'Hide navigation') ?>">
                                 <i class="ni ni-menu"></i>
                             </a>
                             <ul>
                                 <li>
-                                    <a href="#" class="btn js-waves-off" data-action="toggle" data-class="nav-function-minify" title="<?= __d('panel', 'Minify navigation') ?>">
+                                    <a href="#" class="btn js-waves-off" data-action="toggle" data-class="nav-function-minify" title="<?= __d('admin', 'Minify navigation') ?>">
                                         <i class="ni ni-minify-nav"></i>
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#" class="btn js-waves-off" data-action="toggle" data-class="nav-function-fixed" title="<?= __d('panel', 'Lock navigation') ?>">
+                                    <a href="#" class="btn js-waves-off" data-action="toggle" data-class="nav-function-fixed" title="<?= __d('admin', 'Lock navigation') ?>">
                                         <i class="ni ni-lock-nav"></i>
                                     </a>
                                 </li>
@@ -181,11 +181,11 @@
                                 <div class="dropdown-menu dropdown-menu-animated dropdown-lg">
                                     <div class="dropdown-divider m-0"></div>
                                     <a href="#" class="dropdown-item" data-action="app-fullscreen">
-                                        <span><?= __d('panel', 'Fullscreen') ?></span>
+                                        <span><?= __d('admin', 'Fullscreen') ?></span>
                                         <i class="float-right text-muted fw-n">F11</i>
                                     </a>
                                     <div class="dropdown-multilevel dropdown-multilevel-left">
-                                        <div class="dropdown-item"><?= __d('panel', 'Language') ?></div>
+                                        <div class="dropdown-item"><?= __d('admin', 'Language') ?></div>
                                         <div class="dropdown-menu">
                                             <?php
                                             echo $this->Html->link('English', $this->I18n->changeLocaleUri('en'), ['title' => 'English', 'hreflang' => 'en', 'class' => 'dropdown-item']);
@@ -201,11 +201,11 @@
                                     <?php if ($this->Identity->isLoggedIn()): ?>
                                     <div class="dropdown-divider m-0"></div>
                                     <a href="<?= $this->Url->build(['controller' => 'Users', 'action' => 'changePassword']) ?>" class="dropdown-item">
-                                        <span><?= __d('panel', 'Change password') ?></span>
+                                        <span><?= __d('admin', 'Change password') ?></span>
                                     </a>
                                     <div class="dropdown-divider m-0"></div>
-                                    <a class="dropdown-item fw-500 pt-3 pb-3" href="<?= $this->Url->build(['_name' => 'logout']) ?>">
-                                        <span><?= __d('panel', 'Logout') ?></span>
+                                    <a class="dropdown-item fw-500 pt-3 pb-3" href="<?= $this->Url->build(['controller' => 'Users', 'action' => 'logout']) ?>">
+                                        <span><?= __d('admin', 'Logout') ?></span>
                                         <span class="float-right fw-n">&commat;<?= $this->Identity->get('username') ?></span>
                                     </a>
                                     <?php endif; ?>
@@ -239,7 +239,7 @@
                                                     <i class="base base-7 icon-stack-2x opacity-100 color-primary-300 "></i>
                                                     <i class="fal fa-home icon-stack-1x opacity-100 color-white"></i>
                                                 </div>
-                                                <span class="app-list-name"><?= __d('panel', 'Home') ?></span>
+                                                <span class="app-list-name"><?= __d('admin', 'Home') ?></span>
                                             </a>
                                         </li>
                                     </ul>
@@ -267,7 +267,7 @@
         <script>
             function postModal(url, title = null, message = null)
             {
-                let modalTitle = '<?php __d('panel', 'Are you sure?') ?>';
+                let modalTitle = '<?php __d('admin', 'Are you sure?') ?>';
                 if (title) {
                     modalTitle = title;
                 }
@@ -277,7 +277,7 @@
                     modalMessage = '<br/>' + message;
                 }
                 bootbox.confirm({
-                    title: '<?= __d('panel', 'Critical action') ?>',
+                    title: '<?= __d('admin', 'Critical action') ?>',
                     message: '<div class="alert alert-warning text-secondary mb-0">' +
                                 '<div class="d-flex align-items-center">' +
                                     '<div class="alert-icon">' +

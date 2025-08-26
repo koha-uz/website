@@ -1,0 +1,286 @@
+# LANGUAGE translation of CakePHP Application
+# Copyright YEAR NAME <EMAIL@ADDRESS>
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"POT-Creation-Date: 2025-08-26 23:18+0500\n"
+"PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
+"Last-Translator: NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+
+#: ./src/Controller/Admin/FaqsController.php:49
+#: ./src/Controller/Admin/FaqsController.php:77
+#: ./src/Controller/Admin/FaqsController.php:107
+msgid "The faq has been saved."
+msgstr ""
+
+#: ./src/Controller/Admin/FaqsController.php:53
+#: ./src/Controller/Admin/FaqsController.php:82
+#: ./src/Controller/Admin/FaqsController.php:111
+msgid "The faq could not be saved. Please, try again."
+msgstr ""
+
+#: ./src/Controller/Admin/FaqsController.php:127
+msgid "The faq has been deleted."
+msgstr ""
+
+#: ./src/Controller/Admin/FaqsController.php:129
+msgid "The faq could not be deleted. Please, try again."
+msgstr ""
+
+#: ./src/Controller/Admin/FilesController.php:73
+msgid "The file has been saved."
+msgstr ""
+
+#: ./src/Controller/Admin/FilesController.php:76
+msgid "The file could not be saved. Please, try again."
+msgstr ""
+
+#: ./src/Controller/Admin/FilesController.php:95
+msgid "The OpenGraph image has been saved."
+msgstr ""
+
+#: ./src/Controller/Admin/FilesController.php:98
+msgid "The OpenGraph image could not be saved. Please, try again."
+msgstr ""
+
+#: ./src/Controller/Admin/FilesController.php:115
+msgid "The file has been deleted."
+msgstr ""
+
+#: ./src/Controller/Admin/FilesController.php:117
+msgid "The file could not be deleted. Please, try again."
+msgstr ""
+
+#: ./src/Controller/Admin/I18nMessagesController.php:31
+msgid "Domain not found."
+msgstr ""
+
+#: ./src/Controller/Admin/I18nMessagesController.php:41
+msgid "The i18n message has been saved."
+msgstr ""
+
+#: ./src/Controller/Admin/PagesController.php:57
+#: ./src/Controller/Admin/PagesController.php:83
+#: ./src/Controller/Admin/PagesController.php:109
+msgid "The page has been saved."
+msgstr ""
+
+#: ./src/Controller/Admin/PagesController.php:61
+#: ./src/Controller/Admin/PagesController.php:87
+#: ./src/Controller/Admin/PagesController.php:113
+msgid "The page could not be saved. Please, try again."
+msgstr ""
+
+#: ./src/Controller/Admin/PagesController.php:147
+msgid "The page has been deleted."
+msgstr ""
+
+#: ./src/Controller/Admin/PagesController.php:149
+msgid "The page could not be deleted. Please, try again."
+msgstr ""
+
+#: ./src/Controller/Admin/PostCategoriesController.php:58
+#: ./src/Controller/Admin/PostCategoriesController.php:86
+#: ./src/Controller/Admin/PostCategoriesController.php:115
+msgid "The post category has been saved."
+msgstr ""
+
+#: ./src/Controller/Admin/PostCategoriesController.php:62
+#: ./src/Controller/Admin/PostCategoriesController.php:90
+#: ./src/Controller/Admin/PostCategoriesController.php:119
+msgid "The post category could not be saved. Please, try again."
+msgstr ""
+
+#: ./src/Controller/Admin/PostCategoriesController.php:149
+msgid "The post category has been deleted."
+msgstr ""
+
+#: ./src/Controller/Admin/PostCategoriesController.php:151
+msgid "The post category could not be deleted. Please, try again."
+msgstr ""
+
+#: ./src/Controller/Admin/PostsController.php:48
+#: ./src/Controller/Admin/PostsController.php:80
+#: ./src/Controller/Admin/PostsController.php:112
+msgid "The post has been saved."
+msgstr ""
+
+#: ./src/Controller/Admin/PostsController.php:52
+#: ./src/Controller/Admin/PostsController.php:85
+#: ./src/Controller/Admin/PostsController.php:116
+msgid "The post could not be saved. Please, try again."
+msgstr ""
+
+#: ./src/Controller/Admin/PostsController.php:132
+msgid "The post has been deleted."
+msgstr ""
+
+#: ./src/Controller/Admin/PostsController.php:134
+msgid "The post could not be deleted. Please, try again."
+msgstr ""
+
+#: ./src/Controller/Admin/ServicesController.php:42
+#: ./src/Controller/Admin/ServicesController.php:68
+#: ./src/Controller/Admin/ServicesController.php:87
+msgid "The service has been saved."
+msgstr ""
+
+#: ./src/Controller/Admin/ServicesController.php:46
+#: ./src/Controller/Admin/ServicesController.php:72
+#: ./src/Controller/Admin/ServicesController.php:91
+msgid "The service could not be saved. Please, try again."
+msgstr ""
+
+#: ./src/Controller/Admin/ServicesController.php:111
+msgid "The service has been deleted."
+msgstr ""
+
+#: ./src/Controller/Admin/ServicesController.php:113
+msgid "The service could not be deleted. Please, try again."
+msgstr ""
+
+#: ./src/Controller/Admin/SettingsController.php:42
+msgid "Settings not found"
+msgstr ""
+
+#: ./src/Controller/Admin/SettingsController.php:59
+msgid "The setting has been saved."
+msgstr ""
+
+#: ./src/Controller/Admin/SettingsController.php:63
+msgid "The setting could not be saved. Please, try again."
+msgstr ""
+
+#: ./src/Controller/Admin/SettingsController.php:100
+msgid "The setting has been deleted."
+msgstr ""
+
+#: ./src/Controller/Admin/SettingsController.php:102
+msgid "The setting could not be deleted. Please, try again."
+msgstr ""
+
+#: ./src/Controller/Admin/SystemicPagesController.php:48
+#: ./src/Controller/Admin/SystemicPagesController.php:73
+#: ./src/Controller/Admin/SystemicPagesController.php:99
+msgid "The systemic page has been saved."
+msgstr ""
+
+#: ./src/Controller/Admin/SystemicPagesController.php:52
+#: ./src/Controller/Admin/SystemicPagesController.php:77
+#: ./src/Controller/Admin/SystemicPagesController.php:103
+msgid "The systemic page could not be saved. Please, try again."
+msgstr ""
+
+#: ./src/Controller/Admin/SystemicPagesController.php:120
+msgid "The systemic page has been deleted."
+msgstr ""
+
+#: ./src/Controller/Admin/SystemicPagesController.php:122
+msgid "The systemic page could not be deleted. Please, try again."
+msgstr ""
+
+#: ./src/Controller/Component/ChangePasswordComponent.php:37
+msgid "The user password has been changed. Please, Log In."
+msgstr ""
+
+#: ./src/Controller/Component/ChangePasswordComponent.php:41
+msgid "The user has been saved."
+msgstr ""
+
+#: ./src/Controller/Component/ChangePasswordComponent.php:44
+msgid "The user could not be saved. Please, try again."
+msgstr ""
+
+#: ./src/Controller/Component/PublishedComponent.php:43
+msgid "Publish mode replaced successfully"
+msgstr ""
+
+#: ./src/Controller/Component/PublishedComponent.php:45
+msgid "Failed to change publish mode. Please try again."
+msgstr ""
+
+#: ./src/Controller/SystemicPagesController.php:43
+msgid "Page not found"
+msgstr ""
+
+#: ./src/Controller/UsersController.php:40
+msgid "Username or password is incorrect"
+msgstr ""
+
+#: ./src/Model/Table/UsersTable.php:79
+#: ./src/Model/Table/UsersTable.php:84
+#: ./src/Model/Table/UsersTable.php:90
+msgid "Password must be at least 6 characters long."
+msgstr ""
+
+#: ./src/Model/Table/UsersTable.php:80
+msgid "Password is required."
+msgstr ""
+
+#: ./src/Model/Table/UsersTable.php:85
+msgid "You must enter the current password."
+msgstr ""
+
+#: ./src/Model/Table/UsersTable.php:89
+msgid "You must enter a new password."
+msgstr ""
+
+#: ./src/Model/Table/UsersTable.php:95
+msgid "New password and confirmation record do not match!"
+msgstr ""
+
+#: ./src/Model/Table/UsersTable.php:132
+msgid "The current password is incorrectly entered!"
+msgstr ""
+
+#: ./src/Model/Table/UsersTable.php:146
+msgid "The new password is no different from the current!"
+msgstr ""
+
+#: ./src/View/Helper/PublishedHelper.php:25
+msgid "Published"
+msgstr ""
+
+#: ./src/View/Helper/PublishedHelper.php:39
+msgid "unpublish"
+msgstr ""
+
+#: ./src/View/Helper/PublishedHelper.php:40
+msgid "Are you sure you want to publish?"
+msgstr ""
+
+#: ./src/View/Helper/PublishedHelper.php:43
+msgid "publish"
+msgstr ""
+
+#: ./src/View/Helper/PublishedHelper.php:44
+msgid "Are you sure you want to be removed from publication?"
+msgstr ""
+
+#: ./plugins/Frontend/src/View/Helper/TemplateHelper.php:24
+msgid "Light"
+msgstr ""
+
+#: ./plugins/Frontend/src/View/Helper/TemplateHelper.php:25
+msgid "Gray"
+msgstr ""
+
+#: ./plugins/Frontend/src/View/Helper/TemplateHelper.php:26
+msgid "Absolute"
+msgstr ""
+
+#: ./plugins/Frontend/src/View/Helper/TemplateHelper.php:27
+msgid "Primary"
+msgstr ""
+
+#: ./plugins/Panel/templates/layout/mini.php:39
+msgid "Bucheon University in Tashkent"
+msgstr ""
+

@@ -18,7 +18,7 @@ return [
     // Error item wrapper.
     'errorItem' => '<li>{{text}}</li>',
     // File input used by file().
-    'file' => '<div class="custom-file"><input type="file" class="custom-file-input" name="{{name}}"{{attrs}}><label class="custom-file-label" for="customFile">' . __d('panel', 'Choose file') . '</label></div>',
+    'file' => '<div class="custom-file"><input type="file" class="custom-file-input" name="{{name}}"{{attrs}}><label class="custom-file-label" for="customFile">' . __d('admin', 'Choose file') . '</label></div>',
     // Fieldset element used by allControls().
     'fieldset' => '<fieldset{{attrs}}>{{content}}</fieldset>',
     // Open tag used by create().

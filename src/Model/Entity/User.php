@@ -36,7 +36,8 @@ class User extends Entity
         'date_created' => true,
         'date_modified' => true,
         'date_visited' => true,
-        'remember_me' => true
+        'remember_me' => true,
+        'roles' => true
     ];
 
     /**

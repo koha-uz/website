@@ -1,10 +1,10 @@
 <?php
-$this->assign('title', __d('panel', 'Create Setting'));
+$this->assign('title', __d('admin', 'Create Setting'));
 
 $this->start('breadcrumbs');
 $breadcrumbs = [
-    ['title' => __d('panel', 'Settings')],
-    ['title' => __d('panel', 'Create')]
+    ['title' => __d('admin', 'Settings')],
+    ['title' => __d('admin', 'Create')]
 ];
 echo $this->element('breadcrumbs', ['breadcrumbs' => $breadcrumbs]);
 $this->end();
@@ -17,7 +17,7 @@ $this->end();
 
 <div class="subheader">
     <h1 class="subheader-title">
-        <i class="subheader-icon fal fa-plus-circle"></i> <?= __d('panel', 'Create Setting') ?>
+        <i class="subheader-icon fal fa-plus-circle"></i> <?= __d('admin', 'Create Setting') ?>
     </h1>
 </div>
 
@@ -34,30 +34,30 @@ $this->end();
                         <div class="col-12">
                             <?php
                             echo $this->Form->control('field_key', [
-                                'label' => __d('panel', 'Key') . $this->Html->tag('span' , '*', ['class' => 'ml-1 text-danger']),
+                                'label' => __d('admin', 'Key') . $this->Html->tag('span' , '*', ['class' => 'ml-1 text-danger']),
                                 'escape' => false,
-                                'placeholder' => __d('panel', 'Key')
+                                'placeholder' => __d('admin', 'Key')
                             ]);
                             echo $this->Form->control('field_type', [
                                 'type' => 'select',
                                 'options' => [
-                                    'text' => __d('panel', 'Text'),
-                                    'checkbox' => __d('panel', 'Checkbox'),
-                                    'textarea' => __d('panel', 'Textarea')
+                                    'text' => __d('admin', 'Text'),
+                                    'checkbox' => __d('admin', 'Checkbox'),
+                                    'textarea' => __d('admin', 'Textarea')
                                 ],
-                                'label' => __d('panel', 'Type') . $this->Html->tag('span' , '*', ['class' => 'ml-1 text-danger']),
+                                'label' => __d('admin', 'Type') . $this->Html->tag('span' , '*', ['class' => 'ml-1 text-danger']),
                                 'escape' => false,
-                                'placeholder' => __d('panel', 'Type')
+                                'placeholder' => __d('admin', 'Type')
                             ]);
                             echo $this->Form->control('title', [
-                                'label' => __d('panel', 'Title') . $this->Html->tag('span' , '*', ['class' => 'ml-1 text-danger']),
+                                'label' => __d('admin', 'Title') . $this->Html->tag('span' , '*', ['class' => 'ml-1 text-danger']),
                                 'escape' => false,
-                                'placeholder' => __d('panel', 'Title')
+                                'placeholder' => __d('admin', 'Title')
                             ]);
                             echo $this->Form->control('value', [
-                                'label' => __d('panel', 'Value') . $this->Html->tag('span' , '*', ['class' => 'ml-1 text-danger']),
+                                'label' => __d('admin', 'Value') . $this->Html->tag('span' , '*', ['class' => 'ml-1 text-danger']),
                                 'escape' => false,
-                                'placeholder' => __d('panel', 'Value')
+                                'placeholder' => __d('admin', 'Value')
                             ]);
                             ?>
                         </div>
@@ -66,12 +66,12 @@ $this->end();
                         <div class="col-12">
                             <div class="border-top pt-3 text-right">
                                 <?php
-                                echo $this->Html->link(
+                                echo $this->AuthUser->link(
                                     __d('admin', 'Cancel'),
                                     ['controller' => 'Settings', 'action' => 'index'],
                                     ['class' => 'btn btn-default mr-2']
                                 );
-                                echo $this->Form->submit(__d('panel', 'Create'));
+                                echo $this->Form->submit(__d('admin', 'Create'));
                                 ?>
                             </div>
                         </div>

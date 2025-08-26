@@ -1,0 +1,1165 @@
+# LANGUAGE translation of CakePHP Application
+# Copyright YEAR NAME <EMAIL@ADDRESS>
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"POT-Creation-Date: 2025-08-26 23:18+0500\n"
+"PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
+"Last-Translator: NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+
+#: ./plugins/Panel/config/app_form.php:21
+msgid "Choose file"
+msgstr ""
+
+#: ./plugins/Panel/src/View/Helper/EmailAddressesHelper.php:42
+msgid "Email address"
+msgstr ""
+
+#: ./plugins/Panel/src/View/Helper/EmailAddressesHelper.php:51
+#: ./plugins/Panel/src/View/Helper/PhoneNumbersHelper.php:59
+msgid "Target"
+msgstr ""
+
+#: ./plugins/Panel/src/View/Helper/FilesHelper.php:23
+msgid "Tb"
+msgstr ""
+
+#: ./plugins/Panel/src/View/Helper/FilesHelper.php:24
+msgid "Gb"
+msgstr ""
+
+#: ./plugins/Panel/src/View/Helper/FilesHelper.php:25
+msgid "Mb"
+msgstr ""
+
+#: ./plugins/Panel/src/View/Helper/FilesHelper.php:26
+msgid "Kb"
+msgstr ""
+
+#: ./plugins/Panel/src/View/Helper/FilesHelper.php:27
+msgid "b"
+msgstr ""
+
+#: ./plugins/Panel/src/View/Helper/PanelHelper.php:36
+msgid "Not set"
+msgstr ""
+
+#: ./plugins/Panel/src/View/Helper/PhoneNumbersHelper.php:42
+msgid "Phone number"
+msgstr ""
+
+#: ./plugins/Panel/src/View/Helper/PhoneNumbersHelper.php:50
+msgid "Prefix"
+msgstr ""
+
+#: ./plugins/Panel/src/View/Helper/PhoneNumbersHelper.php:86
+msgid "ext."
+msgstr ""
+
+#: ./plugins/Panel/templates/Admin/Faqs/add.php:2
+#: ./plugins/Panel/templates/Admin/Faqs/add.php:47
+#: ./plugins/Panel/templates/Admin/Faqs/add.php:56
+msgid "Create FAQ"
+msgstr ""
+
+#: ./plugins/Panel/templates/Admin/Faqs/add.php:6
+#: ./plugins/Panel/templates/Admin/Faqs/edit.php:6
+#: ./plugins/Panel/templates/Admin/Faqs/index.php:6
+#: ./plugins/Panel/templates/Admin/Faqs/translate.php:6
+#: ./plugins/Panel/templates/Admin/Services/add.php:6
+#: ./plugins/Panel/templates/Admin/Services/edit.php:6
+#: ./plugins/Panel/templates/Admin/Services/index.php:2
+#: ./plugins/Panel/templates/Admin/Services/index.php:6
+#: ./plugins/Panel/templates/Admin/Services/index.php:43
+#: ./plugins/Panel/templates/Admin/Services/index.php:51
+#: ./plugins/Panel/templates/Admin/Services/translate.php:6
+#: ./plugins/Panel/templates/Admin/element/navigation.php:156
+msgid "Services"
+msgstr ""
+
+#: ./plugins/Panel/templates/Admin/Faqs/add.php:7
+#: ./plugins/Panel/templates/Admin/Faqs/edit.php:7
+#: ./plugins/Panel/templates/Admin/Faqs/translate.php:7
+msgid "FAQ"
+msgstr ""
+
+#: ./plugins/Panel/templates/Admin/Faqs/add.php:8
+#: ./plugins/Panel/templates/Admin/Faqs/add.php:100
+#: ./plugins/Panel/templates/Admin/Pages/add.php:8
+#: ./plugins/Panel/templates/Admin/Pages/add.php:136
+#: ./plugins/Panel/templates/Admin/PostCategories/add.php:8
+#: ./plugins/Panel/templates/Admin/PostCategories/add.php:96
+#: ./plugins/Panel/templates/Admin/Posts/add.php:7
+#: ./plugins/Panel/templates/Admin/Posts/add.php:136
+#: ./plugins/Panel/templates/Admin/Services/add.php:7
+#: ./plugins/Panel/templates/Admin/Services/add.php:117
+#: ./plugins/Panel/templates/Admin/Settings/add.php:7
+#: ./plugins/Panel/templates/Admin/Settings/add.php:74
+#: ./plugins/Panel/templates/Admin/SystemicPages/add.php:8
+#: ./plugins/Panel/templates/Admin/SystemicPages/add.php:105
+#: ./plugins/Panel/templates/Admin/element/navigation.php:346
+msgid "Create"
+msgstr ""
+
+#: ./plugins/Panel/templates/Admin/Faqs/add.php:64
+#: ./plugins/Panel/templates/Admin/Faqs/add.php:66
+#: ./plugins/Panel/templates/Admin/Faqs/edit.php:79
+#: ./plugins/Panel/templates/Admin/Faqs/edit.php:81
+#: ./plugins/Panel/templates/Admin/Faqs/index.php:62
+#: ./plugins/Panel/templates/Admin/Faqs/translate.php:46
+#: ./plugins/Panel/templates/Admin/Faqs/translate.php:48
+#: ./plugins/Panel/templates/Admin/Faqs/translate.php:63
+#: ./plugins/Panel/templates/Admin/Faqs/translate.php:65
+msgid "Question"
+msgstr ""
+
+#: ./plugins/Panel/templates/Admin/Faqs/add.php:69
+#: ./plugins/Panel/templates/Admin/Faqs/add.php:71
+#: ./plugins/Panel/templates/Admin/Faqs/edit.php:84
+#: ./plugins/Panel/templates/Admin/Faqs/edit.php:86
+#: ./plugins/Panel/templates/Admin/Pages/add.php:87
+#: ./plugins/Panel/templates/Admin/Pages/add.php:89
+#: ./plugins/Panel/templates/Admin/Pages/edit.php:102
+#: ./plugins/Panel/templates/Admin/Pages/edit.php:104
+#: ./plugins/Panel/templates/Admin/PostCategories/add.php:66
+#: ./plugins/Panel/templates/Admin/PostCategories/add.php:68
+#: ./plugins/Panel/templates/Admin/PostCategories/edit.php:81
+#: ./plugins/Panel/templates/Admin/PostCategories/edit.php:83
+#: ./plugins/Panel/templates/Admin/Posts/add.php:68
+#: ./plugins/Panel/templates/Admin/Posts/add.php:70
+#: ./plugins/Panel/templates/Admin/Posts/edit.php:83
+#: ./plugins/Panel/templates/Admin/Posts/edit.php:85
+#: ./plugins/Panel/templates/Admin/Services/add.php:68
+#: ./plugins/Panel/templates/Admin/Services/add.php:70
+#: ./plugins/Panel/templates/Admin/Services/edit.php:83
+#: ./plugins/Panel/templates/Admin/Services/edit.php:85
+msgid "Slug"
+msgstr ""
+
+#: ./plugins/Panel/templates/Admin/Faqs/add.php:74
+#: ./plugins/Panel/templates/Admin/Faqs/edit.php:89
+msgid "Select the service"
+msgstr ""
+
+#: ./plugins/Panel/templates/Admin/Faqs/add.php:75
+#: ./plugins/Panel/templates/Admin/Faqs/edit.php:90
+#: ./plugins/Panel/templates/Admin/Faqs/index.php:63
+msgid "Service"
+msgstr ""
+
+#: ./plugins/Panel/templates/Admin/Faqs/add.php:80
+#: ./plugins/Panel/templates/Admin/Faqs/add.php:83
+#: ./plugins/Panel/templates/Admin/Faqs/edit.php:95
+#: ./plugins/Panel/templates/Admin/Faqs/edit.php:98
+#: ./plugins/Panel/templates/Admin/Faqs/translate.php:51
+#: ./plugins/Panel/templates/Admin/Faqs/translate.php:54
+#: ./plugins/Panel/templates/Admin/Faqs/translate.php:68
+#: ./plugins/Panel/templates/Admin/Faqs/translate.php:71
+msgid "Answer"
+msgstr ""
+
+#: ./plugins/Panel/templates/Admin/Faqs/add.php:96
+#: ./plugins/Panel/templates/Admin/Faqs/edit.php:111
+#: ./plugins/Panel/templates/Admin/Faqs/translate.php:83
+#: ./plugins/Panel/templates/Admin/Pages/add.php:132
+#: ./plugins/Panel/templates/Admin/Pages/edit.php:147
+#: ./plugins/Panel/templates/Admin/Pages/translate.php:123
+#: ./plugins/Panel/templates/Admin/PostCategories/add.php:92
+#: ./plugins/Panel/templates/Admin/PostCategories/edit.php:107
+#: ./plugins/Panel/templates/Admin/PostCategories/translate.php:83
+#: ./plugins/Panel/templates/Admin/Posts/add.php:132
+#: ./plugins/Panel/templates/Admin/Posts/edit.php:157
+#: ./plugins/Panel/templates/Admin/Posts/translate.php:82
+#: ./plugins/Panel/templates/Admin/Services/add.php:113
+#: ./plugins/Panel/templates/Admin/Services/edit.php:128
+#: ./plugins/Panel/templates/Admin/Services/translate.php:82
+#: ./plugins/Panel/templates/Admin/Settings/add.php:70
+#: ./plugins/Panel/templates/Admin/SystemicPages/add.php:101
+#: ./plugins/Panel/templates/Admin/SystemicPages/edit.php:116
+#: ./plugins/Panel/templates/Admin/SystemicPages/translate.php:123
+msgid "Cancel"
+msgstr ""
+
+#: ./plugins/Panel/templates/Admin/Faqs/edit.php:55
+msgid "Edit FAQ"
+msgstr ""
+
+#: ./plugins/Panel/templates/Admin/Faqs/edit.php:60
+#: ./plugins/Panel/templates/Admin/Files/images.php:165
+#: ./plugins/Panel/templates/Admin/Files/open_graph.php:166
+#: ./plugins/Panel/templates/Admin/Pages/edit.php:78
+#: ./plugins/Panel/templates/Admin/PostCategories/edit.php:57
+#: ./plugins/Panel/templates/Admin/Posts/edit.php:59
+#: ./plugins/Panel/templates/Admin/Services/edit.php:59
+#: ./plugins/Panel/templates/Admin/SystemicPages/edit.php:66
+msgid "Delete"
+msgstr ""
+
+#: ./plugins/Panel/templates/Admin/Faqs/edit.php:64
+msgid "Are you sure you want to delete this FAQ?"
+msgstr ""
+
+#: ./plugins/Panel/templates/Admin/Faqs/edit.php:115
+#: ./plugins/Panel/templates/Admin/Faqs/translate.php:87
+#: ./plugins/Panel/templates/Admin/Pages/edit.php:151
+#: ./plugins/Panel/templates/Admin/Pages/translate.php:127
+#: ./plugins/Panel/templates/Admin/PostCategories/edit.php:111
+#: ./plugins/Panel/templates/Admin/PostCategories/translate.php:87
+#: ./plugins/Panel/templates/Admin/Posts/edit.php:161
+#: ./plugins/Panel/templates/Admin/Posts/translate.php:86
+#: ./plugins/Panel/templates/Admin/Services/edit.php:132
+#: ./plugins/Panel/templates/Admin/Services/translate.php:86
+#: ./plugins/Panel/templates/Admin/SystemicPages/edit.php:120
+#: ./plugins/Panel/templates/Admin/SystemicPages/translate.php:127
+msgid "Save"
+msgstr ""
+
+#: ./plugins/Panel/templates/Admin/Faqs/index.php:2
+#: ./plugins/Panel/templates/Admin/Faqs/index.php:7
+#: ./plugins/Panel/templates/Admin/Faqs/index.php:44
+#: ./plugins/Panel/templates/Admin/Faqs/index.php:52
+#: ./plugins/Panel/templates/Admin/element/navigation.php:181
+msgid "FAQs"
+msgstr ""
+
+#: ./plugins/Panel/templates/Admin/Faqs/index.php:54
+#: ./plugins/Panel/templates/Admin/Files/documents.php:57
+#: ./plugins/Panel/templates/Admin/Pages/index.php:54
+#: ./plugins/Panel/templates/Admin/PostCategories/index.php:54
+#: ./plugins/Panel/templates/Admin/Posts/index.php:55
+#: ./plugins/Panel/templates/Admin/Services/index.php:53
+#: ./plugins/Panel/templates/Admin/Settings/by_key.php:67
+#: ./plugins/Panel/templates/Admin/Settings/index.php:66
+#: ./plugins/Panel/templates/Admin/SystemicPages/index.php:56
+msgid "Create new"
+msgstr ""
+
+#: ./plugins/Panel/templates/Admin/Faqs/index.php:67
+#: ./plugins/Panel/templates/Admin/Files/images.php:141
+#: ./plugins/Panel/templates/Admin/Files/index.php:72
+#: ./plugins/Panel/templates/Admin/Files/open_graph.php:142
+#: ./plugins/Panel/templates/Admin/Posts/index.php:71
+#: ./plugins/Panel/templates/Admin/Services/index.php:66
+msgid "Date Created"
+msgstr ""
+
+#: ./plugins/Panel/templates/Admin/Faqs/index.php:68
+#: ./plugins/Panel/templates/Admin/Pages/index.php:67
+#: ./plugins/Panel/templates/Admin/PostCategories/index.php:67
+#: ./plugins/Panel/templates/Admin/Posts/index.php:72
+#: ./plugins/Panel/templates/Admin/Services/index.php:67
+msgid "Date Published"
+msgstr ""
+
+#: ./plugins/Panel/templates/Admin/Faqs/index.php:69
+#: ./plugins/Panel/templates/Admin/Pages/index.php:68
+#: ./plugins/Panel/templates/Admin/PostCategories/index.php:68
+#: ./plugins/Panel/templates/Admin/Posts/index.php:73
+#: ./plugins/Panel/templates/Admin/Services/index.php:68
+msgid "Mode"
+msgstr ""
+
+#: ./plugins/Panel/templates/Admin/Faqs/translate.php:2
+msgid "FAQ Translation: {0}"
+msgstr ""
+
+#: ./plugins/Panel/templates/Admin/Faqs/translate.php:9
+#: ./plugins/Panel/templates/Admin/Pages/translate.php:9
+#: ./plugins/Panel/templates/Admin/PostCategories/translate.php:9
+#: ./plugins/Panel/templates/Admin/Posts/translate.php:8
+#: ./plugins/Panel/templates/Admin/Services/translate.php:8
+#: ./plugins/Panel/templates/Admin/SystemicPages/translate.php:9
+msgid "Translate"
+msgstr ""
+
+#: ./plugins/Panel/templates/Admin/Faqs/translate.php:22
+msgid "FAQ Translation:"
+msgstr ""
+
+#: ./plugins/Panel/templates/Admin/Faqs/translate.php:43
+#: ./plugins/Panel/templates/Admin/Pages/translate.php:83
+#: ./plugins/Panel/templates/Admin/PostCategories/translate.php:43
+#: ./plugins/Panel/templates/Admin/Posts/translate.php:42
+#: ./plugins/Panel/templates/Admin/Services/translate.php:42
+#: ./plugins/Panel/templates/Admin/SystemicPages/translate.php:83
+msgid "Original:"
+msgstr ""
+
+#: ./plugins/Panel/templates/Admin/Faqs/translate.php:60
+#: ./plugins/Panel/templates/Admin/Pages/translate.php:100
+#: ./plugins/Panel/templates/Admin/PostCategories/translate.php:60
+#: ./plugins/Panel/templates/Admin/Posts/translate.php:59
+#: ./plugins/Panel/templates/Admin/Services/translate.php:59
+#: ./plugins/Panel/templates/Admin/SystemicPages/translate.php:100
+msgid "Translate To:"
+msgstr ""
+
+#: ./plugins/Panel/templates/Admin/Files/add.php:2
+#: ./plugins/Panel/templates/Admin/Files/add.php:7
+#: ./plugins/Panel/templates/Admin/Files/add.php:39
+#: ./plugins/Panel/templates/Admin/Files/add_open_graph.php:42
+#: ./plugins/Panel/templates/Admin/Files/index.php:57
+#: ./plugins/Panel/templates/Admin/element/navigation.php:225
+msgid "Upload file(s)"
+msgstr ""
+
+#: ./plugins/Panel/templates/Admin/Files/add.php:6
+#: ./plugins/Panel/templates/Admin/Files/add_open_graph.php:6
+#: ./plugins/Panel/templates/Admin/Files/documents.php:6
+#: ./plugins/Panel/templates/Admin/Files/images.php:6
+#: ./plugins/Panel/templates/Admin/Files/index.php:2
+#: ./plugins/Panel/templates/Admin/Files/index.php:6
+#: ./plugins/Panel/templates/Admin/Files/index.php:47
+#: ./plugins/Panel/templates/Admin/Files/index.php:55
+#: ./plugins/Panel/templates/Admin/Files/open_graph.php:6
+msgid "Files"
+msgstr ""
+
+#: ./plugins/Panel/templates/Admin/Files/add.php:42
+#: ./plugins/Panel/templates/Admin/Files/add_open_graph.php:2
+#: ./plugins/Panel/templates/Admin/Files/add_open_graph.php:7
+#: ./plugins/Panel/templates/Admin/Files/add_open_graph.php:39
+#: ./plugins/Panel/templates/Admin/Files/index.php:58
+msgid "Upload OpenGraph image(s)"
+msgstr ""
+
+#: ./plugins/Panel/templates/Admin/Files/add.php:49
+msgid "Drop files here or click to upload"
+msgstr ""
+
+#: ./plugins/Panel/templates/Admin/Files/add_open_graph.php:47
+msgid "Image Requirement!"
+msgstr ""
+
+#: ./plugins/Panel/templates/Admin/Files/add_open_graph.php:47
+msgid "Width:  1200px"
+msgstr ""
+
+#: ./plugins/Panel/templates/Admin/Files/add_open_graph.php:47
+msgid "Height: 630px"
+msgstr ""
+
+#: ./plugins/Panel/templates/Admin/Files/add_open_graph.php:53
+msgid "Drop images here or click to upload"
+msgstr ""
+
+#: ./plugins/Panel/templates/Admin/Files/documents.php:2
+#: ./plugins/Panel/templates/Admin/Files/documents.php:7
+#: ./plugins/Panel/templates/Admin/Files/documents.php:47
+#: ./plugins/Panel/templates/Admin/Files/documents.php:55
+#: ./plugins/Panel/templates/Admin/element/navigation.php:270
+#: ./plugins/Panel/templates/Admin/element/navigation.php:274
+msgid "Documents"
+msgstr ""
+
+#: ./plugins/Panel/templates/Admin/Files/documents.php:66
+#: ./plugins/Panel/templates/Admin/Files/index.php:67
+msgid "Name"
+msgstr ""
+
+#: ./plugins/Panel/templates/Admin/Files/documents.php:67
+#: ./plugins/Panel/templates/Admin/Files/index.php:70
+msgid "Size"
+msgstr ""
+
+#: ./plugins/Panel/templates/Admin/Files/documents.php:68
+#: ./plugins/Panel/templates/Admin/Files/images.php:139
+#: ./plugins/Panel/templates/Admin/Files/index.php:71
+#: ./plugins/Panel/templates/Admin/Files/open_graph.php:140
+msgid "Mime Type"
+msgstr ""
+
+#: ./plugins/Panel/templates/Admin/Files/documents.php:93
+#: ./plugins/Panel/templates/Admin/Files/index.php:124
+msgid "Are you sure you want to delete the file?"
+msgstr ""
+
+#: ./plugins/Panel/templates/Admin/Files/images.php:2
+#: ./plugins/Panel/templates/Admin/Files/images.php:7
+#: ./plugins/Panel/templates/Admin/Files/images.php:92
+#: ./plugins/Panel/templates/Admin/element/navigation.php:285
+#: ./plugins/Panel/templates/Admin/element/navigation.php:289
+msgid "Images"
+msgstr ""
+
+#: ./plugins/Panel/templates/Admin/Files/images.php:125
+#: ./plugins/Panel/templates/Admin/Files/open_graph.php:126
+msgid "Detail Image"
+msgstr ""
+
+#: ./plugins/Panel/templates/Admin/Files/images.php:137
+#: ./plugins/Panel/templates/Admin/Files/open_graph.php:138
+msgid "Filename"
+msgstr ""
+
+#: ./plugins/Panel/templates/Admin/Files/images.php:143
+#: ./plugins/Panel/templates/Admin/Files/open_graph.php:144
+msgid "Filesize"
+msgstr ""
+
+#: ./plugins/Panel/templates/Admin/Files/images.php:151
+#: ./plugins/Panel/templates/Admin/Files/open_graph.php:152
+msgid "Copy URL"
+msgstr ""
+
+#: ./plugins/Panel/templates/Admin/Files/images.php:170
+msgid "Are you sure you want to delete the image?"
+msgstr ""
+
+#: ./plugins/Panel/templates/Admin/Files/index.php:68
+msgid "Model"
+msgstr ""
+
+#: ./plugins/Panel/templates/Admin/Files/index.php:69
+msgid "Collection"
+msgstr ""
+
+#: ./plugins/Panel/templates/Admin/Files/open_graph.php:2
+#: ./plugins/Panel/templates/Admin/Files/open_graph.php:7
+#: ./plugins/Panel/templates/Admin/Files/open_graph.php:92
+msgid "OpenGraph images"
+msgstr ""
+
+#: ./plugins/Panel/templates/Admin/Files/open_graph.php:171
+msgid "Are you sure you want to delete the open graph image?"
+msgstr ""
+
+#: ./plugins/Panel/templates/Admin/Pages/add.php:2
+#: ./plugins/Panel/templates/Admin/Pages/add.php:65
+#: ./plugins/Panel/templates/Admin/Pages/add.php:74
+#: ./plugins/Panel/templates/Admin/SystemicPages/add.php:62
+msgid "Create Dynamic Page"
+msgstr ""
+
+#: ./plugins/Panel/templates/Admin/Pages/add.php:6
+#: ./plugins/Panel/templates/Admin/Pages/edit.php:6
+#: ./plugins/Panel/templates/Admin/Pages/index.php:6
+#: ./plugins/Panel/templates/Admin/Pages/translate.php:6
+#: ./plugins/Panel/templates/Admin/SystemicPages/add.php:6
+#: ./plugins/Panel/templates/Admin/SystemicPages/edit.php:6
+#: ./plugins/Panel/templates/Admin/SystemicPages/index.php:6
+#: ./plugins/Panel/templates/Admin/SystemicPages/translate.php:6
+#: ./plugins/Panel/templates/Admin/element/navigation.php:57
+#: ./plugins/Panel/templates/Admin/element/navigation.php:61
+msgid "Pages"
+msgstr ""
+
+#: ./plugins/Panel/templates/Admin/Pages/add.php:7
+#: ./plugins/Panel/templates/Admin/Pages/edit.php:7
+#: ./plugins/Panel/templates/Admin/Pages/index.php:2
+#: ./plugins/Panel/templates/Admin/Pages/index.php:7
+#: ./plugins/Panel/templates/Admin/Pages/index.php:44
+#: ./plugins/Panel/templates/Admin/Pages/index.php:52
+#: ./plugins/Panel/templates/Admin/Pages/translate.php:7
+msgid "Dynamic Pages"
+msgstr ""
+
+#: ./plugins/Panel/templates/Admin/Pages/add.php:82
+#: ./plugins/Panel/templates/Admin/Pages/add.php:84
+#: ./plugins/Panel/templates/Admin/Pages/edit.php:97
+#: ./plugins/Panel/templates/Admin/Pages/edit.php:99
+#: ./plugins/Panel/templates/Admin/Pages/index.php:63
+#: ./plugins/Panel/templates/Admin/Pages/translate.php:86
+#: ./plugins/Panel/templates/Admin/Pages/translate.php:88
+#: ./plugins/Panel/templates/Admin/Pages/translate.php:103
+#: ./plugins/Panel/templates/Admin/Pages/translate.php:105
+#: ./plugins/Panel/templates/Admin/PostCategories/add.php:61
+#: ./plugins/Panel/templates/Admin/PostCategories/add.php:63
+#: ./plugins/Panel/templates/Admin/PostCategories/edit.php:76
+#: ./plugins/Panel/templates/Admin/PostCategories/edit.php:78
+#: ./plugins/Panel/templates/Admin/PostCategories/index.php:63
+#: ./plugins/Panel/templates/Admin/PostCategories/translate.php:46
+#: ./plugins/Panel/templates/Admin/PostCategories/translate.php:48
+#: ./plugins/Panel/templates/Admin/PostCategories/translate.php:63
+#: ./plugins/Panel/templates/Admin/PostCategories/translate.php:65
+#: ./plugins/Panel/templates/Admin/Posts/add.php:63
+#: ./plugins/Panel/templates/Admin/Posts/add.php:65
+#: ./plugins/Panel/templates/Admin/Posts/edit.php:78
+#: ./plugins/Panel/templates/Admin/Posts/edit.php:80
+#: ./plugins/Panel/templates/Admin/Posts/index.php:66
+#: ./plugins/Panel/templates/Admin/Posts/translate.php:45
+#: ./plugins/Panel/templates/Admin/Posts/translate.php:47
+#: ./plugins/Panel/templates/Admin/Posts/translate.php:62
+#: ./plugins/Panel/templates/Admin/Posts/translate.php:64
+#: ./plugins/Panel/templates/Admin/Services/add.php:63
+#: ./plugins/Panel/templates/Admin/Services/add.php:65
+#: ./plugins/Panel/templates/Admin/Services/edit.php:78
+#: ./plugins/Panel/templates/Admin/Services/edit.php:80
+#: ./plugins/Panel/templates/Admin/Services/index.php:62
+#: ./plugins/Panel/templates/Admin/Services/translate.php:45
+#: ./plugins/Panel/templates/Admin/Services/translate.php:47
+#: ./plugins/Panel/templates/Admin/Services/translate.php:62
+#: ./plugins/Panel/templates/Admin/Services/translate.php:64
+#: ./plugins/Panel/templates/Admin/Settings/add.php:53
+#: ./plugins/Panel/templates/Admin/Settings/add.php:55
+#: ./plugins/Panel/templates/Admin/Settings/by_key.php:75
+#: ./plugins/Panel/templates/Admin/Settings/index.php:74
+#: ./plugins/Panel/templates/Admin/SystemicPages/add.php:70
+#: ./plugins/Panel/templates/Admin/SystemicPages/add.php:72
+#: ./plugins/Panel/templates/Admin/SystemicPages/edit.php:85
+#: ./plugins/Panel/templates/Admin/SystemicPages/edit.php:87
+#: ./plugins/Panel/templates/Admin/SystemicPages/translate.php:86
+#: ./plugins/Panel/templates/Admin/SystemicPages/translate.php:88
+#: ./plugins/Panel/templates/Admin/SystemicPages/translate.php:103
+#: ./plugins/Panel/templates/Admin/SystemicPages/translate.php:105
+#: ./plugins/Panel/templates/Admin/element/MetaTags/original.php:8
+#: ./plugins/Panel/templates/Admin/element/MetaTags/original.php:10
+#: ./plugins/Panel/templates/Admin/element/MetaTags/translate.php:8
+#: ./plugins/Panel/templates/Admin/element/MetaTags/translate.php:10
+msgid "Title"
+msgstr ""
+
+#: ./plugins/Panel/templates/Admin/Pages/add.php:97
+#: ./plugins/Panel/templates/Admin/Pages/edit.php:112
+#: ./plugins/Panel/templates/Admin/PostCategories/add.php:71
+#: ./plugins/Panel/templates/Admin/PostCategories/edit.php:86
+#: ./plugins/Panel/templates/Admin/Services/add.php:78
+#: ./plugins/Panel/templates/Admin/Services/edit.php:93
+msgid "Select the parent"
+msgstr ""
+
+#: ./plugins/Panel/templates/Admin/Pages/add.php:98
+#: ./plugins/Panel/templates/Admin/Pages/edit.php:113
+#: ./plugins/Panel/templates/Admin/Pages/index.php:62
+#: ./plugins/Panel/templates/Admin/PostCategories/add.php:72
+#: ./plugins/Panel/templates/Admin/PostCategories/edit.php:87
+#: ./plugins/Panel/templates/Admin/PostCategories/index.php:62
+#: ./plugins/Panel/templates/Admin/Services/add.php:79
+#: ./plugins/Panel/templates/Admin/Services/edit.php:94
+#: ./plugins/Panel/templates/Admin/Services/index.php:61
+msgid "Parent"
+msgstr ""
+
+#: ./plugins/Panel/templates/Admin/Pages/add.php:106
+#: ./plugins/Panel/templates/Admin/Pages/edit.php:121
+#: ./plugins/Panel/templates/Admin/Services/add.php:87
+#: ./plugins/Panel/templates/Admin/Services/edit.php:102
+msgid "Select the header template"
+msgstr ""
+
+#: ./plugins/Panel/templates/Admin/Pages/add.php:107
+#: ./plugins/Panel/templates/Admin/Pages/edit.php:122
+#: ./plugins/Panel/templates/Admin/Services/add.php:88
+#: ./plugins/Panel/templates/Admin/Services/edit.php:103
+msgid "Header Template"
+msgstr ""
+
+#: ./plugins/Panel/templates/Admin/Pages/add.php:116
+#: ./plugins/Panel/templates/Admin/Pages/add.php:119
+#: ./plugins/Panel/templates/Admin/Pages/edit.php:131
+#: ./plugins/Panel/templates/Admin/Pages/edit.php:134
+#: ./plugins/Panel/templates/Admin/Pages/translate.php:91
+#: ./plugins/Panel/templates/Admin/Pages/translate.php:94
+#: ./plugins/Panel/templates/Admin/Pages/translate.php:108
+#: ./plugins/Panel/templates/Admin/Pages/translate.php:111
+#: ./plugins/Panel/templates/Admin/PostCategories/add.php:76
+#: ./plugins/Panel/templates/Admin/PostCategories/add.php:79
+#: ./plugins/Panel/templates/Admin/PostCategories/edit.php:91
+#: ./plugins/Panel/templates/Admin/PostCategories/edit.php:94
+#: ./plugins/Panel/templates/Admin/PostCategories/translate.php:51
+#: ./plugins/Panel/templates/Admin/PostCategories/translate.php:54
+#: ./plugins/Panel/templates/Admin/PostCategories/translate.php:68
+#: ./plugins/Panel/templates/Admin/PostCategories/translate.php:71
+#: ./plugins/Panel/templates/Admin/Posts/add.php:96
+#: ./plugins/Panel/templates/Admin/Posts/add.php:99
+#: ./plugins/Panel/templates/Admin/Posts/edit.php:111
+#: ./plugins/Panel/templates/Admin/Posts/edit.php:114
+#: ./plugins/Panel/templates/Admin/Posts/translate.php:50
+#: ./plugins/Panel/templates/Admin/Posts/translate.php:53
+#: ./plugins/Panel/templates/Admin/Posts/translate.php:67
+#: ./plugins/Panel/templates/Admin/Posts/translate.php:70
+#: ./plugins/Panel/templates/Admin/Services/add.php:97
+#: ./plugins/Panel/templates/Admin/Services/add.php:100
+#: ./plugins/Panel/templates/Admin/Services/edit.php:112
+#: ./plugins/Panel/templates/Admin/Services/edit.php:115
+#: ./plugins/Panel/templates/Admin/Services/translate.php:50
+#: ./plugins/Panel/templates/Admin/Services/translate.php:53
+#: ./plugins/Panel/templates/Admin/Services/translate.php:67
+#: ./plugins/Panel/templates/Admin/Services/translate.php:70
+#: ./plugins/Panel/templates/Admin/SystemicPages/add.php:85
+#: ./plugins/Panel/templates/Admin/SystemicPages/add.php:88
+#: ./plugins/Panel/templates/Admin/SystemicPages/edit.php:100
+#: ./plugins/Panel/templates/Admin/SystemicPages/edit.php:103
+#: ./plugins/Panel/templates/Admin/SystemicPages/translate.php:91
+#: ./plugins/Panel/templates/Admin/SystemicPages/translate.php:94
+#: ./plugins/Panel/templates/Admin/SystemicPages/translate.php:108
+#: ./plugins/Panel/templates/Admin/SystemicPages/translate.php:111
+msgid "Body"
+msgstr ""
+
+#: ./plugins/Panel/templates/Admin/Pages/edit.php:73
+msgid "Edit Dynamic Page"
+msgstr ""
+
+#: ./plugins/Panel/templates/Admin/Pages/edit.php:82
+msgid "Are you sure you want to delete this page?"
+msgstr ""
+
+#: ./plugins/Panel/templates/Admin/Pages/index.php:80
+#: ./plugins/Panel/templates/Admin/PostCategories/index.php:80
+#: ./plugins/Panel/templates/Admin/Services/index.php:80
+msgid "Root"
+msgstr ""
+
+#: ./plugins/Panel/templates/Admin/Pages/translate.php:2
+#: ./plugins/Panel/templates/Admin/SystemicPages/translate.php:2
+msgid "Page Translation: {0}"
+msgstr ""
+
+#: ./plugins/Panel/templates/Admin/Pages/translate.php:62
+msgid "Page Translation:"
+msgstr ""
+
+#: ./plugins/Panel/templates/Admin/PostCategories/add.php:2
+#: ./plugins/Panel/templates/Admin/PostCategories/add.php:44
+#: ./plugins/Panel/templates/Admin/PostCategories/add.php:53
+msgid "Create Post Category"
+msgstr ""
+
+#: ./plugins/Panel/templates/Admin/PostCategories/add.php:6
+#: ./plugins/Panel/templates/Admin/PostCategories/edit.php:6
+#: ./plugins/Panel/templates/Admin/PostCategories/index.php:6
+#: ./plugins/Panel/templates/Admin/PostCategories/translate.php:6
+#: ./plugins/Panel/templates/Admin/Posts/add.php:6
+#: ./plugins/Panel/templates/Admin/Posts/edit.php:6
+#: ./plugins/Panel/templates/Admin/Posts/index.php:2
+#: ./plugins/Panel/templates/Admin/Posts/index.php:6
+#: ./plugins/Panel/templates/Admin/Posts/index.php:43
+#: ./plugins/Panel/templates/Admin/Posts/index.php:51
+#: ./plugins/Panel/templates/Admin/Posts/translate.php:6
+#: ./plugins/Panel/templates/Admin/element/navigation.php:106
+msgid "Posts"
+msgstr ""
+
+#: ./plugins/Panel/templates/Admin/PostCategories/add.php:7
+#: ./plugins/Panel/templates/Admin/PostCategories/index.php:2
+#: ./plugins/Panel/templates/Admin/PostCategories/index.php:44
+#: ./plugins/Panel/templates/Admin/PostCategories/index.php:52
+msgid "Post Categories"
+msgstr ""
+
+#: ./plugins/Panel/templates/Admin/PostCategories/edit.php:7
+#: ./plugins/Panel/templates/Admin/PostCategories/index.php:7
+#: ./plugins/Panel/templates/Admin/PostCategories/translate.php:7
+#: ./plugins/Panel/templates/Admin/element/navigation.php:133
+msgid "Post categories"
+msgstr ""
+
+#: ./plugins/Panel/templates/Admin/PostCategories/edit.php:52
+msgid "Edit Post Category"
+msgstr ""
+
+#: ./plugins/Panel/templates/Admin/PostCategories/edit.php:61
+msgid "Are you sure you want to delete this post category?"
+msgstr ""
+
+#: ./plugins/Panel/templates/Admin/PostCategories/translate.php:2
+msgid "Post Category Translation: {0}"
+msgstr ""
+
+#: ./plugins/Panel/templates/Admin/PostCategories/translate.php:22
+msgid "Post Category Translation:"
+msgstr ""
+
+#: ./plugins/Panel/templates/Admin/Posts/add.php:2
+#: ./plugins/Panel/templates/Admin/Posts/add.php:46
+#: ./plugins/Panel/templates/Admin/Posts/add.php:55
+msgid "Create Post"
+msgstr ""
+
+#: ./plugins/Panel/templates/Admin/Posts/add.php:78
+#: ./plugins/Panel/templates/Admin/Posts/edit.php:93
+msgid "Select the post category"
+msgstr ""
+
+#: ./plugins/Panel/templates/Admin/Posts/add.php:79
+#: ./plugins/Panel/templates/Admin/Posts/edit.php:94
+#: ./plugins/Panel/templates/Admin/Posts/index.php:67
+msgid "Category"
+msgstr ""
+
+#: ./plugins/Panel/templates/Admin/Posts/add.php:88
+#: ./plugins/Panel/templates/Admin/Posts/edit.php:103
+msgid "Tags"
+msgstr ""
+
+#: ./plugins/Panel/templates/Admin/Posts/add.php:106
+#: ./plugins/Panel/templates/Admin/Posts/edit.php:121
+msgid "Illustration"
+msgstr ""
+
+#: ./plugins/Panel/templates/Admin/Posts/add.php:111
+#: ./plugins/Panel/templates/Admin/Posts/edit.php:136
+msgid "Cover"
+msgstr ""
+
+#: ./plugins/Panel/templates/Admin/Posts/add.php:118
+#: ./plugins/Panel/templates/Admin/Posts/edit.php:143
+msgid "Youtube Embed ID"
+msgstr ""
+
+#: ./plugins/Panel/templates/Admin/Posts/edit.php:54
+msgid "Edit Post"
+msgstr ""
+
+#: ./plugins/Panel/templates/Admin/Posts/edit.php:63
+msgid "Are you sure you want to delete this post?"
+msgstr ""
+
+#: ./plugins/Panel/templates/Admin/Posts/translate.php:2
+msgid "Post Translation: {0}"
+msgstr ""
+
+#: ./plugins/Panel/templates/Admin/Posts/translate.php:21
+msgid "Post Translation:"
+msgstr ""
+
+#: ./plugins/Panel/templates/Admin/Services/add.php:2
+#: ./plugins/Panel/templates/Admin/Services/add.php:46
+#: ./plugins/Panel/templates/Admin/Services/add.php:55
+msgid "Create Service"
+msgstr ""
+
+#: ./plugins/Panel/templates/Admin/Services/edit.php:54
+msgid "Edit Service"
+msgstr ""
+
+#: ./plugins/Panel/templates/Admin/Services/edit.php:63
+msgid "Are you sure you want to delete this service?"
+msgstr ""
+
+#: ./plugins/Panel/templates/Admin/Services/translate.php:2
+msgid "Service Translation: {0}"
+msgstr ""
+
+#: ./plugins/Panel/templates/Admin/Services/translate.php:21
+msgid "Service Translation:"
+msgstr ""
+
+#: ./plugins/Panel/templates/Admin/Settings/add.php:2
+#: ./plugins/Panel/templates/Admin/Settings/add.php:20
+#: ./plugins/Panel/templates/Admin/Settings/add.php:29
+#: ./plugins/Panel/templates/Admin/element/navigation.php:348
+msgid "Create Setting"
+msgstr ""
+
+#: ./plugins/Panel/templates/Admin/Settings/add.php:6
+#: ./plugins/Panel/templates/Admin/Settings/by_key.php:6
+#: ./plugins/Panel/templates/Admin/Settings/by_key.php:65
+#: ./plugins/Panel/templates/Admin/Settings/index.php:2
+#: ./plugins/Panel/templates/Admin/Settings/index.php:6
+#: ./plugins/Panel/templates/Admin/Settings/index.php:56
+#: ./plugins/Panel/templates/Admin/Settings/index.php:64
+#: ./plugins/Panel/templates/Admin/element/navigation.php:329
+#: ./plugins/Panel/templates/Admin/element/navigation.php:336
+#: ./plugins/Panel/templates/Admin/element/navigation.php:338
+msgid "Settings"
+msgstr ""
+
+#: ./plugins/Panel/templates/Admin/Settings/add.php:37
+#: ./plugins/Panel/templates/Admin/Settings/add.php:39
+msgid "Key"
+msgstr ""
+
+#: ./plugins/Panel/templates/Admin/Settings/add.php:44
+msgid "Text"
+msgstr ""
+
+#: ./plugins/Panel/templates/Admin/Settings/add.php:45
+msgid "Checkbox"
+msgstr ""
+
+#: ./plugins/Panel/templates/Admin/Settings/add.php:46
+msgid "Textarea"
+msgstr ""
+
+#: ./plugins/Panel/templates/Admin/Settings/add.php:48
+#: ./plugins/Panel/templates/Admin/Settings/add.php:50
+#: ./plugins/Panel/templates/Admin/Settings/by_key.php:76
+#: ./plugins/Panel/templates/Admin/Settings/index.php:75
+msgid "Type"
+msgstr ""
+
+#: ./plugins/Panel/templates/Admin/Settings/add.php:58
+#: ./plugins/Panel/templates/Admin/Settings/add.php:60
+#: ./plugins/Panel/templates/Admin/Settings/by_key.php:77
+#: ./plugins/Panel/templates/Admin/Settings/index.php:76
+msgid "Value"
+msgstr ""
+
+#: ./plugins/Panel/templates/Admin/Settings/by_key.php:2
+msgid "{0} — Settings"
+msgstr ""
+
+#: ./plugins/Panel/templates/Admin/Settings/by_key.php:78
+#: ./plugins/Panel/templates/Admin/Settings/index.php:77
+msgid "Created"
+msgstr ""
+
+#: ./plugins/Panel/templates/Admin/Settings/by_key.php:79
+#: ./plugins/Panel/templates/Admin/Settings/index.php:78
+msgid "Modified"
+msgstr ""
+
+#: ./plugins/Panel/templates/Admin/Settings/by_key.php:126
+#: ./plugins/Panel/templates/Admin/Settings/index.php:125
+msgid "Are you sure you want to delete this setting?"
+msgstr ""
+
+#: ./plugins/Panel/templates/Admin/SystemicPages/add.php:2
+msgid "Create systemic page"
+msgstr ""
+
+#: ./plugins/Panel/templates/Admin/SystemicPages/add.php:7
+#: ./plugins/Panel/templates/Admin/SystemicPages/edit.php:7
+#: ./plugins/Panel/templates/Admin/SystemicPages/index.php:2
+#: ./plugins/Panel/templates/Admin/SystemicPages/index.php:7
+#: ./plugins/Panel/templates/Admin/SystemicPages/index.php:44
+#: ./plugins/Panel/templates/Admin/SystemicPages/index.php:52
+msgid "Systemic Pages"
+msgstr ""
+
+#: ./plugins/Panel/templates/Admin/SystemicPages/add.php:53
+msgid "Create Systemic Page"
+msgstr ""
+
+#: ./plugins/Panel/templates/Admin/SystemicPages/add.php:75
+#: ./plugins/Panel/templates/Admin/SystemicPages/add.php:77
+#: ./plugins/Panel/templates/Admin/SystemicPages/edit.php:90
+#: ./plugins/Panel/templates/Admin/SystemicPages/edit.php:92
+#: ./plugins/Panel/templates/Admin/SystemicPages/index.php:69
+msgid "Short name"
+msgstr ""
+
+#: ./plugins/Panel/templates/Admin/SystemicPages/add.php:80
+#: ./plugins/Panel/templates/Admin/SystemicPages/add.php:82
+#: ./plugins/Panel/templates/Admin/SystemicPages/edit.php:95
+#: ./plugins/Panel/templates/Admin/SystemicPages/edit.php:97
+#: ./plugins/Panel/templates/Admin/SystemicPages/index.php:68
+msgid "Notation"
+msgstr ""
+
+#: ./plugins/Panel/templates/Admin/SystemicPages/dashboard.php:2
+#: ./plugins/Panel/templates/Admin/element/breadcrumbs.php:3
+#: ./plugins/Panel/templates/Admin/element/breadcrumbs.php:5
+#: ./plugins/Panel/templates/Admin/element/navigation.php:14
+#: ./plugins/Panel/templates/Admin/element/navigation.php:18
+msgid "Dashboard"
+msgstr ""
+
+#: ./plugins/Panel/templates/Admin/SystemicPages/edit.php:70
+msgid "Are you sure you want to delete this systemic page?"
+msgstr ""
+
+#: ./plugins/Panel/templates/Admin/SystemicPages/index.php:73
+msgid "Date modified"
+msgstr ""
+
+#: ./plugins/Panel/templates/Admin/SystemicPages/translate.php:7
+#: ./plugins/Panel/templates/Admin/element/navigation.php:83
+msgid "Systemic pages"
+msgstr ""
+
+#: ./plugins/Panel/templates/Admin/SystemicPages/translate.php:62
+msgid "Systemic Page Translation:"
+msgstr ""
+
+#: ./plugins/Panel/templates/Admin/element/MetaTags/default.php:3
+#: ./plugins/Panel/templates/Admin/element/MetaTags/original.php:3
+#: ./plugins/Panel/templates/Admin/element/MetaTags/translate.php:3
+msgid "Meta Tags"
+msgstr ""
+
+#: ./plugins/Panel/templates/Admin/element/MetaTags/default.php:8
+#: ./plugins/Panel/templates/Admin/element/MetaTags/default.php:10
+msgid "Meta Title"
+msgstr ""
+
+#: ./plugins/Panel/templates/Admin/element/MetaTags/default.php:13
+msgid "Meta Description"
+msgstr ""
+
+#: ./plugins/Panel/templates/Admin/element/MetaTags/default.php:15
+#: ./plugins/Panel/templates/Admin/element/MetaTags/original.php:13
+#: ./plugins/Panel/templates/Admin/element/MetaTags/original.php:15
+#: ./plugins/Panel/templates/Admin/element/MetaTags/translate.php:13
+#: ./plugins/Panel/templates/Admin/element/MetaTags/translate.php:15
+msgid "Meta description"
+msgstr ""
+
+#: ./plugins/Panel/templates/Admin/element/MetaTags/default.php:19
+#: ./plugins/Panel/templates/Admin/element/MetaTags/default.php:21
+msgid "Open Graph Title"
+msgstr ""
+
+#: ./plugins/Panel/templates/Admin/element/MetaTags/default.php:24
+#: ./plugins/Panel/templates/Admin/element/MetaTags/default.php:26
+msgid "Open Graph Description"
+msgstr ""
+
+#: ./plugins/Panel/templates/Admin/element/MetaTags/default.php:30
+msgid "Open Graph Image Url"
+msgstr ""
+
+#: ./plugins/Panel/templates/Admin/element/MetaTags/original.php:19
+#: ./plugins/Panel/templates/Admin/element/MetaTags/original.php:21
+#: ./plugins/Panel/templates/Admin/element/MetaTags/translate.php:19
+#: ./plugins/Panel/templates/Admin/element/MetaTags/translate.php:21
+msgid "Open Graph title"
+msgstr ""
+
+#: ./plugins/Panel/templates/Admin/element/MetaTags/original.php:24
+#: ./plugins/Panel/templates/Admin/element/MetaTags/original.php:26
+#: ./plugins/Panel/templates/Admin/element/MetaTags/translate.php:24
+#: ./plugins/Panel/templates/Admin/element/MetaTags/translate.php:26
+msgid "Open Graph description"
+msgstr ""
+
+#: ./plugins/Panel/templates/Admin/element/MetaTags/original.php:30
+#: ./plugins/Panel/templates/Admin/element/MetaTags/translate.php:30
+msgid "Open Graph Image URL"
+msgstr ""
+
+#: ./plugins/Panel/templates/Admin/element/change_password.php:11
+#: ./plugins/Panel/templates/Admin/element/change_password.php:12
+msgid "Current password"
+msgstr ""
+
+#: ./plugins/Panel/templates/Admin/element/change_password.php:16
+#: ./plugins/Panel/templates/Admin/element/change_password.php:17
+msgid "New password"
+msgstr ""
+
+#: ./plugins/Panel/templates/Admin/element/change_password.php:21
+#: ./plugins/Panel/templates/Admin/element/change_password.php:22
+msgid "Confirm new password"
+msgstr ""
+
+#: ./plugins/Panel/templates/Admin/element/flash/error.php:10
+msgid "Error!"
+msgstr ""
+
+#: ./plugins/Panel/templates/Admin/element/flash/success.php:11
+msgid "Well Done!"
+msgstr ""
+
+#: ./plugins/Panel/templates/Admin/element/footer.php:3
+msgid "KOHA.UZ"
+msgstr ""
+
+#: ./plugins/Panel/templates/Admin/element/navigation.php:18
+msgid "dashboard"
+msgstr ""
+
+#: ./plugins/Panel/templates/Admin/element/navigation.php:41
+msgid "Publications and files"
+msgstr ""
+
+#: ./plugins/Panel/templates/Admin/element/navigation.php:61
+msgid "pages"
+msgstr ""
+
+#: ./plugins/Panel/templates/Admin/element/navigation.php:69
+msgid "Dynamic"
+msgstr ""
+
+#: ./plugins/Panel/templates/Admin/element/navigation.php:71
+msgid "Dynamic pages"
+msgstr ""
+
+#: ./plugins/Panel/templates/Admin/element/navigation.php:71
+msgid "dynamic pages"
+msgstr ""
+
+#: ./plugins/Panel/templates/Admin/element/navigation.php:81
+msgid "Systemic"
+msgstr ""
+
+#: ./plugins/Panel/templates/Admin/element/navigation.php:83
+msgid "systemic pages"
+msgstr ""
+
+#: ./plugins/Panel/templates/Admin/element/navigation.php:110
+msgid "posts"
+msgstr ""
+
+#: ./plugins/Panel/templates/Admin/element/navigation.php:118
+#: ./plugins/Panel/templates/Admin/element/navigation.php:168
+#: ./plugins/Panel/templates/Admin/element/navigation.php:236
+#: ./plugins/Panel/templates/Admin/element/navigation.php:358
+msgid "List"
+msgstr ""
+
+#: ./plugins/Panel/templates/Admin/element/navigation.php:120
+msgid "List posts"
+msgstr ""
+
+#: ./plugins/Panel/templates/Admin/element/navigation.php:120
+msgid "list posts"
+msgstr ""
+
+#: ./plugins/Panel/templates/Admin/element/navigation.php:131
+msgid "Categories"
+msgstr ""
+
+#: ./plugins/Panel/templates/Admin/element/navigation.php:133
+msgid "post categories"
+msgstr ""
+
+#: ./plugins/Panel/templates/Admin/element/navigation.php:160
+msgid "services"
+msgstr ""
+
+#: ./plugins/Panel/templates/Admin/element/navigation.php:170
+msgid "List services"
+msgstr ""
+
+#: ./plugins/Panel/templates/Admin/element/navigation.php:170
+msgid "list services"
+msgstr ""
+
+#: ./plugins/Panel/templates/Admin/element/navigation.php:183
+msgid "Services FAQs"
+msgstr ""
+
+#: ./plugins/Panel/templates/Admin/element/navigation.php:183
+msgid "services faqs"
+msgstr ""
+
+#: ./plugins/Panel/templates/Admin/element/navigation.php:208
+#: ./plugins/Panel/templates/Admin/element/navigation.php:212
+msgid "File Storage"
+msgstr ""
+
+#: ./plugins/Panel/templates/Admin/element/navigation.php:212
+msgid "file storage"
+msgstr ""
+
+#: ./plugins/Panel/templates/Admin/element/navigation.php:221
+msgid "Upload"
+msgstr ""
+
+#: ./plugins/Panel/templates/Admin/element/navigation.php:225
+msgid "upload file"
+msgstr ""
+
+#: ./plugins/Panel/templates/Admin/element/navigation.php:240
+msgid "List files"
+msgstr ""
+
+#: ./plugins/Panel/templates/Admin/element/navigation.php:240
+msgid "list files"
+msgstr ""
+
+#: ./plugins/Panel/templates/Admin/element/navigation.php:257
+msgid "By type"
+msgstr ""
+
+#: ./plugins/Panel/templates/Admin/element/navigation.php:261
+msgid "Files by type"
+msgstr ""
+
+#: ./plugins/Panel/templates/Admin/element/navigation.php:261
+msgid "files by type"
+msgstr ""
+
+#: ./plugins/Panel/templates/Admin/element/navigation.php:274
+msgid "documents"
+msgstr ""
+
+#: ./plugins/Panel/templates/Admin/element/navigation.php:289
+msgid "images"
+msgstr ""
+
+#: ./plugins/Panel/templates/Admin/element/navigation.php:300
+#: ./plugins/Panel/templates/Admin/element/navigation.php:304
+msgid "OpenGraph"
+msgstr ""
+
+#: ./plugins/Panel/templates/Admin/element/navigation.php:304
+msgid "opengraph"
+msgstr ""
+
+#: ./plugins/Panel/templates/Admin/element/navigation.php:338
+msgid "settings"
+msgstr ""
+
+#: ./plugins/Panel/templates/Admin/element/navigation.php:348
+msgid "create setting"
+msgstr ""
+
+#: ./plugins/Panel/templates/Admin/element/navigation.php:360
+msgid "List Settings"
+msgstr ""
+
+#: ./plugins/Panel/templates/Admin/element/navigation.php:360
+msgid "list settings"
+msgstr ""
+
+#: ./plugins/Panel/templates/Admin/element/navigation.php:370
+msgid "By Key"
+msgstr ""
+
+#: ./plugins/Panel/templates/Admin/element/navigation.php:372
+msgid "Settings by Key"
+msgstr ""
+
+#: ./plugins/Panel/templates/Admin/element/navigation.php:372
+msgid "settings by key"
+msgstr ""
+
+#: ./plugins/Panel/templates/layout/default.php:91
+msgid "Control Panel"
+msgstr ""
+
+#: ./plugins/Panel/templates/layout/default.php:99
+msgid "Filter menu"
+msgstr ""
+
+#: ./plugins/Panel/templates/layout/default.php:153
+msgid "Hide navigation"
+msgstr ""
+
+#: ./plugins/Panel/templates/layout/default.php:158
+msgid "Minify navigation"
+msgstr ""
+
+#: ./plugins/Panel/templates/layout/default.php:163
+msgid "Lock navigation"
+msgstr ""
+
+#: ./plugins/Panel/templates/layout/default.php:184
+msgid "Fullscreen"
+msgstr ""
+
+#: ./plugins/Panel/templates/layout/default.php:188
+msgid "Language"
+msgstr ""
+
+#: ./plugins/Panel/templates/layout/default.php:204
+msgid "Change password"
+msgstr ""
+
+#: ./plugins/Panel/templates/layout/default.php:208
+msgid "Logout"
+msgstr ""
+
+#: ./plugins/Panel/templates/layout/default.php:242
+msgid "Home"
+msgstr ""
+
+#: ./plugins/Panel/templates/layout/default.php:270
+msgid "Are you sure?"
+msgstr ""
+
+#: ./plugins/Panel/templates/layout/default.php:280
+msgid "Critical action"
+msgstr ""
+

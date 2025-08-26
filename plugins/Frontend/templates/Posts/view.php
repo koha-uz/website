@@ -5,7 +5,7 @@ $this->assign('meta', $this->MetaRender
 );
 $breadcrumbs = [
     ['title' => __d('frontend', 'Posts'), 'url' => ['controller' => 'Posts', 'action' => 'index']],
-    ['title' => $post->post_category->title, 'url' => ['_name' => 'post_category_view', 'slug' => $post->post_category->slug]],
+    ['title' => $post->post_category->title, 'url' => ['controller' => 'PostCategories', 'action' => 'view', 'slug' => $post->post_category->slug]],
     ['title' => $post->title]
 ];
 $this->set('breadcrumbs', $breadcrumbs);
@@ -30,7 +30,7 @@ $this->end();
                         echo $this->Html->link(
                             h($post->post_category->title),
                             [
-                                '_name' => 'post_category_view',
+                                'controller' => 'PostCategories', 'action' => 'view',
                                 'slug' => h($post->post_category->slug)
                             ],
                             ['class' => 'hover', 'rel' => 'category']

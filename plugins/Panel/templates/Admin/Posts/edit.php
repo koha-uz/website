@@ -54,15 +54,17 @@ $(document).ready(function() {
                 <h2><?= __d('admin', 'Edit Post') ?></h2>
                 <div class="panel-toolbar ml-auto mr-3">
                     <?php
-                    echo $this->Form->deleteLink(
-                        $this->Html->tag('i', '', ['class' => 'fal fa-trash']) . ' ' . __d('panel', 'Delete'),
-                        ['controller' => 'Posts', 'action' => 'delete', h($post->id)],
-                        [
-                            'class' => 'btn btn-danger btn-xs mr-auto',
-                            'confirm' => __d('panel', 'Are you sure you want to delete this post?'),
-                            'escape' => false
-                        ]
-                    );
+                    if ($this->AuthUser->hasAccess(['controller' => 'Posts', 'action' => 'delete', h($post->id)])) {
+                        echo $this->Form->deleteLink(
+                            $this->Html->tag('i', '', ['class' => 'fal fa-trash']) . ' ' . __d('admin', 'Delete'),
+                            ['controller' => 'Posts', 'action' => 'delete', h($post->id)],
+                            [
+                                'class' => 'btn btn-danger btn-xs mr-auto',
+                                'confirm' => __d('admin', 'Are you sure you want to delete this post?'),
+                                'escape' => false
+                            ]
+                        );
+                    }
                     ?>
                 </div>
             </div>
@@ -75,12 +77,12 @@ $(document).ready(function() {
                             echo $this->Form->control('title', [
                                 'label' => __d('admin', 'Title') . $this->Html->tag('span' , '*', ['class' => 'ml-1 text-danger']),
                                 'escape' => false,
-                                'placeholder' => __d('panel', 'Title')
+                                'placeholder' => __d('admin', 'Title')
                             ]);
                             echo $this->Form->control('slug', [
                                 'label' => __d('admin', 'Slug') . $this->Html->tag('span' , '*', ['class' => 'ml-1 text-danger']),
                                 'escape' => false,
-                                'placeholder' => __d('panel', 'Slug')
+                                'placeholder' => __d('admin', 'Slug')
                             ]);
                             ?>
 
@@ -88,7 +90,7 @@ $(document).ready(function() {
                                 <div class="col-lg-6">
                                     <?php
                                     echo $this->Form->control('post_category_id', [
-                                        'empty' => __d('panel', 'Select the post category'),
+                                        'empty' => __d('admin', 'Select the post category'),
                                         'label' => __d('admin', 'Category') . $this->Html->tag('span' , '*', ['class' => 'ml-1 text-danger']),
                                         'escape' => false,
                                         'class' => 'form-control select2 w-100'
@@ -109,14 +111,14 @@ $(document).ready(function() {
                                 'label' => __d('admin', 'Body') . $this->Html->tag('span' , '*', ['class' => 'ml-1 text-danger']),
                                 'escape' => false,
                                 'rows' => 24,
-                                'placeholder' => __d('panel', 'Body')
+                                'placeholder' => __d('admin', 'Body')
                             ]);
                             ?>
                         </div>
                         <div class="col-lg-4">
                             <div class="card shadow-0 mb-4">
                                 <div class="card-header py-2">
-                                    <h3 class="card-title"><?= __d('panel', 'Illustration') ?></h3>
+                                    <h3 class="card-title"><?= __d('admin', 'Illustration') ?></h3>
                                 </div>
                                 <div class="card-body">
                                     <?php
@@ -137,7 +139,6 @@ $(document).ready(function() {
                                         'escape' => false,
                                         'required' => empty($post->cover) ? true : false
                                     ]);
-
                                     echo $this->Form->control('youtubeId', [
                                         'label' => __d('admin', 'Youtube Embed ID')
                                     ]);
@@ -152,12 +153,12 @@ $(document).ready(function() {
                         <div class="col-12">
                             <div class="border-top pt-3 text-right">
                                 <?php
-                                echo $this->Html->link(
+                                echo $this->AuthUser->link(
                                     __d('admin', 'Cancel'),
                                     ['controller' => 'Posts', 'action' => 'index'],
                                     ['class' => 'btn btn-default mr-2']
                                 );
-                                echo $this->Form->submit(__d('panel', 'Save'));
+                                echo $this->Form->submit(__d('admin', 'Save'));
                                 ?>
                             </div>
                         </div>

@@ -3,8 +3,8 @@ $this->assign('title', $postCategory->title);
 
 $this->start('breadcrumbs');
 $breadcrumbs = [
-    ['title' => __d('panel', 'Posts'), 'url' => ['controller' => 'Posts', 'action' => 'index']],
-    ['title' => __d('panel', 'Post categories'), 'url' => ['controller' => 'PostCategories', 'action' => 'index']],
+    ['title' => __d('admin', 'Posts'), 'url' => ['controller' => 'Posts', 'action' => 'index']],
+    ['title' => __d('admin', 'Post categories'), 'url' => ['controller' => 'PostCategories', 'action' => 'index']],
     ['title' => $postCategory->title]
 ];
 echo $this->element('breadcrumbs', ['breadcrumbs' => $breadcrumbs]);
@@ -52,15 +52,17 @@ $(document).ready(function() {
                 <h2><?= __d('admin', 'Edit Post Category') ?></h2>
                 <div class="panel-toolbar ml-auto mr-3">
                     <?php
-                    echo $this->Form->deleteLink(
-                        $this->Html->tag('i', '', ['class' => 'fal fa-trash']) . ' ' . __d('panel', 'Delete'),
-                        ['controller' => 'PostCategories', 'action' => 'delete', h($postCategory->id)],
-                        [
-                            'class' => 'btn btn-danger btn-xs mr-auto',
-                            'confirm' => __d('panel', 'Are you sure you want to delete this post category?'),
-                            'escape' => false
-                        ]
-                    );
+                    if ($this->AuthUser->hasAccess(['controller' => 'PostCategories', 'action' => 'delete', h($postCategory->id)])) {
+                        echo $this->Form->deleteLink(
+                            $this->Html->tag('i', '', ['class' => 'fal fa-trash']) . ' ' . __d('admin', 'Delete'),
+                            ['controller' => 'PostCategories', 'action' => 'delete', h($postCategory->id)],
+                            [
+                                'class' => 'btn btn-danger btn-xs mr-auto',
+                                'confirm' => __d('admin', 'Are you sure you want to delete this post category?'),
+                                'escape' => false
+                            ]
+                        );
+                    }
                     ?>
                 </div>
             </div>
@@ -73,15 +75,15 @@ $(document).ready(function() {
                             echo $this->Form->control('title', [
                                 'label' => __d('admin', 'Title') . $this->Html->tag('span' , '*', ['class' => 'ml-1 text-danger']),
                                 'escape' => false,
-                                'placeholder' => __d('panel', 'Title')
+                                'placeholder' => __d('admin', 'Title')
                             ]);
                             echo $this->Form->control('slug', [
                                 'label' => __d('admin', 'Slug') . $this->Html->tag('span' , '*', ['class' => 'ml-1 text-danger']),
                                 'escape' => false,
-                                'placeholder' => __d('panel', 'Slug')
+                                'placeholder' => __d('admin', 'Slug')
                             ]);
                             echo $this->Form->control('parent_id', [
-                                'empty' => __d('panel', 'Select the parent'),
+                                'empty' => __d('admin', 'Select the parent'),
                                 'label' => __d('admin', 'Parent'),
                                 'class' => 'form-control select2 w-100'
                             ]);
@@ -89,7 +91,7 @@ $(document).ready(function() {
                                 'label' => __d('admin', 'Body') . $this->Html->tag('span' , '*', ['class' => 'ml-1 text-danger']),
                                 'escape' => false,
                                 'rows' => 11,
-                                'placeholder' => __d('panel', 'Body')
+                                'placeholder' => __d('admin', 'Body')
                             ]);
                             ?>
                         </div>
@@ -101,12 +103,12 @@ $(document).ready(function() {
                         <div class="col-12">
                             <div class="border-top pt-3 text-right">
                                 <?php
-                                echo $this->Html->link(
+                                echo $this->AuthUser->link(
                                     __d('admin', 'Cancel'),
                                     ['controller' => 'PostCategories', 'action' => 'index'],
                                     ['class' => 'btn btn-default mr-2']
                                 );
-                                echo $this->Form->submit(__d('panel', 'Save'));
+                                echo $this->Form->submit(__d('admin', 'Save'));
                                 ?>
                             </div>
                         </div>

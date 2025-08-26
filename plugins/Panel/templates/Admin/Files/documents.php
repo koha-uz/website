@@ -1,10 +1,10 @@
 <?php
-$this->assign('title', __d('panel', 'Documents'));
+$this->assign('title', __d('admin', 'Documents'));
 
 $this->start('breadcrumbs');
 $breadcrumbs = [
-    ['title' => __d('panel', 'Files'), 'url' => ['action' => 'index']],
-    ['title' => __d('panel', 'Documents')]
+    ['title' => __d('admin', 'Files'), 'url' => ['action' => 'index']],
+    ['title' => __d('admin', 'Documents')]
 ];
 echo $this->element('breadcrumbs', ['breadcrumbs' => $breadcrumbs]);
 $this->end();
@@ -44,7 +44,7 @@ $(document).ready(function() {
 
 <div class="subheader">
     <h1 class="subheader-title">
-        <i class="subheader-icon fal  fa-file-word"></i> <?= __d('panel', 'Documents') ?>
+        <i class="subheader-icon fal  fa-file-word"></i> <?= __d('admin', 'Documents') ?>
     </h1>
 </div>
 
@@ -52,9 +52,9 @@ $(document).ready(function() {
     <div class="col-xl-12">
         <div id="panel-1" class="panel" data-panel-close data-panel-sortable data-panel-fullscreen data-panel-refresh data-panel-locked data-panel-collapsed>
             <div class="panel-hdr">
-                <h2><?= __d('panel', 'Documents') ?></h2>
+                <h2><?= __d('admin', 'Documents') ?></h2>
                 <div class="panel-toolbar ml-auto mr-3">
-                    <?= $this->Html->link(__d('panel', 'Create new'), ['action' => 'add'], ['class' => 'btn btn-xs btn-success']) ?>
+                    <?= $this->AuthUser->link(__d('admin', 'Create new'), ['controller' => 'Files', 'action' => 'add'], ['class' => 'btn btn-xs btn-success']) ?>
                 </div>
             </div>
             <div class="panel-container show">
@@ -63,9 +63,9 @@ $(document).ready(function() {
                         <thead>
                             <tr>
                                 <th class="all" style="width: 5%"></th>
-                                <th class="all"><?= __d('panel', 'Name') ?></th>
-                                <th class="min-tablet" style="width: 10%"><?= __d('panel', 'Size') ?></th>
-                                <th class="min-desktop w-25"><?= __d('panel', 'Mime Type') ?></th>
+                                <th class="all"><?= __d('admin', 'Name') ?></th>
+                                <th class="min-tablet" style="width: 10%"><?= __d('admin', 'Size') ?></th>
+                                <th class="min-desktop w-25"><?= __d('admin', 'Mime Type') ?></th>
                                 <th class="all"></th>
                             </tr>
                         </thead>
@@ -83,15 +83,17 @@ $(document).ready(function() {
                                 <td><?= h($file->mime_type) ?></td>
                                 <td class="text-center">
                                     <?php
-                                    echo $this->Form->postLink(
-                                        $this->Html->tag('i', '', ['class' => 'fal fa-trash']),
-                                        $this->Url->build(['action' => 'delete', h($file->id)]),
-                                        [
-                                            'class' => 'color-danger-900 mt-2 pr-2 mr-auto',
-                                            'escape' => false,
-                                            'confirm' => __d('panel', 'Are you sure you want to delete the document?')
-                                        ]
-                                    );
+                                    if ($this->AuthUser->hasAccess(['controller' => 'Files', 'action' => 'delete', h($file->id)])) {
+                                        echo $this->Form->deleteLink(
+                                            $this->Html->tag('i', '', ['class' => 'fal fa-trash']),
+                                            ['controller' => 'Files', 'action' => 'delete', h($file->id)],
+                                            [
+                                                'escape' => false,
+                                                'class' => 'color-danger-900',
+                                                'confirm' => __d('admin', 'Are you sure you want to delete the file?')
+                                            ]
+                                        );
+                                    }
                                     ?>
                                 </td>
                             </tr>

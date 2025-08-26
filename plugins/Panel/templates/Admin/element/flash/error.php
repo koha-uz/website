@@ -7,5 +7,5 @@ if (!isset($params['escape']) || $params['escape'] !== false) {
     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
         <span aria-hidden="true"><i class="fal fa-times"></i></span>
     </button>
-    <strong><?= __d('panel', 'Error!') ?></strong> <?= $message ?>
+    <strong><?= __d('admin', 'Error!') ?></strong> <?= $message ?>
 </div>

@@ -7,13 +7,15 @@
     "require": {
         "php": ">=8.1",
         "admad/cakephp-i18n": "3.1.1",
-        "cakephp/authentication": "3.2.5",
+        "cakephp/authentication": "^3.3",
+        "cakephp/authorization": "^3.4",
         "cakephp/cakephp": "5.2.*",
         "cakephp/migrations": "^4.0.0",
         "cakephp/plugin-installer": "^2.0",
         "dereuromark/cakephp-ajax": "3.0.0",
         "dereuromark/cakephp-file-storage": "4.0.0-RC2",
         "dereuromark/cakephp-tags": "2.1.0",
+        "dereuromark/cakephp-tinyauth": "^4.5",
         "league/flysystem": "^1.1",
         "league/flysystem-aws-s3-v3": "1.0.30",
         "mobiledetect/mobiledetectlib": "^4.8.03",
@@ -39,9 +41,7 @@
         "psr-4": {
             "App\\": "src/",
             "Panel\\": "plugins/Panel/src/",
-            "Published\\": "plugins/Published/src/",
-            "Frontend\\": "plugins/Frontend/src/",
-            "Meta\\": "plugins/Meta/src/"
+            "Frontend\\": "plugins/Frontend/src/"
         }
     },
     "autoload-dev": {
@@ -49,9 +49,7 @@
             "App\\Test\\": "tests/",
             "Cake\\Test\\": "vendor/cakephp/cakephp/tests/",
             "Panel\\Test\\": "plugins/Panel/tests/",
-            "Published\\Test\\": "plugins/Published/tests/",
-            "Frontend\\Test\\": "plugins/Frontend/tests/",
-            "Meta\\Test\\": "plugins/Meta/tests/"
+            "Frontend\\Test\\": "plugins/Frontend/tests/"
         }
     },
     "config": {

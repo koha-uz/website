@@ -21,8 +21,6 @@ class SystemicPagesController extends AppController
         $this->loadComponent('SystemicPagesComponent', [
             'className' => 'SystemicPages'
         ]);
-
-        $this->Authentication->allowUnauthenticated(['display', 'robots', 'sitemap']);
     }
 
     public function beforeFilter(EventInterface $event)

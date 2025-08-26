@@ -1,11 +1,11 @@
 <?php
-$this->assign('title', __d('panel', 'Create Post Category'));
+$this->assign('title', __d('admin', 'Create Post Category'));
 
 $this->start('breadcrumbs');
 $breadcrumbs = [
-    ['title' => __d('panel', 'Posts'), 'url' => ['controller' => 'Posts', 'action' => 'index']],
-    ['title' => __d('panel', 'Post Categories'), 'url' => ['controller' => 'PostCategories', 'action' => 'index']],
-    ['title' => __d('panel', 'Create')]
+    ['title' => __d('admin', 'Posts'), 'url' => ['controller' => 'Posts', 'action' => 'index']],
+    ['title' => __d('admin', 'Post Categories'), 'url' => ['controller' => 'PostCategories', 'action' => 'index']],
+    ['title' => __d('admin', 'Create')]
 ];
 echo $this->element('breadcrumbs', ['breadcrumbs' => $breadcrumbs]);
 $this->end();
@@ -41,7 +41,7 @@ $(document).ready(function() {
 
 <div class="subheader">
     <h1 class="subheader-title">
-        <i class="subheader-icon fal fa-plus-circle"></i> <?= __d('panel', 'Create Post Category') ?>
+        <i class="subheader-icon fal fa-plus-circle"></i> <?= __d('admin', 'Create Post Category') ?>
     </h1>
 </div>
 
@@ -60,15 +60,15 @@ $(document).ready(function() {
                             echo $this->Form->control('title', [
                                 'label' => __d('admin', 'Title') . $this->Html->tag('span' , '*', ['class' => 'ml-1 text-danger']),
                                 'escape' => false,
-                                'placeholder' => __d('panel', 'Title')
+                                'placeholder' => __d('admin', 'Title')
                             ]);
                             echo $this->Form->control('slug', [
                                 'label' => __d('admin', 'Slug') . $this->Html->tag('span' , '*', ['class' => 'ml-1 text-danger']),
                                 'escape' => false,
-                                'placeholder' => __d('panel', 'Slug')
+                                'placeholder' => __d('admin', 'Slug')
                             ]);
                             echo $this->Form->control('parent_id', [
-                                'empty' => __d('panel', 'Select the parent'),
+                                'empty' => __d('admin', 'Select the parent'),
                                 'label' => __d('admin', 'Parent'),
                                 'class' => 'form-control select2 w-100'
                             ]);
@@ -76,7 +76,7 @@ $(document).ready(function() {
                                 'label' => __d('admin', 'Body') . $this->Html->tag('span' , '*', ['class' => 'ml-1 text-danger']),
                                 'escape' => false,
                                 'rows' => 11,
-                                'placeholder' => __d('panel', 'Body')
+                                'placeholder' => __d('admin', 'Body')
                             ]);
                             ?>
                         </div>
@@ -88,12 +88,12 @@ $(document).ready(function() {
                         <div class="col-12">
                             <div class="border-top pt-3 text-right">
                                 <?php
-                                echo $this->Html->link(
+                                echo $this->AuthUser->link(
                                     __d('admin', 'Cancel'),
                                     ['controller' => 'PostCategories', 'action' => 'index'],
                                     ['class' => 'btn btn-default mr-2']
                                 );
-                                echo $this->Form->submit(__d('panel', 'Create'));
+                                echo $this->Form->submit(__d('admin', 'Create'));
                                 ?>
                             </div>
                         </div>

@@ -1,9 +1,9 @@
 <?php
-$this->assign('title', __d('panel', 'Posts'));
+$this->assign('title', __d('admin', 'Posts'));
 
 $this->start('breadcrumbs');
 $breadcrumbs = [
-    ['title' => __d('panel', 'Posts')]
+    ['title' => __d('admin', 'Posts')]
 ];
 echo $this->element('breadcrumbs', ['breadcrumbs' => $breadcrumbs]);
 $this->end();
@@ -40,7 +40,7 @@ $(document).ready(function() {
 
 <div class="subheader">
     <h1 class="subheader-title">
-        <i class="subheader-icon fal fa-newspaper"></i> <?= __d('panel', 'Posts') ?>
+        <i class="subheader-icon fal fa-newspaper"></i> <?= __d('admin', 'Posts') ?>
     </h1>
 </div>
 
@@ -48,9 +48,14 @@ $(document).ready(function() {
     <div class="col-xl-12">
         <div id="panel-1" class="panel" data-panel-close data-panel-sortable data-panel-fullscreen data-panel-refresh data-panel-locked data-panel-collapsed>
             <div class="panel-hdr">
-                <h2><?= __d('panel', 'Posts') ?></h2>
+                <h2><?= __d('admin', 'Posts') ?></h2>
                 <div class="panel-toolbar ml-auto mr-3">
-                    <?= $this->Html->link(__d('panel', 'Create new'), ['controller' => 'Posts', 'action' => 'add'], ['class' => 'btn btn-xs btn-success']) ?>
+                    <?php
+                    echo $this->AuthUser->link(
+                        __d('admin', 'Create new'),
+                        ['controller' => 'Posts', 'action' => 'add'],
+                        ['class' => 'btn btn-xs btn-success']
+                    ); ?>
                 </div>
             </div>
             <div class="panel-container show">
@@ -58,14 +63,14 @@ $(document).ready(function() {
                     <table class="table table-bordered table-hover table-striped w-100 datatable">
                         <thead>
                             <tr>
-                                <th class="all align-middle" style="width: 50%"><?= __d('panel', 'Title') ?></th>
-                                <th class="min-desktop align-middle"><?= __d('panel', 'Category') ?></th>
+                                <th class="all align-middle" style="width: 50%"><?= __d('admin', 'Title') ?></th>
+                                <th class="min-desktop align-middle"><?= __d('admin', 'Category') ?></th>
                                 <th class="min-desktop text-center align-middle"><?= $this->Html->image('flag/ru.png', ['style' => 'width: 20px']) ?></th>
                                 <th class="min-desktop text-center align-middle"><?= $this->Html->image('flag/en.png', ['style' => 'width: 20px']) ?></th>
                                 <th class="min-desktop text-center align-middle"><?= $this->Html->image('flag/uz.png', ['style' => 'width: 20px']) ?></th>
-                                <th class="min-desktop align-middle"><?= __d('panel', 'Date Created') ?></th>
-                                <th class="min-desktop align-middle"><?= __d('panel', 'Date Published') ?></th>
-                                <th class="min-tablet text-center align-middle"><?= __d('panel', 'Mode') ?></th>
+                                <th class="min-desktop align-middle"><?= __d('admin', 'Date Created') ?></th>
+                                <th class="min-desktop align-middle"><?= __d('admin', 'Date Published') ?></th>
+                                <th class="min-tablet text-center align-middle"><?= __d('admin', 'Mode') ?></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -75,7 +80,7 @@ $(document).ready(function() {
                                     <?php
                                     echo $this->Html->link(
                                         $this->Html->tag('i', '', ['class' => 'fal fa-external-link-alt']),
-                                        ['_name' => 'post_view', 'slug' => h($post->slug), 'lang' => 'ru'],
+                                        ['controller' => 'Posts', 'action' => 'view', 'slug' => h($post->slug), 'prefix' => false],
                                         ['escape' => false, 'target' => '_blank']
                                     );
                                     ?>
@@ -85,16 +90,18 @@ $(document).ready(function() {
                                 </td>
                                 <td class="align-middle">
                                     <?php
-                                    echo $this->Html->link(
-                                        $post->post_category->title,
-                                        ['controller' => 'PostCategories', 'action' => 'edit', $post->post_category->id]
-                                    );
-                                    echo ' ' . $this->Panel->boolIcon($post->post_category->is_published);
+                                    if ($this->AuthUser->hasAccess(['controller' => 'PostCategories', 'action' => 'edit', $post->post_category->id])) {
+                                        echo $this->Html->link(
+                                            $post->post_category->title,
+                                            ['controller' => 'PostCategories', 'action' => 'edit', $post->post_category->id]
+                                        );
+                                        echo ' ' . $this->Panel->boolIcon($post->post_category->is_published);
+                                    }
                                     ?>
                                 </td>
                                 <td class="text-center align-middle">
                                     <?php
-                                    echo $this->Html->link(
+                                    echo $this->AuthUser->link(
                                         $this->Html->tag('i', '', ['class' => 'fal fa-pencil']),
                                         ['controller' => 'Posts', 'action' => 'edit', h($post->id)],
                                         ['escape' => false]
@@ -109,7 +116,7 @@ $(document).ready(function() {
                                         $color = 'info';
                                         $title = $this->Html->tag('i', '', ['class' => 'fal fa-pencil']);
                                     }
-                                    echo $this->Html->link($title,
+                                    echo $this->AuthUser->link($title,
                                         ['controller' => 'Posts', 'action' => 'translate', h($post->id), 'en'],
                                         ['escape' => false, 'class' => 'text-' . $color]
                                     );
@@ -123,7 +130,7 @@ $(document).ready(function() {
                                         $color = 'info';
                                         $title = $this->Html->tag('i', '', ['class' => 'fal fa-pencil']);
                                     }
-                                    echo $this->Html->link($title,
+                                    echo $this->AuthUser->link($title,
                                         ['controller' => 'Posts', 'action' => 'translate', h($post->id), 'uz'],
                                         ['escape' => false, 'class' => 'text-' . $color]
                                     );
@@ -136,7 +143,11 @@ $(document).ready(function() {
                                     <?= isset($post->published) ? $post->published->format('d.m.Y H:i') : $this->Panel->notSet('') ?>
                                 </td>
                                 <td class="text-center align-middle">
-                                    <?= $this->Published->publishLink($post) ?>
+                                    <?php
+                                    if ($this->AuthUser->hasAccess(['controller' => $post->getSource(), 'action' => 'setPublished', h($post->id)])) {
+                                        echo $this->Published->publishLink($post);
+                                    }
+                                    ?>
                                 </td>
                             </tr>
                             <?php endforeach; ?>

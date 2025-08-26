@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace App\Model\Table;
 
+use Authentication\PasswordHasher\DefaultPasswordHasher;
 use ArrayObject;
 use Cake\Datasource\EntityInterface;
 use Cake\Event\EventInterface;
@@ -10,7 +11,6 @@ use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
-use Cake\Auth\DefaultPasswordHasher;
 
 /**
  * Users Model
@@ -39,6 +39,12 @@ class UsersTable extends Table
         $this->setTable('users');
         $this->setDisplayField('id');
         $this->setPrimaryKey('id');
+
+        $this->belongsToMany('Roles', [
+            'foreignKey' => 'user_id',
+            'targetForeignKey' => 'role_id',
+            'joinTable' => 'roles_users',
+        ]);
 
         $this->addBehavior('Timestamp', [
             'events' => [

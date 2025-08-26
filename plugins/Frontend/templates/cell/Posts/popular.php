@@ -8,7 +8,7 @@
                 <?php
                 echo $this->Html->link(
                     $this->Image->display($post->cover, 'crop100'),
-                    ['_name' => 'post_view', 'slug' => h($post->slug)],
+                    ['controller' => 'Posts', 'action' => 'view', 'slug' => h($post->slug)],
                     ['escape' => false, 'title' => h($post->title)]
                 );
                 ?>
@@ -18,7 +18,7 @@
                     <?php
                     echo $this->Html->link(
                         $post->title,
-                        ['_name' => 'post_view', 'slug' => $post->slug],
+                        ['controller' => 'Posts', 'action' => 'view', 'slug' => $post->slug],
                         ['class' => 'link-dark', 'title' => $post->title]
                     );
                     ?>

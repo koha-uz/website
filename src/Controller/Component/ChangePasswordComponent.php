@@ -34,14 +34,14 @@ class ChangePasswordComponent extends Component
 
             if ($usersTable->save($user)) {
                 if (isset($user->new_password)) {
-                    $this->getController()->Flash->success(__d('panel', 'The user password has been changed. Please, Log In.'));
-                    return $this->getController()->redirect(['_name' => 'logout']);
+                    $this->getController()->Flash->success(__('The user password has been changed. Please, Log In.'));
+                    return $this->getController()->redirect(['controller' => 'Users', 'action' => 'logout']);
                 }
 
-                $this->getController()->Flash->success(__d('panel', 'The user has been saved.'));
+                $this->getController()->Flash->success(__('The user has been saved.'));
                 return $this->getController()->redirect(['controller' => 'Users', 'action' => 'changePassword']);
             }
-            $this->getController()->Flash->error(__d('panel', 'The user could not be saved. Please, try again.'));
+            $this->getController()->Flash->error(__('The user could not be saved. Please, try again.'));
         }
 
         $this->getController()->set('user', $user);

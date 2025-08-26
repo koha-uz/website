@@ -33,7 +33,7 @@ class PanelHelper extends Helper
     public function notSet($value)
     {
         if ((null === $value) || (gettype($value) == 'string' && $value == '')) {
-            return $this->Html->tag('span', __d('panel', 'Not set'), ['class' => 'text-warning']);
+            return $this->Html->tag('span', __d('admin', 'Not set'), ['class' => 'text-warning']);
         }
         return $value;
     }

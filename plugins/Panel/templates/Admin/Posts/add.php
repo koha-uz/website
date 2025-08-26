@@ -1,10 +1,10 @@
 <?php
-$this->assign('title', __d('panel', 'Create Post'));
+$this->assign('title', __d('admin', 'Create Post'));
 
 $this->start('breadcrumbs');
 $breadcrumbs = [
     ['title' => __d('admin', 'Posts'), 'url' => ['controller' => 'Posts', 'action' => 'index']],
-    ['title' => __d('panel', 'Create')]
+    ['title' => __d('admin', 'Create')]
 ];
 echo $this->element('breadcrumbs', ['breadcrumbs' => $breadcrumbs]);
 $this->end();
@@ -43,7 +43,7 @@ $(document).ready(function() {
 
 <div class="subheader">
     <h1 class="subheader-title">
-        <i class="subheader-icon fal fa-plus-circle"></i> <?= __d('panel', 'Create Post') ?>
+        <i class="subheader-icon fal fa-plus-circle"></i> <?= __d('admin', 'Create Post') ?>
     </h1>
 </div>
 
@@ -62,12 +62,12 @@ $(document).ready(function() {
                             echo $this->Form->control('title', [
                                 'label' => __d('admin', 'Title') . $this->Html->tag('span' , '*', ['class' => 'ml-1 text-danger']),
                                 'escape' => false,
-                                'placeholder' => __d('panel', 'Title')
+                                'placeholder' => __d('admin', 'Title')
                             ]);
                             echo $this->Form->control('slug', [
                                 'label' => __d('admin', 'Slug') . $this->Html->tag('span' , '*', ['class' => 'ml-1 text-danger']),
                                 'escape' => false,
-                                'placeholder' => __d('panel', 'Slug')
+                                'placeholder' => __d('admin', 'Slug')
                             ]);
                             ?>
 
@@ -75,7 +75,7 @@ $(document).ready(function() {
                                 <div class="col-lg-6">
                                     <?php
                                     echo $this->Form->control('post_category_id', [
-                                        'empty' => __d('panel', 'Select the post category'),
+                                        'empty' => __d('admin', 'Select the post category'),
                                         'label' => __d('admin', 'Category') . $this->Html->tag('span' , '*', ['class' => 'ml-1 text-danger']),
                                         'escape' => false,
                                         'class' => 'form-control select2 w-100'
@@ -96,14 +96,14 @@ $(document).ready(function() {
                                 'label' => __d('admin', 'Body') . $this->Html->tag('span' , '*', ['class' => 'ml-1 text-danger']),
                                 'escape' => false,
                                 'rows' => 24,
-                                'placeholder' => __d('panel', 'Body')
+                                'placeholder' => __d('admin', 'Body')
                             ]);
                             ?>
                         </div>
                         <div class="col-lg-4">
                             <div class="card shadow-0 mb-4">
                                 <div class="card-header py-2">
-                                    <h3 class="card-title"><?= __d('panel', 'Illustration') ?></h3>
+                                    <h3 class="card-title"><?= __d('admin', 'Illustration') ?></h3>
                                 </div>
                                 <div class="card-body">
                                     <?php
@@ -128,12 +128,12 @@ $(document).ready(function() {
                         <div class="col-12">
                             <div class="border-top pt-3 text-right">
                                 <?php
-                                echo $this->Html->link(
+                                echo $this->AuthUser->link(
                                     __d('admin', 'Cancel'),
                                     ['controller' => 'Posts', 'action' => 'index'],
                                     ['class' => 'btn btn-default mr-2']
                                 );
-                                echo $this->Form->submit(__d('panel', 'Create'));
+                                echo $this->Form->submit(__d('admin', 'Create'));
                                 ?>
                             </div>
                         </div>

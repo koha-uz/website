@@ -24,8 +24,6 @@ class PostsController extends AppController
     {
         parent::initialize();
         $this->loadComponent('SystemicPages');
-
-        $this->Authentication->allowUnauthenticated(['index', 'view']);
     }
 
     /**

@@ -1,10 +1,10 @@
 <?php
-$this->assign('title', __d('panel', 'Dynamic Pages'));
+$this->assign('title', __d('admin', 'Dynamic Pages'));
 
 $this->start('breadcrumbs');
 $breadcrumbs = [
-    ['title' => __d('panel', 'Pages')],
-    ['title' => __d('panel', 'Dynamic Pages')]
+    ['title' => __d('admin', 'Pages')],
+    ['title' => __d('admin', 'Dynamic Pages')]
 ];
 echo $this->element('breadcrumbs', ['breadcrumbs' => $breadcrumbs]);
 $this->end();
@@ -41,7 +41,7 @@ $(document).ready(function() {
 
 <div class="subheader">
     <h1 class="subheader-title">
-        <i class="subheader-icon fal fa-file-alt"></i> <?= __d('panel', 'Dynamic Pages') ?>
+        <i class="subheader-icon fal fa-file-alt"></i> <?= __d('admin', 'Dynamic Pages') ?>
     </h1>
 </div>
 
@@ -49,9 +49,9 @@ $(document).ready(function() {
     <div class="col-xl-12">
         <div id="panel-1" class="panel" data-panel-close data-panel-sortable data-panel-fullscreen data-panel-refresh data-panel-locked data-panel-collapsed>
             <div class="panel-hdr">
-                <h2><?= __d('panel', 'Dynamic Pages') ?></h2>
+                <h2><?= __d('admin', 'Dynamic Pages') ?></h2>
                 <div class="panel-toolbar ml-auto mr-3">
-                    <?= $this->Html->link(__d('panel', 'Create new'), ['controller' => 'Pages', 'action' => 'add'], ['class' => 'btn btn-xs btn-success']) ?>
+                    <?= $this->AuthUser->link(__d('admin', 'Create new'), ['controller' => 'Pages', 'action' => 'add'], ['class' => 'btn btn-xs btn-success']) ?>
                 </div>
             </div>
             <div class="panel-container show">
@@ -59,13 +59,13 @@ $(document).ready(function() {
                     <table class="table table-bordered table-hover table-striped w-100 datatable">
                         <thead>
                             <tr>
-                                <th class="min-desktop"><?= __d('panel', 'Parent') ?></th>
-                                <th class="all"><?= __d('panel', 'Title') ?></th>
+                                <th class="min-desktop"><?= __d('admin', 'Parent') ?></th>
+                                <th class="all"><?= __d('admin', 'Title') ?></th>
                                 <th class="min-desktop text-center"><?= $this->Html->image('flag/ru.png', ['style' => 'width: 20px']) ?></th>
                                 <th class="min-desktop text-center"><?= $this->Html->image('flag/en.png', ['style' => 'width: 20px']) ?></th>
                                 <th class="min-desktop text-center"><?= $this->Html->image('flag/uz.png', ['style' => 'width: 20px']) ?></th>
-                                <th class="min-desktop"><?= __d('panel', 'Date Published') ?></th>
-                                <th class="min-phone text-center"><?= __d('panel', 'Mode') ?></th>
+                                <th class="min-desktop"><?= __d('admin', 'Date Published') ?></th>
+                                <th class="min-phone text-center"><?= __d('admin', 'Mode') ?></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -77,39 +77,25 @@ $(document).ready(function() {
                                         echo h($page->parent_page->title);
                                         echo $this->Html->tag('code', h($page->parent_page->slug), ['class' => 'd-block']);
                                     } else {
-                                        echo $this->Html->tag('span', __d('panel', 'Root'), ['class' => 'color-danger-600 fs-xl font-italic']);
+                                        echo $this->Html->tag('span', __d('admin', 'Root'), ['class' => 'color-danger-600 fs-xl font-italic']);
                                     }
                                     ?>
                                 </td>
                                 <td class="align-middle">
-                                    <div class="h4">
-                                        <?php
-                                        if (isset($page->title)) {
-                                            echo h($page->title);
-                                        } else {
-                                            echo $this->Panel->notSet('');
-                                        }
-                                        ?>
-                                    </div>
-
-                                    <?php if (isset($page->slug) && isset($page->is_published) && $page->is_published): ?>
-                                    <code class="d-block">
-                                        <?php
-                                        echo $this->Html->link(
-                                            $this->Url->build(
-                                                ['_name' => 'page_view', 'slug' => h($page->slug)],
-                                                ['fullBase' => true]
-                                            ),
-                                            ['_name' => 'page_view', 'slug' => h($page->slug)],
-                                            ['escape' => false, 'target' => '_blank']
-                                        );
-                                        ?>
-                                    </code>
-                                    <?php endif; ?>
+                                    <?php
+                                    echo $this->Html->link(
+                                        $this->Html->tag('i', '', ['class' => 'fal fa-external-link-alt']),
+                                        ['controller' => 'Pages', 'action' => 'view', 'slug' => h($page->slug), 'prefix' => false],
+                                        ['escape' => false, 'target' => '_blank']
+                                    );
+                                    ?>
+                                    <span class="h4 ml-2">
+                                        <?= isset($page->title) ? h($page->title) : $this->Panel->notSet('title') ?>
+                                    </span>
                                 </td>
                                 <td class="text-center align-middle">
                                     <?php
-                                    echo $this->Html->link(
+                                    echo $this->AuthUser->link(
                                         $this->Html->tag('i', '', ['class' => 'fal fa-pencil']),
                                         ['controller' => 'Pages', 'action' => 'edit', h($page->id)],
                                         ['escape' => false]
@@ -124,7 +110,7 @@ $(document).ready(function() {
                                         $color = 'info';
                                         $title = $this->Html->tag('i', '', ['class' => 'fal fa-pencil']);
                                     }
-                                    echo $this->Html->link($title,
+                                    echo $this->AuthUser->link($title,
                                         ['controller' => 'Pages', 'action' => 'translate', h($page->id), 'en'],
                                         ['escape' => false, 'class' => 'text-' . $color]
                                     );
@@ -138,7 +124,7 @@ $(document).ready(function() {
                                         $color = 'info';
                                         $title = $this->Html->tag('i', '', ['class' => 'fal fa-pencil']);
                                     }
-                                    echo $this->Html->link($title,
+                                    echo $this->AuthUser->link($title,
                                         ['controller' => 'Pages', 'action' => 'translate', h($page->id), 'uz'],
                                         ['escape' => false, 'class' => 'text-' . $color]
                                     );
@@ -154,7 +140,11 @@ $(document).ready(function() {
                                     ?>
                                 </td>
                                 <td class="text-center align-middle">
-                                    <?= $this->Published->publishLink($page) ?>
+                                    <?php
+                                    if ($this->AuthUser->hasAccess(['controller' => $page->getSource(), 'action' => 'setPublished', h($page->id)])) {
+                                        echo $this->Published->publishLink($page);
+                                    }
+                                    ?>
                                 </td>
                             </tr>
                             <?php endforeach; ?>

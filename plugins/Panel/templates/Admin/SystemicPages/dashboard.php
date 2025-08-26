@@ -1,5 +1,5 @@
 <?php
-$this->assign('title', __d('panel', 'Dashboard'));
+$this->assign('title', __d('admin', 'Dashboard'));
 $this->assign('breadcrumbs', $this->element('breadcrumbs'));
 
 $this->start('navigation');

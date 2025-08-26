@@ -46,8 +46,10 @@ class AppController extends Controller
     {
         parent::initialize();
 
-        $this->loadComponent('Authentication.Authentication');
         $this->loadComponent('Flash');
+        $this->loadComponent('TinyAuth.Authentication');
+        $this->loadComponent('TinyAuth.Authorization');
+        $this->loadComponent('TinyAuth.AuthUser');
 
         /*
          * Enable the following component for recommended CakePHP form protection settings.

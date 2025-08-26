@@ -31,13 +31,13 @@ $this->end();
                         echo $this->Flash->render();
                         echo $this->Form->create(null, ['autocomplete' => 'off', 'class' => 'text-start mb-3']);
                         echo $this->Form->control('username', [
-                            'placeholder' => __d('panel', 'Username')
+                            'placeholder' => __d('frontend', 'Username')
                         ]);
                         echo $this->Form->control('password', [
-                            'placeholder' => __d('panel', 'Password')
+                            'placeholder' => __d('frontend', 'Password')
                         ]);
-                        echo $this->Form->control('remember_me', ['type' => 'checkbox', 'checked' => true, 'label' => __d('panel', 'Remember me for the next 30 days')]);
-                        echo $this->Form->submit(__d('panel', 'Sign in'));
+                        echo $this->Form->control('remember_me', ['type' => 'checkbox', 'checked' => true, 'label' => __d('frontend', 'Remember me for the next 30 days')]);
+                        echo $this->Form->submit(__d('frontend', 'Sign In'));
                         echo $this->Form->end();
                         ?>
                     </div>

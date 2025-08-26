@@ -1,11 +1,11 @@
 <?php
-$this->assign('title', __d('panel', 'Create FAQ'));
+$this->assign('title', __d('admin', 'Create FAQ'));
 
 $this->start('breadcrumbs');
 $breadcrumbs = [
     ['title' => __d('admin', 'Services'), 'url' => ['controller' => 'Services', 'action' => 'index']],
     ['title' => __d('admin', 'FAQ'), 'url' => ['controller' => 'Faqs', 'action' => 'index']],
-    ['title' => __d('panel', 'Create')]
+    ['title' => __d('admin', 'Create')]
 ];
 echo $this->element('breadcrumbs', ['breadcrumbs' => $breadcrumbs]);
 $this->end();
@@ -44,7 +44,7 @@ $(document).ready(function() {
 
 <div class="subheader">
     <h1 class="subheader-title">
-        <i class="subheader-icon fal fa-plus-circle"></i> <?= __d('panel', 'Create FAQ') ?>
+        <i class="subheader-icon fal fa-plus-circle"></i> <?= __d('admin', 'Create FAQ') ?>
     </h1>
 </div>
 
@@ -63,15 +63,15 @@ $(document).ready(function() {
                             echo $this->Form->control('question', [
                                 'label' => __d('admin', 'Question') . $this->Html->tag('span' , '*', ['class' => 'ml-1 text-danger']),
                                 'escape' => false,
-                                'placeholder' => __d('panel', 'Question')
+                                'placeholder' => __d('admin', 'Question')
                             ]);
                             echo $this->Form->control('slug', [
                                 'label' => __d('admin', 'Slug') . $this->Html->tag('span' , '*', ['class' => 'ml-1 text-danger']),
                                 'escape' => false,
-                                'placeholder' => __d('panel', 'Slug')
+                                'placeholder' => __d('admin', 'Slug')
                             ]);
                             echo $this->Form->control('service_id', [
-                                'empty' => __d('panel', 'Select the service'),
+                                'empty' => __d('admin', 'Select the service'),
                                 'label' => __d('admin', 'Service') . $this->Html->tag('span' , '*', ['class' => 'ml-1 text-danger']),
                                 'escape' => false,
                                 'class' => 'form-control select2 w-100'
@@ -80,7 +80,7 @@ $(document).ready(function() {
                                 'label' => __d('admin', 'Answer') . $this->Html->tag('span' , '*', ['class' => 'ml-1 text-danger']),
                                 'escape' => false,
                                 'rows' => 11,
-                                'placeholder' => __d('panel', 'Answer')
+                                'placeholder' => __d('admin', 'Answer')
                             ]);
                             ?>
                         </div>
@@ -92,12 +92,12 @@ $(document).ready(function() {
                         <div class="col-12">
                             <div class="border-top pt-3 text-right">
                                 <?php
-                                echo $this->Html->link(
+                                echo $this->AuthUser->link(
                                     __d('admin', 'Cancel'),
                                     ['controller' => 'Faqs', 'action' => 'index'],
                                     ['class' => 'btn btn-default mr-2']
                                 );
-                                echo $this->Form->submit(__d('panel', 'Create'));
+                                echo $this->Form->submit(__d('admin', 'Create'));
                                 ?>
                             </div>
                         </div>

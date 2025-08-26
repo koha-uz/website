@@ -13,7 +13,7 @@ use Cake\Core\Configure;
                 <?php
                 echo $this->Html->link(
                     __d('frontend', 'About Us'),
-                    ['_name' => 'page_view', 'slug' => 'about-us'],
+                    ['controller' => 'Pages', 'action' => 'view', 'slug' => 'about-us'],
                     ['title' => __d('frontend', 'About Us'), 'class' => 'nav-link']
                 );
                 ?>
@@ -25,7 +25,7 @@ use Cake\Core\Configure;
                         <?php
                         echo $this->Html->link(
                             __d('frontend', 'About Koha'),
-                            ['_name' => 'page_view', 'slug' => 'about-ils-koha'],
+                            ['controller' => 'Pages', 'action' => 'view', 'slug' => 'about-ils-koha'],
                             ['title' => __d('frontend', 'About Koha'), 'class' => 'dropdown-item']
                         );
                         ?>
@@ -34,7 +34,7 @@ use Cake\Core\Configure;
                         <?php
                         echo $this->Html->link(
                             __d('frontend', 'Demo Koha'),
-                            ['_name' => 'page_view', 'slug' => 'demo-ils-koha'],
+                            ['controller' => 'Pages', 'action' => 'view', 'slug' => 'demo-ils-koha'],
                             ['title' => __d('frontend', 'Demo Koha'), 'class' => 'dropdown-item']
                         );
                         ?>
@@ -43,7 +43,7 @@ use Cake\Core\Configure;
                         <?php
                         echo $this->Html->link(
                             __d('frontend', 'Translation by Koha'),
-                            ['_name' => 'page_view', 'slug' => 'translation-by-koha'],
+                            ['controller' => 'Pages', 'action' => 'view', 'slug' => 'translation-by-koha'],
                             ['title' => __d('frontend', 'Translation by Koha'), 'class' => 'dropdown-item']
                         );
                         ?>
@@ -54,7 +54,7 @@ use Cake\Core\Configure;
                 <?php
                 echo $this->Html->link(
                     __d('frontend', 'Services'),
-                    ['_name' => 'page_view', 'slug' => 'services'],
+                    ['controller' => 'Pages', 'action' => 'view', 'slug' => 'services'],
                     ['title' => __d('frontend', 'Services'), 'class' => 'nav-link']
                 );
                 ?>
@@ -62,9 +62,9 @@ use Cake\Core\Configure;
             <li class="nav-item">
                 <?php
                 echo $this->Html->link(
-                    __d('frontend', 'Articles'),
+                    __d('frontend', 'Posts'),
                     ['controller' => 'Posts', 'action' => 'index'],
-                    ['title' => __d('frontend', 'Articles'), 'class' => 'nav-link']
+                    ['title' => __d('frontend', 'Posts'), 'class' => 'nav-link']
                 );
                 ?>
             </li>
@@ -72,7 +72,7 @@ use Cake\Core\Configure;
                 <?php
                 echo $this->Html->link(
                     __d('frontend', 'Contacts'),
-                    ['_name' => 'page_view', 'slug' => 'contacts'],
+                    ['controller' => 'Pages', 'action' => 'view', 'slug' => 'contacts'],
                     ['title' => __d('frontend', 'Contacts'), 'class' => 'nav-link']
                 );
                 ?>

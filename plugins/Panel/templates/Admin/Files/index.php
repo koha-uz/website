@@ -1,9 +1,9 @@
 <?php
-$this->assign('title', __d('panel', 'Files'));
+$this->assign('title', __d('admin', 'Files'));
 
 $this->start('breadcrumbs');
 $breadcrumbs = [
-    ['title' => __d('panel', 'Files')]
+    ['title' => __d('admin', 'Files')]
 ];
 echo $this->element('breadcrumbs', ['breadcrumbs' => $breadcrumbs]);
 $this->end();
@@ -44,7 +44,7 @@ $(document).ready(function() {
 
 <div class="subheader">
     <h1 class="subheader-title">
-        <i class="subheader-icon fal fa-file"></i> <?= __d('panel', 'Files') ?>
+        <i class="subheader-icon fal fa-file"></i> <?= __d('admin', 'Files') ?>
     </h1>
 </div>
 
@@ -52,9 +52,10 @@ $(document).ready(function() {
     <div class="col-xl-12">
         <div id="panel-1" class="panel" data-panel-close data-panel-sortable data-panel-fullscreen data-panel-refresh data-panel-locked data-panel-collapsed>
             <div class="panel-hdr">
-                <h2><?= __d('panel', 'Files') ?></h2>
+                <h2><?= __d('admin', 'Files') ?></h2>
                 <div class="panel-toolbar ml-auto mr-3">
-                    <?= $this->Html->link(__d('panel', 'Create new'), ['action' => 'add'], ['class' => 'btn btn-xs btn-success']) ?>
+                    <?= $this->AuthUser->link(__d('admin', 'Upload file(s)'), ['action' => 'add'], ['class' => 'btn btn-xs btn-success']) ?>
+                    <?= $this->AuthUser->link(__d('admin', 'Upload OpenGraph image(s)'), ['controller' => 'Files', 'action' => 'addOpenGraph'], ['class' => 'ml-2 btn btn-xs btn-success']) ?>
                 </div>
             </div>
             <div class="panel-container show">
@@ -63,12 +64,12 @@ $(document).ready(function() {
                         <thead>
                             <tr>
                                 <th class="all"></th>
-                                <th class="all"><?= __d('panel', 'Name') ?></th>
-                                <th class="min-desktop text-center"><?= __d('panel', 'Model') ?></th>
-                                <th class="min-desktop text-center"><?= __d('panel', 'Collection') ?></th>
-                                <th class="text-center min-desktop"><?= __d('panel', 'Size') ?></th>
-                                <th class="text-center min-desktop"><?= __d('panel', 'Mime Type') ?></th>
-                                <th class="min-desktop"><?= __d('panel', 'Date Created') ?></th>
+                                <th class="all"><?= __d('admin', 'Name') ?></th>
+                                <th class="min-desktop text-center"><?= __d('admin', 'Model') ?></th>
+                                <th class="min-desktop text-center"><?= __d('admin', 'Collection') ?></th>
+                                <th class="text-center min-desktop"><?= __d('admin', 'Size') ?></th>
+                                <th class="text-center min-desktop"><?= __d('admin', 'Mime Type') ?></th>
+                                <th class="min-desktop"><?= __d('admin', 'Date Created') ?></th>
                                 <th class="min-desktop"></th>
                             </tr>
                         </thead>
@@ -113,15 +114,17 @@ $(document).ready(function() {
                                 </td>
                                 <td class="text-center align-middle">
                                     <?php
-                                    echo $this->Form->deleteLink(
-                                        $this->Html->tag('i', '', ['class' => 'fal fa-trash']),
-                                        ['action' => 'delete', h($file->id)],
-                                        [
-                                            'escape' => false,
-                                            'class' => 'color-danger-900',
-                                            'confirm' => __d('panel', 'Are you sure you want to delete the file?')
-                                        ]
-                                    );
+                                    if ($this->AuthUser->hasAccess(['controller' => 'Files', 'action' => 'delete', h($file->id)])) {
+                                        echo $this->Form->deleteLink(
+                                            $this->Html->tag('i', '', ['class' => 'fal fa-trash']),
+                                            ['controller' => 'Files', 'action' => 'delete', h($file->id)],
+                                            [
+                                                'escape' => false,
+                                                'class' => 'color-danger-900',
+                                                'confirm' => __d('admin', 'Are you sure you want to delete the file?')
+                                            ]
+                                        );
+                                    }
                                     ?>
                                 </td>
                             </tr>

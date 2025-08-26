@@ -16,36 +16,50 @@ declare(strict_types=1);
  */
 namespace App;
 
-use ADmad\I18n\Middleware\I18nMiddleware;
+use App\Service\Admin\PostsService as AdminPostsService;
+use App\Service\PostsService;
+
 use Authentication\AuthenticationService;
 use Authentication\AuthenticationServiceInterface;
 use Authentication\AuthenticationServiceProviderInterface;
 use Authentication\Identifier\AbstractIdentifier;
 use Authentication\Identifier\IdentifierInterface;
 use Authentication\Middleware\AuthenticationMiddleware;
-use App\Service\Admin\PostsService as AdminPostsService;
-use App\Service\PostsService;
+use Authorization\AuthorizationService;
+use Authorization\AuthorizationServiceInterface;
+use Authorization\AuthorizationServiceProviderInterface;
+use Authorization\Middleware\AuthorizationMiddleware;
+use Authorization\Policy\MapResolver;
+
 use Cake\Core\Configure;
 use Cake\Core\ContainerInterface;
 use Cake\Datasource\FactoryLocator;
 use Cake\Error\Middleware\ErrorHandlerMiddleware;
+use Cake\I18n\DateTime;
 use Cake\Http\BaseApplication;
 use Cake\Http\Middleware\BodyParserMiddleware;
 use Cake\Http\Middleware\CsrfProtectionMiddleware;
 use Cake\Http\Middleware\EncryptedCookieMiddleware;
 use Cake\Http\MiddlewareQueue;
-use Cake\Routing\Router;
+use Cake\Http\ServerRequest;
 use Cake\ORM\Locator\TableLocator;
+use Cake\Routing\Router;
 use Cake\Routing\Middleware\AssetMiddleware;
 use Cake\Routing\Middleware\RoutingMiddleware;
 use Psr\Http\Message\ServerRequestInterface;
+
+use TinyAuth\Middleware\RequestAuthorizationMiddleware;
+use TinyAuth\Policy\RequestPolicy;
+
 /**
  * Application setup class.
  *
  * This defines the bootstrapping logic and middleware layers you
  * want to use in your application.
  */
-class Application extends BaseApplication implements AuthenticationServiceProviderInterface
+class Application extends BaseApplication implements
+    AuthenticationServiceProviderInterface,
+    AuthorizationServiceProviderInterface
 {
     /**
      * Load all the application configuration and bootstrap logic.
@@ -80,11 +94,8 @@ class Application extends BaseApplication implements AuthenticationServiceProvid
         // Load more plugins here
         $this->addPlugin('ADmad/I18n');
         $this->addPlugin('Ajax', ['bootstrap' => true]);
-        $this->addPlugin('Authentication');
-        $this->addPlugin('Meta');
         $this->addPlugin('Muffin/Slug');
         $this->addPlugin('Panel');
-        $this->addPlugin('Published');
         $this->addPlugin('Frontend');
         $this->addPlugin('Tags');
     }
@@ -140,6 +151,13 @@ class Application extends BaseApplication implements AuthenticationServiceProvid
                 Configure::read('Security.cookieKey')
             ))
             ->add(new AuthenticationMiddleware($this))
+            ->add(new AuthorizationMiddleware($this, [
+                'unauthorizedHandler' => [
+                    'className' => 'Authorization.Redirect',
+                    'url' => '/' . Configure::read('I18n.defaultLanguage'),
+                    'queryParam' => 'redirectUrl',
+                ]
+            ]))
 
             // Cross Site Request Forgery (CSRF) Protection Middleware
             // https://book.cakephp.org/4/en/controllers/middleware.html#cross-site-request-forgery-csrf-middleware
@@ -161,7 +179,7 @@ class Application extends BaseApplication implements AuthenticationServiceProvid
         $service = new AuthenticationService();
 
         $loginUrl = Router::url([
-            '_name' => 'login'
+            'controller' => 'Users', 'action' => 'login'
         ]);
 
         // Define where users should be redirected to when they are not authenticated
@@ -178,16 +196,31 @@ class Application extends BaseApplication implements AuthenticationServiceProvid
         $service->loadAuthenticator('Authentication.Cookie', [
             'fields' => $fields,
             'loginUrl' => $loginUrl,
+            'cookie' => [
+                'expires' => DateTime::now()->modify('+30 days')
+            ]
         ]);
         $service->loadAuthenticator('Authentication.Form', [
             'fields' => $fields,
             'loginUrl' => $loginUrl,
+            'identifier' => [
+                'Authentication.Password' => compact('fields')
+            ]
         ]);
 
-        // Load identifiers
-        $service->loadIdentifier('Authentication.Password', compact('fields'));
-
         return $service;
+    }
+
+    public function getAuthorizationService(ServerRequestInterface $request): AuthorizationServiceInterface
+    {
+        $resolver = new MapResolver();
+
+        $policy = new RequestPolicy([
+            'includeAuthentication' => true,
+        ]);
+        $resolver->map(ServerRequest::class, $policy);
+
+        return new AuthorizationService($resolver);
     }
 
     /**

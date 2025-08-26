@@ -39,7 +39,7 @@ class EmailAddressesHelper extends Helper
                             'type' => 'text',
                             'data-inputmask' => "'alias': 'email'",
                             'class' => 'form-control form-control-sm',
-                            'placeholder' => __d('panel', 'Email address')
+                            'placeholder' => __d('admin', 'Email address')
                         ]) .
                     '</div>' .
                     '<div class="col-12 mt-1">' .
@@ -48,7 +48,7 @@ class EmailAddressesHelper extends Helper
                             'type' => 'textarea',
                             'rows' => 1,
                             'class' => 'form-control form-control-sm',
-                            'placeholder' => __d('panel', 'Target')
+                            'placeholder' => __d('admin', 'Target')
                         ]) .
                     '</div>' .
                 '</div>' .

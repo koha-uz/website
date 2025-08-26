@@ -1,11 +1,11 @@
 <?php
-$this->assign('title', __d('panel', 'Create systemic page'));
+$this->assign('title', __d('admin', 'Create systemic page'));
 
 $this->start('breadcrumbs');
 $breadcrumbs = [
-    ['title' => __d('panel', 'Pages')],
-    ['title' => __d('panel', 'Systemic Pages'), 'url' => ['controller' => 'SystemicPages', 'action' => 'index']],
-    ['title' => __d('panel', 'Create')]
+    ['title' => __d('admin', 'Pages')],
+    ['title' => __d('admin', 'Systemic Pages'), 'url' => ['controller' => 'SystemicPages', 'action' => 'index']],
+    ['title' => __d('admin', 'Create')]
 ];
 echo $this->element('breadcrumbs', ['breadcrumbs' => $breadcrumbs]);
 $this->end();
@@ -50,7 +50,7 @@ $(document).ready(function() {
 
 <div class="subheader">
     <h1 class="subheader-title">
-        <i class="subheader-icon fal fa-plus-circle"></i> <?= __d('panel', 'Create Systemic Page') ?>
+        <i class="subheader-icon fal fa-plus-circle"></i> <?= __d('admin', 'Create Systemic Page') ?>
     </h1>
 </div>
 
@@ -69,23 +69,23 @@ $(document).ready(function() {
                             echo $this->Form->control('title', [
                                 'label' => __d('admin', 'Title') . $this->Html->tag('span' , '*', ['class' => 'ml-1 text-danger']),
                                 'escape' => false,
-                                'placeholder' => __d('panel', 'Title')
+                                'placeholder' => __d('admin', 'Title')
                             ]);
                             echo $this->Form->control('short_name', [
-                                'label' => __d('panel', 'Short name') . $this->Html->tag('span' , '*', ['class' => 'ml-1 text-danger']),
+                                'label' => __d('admin', 'Short name') . $this->Html->tag('span' , '*', ['class' => 'ml-1 text-danger']),
                                 'escape' => false,
-                                'placeholder' => __d('panel', 'Short name')
+                                'placeholder' => __d('admin', 'Short name')
                             ]);
                             echo $this->Form->control('notation', [
-                                'label' => __d('panel', 'Notation') . $this->Html->tag('span' , '*', ['class' => 'ml-1 text-danger']),
+                                'label' => __d('admin', 'Notation') . $this->Html->tag('span' , '*', ['class' => 'ml-1 text-danger']),
                                 'escape' => false,
-                                'placeholder' => __d('panel', 'Notation')
+                                'placeholder' => __d('admin', 'Notation')
                             ]);
                             echo $this->Form->control('body', [
                                 'label' => __d('admin', 'Body') . $this->Html->tag('span' , '*', ['class' => 'ml-1 text-danger']),
                                 'escape' => false,
                                 'rows' => 11,
-                                'placeholder' => __d('panel', 'Body')
+                                'placeholder' => __d('admin', 'Body')
                             ]);
                             ?>
                         </div>
@@ -97,12 +97,12 @@ $(document).ready(function() {
                         <div class="col-12">
                             <div class="border-top pt-3 text-right">
                                 <?php
-                                echo $this->Html->link(
+                                echo $this->AuthUser->link(
                                     __d('admin', 'Cancel'),
                                     ['controller' => 'SystemicPages', 'action' => 'index'],
                                     ['class' => 'btn btn-default mr-2']
                                 );
-                                echo $this->Form->submit(__d('panel', 'Create'));
+                                echo $this->Form->submit(__d('admin', 'Create'));
                                 ?>
                             </div>
                         </div>

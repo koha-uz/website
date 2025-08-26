@@ -20,7 +20,6 @@ class PagesController extends AppController
     public function initialize(): void
     {
         parent::initialize();
-        $this->Authentication->allowUnauthenticated(['view']);
     }
 
     public function view($slug): void

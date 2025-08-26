@@ -3,8 +3,8 @@ $this->assign('title', h($systemicPage->short_name));
 
 $this->start('breadcrumbs');
 $breadcrumbs = [
-    ['title' => __d('panel', 'Pages')],
-    ['title' => __d('panel', 'Systemic Pages'), 'url' => ['controller' => 'SystemicPages', 'action' => 'index']],
+    ['title' => __d('admin', 'Pages')],
+    ['title' => __d('admin', 'Systemic Pages'), 'url' => ['controller' => 'SystemicPages', 'action' => 'index']],
     ['title' => h($systemicPage->short_name)]
 ];
 echo $this->element('breadcrumbs', ['breadcrumbs' => $breadcrumbs]);
@@ -61,15 +61,17 @@ $(document).ready(function() {
                 <h2><?= h($systemicPage->short_name) ?></h2>
                 <div class="panel-toolbar ml-auto mr-3">
                     <?php
-                    echo $this->Form->deleteLink(
-                        $this->Html->tag('i', '', ['class' => 'fal fa-trash']) . ' ' . __d('panel', 'Delete'),
-                        ['controller' => 'SystemicPages', 'action' => 'delete', h($systemicPage->id)],
-                        [
-                            'class' => 'btn btn-danger btn-xs mr-auto',
-                            'confirm' => __d('panel', 'Are you sure you want to delete this systemic page?'),
-                            'escape' => false
-                        ]
-                    );
+                    if ($this->AuthUser->hasAccess(['controller' => 'SystemicPages', 'action' => 'delete', h($systemicPage->id)])) {
+                        echo $this->Form->deleteLink(
+                            $this->Html->tag('i', '', ['class' => 'fal fa-trash']) . ' ' . __d('admin', 'Delete'),
+                            ['controller' => 'SystemicPages', 'action' => 'delete', h($systemicPage->id)],
+                            [
+                                'class' => 'btn btn-danger btn-xs mr-auto',
+                                'confirm' => __d('admin', 'Are you sure you want to delete this systemic page?'),
+                                'escape' => false
+                            ]
+                        );
+                    }
                     ?>
                 </div>
             </div>
@@ -82,23 +84,23 @@ $(document).ready(function() {
                             echo $this->Form->control('title', [
                                 'label' => __d('admin', 'Title') . $this->Html->tag('span' , '*', ['class' => 'ml-1 text-danger']),
                                 'escape' => false,
-                                'placeholder' => __d('panel', 'Title')
+                                'placeholder' => __d('admin', 'Title')
                             ]);
                             echo $this->Form->control('short_name', [
-                                'label' => __d('panel', 'Short name') . $this->Html->tag('span' , '*', ['class' => 'ml-1 text-danger']),
+                                'label' => __d('admin', 'Short name') . $this->Html->tag('span' , '*', ['class' => 'ml-1 text-danger']),
                                 'escape' => false,
-                                'placeholder' => __d('panel', 'Short name')
+                                'placeholder' => __d('admin', 'Short name')
                             ]);
                             echo $this->Form->control('notation', [
-                                'label' => __d('panel', 'Notation') . $this->Html->tag('span' , '*', ['class' => 'ml-1 text-danger']),
+                                'label' => __d('admin', 'Notation') . $this->Html->tag('span' , '*', ['class' => 'ml-1 text-danger']),
                                 'escape' => false,
-                                'placeholder' => __d('panel', 'Notation')
+                                'placeholder' => __d('admin', 'Notation')
                             ]);
                             echo $this->Form->control('body', [
                                 'label' => __d('admin', 'Body') . $this->Html->tag('span' , '*', ['class' => 'ml-1 text-danger']),
                                 'escape' => false,
                                 'rows' => 11,
-                                'placeholder' => __d('panel', 'Body')
+                                'placeholder' => __d('admin', 'Body')
                             ]);
                             ?>
                         </div>
@@ -110,12 +112,12 @@ $(document).ready(function() {
                         <div class="col-12">
                             <div class="border-top pt-3 text-right">
                                 <?php
-                                echo $this->Html->link(
+                                echo $this->AuthUser->link(
                                     __d('admin', 'Cancel'),
                                     ['controller' => 'SystemicPages', 'action' => 'index'],
                                     ['class' => 'btn btn-default mr-2']
                                 );
-                                echo $this->Form->submit(__d('panel', 'Save'));
+                                echo $this->Form->submit(__d('admin', 'Save'));
                                 ?>
                             </div>
                         </div>
